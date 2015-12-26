@@ -73,3 +73,8 @@ theme: apollo
 deploy:
   type: git
   repo: git@github.com:shanehsi/shanehsi.github.io.git
+
+admin:
+  username: shanehsi
+  password_hash: 2c9e7c16168666a9fb5db94746db5d45
+  secret: shanehsi_thoreau_33
