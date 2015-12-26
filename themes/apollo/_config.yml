@@ -1,0 +1,16 @@
+menu:
+    博客: /
+    github: https://github.com/shane13hsi
+
+favicon: /favicon.png
+logo: /favicon.png
+
+# comment
+# e.g disqus: seansun
+disqus:
+duoshuo:
+
+# google-analytics:
+ga:
+# baidu-analytics:
+ba:
