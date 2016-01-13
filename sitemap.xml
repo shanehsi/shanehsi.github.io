@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
+    <lastmod>2016-01-13T02:48:40.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2015/12/21/hello-world/</loc>
     <lastmod>2015-12-26T08:01:23.000Z</lastmod>
   </url>

@@ -1,26 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Shane Hsi Rocks]]></title>
-  
-  <link href="/atom.xml" rel="self"/>
-  <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-13T02:48:40.000Z</updated>
-  <id>http://shane.hsi.rocks/</id>
-  
-  <author>
-    <name><![CDATA[Shane Hsi]]></name>
-    
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Read TypeScript Blog, Announcing TypeScript 1.7]]></title>
-    <link href="http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/"/>
-    <id>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</id>
-    <published>2016-01-13T02:10:24.000Z</published>
-    <updated>2016-01-13T02:48:40.000Z</updated>
-    <content type="html"><![CDATA[<p>更新：</p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Read TypeScript Blog, Announcing TypeScript 1.7 · Shane Hsi Rocks</title><meta name="description" content="更新：
+
+对于 ES6 targets，默认打开 async/await
+polymorphic ‘this’ typing
+ES2016 的 exponentiation 语法
+ES6 module targeting
+
+Async/Await for ES6 targetsAsyc functions，需要 ES6 generator 支持（比如 node.js v4"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Read TypeScript Blog, Announcing TypeScript 1.7</h1><div class="post-meta"><div class="post-time">Jan 13, 2016</div></div><div class="post-content"><p>更新：</p>
 <ul>
 <li>对于 ES6 targets，默认打开 async/await</li>
 <li>polymorphic ‘this’ typing</li>
@@ -66,38 +51,4 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//tsconfig.json targeting node.js v4 and beyond</span><br><span class="line">&#123;</span><br><span class="line">    "compilerOptions": &#123;</span><br><span class="line">        "module": "commonjs",</span><br><span class="line">        "target": "es6"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="ES7_Exponentiation"><a href="#ES7_Exponentiation" class="headerlink" title="ES7 Exponentiation"></a>ES7 Exponentiation</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> squared = <span class="number">2</span> ** <span class="number">2</span>;  <span class="comment">// same as: 2 * 2</span></span><br><span class="line"><span class="keyword">let</span> cubed = <span class="number">2</span> ** <span class="number">3</span>;  <span class="comment">// same as: 2 * 2 * 2</span></span><br><span class="line"><span class="keyword">let</span> num = <span class="number">2</span>;</span><br><span class="line">num **= <span class="number">2</span>; <span class="comment">// same as: num = num * num;</span></span><br></pre></td></tr></table></figure>
 <p>和 <code>Math.pow()</code> 说 Byebye。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>更新：</p>
-<ul>
-<li>对于 ES6 targets，默认打开 async/await</li>
-<li>polymorphic ‘this’ typing</li>
-<li>ES2016 的 exponentiation 语法</li>
-<li>ES6 modu]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://shane.hsi.rocks/2015/12/21/hello-world/"/>
-    <id>http://shane.hsi.rocks/2015/12/21/hello-world/</id>
-    <published>2015-12-21T07:45:00.000Z</published>
-    <updated>2015-12-26T08:01:23.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
-    </summary>
-    
-  </entry>
-  
-</feed>
+</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2015/12/21/hello-world/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
