@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-13T02:48:40.000Z</updated>
+  <updated>2016-01-14T09:51:04.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -15,11 +15,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[scaffold and tools for front-end (will update regularly)]]></title>
+    <link href="http://shane.hsi.rocks/2016/01/13/scaffold-and-tools-for-front-end-will-update-regularly/"/>
+    <id>http://shane.hsi.rocks/2016/01/13/scaffold-and-tools-for-front-end-will-update-regularly/</id>
+    <published>2016-01-13T06:36:49.000Z</published>
+    <updated>2016-01-14T09:51:04.000Z</updated>
+    <content type="html"><![CDATA[<p>技术栈：</p>
+<ul>
+<li>TypeScript</li>
+<li>React</li>
+<li>Webpack</li>
+<li>Babel</li>
+<li>PostCSS &amp; CSS Modules</li>
+</ul>
+<h2 id="Only_TypeScript_u2019s_Type"><a href="#Only_TypeScript_u2019s_Type" class="headerlink" title="Only TypeScript’s Type"></a>Only TypeScript’s Type</h2><p>其中 TypeScript 借助 IDE（如 webstorm）或者直接命令行 <code>tsc --watch</code> 编译成 <code>/\.jsx?$/</code>。也就是说，虽然用了 Webpack，但是没有使用 Webpack 的 TypeScript loader，保证出去这一步外，和使用 ES6 开发相同。<code>tsconfig.json</code> 如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">compilerOptions</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">target</span>": <span class="value"><span class="string">"es2015"</span></span>,</span><br><span class="line">    "<span class="attribute">module</span>": <span class="value"><span class="string">"es2015"</span></span>,</span><br><span class="line">    "<span class="attribute">jsx</span>": <span class="value"><span class="string">"preserve"</span></span><br><span class="line">  </span>&#125;</span>,</span><br><span class="line">  "<span class="attribute">exclude</span>": <span class="value">[</span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 TypeScript 并不会增加学习的曲线，目前仅仅是使用 TypeScript 中的 Type 系统，做 compile 期的类型检查，而不是在运行时（比如使用 PropTypes）。</p>
+<h2 id="Based_on_react-transform-boilerplate"><a href="#Based_on_react-transform-boilerplate" class="headerlink" title="Based on react-transform-boilerplate"></a>Based on react-transform-boilerplate</h2><p>其余即基于 <a href="https://github.com/gaearon/react-transform-boilerplate" target="_blank" rel="external">react-transform-boilerplate</a>。</p>
+<p>没有多余的配置，由渐入深。</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>对于移动端，参考 <a href="https://github.com/weui/weui/blob/master/dist/style/weui.css" target="_blank" rel="external">weui</a>，但是只初步将其中的 weui-rest.css 和 weui-font.css（本身并没有这些文件，这里只是逻辑分块）作为全局 css。</p>
+<p>并参考 <a href="https://github.com/corysimmons/boy" target="_blank" rel="external">boy</a> 项目。</p>
+<h2 id="To_be_continued"><a href="#To_be_continued" class="headerlink" title="To be continued"></a>To be continued</h2>]]></content>
+    <summary type="html">
+    <![CDATA[<p>技术栈：</p>
+<ul>
+<li>TypeScript</li>
+<li>React</li>
+<li>Webpack</li>
+<li>Babel</li>
+<li>PostCSS &amp; CSS Modules</li>
+</ul>
+<h2 id="Only_Ty]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Read TypeScript Blog, Announcing TypeScript 1.7]]></title>
     <link href="http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/"/>
     <id>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</id>
     <published>2016-01-13T02:10:24.000Z</published>
-    <updated>2016-01-13T02:48:40.000Z</updated>
+    <updated>2016-01-13T02:52:13.000Z</updated>
     <content type="html"><![CDATA[<p>更新：</p>
 <ul>
 <li>对于 ES6 targets，默认打开 async/await</li>
@@ -42,12 +78,12 @@
 <li>运行时，在 方法参数、集合或数组等位置，派生类的对象可以作为基类的对象处理。即，对象的声明类型不再与运行时相同。</li>
 <li>基类可以定义并实现虚方法，派生类可以重写（override）这些方法，即派生类提供自己的定义和实现。运行时，CLR 查找对象的<strong>运行时</strong>定义，调用虚方法的重写方法。即，你可以调用基类的方法，但执行的是派生类版本。</li>
 </ul>
-<p>这些是在 C# 中的实践，再来看下<a href="https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%9E%8B_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="external">维基百科</a>)的定义：</p>
+<p>这些是在 C# 中的实践，再来看下<a href="https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%9E%8B_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="external">维基百科</a>的定义：</p>
 <blockquote>
 <p>多态，是指计算机程序运行时，相同的消息可能会送给多个不同的类之对象，而系统可依据对象所属类，引发对应类的方法，而有不同的行为。<br>多态也可定义为“一种将不同的特殊行为和单个泛化记号相关联的能力”。</p>
 </blockquote>
 <p>这里先重点关于下<strong>动态多态（dynamic polymorphism）</strong>：通过类继承机制和虚函数机制生效于运行期。可以优雅地处理异质对象集合，只要其共同的基类定义了虚函数的接口。也被称为子类型多态（Subtype polymorphism）或包含多态（inclusion polymorphism）。在面向对象程序设计中，这被直接称为多态。</p>
-<p>另外提及一点，静态多态中的参数化多态（Parametric polymorphism），把类型作为参数的多态。在面向对象程序设计中，这被称作泛型编程。<br>。</p>
+<p>另外提及一点，静态多态中的参数化多态（Parametric polymorphism），把类型作为参数的多态。在面向对象程序设计中，这被称作<a href="https://zh.wikipedia.org/wiki/%E6%B3%9B%E5%9E%8B" target="_blank" rel="external">泛型编程</a>。</p>
 <p>现在回头再看下 TypeScript 1.7 引入的多态 <code>this</code> 类型：</p>
 <blockquote>
 <p><code>this</code> 类型可以用在 classes 和 interfaces 里，表示某种类型，它是 containing type 的 subtype（而不是 containing type）。</p>

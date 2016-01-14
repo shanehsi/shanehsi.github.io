@@ -27,12 +27,12 @@ Async/Await for ES6 targetsAsyc functions，需要 ES6 generator 支持（比如
 <li>运行时，在 方法参数、集合或数组等位置，派生类的对象可以作为基类的对象处理。即，对象的声明类型不再与运行时相同。</li>
 <li>基类可以定义并实现虚方法，派生类可以重写（override）这些方法，即派生类提供自己的定义和实现。运行时，CLR 查找对象的<strong>运行时</strong>定义，调用虚方法的重写方法。即，你可以调用基类的方法，但执行的是派生类版本。</li>
 </ul>
-<p>这些是在 C# 中的实践，再来看下<a href="https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%9E%8B_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="external">维基百科</a>)的定义：</p>
+<p>这些是在 C# 中的实践，再来看下<a href="https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%9E%8B_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="external">维基百科</a>的定义：</p>
 <blockquote>
 <p>多态，是指计算机程序运行时，相同的消息可能会送给多个不同的类之对象，而系统可依据对象所属类，引发对应类的方法，而有不同的行为。<br>多态也可定义为“一种将不同的特殊行为和单个泛化记号相关联的能力”。</p>
 </blockquote>
 <p>这里先重点关于下<strong>动态多态（dynamic polymorphism）</strong>：通过类继承机制和虚函数机制生效于运行期。可以优雅地处理异质对象集合，只要其共同的基类定义了虚函数的接口。也被称为子类型多态（Subtype polymorphism）或包含多态（inclusion polymorphism）。在面向对象程序设计中，这被直接称为多态。</p>
-<p>另外提及一点，静态多态中的参数化多态（Parametric polymorphism），把类型作为参数的多态。在面向对象程序设计中，这被称作泛型编程。<br>。</p>
+<p>另外提及一点，静态多态中的参数化多态（Parametric polymorphism），把类型作为参数的多态。在面向对象程序设计中，这被称作<a href="https://zh.wikipedia.org/wiki/%E6%B3%9B%E5%9E%8B" target="_blank" rel="external">泛型编程</a>。</p>
 <p>现在回头再看下 TypeScript 1.7 引入的多态 <code>this</code> 类型：</p>
 <blockquote>
 <p><code>this</code> 类型可以用在 classes 和 interfaces 里，表示某种类型，它是 containing type 的 subtype（而不是 containing type）。</p>
@@ -51,4 +51,4 @@ Async/Await for ES6 targetsAsyc functions，需要 ES6 generator 支持（比如
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//tsconfig.json targeting node.js v4 and beyond</span><br><span class="line">&#123;</span><br><span class="line">    "compilerOptions": &#123;</span><br><span class="line">        "module": "commonjs",</span><br><span class="line">        "target": "es6"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="ES7_Exponentiation"><a href="#ES7_Exponentiation" class="headerlink" title="ES7 Exponentiation"></a>ES7 Exponentiation</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> squared = <span class="number">2</span> ** <span class="number">2</span>;  <span class="comment">// same as: 2 * 2</span></span><br><span class="line"><span class="keyword">let</span> cubed = <span class="number">2</span> ** <span class="number">3</span>;  <span class="comment">// same as: 2 * 2 * 2</span></span><br><span class="line"><span class="keyword">let</span> num = <span class="number">2</span>;</span><br><span class="line">num **= <span class="number">2</span>; <span class="comment">// same as: num = num * num;</span></span><br></pre></td></tr></table></figure>
 <p>和 <code>Math.pow()</code> 说 Byebye。</p>
-</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2015/12/21/hello-world/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/01/13/scaffold-and-tools-for-front-end-will-update-regularly/" class="prev">上一篇</a><a href="/2015/12/21/hello-world/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
