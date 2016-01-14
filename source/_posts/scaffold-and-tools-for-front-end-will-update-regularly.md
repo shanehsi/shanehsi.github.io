@@ -1,4 +1,4 @@
-title: scaffold and tools for front-end (will update regularly)
+title: Scaffold and Tools for Front-end (will update regularly)
 date: 2016-01-13 14:36:49
 tags:
 ---
