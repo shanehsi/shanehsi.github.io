@@ -108,7 +108,7 @@
     <link href="http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/"/>
     <id>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</id>
     <published>2016-01-13T06:36:49.000Z</published>
-    <updated>2016-01-18T14:14:51.000Z</updated>
+    <updated>2016-01-18T14:24:45.000Z</updated>
     <content type="html"><![CDATA[<p>技术栈：</p>
 <ul>
 <li>TypeScript</li>
@@ -125,13 +125,9 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">compilerOptions</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">target</span>": <span class="value"><span class="string">"es2015"</span></span>,</span><br><span class="line">    "<span class="attribute">module</span>": <span class="value"><span class="string">"es2015"</span></span>,</span><br><span class="line">    "<span class="attribute">jsx</span>": <span class="value"><span class="string">"preserve"</span></span><br><span class="line">  </span>&#125;</span>,</span><br><span class="line">  "<span class="attribute">exclude</span>": <span class="value">[</span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
 <p>使用 TypeScript 并不会增加学习的曲线，目前仅仅是使用 TypeScript 中的 Type 系统，做 compile 期的类型检查，而不是在运行时（比如使用 PropTypes）。</p>
 <p>我们来看几个例子：</p>
-<p>1.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">action</span>(<span class="params">type:string, actionCreator?:any</span>):(<span class="params">...args:any[]</span>) =&gt; <span class="title">IAction</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里用到了 <code>...args:any[]</code>，表明 <code>arguments</code> 是 array-like 的类型。并且 action 的返回值的类型是 <code>(...args:any[]) =&gt; IAction</code> 表明这是 curry。</p>
-<ol>
-<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">onActions</span>(<span class="params">handlers:&#123;[key: string]: Reducer&#125;, initialState:Object</span>):<span class="title">Reducer</span> </span>&#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">onActions</span>(<span class="params">handlers:&#123;[key: string]: Reducer&#125;, initialState:Object</span>):<span class="title">Reducer</span> </span>&#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>这里的是如何对 Dictionary 做类型，<code>{[key: string]: Reducer}</code>。</p>
 <h2 id="Based_on_react-transform-boilerplate"><a href="#Based_on_react-transform-boilerplate" class="headerlink" title="Based on react-transform-boilerplate"></a>Based on react-transform-boilerplate</h2><p>其余即基于 <a href="https://github.com/gaearon/react-transform-boilerplate" target="_blank" rel="external">react-transform-boilerplate</a>。</p>
 <p>没有多余的配置，由浅入深。</p>

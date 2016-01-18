@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
+    <lastmod>2016-01-18T14:24:45.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/14/Write-a-Webpack-Plugin/</loc>
     <lastmod>2016-01-18T14:14:57.000Z</lastmod>
   </url>
@@ -9,11 +14,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/01/15/Use-Router5/</loc>
     <lastmod>2016-01-18T14:14:52.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
-    <lastmod>2016-01-18T14:14:51.000Z</lastmod>
   </url>
   
   <url>
