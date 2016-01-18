@@ -36,16 +36,12 @@ tags:
 
 我们来看几个例子：
 
-1.
-
 ```javascript
 export function action(type:string, actionCreator?:any):(...args:any[]) => IAction {
 }
 ```
 
 这里用到了 `...args:any[]`，表明 `arguments` 是 array-like 的类型。并且 action 的返回值的类型是 `(...args:any[]) => IAction` 表明这是 curry。
-
-2. 
 
 ```js
 export function onActions(handlers:{[key: string]: Reducer}, initialState:Object):Reducer {
