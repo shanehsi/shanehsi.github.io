@@ -74,7 +74,7 @@ module.exports = HelloCompilationPlugin;
 
 异步这块暂时不看。
 
-## PLUGINS 
+## Plugins 
 
 以上是 high-level 的文档，这里是具体的细节。
 
