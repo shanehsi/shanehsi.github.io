@@ -2,18 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
-    <lastmod>2016-01-15T09:11:07.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/01/14/Write-a-Webpack-Plugin/</loc>
+    <lastmod>2016-01-18T14:14:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/15/Use-Router5/</loc>
+    <lastmod>2016-01-18T14:14:52.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-will-update-regularly/</loc>
-    <lastmod>2016-01-15T09:11:04.000Z</lastmod>
+    <lastmod>2016-01-18T14:14:51.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/01/14/Write-a-Webpack-Plugin/</loc>
-    <lastmod>2016-01-15T09:11:01.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
+    <lastmod>2016-01-18T14:14:50.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</loc>
+    <lastmod>2016-01-18T14:14:47.000Z</lastmod>
   </url>
   
   <url>
