@@ -3,9 +3,11 @@ date: 2016-01-16 13:01:29
 tags:
 ---
 
+通过接口学习：[API](https://github.com/rackt/react-redux/blob/master/docs/api.md)。
+
 ## Provider
 
-### 使用场景
+### 使用示例
 
 ```js
 <Provider store={store}>
@@ -65,6 +67,8 @@ module.exports = Provider
 
 ```
 
+所以，Provider 的功能仅仅是将 store 注册到 React context 中。
+
 ## connect
 
 ### 使用场景
@@ -82,7 +86,7 @@ connect(select)(view)
 ...
 ```
 
-这里 connect 是 curry 高阶函数。
+这里 connect 是 curry 高阶函数。connect 是将被 annotated 的 `React.Component` 和 Redux store 联结起来。
 
 ### 源码
 
@@ -90,13 +94,47 @@ connect(select)(view)
 function connect(mapStateToProps, mapDispatchToProps, mergeProps, options = {}) {
     return function wrapWithConnect(WrappedComponent) {
         class Connect extends Component {
+          constructor(props, context) {
+            super(props, context);
+            // 注释[2]
+            this.store = props.store || context.store;
+            const storeState = this.store.getState();
+            this.state = { storeState };
+          }
         }
-        // Copies non-react specific statics from a child component to a parent component. Similar to Object.assign, but with React static keywords blacklisted from being overridden.
-        // https://github.com/mridgway/hoist-non-react-statics
-        // hoistNonReactStatics(targetComponent, sourceComponent)
-        // 即将被 connect wrapper 的 component 的 keys，除去 contextTypes，mixins，defaultProps，displayName 等，复制到 Connect 上，并返回 Connect
+        // 注释[1]
         return hoistStatics(Connect, WrappedComponent)
     }
 }
 module.exports = connect;
 ```
+
+**注释[1]：**
+
+Copies non-react specific statics from a child component to a parent component. Similar to Object.assign, but with React static keywords blacklisted from being overridden.
+
+地址：https://github.com/mridgway/hoist-non-react-statics
+
+接口：hoistNonReactStatics(targetComponent, sourceComponent)
+
+即将 WrappedComponent 的 component 的 keys，除去 contextTypes，mixins，defaultProps，displayName 等，复制到 Connect 上，并返回 Connect。
+
+**注释[2]：**
+
+使用 Provider 的原因就是给 connect 提供 store。
+
+```js
+invariant(this.store,
+        `Could not find "store" in either the context or ` +
+        `props of "${this.constructor.displayName}". ` +
+        `Either wrap the root component in a <Provider>, ` +
+        `or explicitly pass "store" as a prop to "${this.constructor.displayName}".`
+      );
+```
+
+
+更多参考：
+
+- [Computing Derived Data](http://rackt.org/redux/docs/recipes/ComputingDerivedData.html)
+
+
