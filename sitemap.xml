@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/01/19/Write-a-React-Upload-Component/</loc>
+    <lastmod>2016-01-19T10:05:06.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</loc>
+    <lastmod>2016-01-19T07:04:24.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
-    <lastmod>2016-01-18T14:24:45.000Z</lastmod>
+    <lastmod>2016-01-18T23:22:58.000Z</lastmod>
   </url>
   
   <url>
@@ -19,11 +29,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
     <lastmod>2016-01-18T14:14:50.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</loc>
-    <lastmod>2016-01-18T14:14:47.000Z</lastmod>
   </url>
   
   <url>
