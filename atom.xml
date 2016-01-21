@@ -38,7 +38,7 @@
     <link href="http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/"/>
     <id>http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/</id>
     <published>2016-01-21T02:07:45.000Z</published>
-    <updated>2016-01-21T08:32:07.000Z</updated>
+    <updated>2016-01-21T12:25:38.000Z</updated>
     <content type="html"><![CDATA[<h1 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h1><p>今天写下 Select 组件。</p>
 <p>通过写 React Upload 组件，发现其实理解了上传的本质之后，后面只是用 React 的方式包装。所以，组件需要自已研发，这样才能加深理解，做到心中无框架，回归编程的通用。</p>
 <p>另外，在写 TypeScript 之后，类型的 mental modal 引入之后，前端开始变得有条理性。我相信设计是一项很重要的步骤，基于缜密的思维甚至依托严密的理论设计出来的事物才能响应变化。</p>
@@ -73,6 +73,11 @@
 <li>值的处理</li>
 <li>甚至包括从总体来看组件的设计</li>
 </ul>
+<p>Select 的确有不同的形态，我发现很多组件尝试用 if-else，在同一个 <code>&lt;Select&gt;</code> 里做到统一。我认为这样是不好的。感性的原因是这是一种很弱的抽象，圈复杂度非常高，不利于代码维护。还有一个原因，也是我这两天自己研发组件得到的经验：开始不要想很多，一个场景对应一套实现；之后再考虑提取公用代码。</p>
+<p>这才是 <strong>设计之道</strong>。</p>
+<p>所以，暂时不考虑细节的部分，我认为 Select 组件已经开发完成了。代码都在那儿，如何重构是之后的事情。这种时候似乎应该 test-driven。考虑到 test-driven DSL 的恶心程度，在不是复合场景下（复合比如：样式+事件+数据流）不如手动测试。</p>
+<p>明天开发 trigger，popup 和 table。</p>
+<p>即使这些开发完毕了，也不要急着重构，而是上生产环境。慢慢抽出公用组件。刚开始都是丑陋的代码，慢慢变得合理高效。一下次输入很多知识点会非常低效。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h1><p>今天写下 Select 组件。</p>
