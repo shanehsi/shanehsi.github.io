@@ -14,6 +14,9 @@ tags:
 2. [react-component/upload](https://github.com/react-component/upload)
 3. [文件上传的渐进式增强](http://www.ruanyifeng.com/blog/2012/08/file_upload.html)
 4. [XMLHttpRequest Level 2 使用指南](http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html)
+5. [XMLHttpRequest2 新技巧](http://www.html5rocks.com/zh/tutorials/file/xhr2/)
+6. [利用iframe无刷新上传文件的坑](http://www.cnblogs.com/wangmeijian/p/3978407.html)
+7. [Web Uploader](http://fex.baidu.com/webuploader/) 这块只是说明，上传也需要一个集成式的方案
 
 # 上传文件
 
@@ -263,6 +266,8 @@ for (var i = 0, len = binStr.length; i < len; ++i) {
 
 学习的目的是由浅入深，知其所以然，从最简单的开始。
 
+## XHR2, FormData
+
 先写一个简单的表单。
 
 ```js
@@ -280,7 +285,7 @@ export class AjaxUpload extends React.Component<Props<any>, {}> {
   private sendForm() {
     const node = findDOMNode(this.refs['file']);
     const formData = new FormData();
-    formData.append('file', node);
+    formData.append('file', node.files[0]);;
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'url');
     xhr.send(formData);
@@ -298,5 +303,227 @@ export class AjaxUpload extends React.Component<Props<any>, {}> {
   }
 
 }
+```
+
+## iframe 无刷新
+
+### 第一个示例
+
+由于对 iFrame 不甚了解。所以，先花点篇幅了解下。
+
+```html
+<form>
+    <input type="file" name="datafile" />
+    <br/>
+    <input type="button" value="upload" 
+        onClick="fileUpload(this.form,'index.php','upload'); return false;" />
+    <div id="upload"></div>
+</form>
+```
+
+
+```js
+function fileUpload(form, action_url, div_id) {
+    // Create the iframe...
+    var iframe = document.createElement("iframe");
+    iframe.setAttribute("id", "upload_iframe");
+    iframe.setAttribute("name", "upload_iframe");
+    iframe.setAttribute("width", "0");
+    iframe.setAttribute("height", "0");
+    iframe.setAttribute("border", "0");
+    iframe.setAttribute("style", "width: 0; height: 0; border: none;");
+
+    // Add to document...
+    form.parentNode.appendChild(iframe);
+    window.frames['upload_iframe'].name = "upload_iframe";
+
+    iframeId = document.getElementById("upload_iframe");
+
+    // Add event...
+    var eventHandler = function() {
+
+        if (iframeId.detachEvent) iframeId.detachEvent("onload", eventHandler);
+        else iframeId.removeEventListener("load", eventHandler, false);
+
+        // Message from server...
+        if (iframeId.contentDocument) {
+            content = iframeId.contentDocument.body.innerHTML;
+        } else if (iframeId.contentWindow) {
+            content = iframeId.contentWindow.document.body.innerHTML;
+        } else if (iframeId.document) {
+            content = iframeId.document.body.innerHTML;
+        }
+
+        document.getElementById(div_id).innerHTML = content;
+
+        // Del the iframe...
+        setTimeout('iframeId.parentNode.removeChild(iframeId)', 250);
+    }
+
+    if (iframeId.addEventListener) iframeId.addEventListener("load", eventHandler, true);
+    if (iframeId.attachEvent) iframeId.attachEvent("onload", eventHandler);
+
+    // Set properties of form...
+    form.setAttribute("target", "upload_iframe");
+    form.setAttribute("action", action_url);
+    form.setAttribute("method", "post");
+    form.setAttribute("enctype", "multipart/form-data");
+    form.setAttribute("encoding", "multipart/form-data");
+
+    // Submit the form...
+    form.submit();
+
+    document.getElementById(div_id).innerHTML = "Uploading...";
+}
+```
+
+以上做的步骤是：
+
+1. 创建 iframe，并且设置 id 和 style（即不可见）
+2. append 到 document
+3. 创建 event handler，主要是两块逻辑，一是 remove event listener，而是获取服务器返回的数据，并写到上层的 document
+4. 然后用两种方式，`addEventListener('load')`，`attachEvent('onload')`
+5. 设置 form 属性，特别是设置 `target` 为创建的 iframe
+6. 提交表单
+
+
+### 第二个示例 
+
+上面的例子还是太复杂了，需要动态创建 iframe。下面这个例子是最最简单的例子。没有任何 JavaScript。但是，既然是从基础开始，还是要了解下基础的几个 attribute 的作用。
+
+```html
+<iframe name="fileUpload"></iframe>
+<form method="post" action="xxxx" enctype="multipart/form-data" name="fileForm" target="fileUpload">
+    <input type="file" class="fileInput" name="fileInput">
+    <input type="submit" value="提交" />
+</form>
+```
+
+同样是：
+
+1. `enctype="multipart/form-data"` 通过文件流传递给后端，具体含义，参考 [四种常见的POST 提交数据方式](https://imququ.com/post/four-ways-to-post-data-in-http.html)
+2. `target="fileUpload"`，Form 表单的 target 属性设置为 frame，即将远程服务器返回的内容显示到 iframe 上，其他还有 `_blank` 新页面。
+3. name 用在表单提交时，这里 input 的 name，fileInput，就是传递给后台的 Form 键值对的 key，或者，就是 FormData `formData.append('file', node.files[0]);`。再比如多个 radio 有多个 id，但是 name 是一样的，所以表单提交时，只会传一个值。再比如 select 也是类似的行为。
+
+### 第三个示例 - 动态创建 iframe
+
+例子来源于：[利用iframe无刷新上传文件的坑](http://www.cnblogs.com/wangmeijian/p/3978407.html)。
+
+```js
+/*2014年9月18日17:39:47 By 王美建*/
+function ajaxUpload(opt) {
+    /*
+        参数说明:
+        opt.frameName : iframe的name值;
+        opt.url : 文件要提交到的地址;
+        opt.fileName : file控件的name;
+        opt.format : 文件格式，以数组的形式传递，如['jpg','png','gif','bmp'];
+        opt.callBack : 上传成功后回调;
+    */
+    var iName = opt.frameName; //太长了，变短点
+    var iframe, form;
+    //创建iframe和form表单
+    iframe = $('<iframe name="' + iName + '" />');
+    form = $('<form method="post" style="display:none;" target="' + iName + '" action="' + opt.url + '"  name="form_' + iName + '" enctype="multipart/form-data" />');
+    file = $('<input type="file" name="' + opt.fileName + '" />');
+    file.appendTo(form);
+    //插入body
+    $(document.body).append(iframe).append(form);
+    //触发浏览事件，选择文件
+    file.click();
+    //选中文件后，验证文件格式是否符合要求
+    file.change(function() {
+        //取得所选文件的扩展名
+        var fileFormat = $(this).val().exec(/\.[a-zA-Z]+$/)[0].substring(1);
+        if (opt.format.join('-').indexOf(fileVal) != -1) {
+            form.submit(); //格式通过验证后提交表单;
+        } else {
+            iframe.remove();
+            form.remove();
+            alert('文件格式错误，请重新选择！');
+        }
+    });
+    //文件提交完后
+    iframe.load(function() {
+        var data = $(this).contents().find('body').html();
+        opt.callBack(data);
+        iframe.remove();
+        form.remove();
+    })
+}
 
 ```
+
+分解下步骤：
+
+1.创建iframe和form表单，并 append 到 document 中。
+
+```js
+//创建iframe和form表单
+iframe = $('<iframe name="' + iName + '" />');
+form = $('<form method="post" style="display:none;" target="' + iName + '" action="' + opt.url + '"  name="form_' + iName + '" enctype="multipart/form-data" />');
+file = $('<input type="file" name="' + opt.fileName + '" />');
+file.appendTo(form);
+//插入body
+$(document.body).append(iframe).append(form);
+```
+
+2.触发浏览事件，选择文件 `file.click();`。
+
+3.`file.change` 事件判断文件格式，符合则提交，否则要 remove 掉创建的 form 和 iframe。
+
+4.`iframe.load` 事件，拿到服务器返回的数据，并调用 callback 回传。remove 掉创建的 form 和 iframe。
+
+因为**低版本的IE（IE8及以下）做了安全限制，file控件必须由用户主动点击触发选择的文件才可以上传，而不能使用js的click事件来模拟点击触发**。
+
+所以，`file = $('<input type="file" name="' + opt.fileName + '" />');` 不要动态创建，而是显示在 HTML 里，但是在 `file.change` 时会将 file 的 id 传入`ajaxUpload`，然后 appendTo 到 form 里。之后无异。此时要主要创建一个中间变量，保存 file 的父级，用完后 appendTo 回去，否则 file 会被删除。
+
+看下代码（来源：[利用iframe无刷新上传文件的坑](http://www.cnblogs.com/wangmeijian/p/3978407.html)）：
+
+```js
+
+/*2014年9月19日11:11:07 By 王美建*/
+function ajaxUpload(opt){
+    /*
+        参数说明:
+        opt.id : 页面里file控件的ID;
+        opt.frameName : iframe的name值;
+        opt.url : 文件要提交到的地址;
+        opt.format : 文件格式，以数组的形式传递，如['jpg','png','gif','bmp'];
+        opt.callBack : 上传成功后回调;
+    */
+    var iName=opt.frameName; //太长了，变短点
+    var iframe,form,file,fileParent;
+    //创建iframe和form表单
+    iframe = $('<iframe name="'+iName+'" />');
+    form = $('<form method="post" style="display:n1one;" target="'+iName+'" action="'+opt.url+'"  name="form_'+iName+'" enctype="multipart/form-data" />');
+    file = $('#'+opt.id); //通过id获取flie控件
+    fileParent = file.parent(); //存父级
+    file.appendTo(form);
+    //插入body
+    $(document.body).append(iframe).append(form);
+
+    //取得所选文件的扩展名
+    var fileFormat=/\.[a-zA-Z]+$/.exec(file.val())[0].substring(1);
+    if(opt.format.join('-').indexOf(fileFormat)!=-1){
+        form.submit();//格式通过验证后提交表单;
+    }else{
+        file.appendTo(fileParent); //将file控件放回到页面
+        iframe.remove();
+        form.remove();
+        alert('文件格式错误，请重新选择！');
+    };
+
+    //文件提交完后
+    iframe.load(function(){
+        var data = $(this).contents().find('body').html();        
+        file.appendTo(fileParent);
+        iframe.remove();
+        form.remove();
+        opt.callBack(data);
+    })
+}
+```
+    
+最后再优化下显示。
+
