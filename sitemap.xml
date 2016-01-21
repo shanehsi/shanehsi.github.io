@@ -2,13 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/01/20/Git-Tips/</loc>
-    <lastmod>2016-01-20T05:52:27.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/</loc>
+    <lastmod>2016-01-21T08:32:07.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/21/JavaScript-Regexp-Contains-Sub-String/</loc>
+    <lastmod>2016-01-21T08:11:28.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://shane.hsi.rocks/2016/01/19/Write-a-React-Upload-Component/</loc>
-    <lastmod>2016-01-20T05:52:19.000Z</lastmod>
+    <lastmod>2016-01-20T10:34:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/20/Git-Tips/</loc>
+    <lastmod>2016-01-20T07:48:59.000Z</lastmod>
   </url>
   
   <url>
