@@ -38,4 +38,6 @@ tags:
 
 参考[这篇资料](http://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively)先学习下 `offsetWidth`，`clientWidth`，`scrollWidth` 这些概念。
 
-另外翻到一篇文章，由于 [层叠上下文 Stacking Context](http://web.jobbole.com/83409/)（[另一篇](http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/)），Modal 这种东西应该直接 append 到 body。就和上面第二种方式类似。
+另外翻到一篇文章，由于 [层叠上下文 Stacking Context](http://web.jobbole.com/83409/)（[另一篇](http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/)），Modal 这种东西应该直接 append 到 body。就和上面第二种方式类似。概念看 spec 会看很久，从浏览器绘制顺序来看，就是浏览器先绘制父元素，在绘制 z-index 为复数，然后是 `position:static` ，然后是正数（从小到大）。
+
+还有一个接口 [getBoundingClientRect](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)，返回元素的大小及其相对于视口的位置。
