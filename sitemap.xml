@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/01/22/Write-a-React-Tooltip-Component/</loc>
+    <lastmod>2016-01-22T07:41:33.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/</loc>
     <lastmod>2016-01-21T12:25:38.000Z</lastmod>
   </url>

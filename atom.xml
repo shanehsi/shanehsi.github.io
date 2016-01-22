@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-21T08:11:28.000Z</updated>
+  <updated>2016-01-22T07:41:33.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Write a React Tooltip Component]]></title>
+    <link href="http://shane.hsi.rocks/2016/01/22/Write-a-React-Tooltip-Component/"/>
+    <id>http://shane.hsi.rocks/2016/01/22/Write-a-React-Tooltip-Component/</id>
+    <published>2016-01-22T02:25:45.000Z</published>
+    <updated>2016-01-22T07:41:33.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>今天来写下 tooltip 组件。</p>
+<p>如果今天有时间，写下 table 组件，同样，以上两个样式都是以最简单为主。</p>
+<p>这些写完之后，加上 button，icon，input 这些非常依赖样式的组件，这些等下周专心写 css 时再说。周末做些组件的类型层级分析归类重构。</p>
+<h2 id="u573A_u666F"><a href="#u573A_u666F" class="headerlink" title="场景"></a>场景</h2><ul>
+<li>Form 的 label 后面可能会带个 ？的图标，鼠标悬浮或者点击会有 popup 浮层。</li>
+<li>Form 校验的时候，发生错误（或者极少数情况人性化的警告下）会在 input（类似的有 select，calendar ）的框靠右内部显示一个 ！的红色 icon，然后默认会自动弹出 popup 浮层，显示错误的提示信息。</li>
+<li>比如上传按钮，可以在右侧也有一个 popup 浮层。显示上传成功。类似有 提交 按钮。</li>
+</ul>
+<p>所以，这个 trigger 相应的事件是</p>
+<ul>
+<li>click</li>
+<li>focus</li>
+<li>hover</li>
+<li>还有就是自动触发显示。</li>
+</ul>
+<blockquote>
+<p>再强调下，当前不要把时间花在抽出公共组件上，先把功能实现。</p>
+</blockquote>
+<h2 id="u5B9E_u73B0_u65B9_u5F0F"><a href="#u5B9E_u73B0_u65B9_u5F0F" class="headerlink" title="实现方式"></a>实现方式</h2><p>代码因为和 Select 的场景类似（都是 trigger 一下，显示其他的组件）。</p>
+<p>关键是定位问题。</p>
+<p>我发现有两种定位方式，有用 <code>position:fixed</code> 的，很明显的问题是，滚动时就会相对 viewport 固定。也有相对 body 绝对定位的，这个基本没有问题。但是 tooltip 是在单独的地方维护的，当然写的时候可以一块，也就是并不真正render在被声明的地方。后面的方式是合理的。不过总感觉有些变扭。</p>
+<p>找下其他方案吧。</p>
+<p>参考<a href="http://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively" target="_blank" rel="external">这篇资料</a>先学习下 <code>offsetWidth</code>，<code>clientWidth</code>，<code>scrollWidth</code> 这些概念。</p>
+<p>另外翻到一篇文章，由于 <a href="http://web.jobbole.com/83409/" target="_blank" rel="external">层叠上下文 Stacking Context</a>（<a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="external">另一篇</a>），Modal 这种东西应该直接 append 到 body。就和上面第二种方式类似。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>今天来写下 tooltip 组件。</p>
+<p>如果今天有时间，写下 table 组件，同样，以上两个]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[JavaScript Regexp Contains Sub String]]></title>
