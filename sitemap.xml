@@ -2,13 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/01/27/Import-JavaScript-files-in-TypeScript/</loc>
+    <lastmod>2016-01-27T09:01:54.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/22/Write-a-React-Tooltip-Component/</loc>
     <lastmod>2016-01-27T07:57:55.000Z</lastmod>
   </url>
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/01/14/Write-a-Webpack-Plugin/</loc>
+    <lastmod>2016-01-27T07:53:26.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/19/Write-a-React-Upload-Component/</loc>
+    <lastmod>2016-01-27T07:53:23.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/</loc>
-    <lastmod>2016-01-21T12:25:38.000Z</lastmod>
+    <lastmod>2016-01-27T07:53:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
+    <lastmod>2016-01-27T07:52:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
+    <lastmod>2016-01-27T07:52:52.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</loc>
+    <lastmod>2016-01-27T07:52:45.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/20/Git-Tips/</loc>
+    <lastmod>2016-01-27T07:52:36.000Z</lastmod>
   </url>
   
   <url>
@@ -17,38 +52,8 @@
   </url>
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/01/19/Write-a-React-Upload-Component/</loc>
-    <lastmod>2016-01-20T10:34:16.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/20/Git-Tips/</loc>
-    <lastmod>2016-01-20T07:48:59.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</loc>
-    <lastmod>2016-01-19T07:04:24.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
-    <lastmod>2016-01-18T23:22:58.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/14/Write-a-Webpack-Plugin/</loc>
-    <lastmod>2016-01-18T14:14:57.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://shane.hsi.rocks/2016/01/15/Use-Router5/</loc>
     <lastmod>2016-01-18T14:14:52.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
-    <lastmod>2016-01-18T14:14:50.000Z</lastmod>
   </url>
   
   <url>

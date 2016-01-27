@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-27T07:57:55.000Z</updated>
+  <updated>2016-01-27T09:01:54.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Import JavaScript files in TypeScript]]></title>
+    <link href="http://shane.hsi.rocks/2016/01/27/Import-JavaScript-files-in-TypeScript/"/>
+    <id>http://shane.hsi.rocks/2016/01/27/Import-JavaScript-files-in-TypeScript/</id>
+    <published>2016-01-27T09:01:54.000Z</published>
+    <updated>2016-01-27T09:01:54.000Z</updated>
+    <content type="html"><![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">TypeScript with KnockoutJS</a></p>
+<p>TypeScript 具有良好的教学作用。目前初步的想法是，直接 import 现有的 JavaScript 代码，然后对其进行封装。TypeScript 的类型系统，会提供完备的接口定义写法。</p>
+<p>这其实是一种组合式的重用方式。对于可用的直接 import 进来，对于不可用的进行重写。</p>
+<p>那如何在 TypeScript 文件中 import Javascript 呢？</p>
+<p>TypeScript 提供的特性就是写 Definition Files。在写的时候参考 <a href="https://github.com/borisyankov/DefinitelyTyped" target="_blank" rel="external">DefinitelyTyped</a> 的写法，先进行模仿。</p>
+<p>文件可以直接写在相应 js 文件的旁边，[name].d.ts。</p>
+<p>具体在写的时候，如果有新的问题或思路进行补充。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">Type]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Write a React Tooltip Component]]></title>
@@ -79,7 +99,7 @@
     <link href="http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/"/>
     <id>http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/</id>
     <published>2016-01-21T02:07:45.000Z</published>
-    <updated>2016-01-21T12:25:38.000Z</updated>
+    <updated>2016-01-27T07:53:16.000Z</updated>
     <content type="html"><![CDATA[<h1 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h1><p>今天写下 Select 组件。</p>
 <p>通过写 React Upload 组件，发现其实理解了上传的本质之后，后面只是用 React 的方式包装。所以，组件需要自已研发，这样才能加深理解，做到心中无框架，回归编程的通用。</p>
 <p>另外，在写 TypeScript 之后，类型的 mental modal 引入之后，前端开始变得有条理性。我相信设计是一项很重要的步骤，基于缜密的思维甚至依托严密的理论设计出来的事物才能响应变化。</p>
@@ -132,7 +152,7 @@
     <link href="http://shane.hsi.rocks/2016/01/20/Git-Tips/"/>
     <id>http://shane.hsi.rocks/2016/01/20/Git-Tips/</id>
     <published>2016-01-20T05:49:17.000Z</published>
-    <updated>2016-01-20T07:48:59.000Z</updated>
+    <updated>2016-01-27T07:52:36.000Z</updated>
     <content type="html"><![CDATA[<h2 id="git_submodule"><a href="#git_submodule" class="headerlink" title="git submodule"></a>git submodule</h2><p><a href="https://github.com/git/git/blob/master/Documentation/RelNotes/1.8.4.txt#L38-L40" target="_blank" rel="external">git1.8.4</a> (July 2013) 之后不需要回到 . 目录。</p>
 <p>直接到 submodule 期望所在的目录：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">cd</span> ./src/vendor/</span><br><span class="line"><span class="label">git</span> <span class="keyword">submodule </span><span class="keyword">add </span>&lt;git<span class="comment">@github ...&gt; &lt;project-name&gt;</span></span><br></pre></td></tr></table></figure>
@@ -149,7 +169,7 @@
     <link href="http://shane.hsi.rocks/2016/01/19/Write-a-React-Upload-Component/"/>
     <id>http://shane.hsi.rocks/2016/01/19/Write-a-React-Upload-Component/</id>
     <published>2016-01-19T07:15:34.000Z</published>
-    <updated>2016-01-20T10:34:16.000Z</updated>
+    <updated>2016-01-27T07:53:23.000Z</updated>
     <content type="html"><![CDATA[<p>这是一遍学习文档，目的：</p>
 <ul>
 <li>了解 upload 相关技术细节。</li>
@@ -288,7 +308,7 @@
     <link href="http://shane.hsi.rocks/2016/01/16/Learn-Redux/"/>
     <id>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</id>
     <published>2016-01-16T05:01:29.000Z</published>
-    <updated>2016-01-19T07:04:24.000Z</updated>
+    <updated>2016-01-27T07:52:45.000Z</updated>
     <content type="html"><![CDATA[<p>通过接口学习：<a href="https://github.com/rackt/react-redux/blob/master/docs/api.md" target="_blank" rel="external">API</a>。</p>
 <h2 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h2><h3 id="u4F7F_u7528_u793A_u4F8B"><a href="#u4F7F_u7528_u793A_u4F8B" class="headerlink" title="使用示例"></a>使用示例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Router</span> <span class="attribute">history</span>=<span class="value">&#123;history&#125;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">Route</span> <span class="attribute">component</span>=<span class="value">&#123;AppContainer&#125;</span> <span class="attribute">path</span>=<span class="value">'/'</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">Router</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">Provider</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>然后必须和 connect 结合使用。</p>
@@ -355,7 +375,7 @@
     <link href="http://shane.hsi.rocks/2016/01/14/Write-a-Webpack-Plugin/"/>
     <id>http://shane.hsi.rocks/2016/01/14/Write-a-Webpack-Plugin/</id>
     <published>2016-01-14T09:56:38.000Z</published>
-    <updated>2016-01-18T14:14:57.000Z</updated>
+    <updated>2016-01-27T07:53:26.000Z</updated>
     <content type="html"><![CDATA[<p>Plugin 介入的是 Webpack build process。也就是说，在 Webpack build 时，做一些其他的工作（然后可以拿到 Webpack build 时的一些 context）。</p>
 <p>Plugin 需要理解 Webpack 的一些 low-level 的内部机制，然后 hook into。要读一些 source code。</p>
 <h2 id="Compiler_and_Compilation"><a href="#Compiler_and_Compilation" class="headerlink" title="Compiler and Compilation"></a>Compiler and Compilation</h2><p>开发 plugin 要知晓两个对象 <code>compiler</code>，<code>compilation</code>。</p>
@@ -392,7 +412,7 @@
     <link href="http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/"/>
     <id>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</id>
     <published>2016-01-13T06:36:49.000Z</published>
-    <updated>2016-01-18T23:22:58.000Z</updated>
+    <updated>2016-01-27T07:52:57.000Z</updated>
     <content type="html"><![CDATA[<p>技术栈：</p>
 <ul>
 <li>TypeScript</li>
@@ -451,7 +471,7 @@
     <link href="http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/"/>
     <id>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</id>
     <published>2016-01-13T02:10:24.000Z</published>
-    <updated>2016-01-18T14:14:50.000Z</updated>
+    <updated>2016-01-27T07:52:52.000Z</updated>
     <content type="html"><![CDATA[<p>更新：</p>
 <ul>
 <li>对于 ES6 targets，默认打开 async/await</li>
