@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-22T07:41:33.000Z</updated>
+  <updated>2016-01-22T08:53:20.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://shane.hsi.rocks/2016/01/22/Write-a-React-Tooltip-Component/"/>
     <id>http://shane.hsi.rocks/2016/01/22/Write-a-React-Tooltip-Component/</id>
     <published>2016-01-22T02:25:45.000Z</published>
-    <updated>2016-01-22T07:41:33.000Z</updated>
+    <updated>2016-01-22T08:53:20.000Z</updated>
     <content type="html"><![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>今天来写下 tooltip 组件。</p>
 <p>如果今天有时间，写下 table 组件，同样，以上两个样式都是以最简单为主。</p>
 <p>这些写完之后，加上 button，icon，input 这些非常依赖样式的组件，这些等下周专心写 css 时再说。周末做些组件的类型层级分析归类重构。</p>
@@ -43,7 +43,8 @@
 <p>我发现有两种定位方式，有用 <code>position:fixed</code> 的，很明显的问题是，滚动时就会相对 viewport 固定。也有相对 body 绝对定位的，这个基本没有问题。但是 tooltip 是在单独的地方维护的，当然写的时候可以一块，也就是并不真正render在被声明的地方。后面的方式是合理的。不过总感觉有些变扭。</p>
 <p>找下其他方案吧。</p>
 <p>参考<a href="http://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively" target="_blank" rel="external">这篇资料</a>先学习下 <code>offsetWidth</code>，<code>clientWidth</code>，<code>scrollWidth</code> 这些概念。</p>
-<p>另外翻到一篇文章，由于 <a href="http://web.jobbole.com/83409/" target="_blank" rel="external">层叠上下文 Stacking Context</a>（<a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="external">另一篇</a>），Modal 这种东西应该直接 append 到 body。就和上面第二种方式类似。</p>
+<p>另外翻到一篇文章，由于 <a href="http://web.jobbole.com/83409/" target="_blank" rel="external">层叠上下文 Stacking Context</a>（<a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="external">另一篇</a>），Modal 这种东西应该直接 append 到 body。就和上面第二种方式类似。概念看 spec 会看很久，从浏览器绘制顺序来看，就是浏览器先绘制父元素，在绘制 z-index 为复数，然后是 <code>position:static</code> ，然后是正数（从小到大）。</p>
+<p>还有一个接口 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect" target="_blank" rel="external">getBoundingClientRect</a>，返回元素的大小及其相对于视口的位置。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>今天来写下 tooltip 组件。</p>
