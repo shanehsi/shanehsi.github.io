@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-27T09:01:54.000Z</updated>
+  <updated>2016-01-27T10:03:00.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[2015 Annual Retro]]></title>
+    <link href="http://shane.hsi.rocks/2016/01/27/2015-Annual-Retro/"/>
+    <id>http://shane.hsi.rocks/2016/01/27/2015-Annual-Retro/</id>
+    <published>2016-01-27T10:03:00.000Z</published>
+    <updated>2016-01-27T10:03:00.000Z</updated>
+    <content type="html"><![CDATA[<p>我自身是有很大的危机意识的，由于担心行文中会不自然地抒发较多负面情绪，先回顾下去年做得好的方面。</p>
+<p><strong>工作</strong>：</p>
+<p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 2 月开始，基本上就专注在此，至此有1年前端经验。</p>
+<p><strong>生活</strong>：</p>
+<p>2015 年最大的收获是遇到了人生的另一半。</p>
+<p><strong>旅行</strong>：</p>
+<p>2015 年末桂花酿成了酒，便和妹子去苏州品尝，是去年最后一场旅行。在平江路的一间茶楼上，我们细细数了下 2015 年去过的城市。</p>
+<ul>
+<li>2015 年初的东北之行：哈尔滨，亚布力，呼兰区（哈尔滨市），长白山（延吉市），安图县（延吉市），沈阳。</li>
+<li>3 月份趁着早春的苏州之行</li>
+<li>4 月份武汉最舒服的日子去拜访妹子的老友</li>
+<li>7 月份的香港、深圳</li>
+<li>国庆的法意土之旅：巴黎，威尼斯，佛罗伦萨，比萨，罗马，伊斯坦布尔。</li>
+<li>以及 12 月岁末的苏州之行，喝了桂花酿，去了新开张的诚品书店。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>我自身是有很大的危机意识的，由于担心行文中会不自然地抒发较多负面情绪，先回顾下去年做得好的方面。</p>
+<p><strong>工作</strong>：</p>
+<p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 ]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Import JavaScript files in TypeScript]]></title>
