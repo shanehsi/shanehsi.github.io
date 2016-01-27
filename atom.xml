@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-27T10:03:00.000Z</updated>
+  <updated>2016-01-27T10:17:55.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -18,11 +18,10 @@
     <title><![CDATA[2015 Annual Retro]]></title>
     <link href="http://shane.hsi.rocks/2016/01/27/2015-Annual-Retro/"/>
     <id>http://shane.hsi.rocks/2016/01/27/2015-Annual-Retro/</id>
-    <published>2016-01-27T10:03:00.000Z</published>
-    <updated>2016-01-27T10:03:00.000Z</updated>
-    <content type="html"><![CDATA[<p>我自身是有很大的危机意识的，由于担心行文中会不自然地抒发较多负面情绪，先回顾下去年做得好的方面。</p>
-<p><strong>工作</strong>：</p>
-<p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 2 月开始，基本上就专注在此，至此有1年前端经验。</p>
+    <published>2016-01-27T10:17:55.000Z</published>
+    <updated>2016-01-27T10:17:55.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>工作</strong>：</p>
+<p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 2 月开始，基本上就专注在此，至此有1年全职前端经验。</p>
 <p><strong>生活</strong>：</p>
 <p>2015 年最大的收获是遇到了人生的另一半。</p>
 <p><strong>旅行</strong>：</p>
@@ -35,11 +34,38 @@
 <li>国庆的法意土之旅：巴黎，威尼斯，佛罗伦萨，比萨，罗马，伊斯坦布尔。</li>
 <li>以及 12 月岁末的苏州之行，喝了桂花酿，去了新开张的诚品书店。</li>
 </ul>
+<p><strong>阅读</strong>：</p>
+<p>由于进入了 <strong>前端</strong> 这个领域，今年学习了很多东西，并且由于前端社区相对未到成熟阶段，也思考了很多东西。列个书单：</p>
+<p><strong>技术/方法论</strong>：</p>
+<ul>
+<li>《JavaScript 语言精粹》（重读）</li>
+<li>《WebKit技术内幕》</li>
+<li>《你不知道的JavaScript（上卷）》</li>
+<li>《编写可测试的JavaScript代码》</li>
+<li>《实现领域驱动设计》（重读）</li>
+<li>《JavaScript函数式编程》（阅读60%）</li>
+<li>《Java RESTful Web Service实战》</li>
+<li>《思考软件，创新设计：A段架构师的思考技术》（阅读50%）</li>
+<li>《Scrum敏捷软件开发》（重读）</li>
+</ul>
+<p><strong>设计</strong>：</p>
+<ul>
+<li>《西文字体2：经典款字体及其表现方法》（阅读30%）</li>
+<li>《设计之下:搜狐新闻客户端的用户体验设计》</li>
+</ul>
+<p><strong>社科文学</strong>：</p>
+<ul>
+<li>《听客溪的朝圣》（阅读50%）</li>
+<li>《伊斯坦布尔：一座城市的记忆》（阅读20%）</li>
+<li>《托斯卡纳艳阳下（2014版）》（阅读80%）</li>
+<li>《三体》三部曲</li>
+<li>《梦的解析(彩色插图珍藏版)》（阅读60%）</li>
+</ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>我自身是有很大的危机意识的，由于担心行文中会不自然地抒发较多负面情绪，先回顾下去年做得好的方面。</p>
-<p><strong>工作</strong>：</p>
-<p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 ]]>
+    <![CDATA[<p><strong>工作</strong>：</p>
+<p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 2 月开始，基本上就专注在此，至此有1年全职前端经验。</p>
+<p><strong>生活</strong>：<]]>
     </summary>
     
   </entry>
@@ -182,7 +208,7 @@
     <link href="http://shane.hsi.rocks/2016/01/20/Git-Tips/"/>
     <id>http://shane.hsi.rocks/2016/01/20/Git-Tips/</id>
     <published>2016-01-20T05:49:17.000Z</published>
-    <updated>2016-01-27T07:52:36.000Z</updated>
+    <updated>2016-01-27T10:06:49.000Z</updated>
     <content type="html"><![CDATA[<h2 id="git_submodule"><a href="#git_submodule" class="headerlink" title="git submodule"></a>git submodule</h2><p><a href="https://github.com/git/git/blob/master/Documentation/RelNotes/1.8.4.txt#L38-L40" target="_blank" rel="external">git1.8.4</a> (July 2013) 之后不需要回到 . 目录。</p>
 <p>直接到 submodule 期望所在的目录：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">cd</span> ./src/vendor/</span><br><span class="line"><span class="label">git</span> <span class="keyword">submodule </span><span class="keyword">add </span>&lt;git<span class="comment">@github ...&gt; &lt;project-name&gt;</span></span><br></pre></td></tr></table></figure>
