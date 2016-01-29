@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-01-29T01:58:46.000Z</updated>
+  <updated>2016-01-29T08:40:18.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,167 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Twitter Likes Collections Before 060129]]></title>
+    <link href="http://shane.hsi.rocks/2016/01/29/Twitter-Likes-Collections-Before-060129/"/>
+    <id>http://shane.hsi.rocks/2016/01/29/Twitter-Likes-Collections-Before-060129/</id>
+    <published>2016-01-29T03:17:40.000Z</published>
+    <updated>2016-01-29T08:40:18.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="RxJS"><a href="#RxJS" class="headerlink" title="RxJS"></a>RxJS</h2><ul>
+<li><p>egghead.io 上的 RxJS <a href="https://egghead.io/lessons/rxjs-reacting-to-multiple-inputs-using-rxjs-s-combinelatest?utm_content=bufferc97fc&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" target="_blank" rel="external">课程</a></p>
+</li>
+<li><p>RxJS 的 <a href="https://overcast.fm/+BPab3rsQQ" target="_blank" rel="external">podcast</a>，采访的 Matthew Podwysocki </p>
+</li>
+<li><p>RxJS 的<a href="https://github.com/annatomka/rxjs-examples#image-sampler-example" target="_blank" rel="external">示例</a></p>
+</li>
+<li><p>RxJS 的 Ben Lesh 的 youtube <a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=9on6u7pI3vY%C2%A0%E2%80%A6" target="_blank" rel="external">视频</a></p>
+</li>
+<li><p><a href="https://medium.com/@BrianDiPalma/thoughts-on-rxjs-cf3562e20d74#.g9n42ub2k" target="_blank" rel="external">Thoughts on RxJS</a>，<a href="https://speakerdeck.com/staltz/the-whole-future-declared-in-a-var" target="_blank" rel="external">另一篇</a></p>
+</li>
+<li><p><a href="http://staltz.com/how-to-debug-rxjs-code.html" target="_blank" rel="external">如何调试 RxJS 代码</a></p>
+</li>
+<li><p>【Netflix 如何使用 Node](<a href="http://thenewstack.io/netflix-uses-node-js-power-user-interface/" target="_blank" rel="external">http://thenewstack.io/netflix-uses-node-js-power-user-interface/</a>)</p>
+</li>
+<li><p><a href="https://github.com/jadbox/rxjs-cluster" target="_blank" rel="external">Using Rx, maximize CPU usage in Node by using the new clusterMap that uses cluster/forked processes</a></p>
+</li>
+<li><p><a href="https://jsfiddle.net/MichalZalecki/h2xfjgh6/" target="_blank" rel="external">Use Rx.Scheduler.requestAnimationFrame for animations </a></p>
+</li>
+<li><p>对比下 <a href="https://medium.com/@puppybits/rxjs-is-great-so-why-have-i-moved-on-534c513e7af3?source=latest---" target="_blank" rel="external">ClosureScript</a></p>
+</li>
+<li><p><a href="https://github.com/escherpad/luna#wanna-use-reactive-extention-rxjs-and-redux-in-your-project-but-dont-know-how" target="_blank" rel="external">Hacker News - Show HN: A Reactive (Rxjs) Redux Lib with Explainations http://ift.tt/1UK1oBV </a></p>
+</li>
+<li><p><a href="https://github.com/garbles/yolk" target="_blank" rel="external">yolk</a> Yolk (An RxJS UI Library) in 7 Minutes, <a href="https://egghead.io/lessons/rxjs-yolk-an-rxjs-ui-library-in-7-minutes?utm_content=bufferc279c&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" target="_blank" rel="external">egghead.io</a></p>
+</li>
+<li><p><a href="https://github.com/mattpodwysocki/rx-fluxish" target="_blank" rel="external">mattpodwysocki/rx-fluxish</a></p>
+</li>
+<li><p><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" rel="external">The introduction to Reactive Programming you’ve been missing</a>，这个有 egghead 视频。</p>
+</li>
+<li><p><a href="https://github.com/trxcllnt/reaxtor" target="_blank" rel="external">Falcor + Rx + virtual-dom</a></p>
+</li>
+<li><p><a href="http://moumne.com/rx-training-games/#?title=meteorites" target="_blank" rel="external">Rx Training Games</a></p>
+</li>
+<li><p><a href="http://staltz.com/rx-glitches-arent-actually-a-problem.html" target="_blank" rel="external">RX GLITCHES AREN’T ACTUALLY A PROBLEM</a></p>
+</li>
+<li><p><a href="https://github.com/ReactiveX/RxJS/issues/752#issuecomment-161234549" target="_blank" rel="external">This comment by Paul Taylor is better than 1000 blog posts. https://github.com/ReactiveX/RxJS/issues/752#issuecomment-161234549 … Explains Observables and how Promises are not Futures.</a></p>
+</li>
+<li><p><a href="https://medium.com/@ReactiveConf/richard-feldman-the-reactive-approach-is-a-great-fit-for-the-vast-majority-of-web-apps-aac93e245fc9#.kj6uivwql" target="_blank" rel="external">Richard Feldman: The Reactive Approach Is a Great Fit for the Vast Majority of Web Apps</a></p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=QhjALubBQPg&amp;feature=youtu.be" target="_blank" rel="external">.@trxcllnt’s talk at @ReactiveConf on #RxJS 5 goes into more detail on the work done than my talks. Great stuff! https://youtu.be/QhjALubBQPg </a></p>
+</li>
+</ul>
+<h2 id="React-js"><a href="#React-js" class="headerlink" title="React.js"></a>React.js</h2><ul>
+<li><p>一个可视化编辑的 CMS <a href="https://github.com/relax/relax" target="_blank" rel="external">relax/relax</a>，可以 Linking data from a schema in the page builder。（使用了 GraphQL）。</p>
+</li>
+<li><p><a href="https://github.com/jlongster/backend-with-webpack/blob/master/gulpfile.js#L75" target="_blank" rel="external">gulp 结合 webpack 示例</a></p>
+</li>
+<li><p>测试相关，I made this react-testing-recipes based on course from @eggheadio and @_ericelliott ‘s brilliant work，<a href="https://github.com/fraserxu/react-testing-recipes" target="_blank" rel="external">链接</a></p>
+</li>
+<li><p>另一个设计工具 <a href="https://twitter.com/fusetools" target="_blank" rel="external">Fuse</a></p>
+</li>
+<li><p><a href="https://github.com/ericclemmons/react-resolver" target="_blank" rel="external">ericclemmons/react-resolver</a></p>
+</li>
+<li><p><a href="http://stackoverflow.com/questions/34403269/what-is-the-best-way-deal-with-fetch-error-in-react-redux/34403521#34403521" target="_blank" rel="external">I just answered how to handle Async #reactjs #redux errors &amp; display “global user messages” </a></p>
+</li>
+<li><p><a href="https://medium.com/modern-user-interfaces/a-journey-into-reactive-user-interfaces-101-1daea5702486#.i5vr0ctwf" target="_blank" rel="external">A journey into Reactive User Interfaces 101</a></p>
+</li>
+<li><p><a href="https://github.com/heroku/react-refetch?utm_content=buffer8dfc2&amp;utm_medium=twitter&amp;utm_source=changelog&amp;utm_campaign=buffer" target="_blank" rel="external">heroku/react-refetch</a> 学习下一些场景。越来越发现，不需要搞复杂的 Flux，特别是生产代码中。</p>
+</li>
+<li><p><a href="http://www.christianalfoni.com/articles/2015_11_30_Exploring-Elm-part1" target="_blank" rel="external">Exploring Elm - Part 1</a></p>
+</li>
+<li><p><a href="https://github.com/facebook/react/issues/5465" target="_blank" rel="external">isMounted() will go away. Avoid it in new code. As always, please refrain from knee-jerk reactions in comments ;-) </a></p>
+</li>
+<li><p><a href="https://auth0.com/blog/2015/11/20/face-off-virtual-dom-vs-incremental-dom-vs-glimmer/" target="_blank" rel="external">React Virtual DOM vs Incremental DOM vs Ember’s Glimmer: Fight</a></p>
+</li>
+<li><p><a href="https://github.com/heroku/react-refetch" target="_blank" rel="external">A simple, declarative, and composable way to fetch data for React components</a></p>
+</li>
+<li><p><a href="https://github.com/Gozala/reflex" target="_blank" rel="external">Elm in JS Library</a></p>
+</li>
+<li><p><a href="http://www.alexkyte.me/2015/08/mutability-and-persistent-data.html?m=1" target="_blank" rel="external">Mutability and Persistent Data Structures: Retroactivity</a> Data structures with time-traveling built in! <a href="http://www.alexkyte.me/2015/08/mutability-and-persistent-data.html?m=1" target="_blank" rel="external">http://www.alexkyte.me/2015/08/mutability-and-persistent-data.html?m=1</a> …<br>@dan_abramov interesting for framework-agnostic time travel<br>11 retweets 37 likes</p>
+</li>
+</ul>
+<h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><ul>
+<li><p>一篇关于 Node 企业级开发的<a href="https://medium.com/@nodesource/the-enterprise-node-community-987ab4221ef5#.db5l4k4ax" target="_blank" rel="external">文章</a>，<a href="http://thenewstack.io/tns-analysts-node-js-tooling-enterprise-please/" target="_blank" rel="external">另一篇</a></p>
+</li>
+<li><p><a href="http://www.alexkras.com/simple-guide-to-finding-a-javascript-memory-leak-in-node-js/" target="_blank" rel="external">Node.js 内存泄露检查</a></p>
+</li>
+<li><p>创建交互式 Node 命令行<a href="https://www.youtube.com/watch?v=QLat0Y3jqUA" target="_blank" rel="external">工具</a></p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=gHrrgZmoY6E" target="_blank" rel="external">Make Node.js Debuggable</a></p>
+</li>
+<li><p><a href="http://techblog.netflix.com/2015/12/debugging-nodejs-in-production.html" target="_blank" rel="external">Debugging Node.js in Production - </a></p>
+</li>
+<li><p><a href="https://developer.atlassian.com/blog/2015/11/scripting-with-node/" target="_blank" rel="external">Building Command Line Tools with Node: </a></p>
+</li>
+</ul>
+<h2 id="Lodash"><a href="#Lodash" class="headerlink" title="Lodash"></a>Lodash</h2><ul>
+<li><a href="https://github.com/lodash/lodash/releases/tag/4.0.0" target="_blank" rel="external">lodash 4.0</a></li>
+</ul>
+<h2 id="u535A_u5BA2"><a href="#u535A_u5BA2" class="headerlink" title="博客"></a>博客</h2><ul>
+<li><p>facebook designer Julie Zhuo 的<a href="https://medium.com/the-year-of-the-looking-glass/write-in-2016-938f569b535e#.1oqvdlgwj" target="_blank" rel="external">博客</a></p>
+</li>
+<li><p><a href="https://medium.com/@puppybits" target="_blank" rel="external">Puppybits</a> Sr Developer on iOS, ClojureScript, ReactJS, full stack and product creation. UX and Econ junkie. Ex-R/GA, Ex-Nike, Ex-Disney, currently at Capital One.</p>
+</li>
+</ul>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><ul>
+<li><p><a href="http://www.webdirections.org/blog/asynchronous-frontiers-in-javascript-domenic-denicola-code-2015/" target="_blank" rel="external">异步 JavaScript 现状</a></p>
+</li>
+<li><p><a href="https://medium.com/@housecor/12-rules-for-professional-javascript-in-2015-f158e7d3f0fc#.j42o9wy8w" target="_blank" rel="external">12 Rules for Professional JavaScript in 2015 - </a></p>
+</li>
+<li><p><a href="https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.5mm1n1mwc" target="_blank" rel="external">Javascript Fatigue</a></p>
+</li>
+<li><p><a href="https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80#.qi3qkoaxc" target="_blank" rel="external">@addyosmani for anyone wondering about tree-shaking vs. dead-code elimination,</a></p>
+</li>
+<li><p><a href="http://www.sitepoint.com/how-to-schedule-background-tasks-in-javascript/" target="_blank" rel="external">How to Schedule Background Tasks in JavaScript</a> 新的 API requestIdleCallback</p>
+</li>
+<li><p><a href="https://github.com/vsavkin/CoolCodeSnippets" target="_blank" rel="external">vsavkin/CoolCodeSnippets</a> This repository shows two ways of implementing the object algebras pattern in TypeScript. The two ways are with and without using classes.</p>
+</li>
+<li><p><a href="https://medium.com/@mweststrate/how-to-create-strongly-typed-npm-modules-1e1bda23a7f4#.rxgfq2d2t" target="_blank" rel="external">How to create strongly-typed npm packages</a></p>
+</li>
+<li><p><a href="https://blog.oio.de/2014/01/31/an-introduction-to-typescript-module-system/" target="_blank" rel="external">An introduction to TypeScript’s module system</a></p>
+</li>
+<li><p><a href="http://blog.getify.com/concurrently-javascript-1/" target="_blank" rel="external">Concurrently JavaScript: 3 Posts on Concurrency in JS - </a></p>
+</li>
+</ul>
+<h2 id="CSS__u548C__u52A8_u6548"><a href="#CSS__u548C__u52A8_u6548" class="headerlink" title="CSS 和 动效"></a>CSS 和 动效</h2><ul>
+<li><p><a href="https://github.com/simplaio/rucksack" target="_blank" rel="external">simplaio/rucksack</a>，使用 postcss 做了一些 shorthand 写法。可以先学习下写法。但是我更喜欢写标准。</p>
+</li>
+<li><p><a href="https://react.rocks/tag/react-motion" target="_blank" rel="external">React Motion demo</a>，<a href="https://react.rocks/example/react-motion_Water_Ripples" target="_blank" rel="external">另一个</a></p>
+</li>
+<li><p><a href="http://flexbox.help/" target="_blank" rel="external">Test CSS Flexbox Rules Live</a>，<a href="http://flexboxfroggy.com/" target="_blank" rel="external">另一篇</a></p>
+</li>
+<li><p><a href="http://johnpolacek.github.io/expressive-css/" target="_blank" rel="external">Expressive CSS</a></p>
+</li>
+<li><p><a href="http://ai.github.io/postcss-isolation/" target="_blank" rel="external">Fix Global CSS with PostCSS</a></p>
+</li>
+</ul>
+<h2 id="u5DE5_u5177_Utils"><a href="#u5DE5_u5177_Utils" class="headerlink" title="工具 Utils"></a>工具 Utils</h2><ul>
+<li><p><a href="http://www.sitepoint.com/front-end-tools-favorite-finds-2015/" target="_blank" rel="external">Front-end Tools: Some of My Favorite Finds of 2015</a>，这个挺好玩 <a href="http://arasatasaygin.github.io/is.js/" target="_blank" rel="external">is.js</a></p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=BzmuEhBc3yk&amp;feature=youtu.be" target="_blank" rel="external">Angular 2 Http - Working with RxJS Observables</a></p>
+</li>
+<li><p><a href="http://lea.verou.me/2015/12/introducing-bliss-a-3kb-library-for-happier-vanilla-js/" target="_blank" rel="external">Bliss: A 3KB Library for Happier Vanilla JS - </a></p>
+</li>
+<li><p><a href="https://cyclicmaterials.github.io/2015/11/26/release-cycle-hammer-driver-0.1.1.html" target="_blank" rel="external">Detect touch gestures with Cycle.js and Hammer.js</a></p>
+</li>
+<li><p><a href="https://github.com/kittens/lerna" target="_blank" rel="external">:dragon: A tool for managing JavaScript projects with multiple packages.</a></p>
+</li>
+<li><p><a href="http://engineroom.teamwork.com/10-things-to-know-about-gulp/" target="_blank" rel="external">10 things to know about Gulp</a></p>
+</li>
+</ul>
+<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><ul>
+<li><a href="https://github.com/acdlite/router#proof-of-concept-react-router-like-api" target="_blank" rel="external">I’ve been experimenting with routing by re-implementing the React Router API using middleware. More to follow soon: </a></li>
+</ul>
+<h2 id="u5176_u4ED6"><a href="#u5176_u4ED6" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><a href="https://www.igvita.com/2015/11/20/dont-lose-user-and-app-state-use-page-visibility/" target="_blank" rel="external">Don’t lose user and app state, use Page Visibility</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="RxJS"><a href="#RxJS" class="headerlink" title="RxJS"></a>RxJS</h2><ul>
+<li><p>egghead.io 上的 RxJS <a href="https://egghead.io/lesson]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hub, Makes Git Better with Github]]></title>
@@ -521,7 +682,7 @@
     <link href="http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/"/>
     <id>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</id>
     <published>2016-01-13T06:36:49.000Z</published>
-    <updated>2016-01-27T07:52:57.000Z</updated>
+    <updated>2016-01-29T03:16:26.000Z</updated>
     <content type="html"><![CDATA[<p>技术栈：</p>
 <ul>
 <li>TypeScript</li>
@@ -533,6 +694,7 @@
 <li>Redux</li>
 <li>IE8 兼容性</li>
 <li>Ajax 库</li>
+<li>关于 gulp 和 webpack</li>
 </ul>
 <h2 id="Only_TypeScript_u2019s_Type"><a href="#Only_TypeScript_u2019s_Type" class="headerlink" title="Only TypeScript’s Type"></a>Only TypeScript’s Type</h2><p>其中 TypeScript 借助 IDE（如 webstorm）或者直接命令行 <code>tsc --watch</code> 编译成 <code>/\.jsx?$/</code>。也就是说，虽然用了 Webpack，但是没有使用 Webpack 的 TypeScript loader，保证出去这一步外，和使用 ES6 开发相同。<code>tsconfig.json</code> 如下：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">compilerOptions</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">target</span>": <span class="value"><span class="string">"es2015"</span></span>,</span><br><span class="line">    "<span class="attribute">module</span>": <span class="value"><span class="string">"es2015"</span></span>,</span><br><span class="line">    "<span class="attribute">jsx</span>": <span class="value"><span class="string">"preserve"</span></span><br><span class="line">  </span>&#125;</span>,</span><br><span class="line">  "<span class="attribute">exclude</span>": <span class="value">[</span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
@@ -561,6 +723,20 @@
 <li><a href="https://github.com/dexteryy/mo" target="_blank" rel="external">dexteryy/mo</a></li>
 </ul>
 <p>目前使用 <a href="https://github.com/visionmedia/superagent" target="_blank" rel="external">superagent</a>，是因为发现它的 response 的类型很丰富。</p>
+<h2 id="u5173_u4E8E_gulp__u548C_webpack"><a href="#u5173_u4E8E_gulp__u548C_webpack" class="headerlink" title="关于 gulp 和 webpack"></a>关于 gulp 和 webpack</h2><p>webpack 出现后，曾经有一段时间，前端社区开始去 gulp，而开始使用 npm scripts。并且 webpack 的 loader 功能上和 gulp 有重合。</p>
+<p>gulp，将所有的文件类型，比如：css，通过 src 读取文件，然后 pipe 一系列的 plguin，最终写到 dest。</p>
+<p>webpack，js 文件可以 require 各种类型，font，img，css 等，然后不同的 loader 进行处理，如果可以写在 html（其实是 jsx）里，结果就是相应的写在 js 的方法（比如 inline img），要么就是 extract 出来。</p>
+<p>webpack 的特点就是：最好都 inline 到 js 里。</p>
+<p>gulp 的特点是：由于没有 js 这种变态的集大成者（html，inline style，inline img 等），所以最终需要在 html 里做集成（<code>&lt;style /&gt;</code>, <code>&lt;link style /&gt;</code> <code>&lt;script</code> 等）。</p>
+<p>所以，结论就好下了，预测 webpack 的处理方式是符合趋势的（比如 shadow dom）。目前 webpack 和 react 结合的紧密。所以，需要一种标准，而不是很重的实现（接口分离开发）。</p>
+<p>jsx 作为集成者：</p>
+<ul>
+<li>本身作为结构（DOM）</li>
+<li>绑定样式：inline style，后者 css modules（class 作为 key）</li>
+<li>绑定事件系统</li>
+<li>绑定图片，在样式里</li>
+<li>绑定字体，在样式里</li>
+</ul>
 <h2 id="To_be_continued"><a href="#To_be_continued" class="headerlink" title="To be continued"></a>To be continued</h2>]]></content>
     <summary type="html">
     <![CDATA[<p>技术栈：</p>
