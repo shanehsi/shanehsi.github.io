@@ -14,6 +14,7 @@ tags:
 - Redux
 - IE8 兼容性
 - Ajax 库
+- 关于 gulp 和 webpack
 
 ## Only TypeScript's Type
 
@@ -97,5 +98,29 @@ Ajax 库感兴趣完全可以自己写一个，相对比较固定的写法。网
 - [dexteryy/mo](https://github.com/dexteryy/mo)
 
 目前使用 [superagent](https://github.com/visionmedia/superagent)，是因为发现它的 response 的类型很丰富。
+
+## 关于 gulp 和 webpack
+
+webpack 出现后，曾经有一段时间，前端社区开始去 gulp，而开始使用 npm scripts。并且 webpack 的 loader 功能上和 gulp 有重合。
+
+gulp，将所有的文件类型，比如：css，通过 src 读取文件，然后 pipe 一系列的 plguin，最终写到 dest。
+
+webpack，js 文件可以 require 各种类型，font，img，css 等，然后不同的 loader 进行处理，如果可以写在 html（其实是 jsx）里，结果就是相应的写在 js 的方法（比如 inline img），要么就是 extract 出来。
+
+webpack 的特点就是：最好都 inline 到 js 里。
+
+gulp 的特点是：由于没有 js 这种变态的集大成者（html，inline style，inline img 等），所以最终需要在 html 里做集成（`<style />`, `<link style />` `<script` 等）。
+
+所以，结论就好下了，预测 webpack 的处理方式是符合趋势的（比如 shadow dom）。目前 webpack 和 react 结合的紧密。所以，需要一种标准，而不是很重的实现（接口分离开发）。
+
+jsx 作为集成者：
+
+- 本身作为结构（DOM）
+- 绑定样式：inline style，后者 css modules（class 作为 key）
+- 绑定事件系统
+- 绑定图片，在样式里
+- 绑定字体，在样式里
+
+
 
 ## To be continued
