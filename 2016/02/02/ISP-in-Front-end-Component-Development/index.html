@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> ISP in Front-end Component Development · Shane Hsi Rocks</title><meta name="description" content="理论准备ISP 即 Interface Segregation Principle。
+多个客户端特定的接口好于一个通用接口
+
+many client-specific interfaces are better than one general-purpose interface.
+
+客户端不应该依赖不需要的方法
+
+The interface-segregation principle (ISP) states that no client should be forced to depend on methods it does not use.
+
+这种缩水的接口有叫做『角色接口』。
+
+ISP splits interfaces which are very large into smaller and more specific ones so that"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">ISP in Front-end Component Development</h1><div class="post-meta"><div class="post-time">Feb 2, 2016</div></div><div class="post-content"><h2 id="u7406_u8BBA_u51C6_u5907"><a href="#u7406_u8BBA_u51C6_u5907" class="headerlink" title="理论准备"></a>理论准备</h2><p>ISP 即 Interface Segregation Principle。</p>
+<p>多个客户端特定的接口好于一个通用接口</p>
+<blockquote>
+<p>many client-specific interfaces are better than one general-purpose interface.</p>
+</blockquote>
+<p>客户端不应该依赖不需要的方法</p>
+<blockquote>
+<p>The interface-segregation principle (ISP) states that no client should be forced to depend on methods it does not use.</p>
+</blockquote>
+<p>这种缩水的接口有叫做『角色接口』。</p>
+<blockquote>
+<p>ISP splits interfaces which are very large into smaller and more specific ones so that clients will only have to know about the methods that are of interest to them. Such shrunken interfaces are also called role interfaces</p>
+</blockquote>
+<p>参考术语：<a href="https://en.wikipedia.org/wiki/GRASP_(object-oriented_design" target="_blank" rel="external">GRASP (object-oriented design)</a>)，General Responsibility Assignment Software Patterns (or Principles)。</p>
+<p>我记得 Erik Meijer 在 youtube 上有个讲座介绍了接口分离原则的数学证明。回头翻看下。</p>
+<p>参考链接：<a href="https://en.wikipedia.org/wiki/Software_craftsmanship" target="_blank" rel="external">Software craftsmanship</a>。</p>
+<p>什么是接口？</p>
+<p>在计算机系统中，接口是两个组件交换信息的共享边界。这种信息的交换可能是双向的（send/receive data) 也可能是单向的。</p>
+<blockquote>
+<p>an interface is a shared boundary across which two separate components of a computer system exchange information. </p>
+</blockquote>
+<p><a href="http://martinfowler.com/bliki/RoleInterface.html" target="_blank" rel="external">Role Interface</a> 的反面是 Header Interface（即一个 Interface，就是把 public methods 都写出 interface）。</p>
+<p>使用 Role Interface，就是，你要了解 exchange 的具体的 information。而 Header Interface 认为 supplier 不需关心谁用你的 service，或怎么用。其实就是控制权的问题。Role 控制权在 consumer，Header 控制权在 supplier。长远来看，关注 consumer 是友好的。</p>
+<h2 id="u573A_u666F"><a href="#u573A_u666F" class="headerlink" title="场景"></a>场景</h2><p>前端开发（React.js）如何利用 interface？</p>
+<p>按照刚才的解释，是要找到其中的 supplier 和 consumer，然后定义它们交换的信息。</p>
+<p>这里的 supplier 就是编写的组件。consumer 就是高阶组件。它们之间需要交换的信息就是 props。</p>
+<p>其实更担心的是，如果功能要增加，如何扩展？一种原则是，不要去扩展，而是重新复制一份。然后看情况是否需要提取公用的逻辑。不要把公用的边界提前设定。</p>
+<p>目前的 props 看来更多的还是数据。可能会有部分展示相关的属性（初始值）。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/02/02/2016-The-Shawshank-Redemption/" class="prev">上一篇</a><a href="/2016/01/29/Books-to-Read/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

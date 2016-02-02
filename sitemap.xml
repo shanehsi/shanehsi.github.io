@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</loc>
+    <lastmod>2016-02-02T09:11:58.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/2015-Annual-Retro/</loc>
+    <lastmod>2016-02-02T08:10:08.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/ISP-in-Front-end-Component-Development/</loc>
+    <lastmod>2016-02-02T06:48:34.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/</loc>
     <lastmod>2016-01-31T14:42:39.000Z</lastmod>
   </url>
@@ -24,11 +39,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/01/29/Hub-Makes-Git-Better-with-Github/</loc>
     <lastmod>2016-01-29T01:58:46.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/28/2015-Annual-Retro/</loc>
-    <lastmod>2016-01-28T06:39:15.000Z</lastmod>
   </url>
   
   <url>
