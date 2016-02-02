@@ -6,4 +6,3 @@ tags:
 > Remember，hope is a good thing, maybe the best of things and no good thing ever dies.
 
 > It takes a strong man to save himself，and a great man to save another.
-
