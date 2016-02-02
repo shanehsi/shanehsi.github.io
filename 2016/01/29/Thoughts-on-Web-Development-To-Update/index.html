@@ -134,4 +134,37 @@ Input Event (keyboard, mouse, touch etc.)
 <li>Ember Glimmer</li>
 <li>Incremental DOM</li>
 </ul>
+<h2 id="u6682_u505C_u7136_u540E_u6574_u7406_u4E0B"><a href="#u6682_u505C_u7136_u540E_u6574_u7406_u4E0B" class="headerlink" title="暂停然后整理下"></a>暂停然后整理下</h2><h4 id="u5173_u4E8E_u6807_u51C6"><a href="#u5173_u4E8E_u6807_u51C6" class="headerlink" title="关于标准"></a>关于标准</h4><p>司徒正美最近在写关于 HTML 标准的博客，<a href="http://www.cnblogs.com/rubylouvre/p/5121459.html" target="_blank" rel="external">表单元素 开篇</a>。非常赞同。HTML 标准，CSS 标准，这里的标准有两层含义：</p>
+<ul>
+<li>是浏览器内核级别的实现</li>
+<li>实现了常用的对外接口（这里的接口包括在 screen 的绘制，和接收的外界 event，比如 touch，mouse，keyboard 等），特别是 event 处理很麻烦，细节太多。</li>
+</ul>
+<p>所以，标准一是性能好，二是功能全。而且是很高质量的实现，没必要对标准重新实现，而是利用标准提供的接口来扩展功能。</p>
+<p>不要在封装上再做封装，但是也要找到停下来的地方。我认为这个地方就是标准。</p>
+<h4 id="u627E_u5230_u9886_u57DF_u6A21_u578B_uFF0C_u5B9A_u4E49_u5B83_u4EEC_u7684_u8FB9_u754C"><a href="#u627E_u5230_u9886_u57DF_u6A21_u578B_uFF0C_u5B9A_u4E49_u5B83_u4EEC_u7684_u8FB9_u754C" class="headerlink" title="找到领域模型，定义它们的边界"></a>找到领域模型，定义它们的边界</h4><ul>
+<li>结构</li>
+<li>展示</li>
+<li>（动画）</li>
+<li>数据<ul>
+<li>读数据</li>
+<li>写数据</li>
+</ul>
+</li>
+</ul>
+<p>数据是完全可以后面再考虑。</p>
+<p>先考虑结构，展示。甚至假设啊，没有 css。也要能合理地显示。</p>
+<h4 id="CSS__u7684_u91CD_u7528"><a href="#CSS__u7684_u91CD_u7528" class="headerlink" title="CSS 的重用"></a>CSS 的重用</h4><h5 id="u4EC0_u4E48_u662F_u4E3B_u9898_uFF1F"><a href="#u4EC0_u4E48_u662F_u4E3B_u9898_uFF1F" class="headerlink" title="什么是主题？"></a>什么是主题？</h5><p>主题：</p>
+<ul>
+<li>最简单是色系的变化</li>
+<li>可能有一些圆角，直角</li>
+<li>字体</li>
+</ul>
+<p>再复杂一点，我觉得就没有重用的必要了。不如从结构+样式单独写一套。（看似没有重用，但是数据层肯定重用了。结构+展示很薄，代码量不大。）</p>
+<h5 id="u5982_u4F55_u5199_u6837_u5F0F_uFF1F"><a href="#u5982_u4F55_u5199_u6837_u5F0F_uFF1F" class="headerlink" title="如何写样式？"></a>如何写样式？</h5><p>布局是确定的。要么用 lost，只要改下 值 就可以生成两套，一套基于浮动，一套基于 flexbox。不过，使用这种 DSL 最大的问题就是，是否对标准破坏太多，或者封装太多。</p>
+<p>现在可以直接使用 flexbox。</p>
+<p>然后布局里面就用没有样式的元素。</p>
+<p>然后，如果要加样式，认真思考。慢慢总结规律。现在还没有总结出规律。</p>
+<p>结构和样式的接口就是 className。总结规律，让暴露的 DOM 结构越少越好。</p>
+<h4 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h4><p>jQuery 这种好东西（封装恶心细节的东西），一定要用的。即使接口不好，可以封装啊。</p>
+<p>React 有两块，一块是接口设计很好。至于实现什么的，可以用多种。</p>
 </div></article></div></section><footer><div class="paginator"><a href="/2016/01/29/Books-to-Read/" class="prev">上一篇</a><a href="/2016/01/29/Twitter-Likes-Collections-Before-060129/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-02T08:10:08.000Z</updated>
+  <updated>2016-02-02T09:21:32.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title><![CDATA[2015 Annual Retro]]></title>
     <link href="http://shane.hsi.rocks/2016/02/02/2015-Annual-Retro/"/>
     <id>http://shane.hsi.rocks/2016/02/02/2015-Annual-Retro/</id>
-    <published>2016-02-02T08:10:08.000Z</published>
-    <updated>2016-02-02T08:10:08.000Z</updated>
+    <published>2016-02-02T09:21:32.000Z</published>
+    <updated>2016-02-02T09:21:32.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h2><p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 2 月开始，基本上就专注在此，至此有 1 年全职前端经验。</p>
 <p>由于进入了 <strong>前端</strong> 这个领域，今年学习了很多东西，并且由于前端社区相对未到成熟阶段，也思考了很多东西。</p>
 <p>先列个书单：</p>
@@ -86,7 +86,7 @@
     <link href="http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/"/>
     <id>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</id>
     <published>2016-02-02T02:11:12.000Z</published>
-    <updated>2016-02-02T09:11:58.000Z</updated>
+    <updated>2016-02-02T09:21:26.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>Remember，hope is a good thing, maybe the best of things and no good thing ever dies.</p>
 <p>It takes a strong man to save himself，and a great man to save another.</p>
@@ -146,7 +146,7 @@
     <link href="http://shane.hsi.rocks/2016/01/29/Books-to-Read/"/>
     <id>http://shane.hsi.rocks/2016/01/29/Books-to-Read/</id>
     <published>2016-01-29T09:28:38.000Z</published>
-    <updated>2016-01-31T14:41:23.000Z</updated>
+    <updated>2016-02-02T09:21:34.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p><a href="http://book.douban.com/subject/1491830/" target="_blank" rel="external">栅格系统与版式设计</a>，参考链接：<a href="https://zh.wikipedia.org/wiki/%E6%A0%85%E6%A0%BC%E8%AE%BE%E8%AE%A1" target="_blank" rel="external">栅格设计</a></p>
 </li>
@@ -166,7 +166,7 @@
     <link href="http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/"/>
     <id>http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/</id>
     <published>2016-01-29T09:02:05.000Z</published>
-    <updated>2016-01-31T14:42:39.000Z</updated>
+    <updated>2016-02-02T09:58:27.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u4EC0_u4E48_u662F_UI"><a href="#u4EC0_u4E48_u662F_UI" class="headerlink" title="什么是 UI"></a>什么是 UI</h2><p>UI 层抽象成最终的 HTML（DOM 结构，树状层级结构）和样式（CSS）。这块可以再次回顾下《WebKit技术内幕》中的 render 部分，回顾的原因是拟合出适当的布局方式。</p>
 <p>UI 上会绑定 Event。抽象成两种：</p>
 <ul>
@@ -296,6 +296,39 @@
 <li>Ember Glimmer</li>
 <li>Incremental DOM</li>
 </ul>
+<h2 id="u6682_u505C_u7136_u540E_u6574_u7406_u4E0B"><a href="#u6682_u505C_u7136_u540E_u6574_u7406_u4E0B" class="headerlink" title="暂停然后整理下"></a>暂停然后整理下</h2><h4 id="u5173_u4E8E_u6807_u51C6"><a href="#u5173_u4E8E_u6807_u51C6" class="headerlink" title="关于标准"></a>关于标准</h4><p>司徒正美最近在写关于 HTML 标准的博客，<a href="http://www.cnblogs.com/rubylouvre/p/5121459.html" target="_blank" rel="external">表单元素 开篇</a>。非常赞同。HTML 标准，CSS 标准，这里的标准有两层含义：</p>
+<ul>
+<li>是浏览器内核级别的实现</li>
+<li>实现了常用的对外接口（这里的接口包括在 screen 的绘制，和接收的外界 event，比如 touch，mouse，keyboard 等），特别是 event 处理很麻烦，细节太多。</li>
+</ul>
+<p>所以，标准一是性能好，二是功能全。而且是很高质量的实现，没必要对标准重新实现，而是利用标准提供的接口来扩展功能。</p>
+<p>不要在封装上再做封装，但是也要找到停下来的地方。我认为这个地方就是标准。</p>
+<h4 id="u627E_u5230_u9886_u57DF_u6A21_u578B_uFF0C_u5B9A_u4E49_u5B83_u4EEC_u7684_u8FB9_u754C"><a href="#u627E_u5230_u9886_u57DF_u6A21_u578B_uFF0C_u5B9A_u4E49_u5B83_u4EEC_u7684_u8FB9_u754C" class="headerlink" title="找到领域模型，定义它们的边界"></a>找到领域模型，定义它们的边界</h4><ul>
+<li>结构</li>
+<li>展示</li>
+<li>（动画）</li>
+<li>数据<ul>
+<li>读数据</li>
+<li>写数据</li>
+</ul>
+</li>
+</ul>
+<p>数据是完全可以后面再考虑。</p>
+<p>先考虑结构，展示。甚至假设啊，没有 css。也要能合理地显示。</p>
+<h4 id="CSS__u7684_u91CD_u7528"><a href="#CSS__u7684_u91CD_u7528" class="headerlink" title="CSS 的重用"></a>CSS 的重用</h4><h5 id="u4EC0_u4E48_u662F_u4E3B_u9898_uFF1F"><a href="#u4EC0_u4E48_u662F_u4E3B_u9898_uFF1F" class="headerlink" title="什么是主题？"></a>什么是主题？</h5><p>主题：</p>
+<ul>
+<li>最简单是色系的变化</li>
+<li>可能有一些圆角，直角</li>
+<li>字体</li>
+</ul>
+<p>再复杂一点，我觉得就没有重用的必要了。不如从结构+样式单独写一套。（看似没有重用，但是数据层肯定重用了。结构+展示很薄，代码量不大。）</p>
+<h5 id="u5982_u4F55_u5199_u6837_u5F0F_uFF1F"><a href="#u5982_u4F55_u5199_u6837_u5F0F_uFF1F" class="headerlink" title="如何写样式？"></a>如何写样式？</h5><p>布局是确定的。要么用 lost，只要改下 值 就可以生成两套，一套基于浮动，一套基于 flexbox。不过，使用这种 DSL 最大的问题就是，是否对标准破坏太多，或者封装太多。</p>
+<p>现在可以直接使用 flexbox。</p>
+<p>然后布局里面就用没有样式的元素。</p>
+<p>然后，如果要加样式，认真思考。慢慢总结规律。现在还没有总结出规律。</p>
+<p>结构和样式的接口就是 className。总结规律，让暴露的 DOM 结构越少越好。</p>
+<h4 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h4><p>jQuery 这种好东西（封装恶心细节的东西），一定要用的。即使接口不好，可以封装啊。</p>
+<p>React 有两块，一块是接口设计很好。至于实现什么的，可以用多种。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="u4EC0_u4E48_u662F_UI"><a href="#u4EC0_u4E48_u662F_UI" class="headerlink" title="什么是 UI"></a>什么是 UI</h2><p>UI 层抽象成最终的 HTML（DOM 结构，树状层]]>
@@ -904,7 +937,7 @@
     <link href="http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/"/>
     <id>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</id>
     <published>2016-01-13T06:36:49.000Z</published>
-    <updated>2016-01-29T09:01:23.000Z</updated>
+    <updated>2016-02-02T09:18:21.000Z</updated>
     <content type="html"><![CDATA[<p>技术栈：</p>
 <ul>
 <li>TypeScript</li>
