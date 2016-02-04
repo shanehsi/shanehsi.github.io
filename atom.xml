@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-04T09:09:08.000Z</updated>
+  <updated>2016-02-04T09:11:56.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://shane.hsi.rocks/2016/02/04/React-performance-zh-cn/"/>
     <id>http://shane.hsi.rocks/2016/02/04/React-performance-zh-cn/</id>
     <published>2016-02-04T07:31:26.000Z</published>
-    <updated>2016-02-04T09:09:08.000Z</updated>
+    <updated>2016-02-04T09:11:56.000Z</updated>
     <content type="html"><![CDATA[<p>原文：<a href="http://blog.vjeux.com/2013/javascript/react-performance.html" target="_blank" rel="external">React performance</a></p>
 <p>React is a JavaScript library for building user interfaces developed by Facebook. It has been designed from the ground up with performance in mind. In this article I will present how the diff algorithm and rendering work in React so you can optimize your own apps.</p>
 <p>这里展示下 React 用的 diff 算法和 rendering。</p>
@@ -72,6 +72,9 @@
 <h4 id="Selective_Sub-tree_Rendering"><a href="#Selective_Sub-tree_Rendering" class="headerlink" title="Selective Sub-tree Rendering"></a>Selective Sub-tree Rendering</h4><p>Finally, you have the possibility to prevent some sub-trees to re-render. If you implement the following method on a component:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boolean shouldComponentUpdate(object nextProps, object nextState)</span><br></pre></td></tr></table></figure>
 <p>The techniques that make React fast are not new. We’ve known for a long time that touching the DOM is expensive, you should batch write and read operations, event delegation is faster …</p>
+<p>People still talk about them because in practice, they are very hard to implement in regular JavaScript code. What makes React stand out is that all those optimizations happen by default. This makes it hard to shoot yourself in the foot and make your app slow.</p>
+<p>The performance cost model of React is also very simple to understand: every setState re-renders the whole sub-tree. If you want to squeeze out performance, call setState as low as possible and use shouldComponentUpdate to prevent re-rendering an large sub-tree.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>The techniques that make React fast are not new. We’ve known for a long time that touching the DOM is expensive, you should batch write and read operations, event delegation is faster …</p>
 <p>People still talk about them because in practice, they are very hard to implement in regular JavaScript code. What makes React stand out is that all those optimizations happen by default. This makes it hard to shoot yourself in the foot and make your app slow.</p>
 <p>The performance cost model of React is also very simple to understand: every setState re-renders the whole sub-tree. If you want to squeeze out performance, call setState as low as possible and use shouldComponentUpdate to prevent re-rendering an large sub-tree.</p>
 ]]></content>
@@ -146,7 +149,7 @@
     <link href="http://shane.hsi.rocks/2016/02/02/Read-React-Structure/"/>
     <id>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</id>
     <published>2016-02-02T10:00:25.000Z</published>
-    <updated>2016-02-04T07:29:17.000Z</updated>
+    <updated>2016-02-04T09:11:12.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u58F0_u660E"><a href="#u58F0_u660E" class="headerlink" title="声明"></a>声明</h2><ul>
 <li>解读的是结构</li>
 </ul>
