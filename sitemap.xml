@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</loc>
+    <lastmod>2016-02-04T06:56:01.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/04/JavaScript-new-constructor-this-from-zhihu/</loc>
+    <lastmod>2016-02-04T02:40:54.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/</loc>
     <lastmod>2016-02-02T09:58:27.000Z</lastmod>
   </url>
