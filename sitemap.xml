@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/</loc>
+    <lastmod>2016-02-07T15:17:48.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/02/06/Math-Requirements-for-Computer-Science/</loc>
-    <lastmod>2016-02-06T08:09:51.000Z</lastmod>
+    <lastmod>2016-02-06T08:37:06.000Z</lastmod>
   </url>
   
   <url>
@@ -14,11 +19,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/02/05/Read-some-Zhihu-2016-02-05/</loc>
     <lastmod>2016-02-05T08:30:47.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/</loc>
-    <lastmod>2016-02-05T06:34:21.000Z</lastmod>
   </url>
   
   <url>
