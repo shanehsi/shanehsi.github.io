@@ -202,10 +202,266 @@ foo();  // ReferenceError: a is not defined
 
 怎么找调用位置？似乎就是函数被调用的位置。但是不是那么简单，某些编程模式会隐藏真正的调用位置。
 
-最重要的是分析 **调用栈** （即为了到达当前执行位置调用的所有函数）。我们关心的调用位置就是当前执行函数的前一个调用。
+最重要的是分析 **调用栈** （即为了到达当前执行位置调用的所有函数，可以想象成一个函数调用链）。我们关心的调用位置就是当前执行函数的前一个调用。
 
+使用浏览器的调试工具可以方便得查看调用栈。
 
+## 2.2 绑定规则
 
+函数在执行过程中如何决定 `this` 的绑定对象。
 
+找到调用位置，判断应用下面4条规则的哪一条。
+
+### 2.2.1 默认绑定
+
+独立函数调用
+
+```js
+function foo() {
+    console.log(this.a);
+}
+var a = 2;
+foo(); // 2
+```
+
+`a` 首先是全局对象。
+
+但是，`this` 指向的也是全局对象。
+
+但是，如果是 "strict mode"，全局对象无法使用默认绑定，则是：
+
+```js
+function foo() {
+    "use strict";
+    console.log(this.a);
+}
+var a = 2;
+foo(); // TypeError: this is undefined
+```
+
+> 理解这层意思，但是规避这种写法。
+
+### 2.2.2 隐式绑定
+
+调用位置是否有上下文对象，或者说是否被某个对象包含或拥有。严格说来，后面一句的说法不准确：
+
+```js
+function foo() {
+    console.log( this.a );
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+obj.foo(); //2
+```
+
+严格说来，`foo()` 不属于 `obj` 对象。
+
+然而，调用位置，会使用 `obj` 上下文来引用函数。
+
+对象属性引用链只有最顶层或者说最后一层会影响调用位置。举例来说：
+
+```js
+function foo() {
+    console.log( this.a );
+}
+var obj2 = {
+    a: 42,
+    foo: foo
+};
+var obj1 = {
+    a: 2,
+    obj2: obj2
+};
+obj1.obj2.foo(); //42
+```
+
+**隐式丢失**：
+
+被隐式绑定的函数会丢失绑定对象，也就是说会应用默认绑定（取决于是否是 "strict mode"，决定 `this` 是绑定到全局对象还是 undefined）。
+
+```js
+function foo() {
+    console.log( this.a );
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+var bar = obj.foo; // 函数别名
+var a = "opps, global"; // a 是全局对象的属性
+bar(); //"oops, global"
+```
+
+虽然，`bar` 和 `obj.foo` 是一个引用，但是实际上，它引用的确实 `foo` 函数本身。还是要看函数有没有修饰。
+
+还有一种同样道理，但是较隐蔽，常在回调函数中出现：
+
+```js
+function foo() {
+    console.log( this.a );
+}
+function dooFoo(fn) {
+    // fn 其实引用的是 foo
+    fn(); // <-- 调用位置！
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+var a = "opps, global"; // a 是全局对象的属性
+doFoo( obj.foo ); //"oops, global"
+```
+
+参数传递其实就是一种隐式传递（隐式赋值）。
+
+内置函数也是一样的：
+
+```js
+setTimeout(obj.foo ,100); //"opps, global"
+```
+
+因为在 browser 端，`setTimeout` 大概伪代码是：
+
+```js
+function setTimeout(fn, delay) {
+    // 等待delay毫秒
+    fn(); // <-- 调用位置！
+}
+```
+
+所以，回调函数丢失 `this` 绑定是很常见的。
+
+含有更出乎意料的，某些流行的 JavaScrit 库中事件处理器常会把回调函数的 `this` 强制绑定到触发时间的 DOM 元素中（郁闷）。
+
+反正， `this` 的改变都是意想不到的。
+
+之后我们会介绍如何通过固定 `this` 来修复。
+
+### 2.2.3 显式绑定
+
+再回顾下 **隐式绑定**。
+
+是将函数作为一个对象的属性引用，通过属性间接调用函数，从而把 `this` 间接（隐式）绑定到这个对象上。
+
+现在显式，就是指，强制在某个对象上调用函数。
+
+利用 JavaScript 的原型，使用 `call(..)` 和 `apply(..)` 方法。
+
+它们的第一个参数，就是调用时，`this` 会指定绑定的对象。
+
+```js
+function foo() {
+    console.log( this.a );
+}
+var obj = {
+    a: 2
+};
+foo.call(obj); //2
+```
+
+如果是 primitive 类型的值，会被转换成它的对象形式（`new String(..)`、`new Boolean(..)`、`new Number(..)`。这通常被称为『装箱』。
+
+可惜，显式绑定也并不能解决丢失绑定的问题。
+
+**1. 硬绑定**
+
+显式绑定的一种变种可以解决这个问题（通过创建一个包裹函数）：
+
+```js
+function foo() {
+    console.log( this.a );
+}
+var obj = {
+    a: 2
+};
+// 包裹函数
+var bar = function() { 
+    foo.call(obj);
+}
+bar(); // 2
+setTimeout( bar, 100); // 2
+// 硬绑定的bar不可能再修改它的 this
+bar.call(window); //2 
+```
+
+参数形式：
+
+```js
+var bar = function() {
+    return foo.apply(obj, arguments);
+}
+```
+
+提取下：
+
+```js
+function bind(fn, obj) {
+    return function() {
+        return fn.apply(obj, arguments);
+    };
+}
+```
+
+由于硬绑定是一种常用的模式，在 ES5 里提供了内置的方式：`Function.prototype.bind`。
+
+> 所以，bind 返回的是一个硬编码的新函数
+
+**2. API 调用的『上下文』**
+
+第三方库的许多函数，JavaScript 语言和宿主环境中的很多新的函数，都提供了一个可选参数，通常被称为『上下文』（context），作用和 `bind` 一样，确保回调使用的是指定的 `this`。
+
+```js
+[1, 2, 3].forEach( foo, obj); // obj 就是第二个可选参数
+```
+
+内部实际上就是用 `bind` 或者 `apply` 实现了显式绑定，减少了些代码。
+
+### 2.2.4 `new` 绑定
+
+最后一条，但在此之前，先澄清一个常见误解，关于 JavaScript 中函数和对象的误解。
+
+在传统的面向类的语言中，『构造函数』是类中的一些特殊方法。使用 `new` 初始化类时会调用类中的构造函数，常如：
+
+```js
+sth = new MyClz();
+```
+
+JavaScript 也有 `new`，使用方式类似，然而机制真得完全不同。
+
+首先，重定义下 JavaScript 中的『构造函数』:
+
+JavaScript 中，构造函数只是使用 `new` 操作符时被调用的函数。它们并不属于某个类，也不会实例化一个类。实际上，你都不能把构造函数认为是一种特殊的函数类型（即可以不要这个名称），它们只是被 `new` 操作符调用的普通函数而已。
+
+例，`Number(..)` 作为构造函数（指会通过 `new` 操作符调用时）时的行为。
+
+> 当 Number 在 new 表达式中被调用时，它是一个构造函数：它会初始化新创建的对象。
+
+所以，包括内置对象函数（比如 `Number`，详情见Ch3）在内的所有函数都可以用 `new` 来调用。这种函数通常被称为『构造函数调用』。
+
+这里有一个重要但非常细微的区别：
+
+**实际上并不存在所谓的『构造函数』，只有对于函数的『构造调用』**。
+
+使用 `new` 来调用函数，或者说发生构造函数调用时，会自动执行以下操作：
+
+1. 创建（或者说构造）一个全新的对象
+2. 这个新对象会被执行[[原型]]链接
+3. 这个新对象会绑定到函数调用的 `this`
+4. 如果函数没有返回其他对象，那么 `new` 表达式中的函数调用会自动返回这个新对象
+
+```js
+function foo(a) {
+    this.a = a;
+}
+var bar = new foo(2);
+
+console.log(bar.a); // 2
+```
+
+总结下，这称为 `new` 绑定。
+
+## 2.3 优先级
 
 
