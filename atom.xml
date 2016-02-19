@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-06T08:37:06.000Z</updated>
+  <updated>2016-02-19T00:35:54.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Some Recent Doings]]></title>
+    <link href="http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/"/>
+    <id>http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/</id>
+    <published>2016-02-19T00:15:55.000Z</published>
+    <updated>2016-02-19T00:35:54.000Z</updated>
+    <content type="html"><![CDATA[<p>整理下最近在做的事情。</p>
+<blockquote>
+<p>不求快，也不求精美。这个博客，目前只是一种能方便记录的地方（这么说，电脑是我目前的主要生产力工具了）。<br>这是第一篇，整理最近在做的事情。我准备挑几个点，或者整理出依赖关系，找到一些目标。然后梳理下2016年的规划。</p>
+</blockquote>
+<p>一篇一篇的看下。</p>
+<ul>
+<li>2015 Annual Retro 记录了我2015年的努力。前端，JavaScript，CSS，甚至想涉足设计方面。以及简单的看了下 Webkit 导论。和一些 Functional，Reactive 的学习。</li>
+<li><p>2015 Annual Retro 文学类书单和旅行。</p>
+</li>
+<li><p>2016 The Shawshank Redemption 我其实想说的是，要有理想，要有远见。远见这种东西，顾名思义，能见远。然而，一是，目力难及，二是我更倾向于做好当前事。所以，如果要有远见，必须在每天繁杂的事务中，节余出一些时间来，看书也好，其他方式也好，每天少量的积累。这就需要很好的规划性。</p>
+</li>
+<li><p>2016 The Shawshank Redemption 关于规划性和时间的利用上，希望再次探讨下娱乐的意义。娱乐对于我来说，主要就是看动漫，看知乎等等，能不能把这些从心态上规避掉。</p>
+</li>
+<li><p>ISP in Front-end Component Development 这是我的一个设想。我认为前端目前比较没有设计性，很多东西得不到积累。所谓的很多东西，如果前端能抽象出标准和实现来，可能就相对容易积累一点。只可惜由于动态语言的特性，大家都不喜欢抽象出细粒度的接口，仅仅提供最终的实现。我希望能找出，React.js 的 View 层的接口等等。</p>
+</li>
+<li><p>JavaScript new constructor this from zhihu 气宗。这块必须要修炼，难度也不大，概念相对来说是最少，只是坑坑洼洼的细节较多（相比于有用的细节）。再次强调，这块肯定是后面要积累的。也不要说，即使之后不做 JavaScript 了，不需要。即使之后学习 Java 了，这块也不能丢。练好了，夯实了，确保融入记忆里了，再说。不要一件事做一半。</p>
+</li>
+<li><p>Thoughts on Web Development (To Update) 这个是我去年到现在一直在思考的问题，越思考发现涉及到的细节越多，也就有了一系列的思考。这个话题比较大，基本涉及了我工作的领域前端所有需求。这块希望能根据区别分解下，然后找到每个点的依赖，联系。</p>
+</li>
+<li><p>Use Router5 自己写 Router，实际上是奔着 Navigator Stack 去的。</p>
+</li>
+<li><p>You don’t Know JS - this &amp; prototype note 气宗修炼最佳秘籍。必须看完，复习，复读。</p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>整理下最近在做的事情。</p>
+<blockquote>
+<p>不求快，也不求精美。这个博客，目前只是一种能方便记录的地方（这么说，电脑是我目前的主要生产力工具了）。<br>这是第一篇，整理最近在做的事情。我准备挑几个点，或者整理出依赖关系，找到一些目标。然后梳理下2016]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Math Requirements for Computer Science]]></title>
@@ -181,7 +220,7 @@
     <link href="http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/"/>
     <id>http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/</id>
     <published>2016-02-05T02:35:27.000Z</published>
-    <updated>2016-02-07T15:17:48.000Z</updated>
+    <updated>2016-02-19T00:35:31.000Z</updated>
     <content type="html"><![CDATA[<h1 id="1-__u5173_u4E8E_this"><a href="#1-__u5173_u4E8E_this" class="headerlink" title="1. 关于 this"></a>1. 关于 <code>this</code></h1><p><code>this</code> 关键字是 JavaScript 最复杂的机制之一。</p>
 <p>被自动定义在所有函数的作用域中。</p>
 <p>很难说清它指向什么。</p>
@@ -542,73 +581,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[2015 Annual Retro]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/02/2015-Annual-Retro/"/>
-    <id>http://shane.hsi.rocks/2016/02/02/2015-Annual-Retro/</id>
-    <published>2016-02-02T09:21:32.000Z</published>
-    <updated>2016-02-02T09:21:32.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h2><p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年 2 月开始，基本上就专注在此，至此有 1 年全职前端经验。</p>
-<p>由于进入了 <strong>前端</strong> 这个领域，今年学习了很多东西，并且由于前端社区相对未到成熟阶段，也思考了很多东西。</p>
-<p>先列个书单：</p>
-<h2 id="u4E66_u5355"><a href="#u4E66_u5355" class="headerlink" title="书单"></a>书单</h2><h4 id="u6280_u672F/_u65B9_u6CD5_u8BBA"><a href="#u6280_u672F/_u65B9_u6CD5_u8BBA" class="headerlink" title="技术/方法论"></a>技术/方法论</h4><ul>
-<li>《Spring 3.x企业应用开发实战》（始于14年，阅读70%）</li>
-<li>《Java RESTful Web Service实战》</li>
-<li>《JavaScript 语言精粹》（重读）</li>
-<li>《Effective JavaScript》</li>
-<li>《实现领域驱动设计》（重读）</li>
-<li>《WebKit技术内幕》</li>
-<li>《思考软件，创新设计：A段架构师的思考技术》（阅读50%）</li>
-<li>《JavaScript函数式编程》（阅读60%）</li>
-<li>《你不知道的JavaScript（上卷）》</li>
-<li>《编写可测试的JavaScript代码》</li>
-<li>《响应式Web设计：HTML5和CSS3实战》（阅读30%）</li>
-<li>《图解CSS3 核心技术与案例实战》（阅读70%）</li>
-<li>《Clojure Reactive Programming》（阅读40%）</li>
-<li>《Reactive Programming with Rxjs》</li>
-</ul>
-<p>2015 年看得最多的就是 JavaScript 相关的书籍。源于两点，一定对 JavaScript 语法的陌生迫使我必须熟悉基础，二是在使用了很多框架（React，Redux 等）之后(自上而下)，再结合基础(自下而上)，互补地学习。</p>
-<p>关于前端学习还要重点推荐下 《WebKit技术内幕》，它打破了 HTML/CSS 于我的神秘性。HTML/CSS 都是 DSL，通过 WebKit 的底层技术实现，能更宏观地理解这两种声明式语言。有些玄乎，但是建议前端都来看下，由于可以不求甚解，甚至可以当做小说来读。</p>
-<p>另外就是这本《Reactive Programming with RxJS》，是花了 11 美元购入的电子书，纪念一下。因为对 RxJS 太过痴迷，等不及国内上市。响应式是一块，函数式又是另一块。涉足前端最令人欣喜地一点就是，对语言的理论有了一定的研究。</p>
-<h4 id="u8BBE_u8BA1"><a href="#u8BBE_u8BA1" class="headerlink" title="设计"></a>设计</h4><ul>
-<li>《设计之下:搜狐新闻客户端的用户体验设计》</li>
-<li>《西文字体2：经典款字体及其表现方法》（阅读30%）</li>
-</ul>
-<p>前端除了涉及到逻辑（JavaScript），但是它更原始的领域是结构（HTML），布局（CSS）。再往上一步，其实是设计，CSS 其实解决的是排版（多列布局，栅格布局）和定位（盒模型之间），这些其实是设计。第一本是导论类，至于字体，是因为字体相对结构简单又充满美感（今年恰好去过欧洲，能实地领略书中所讲字体的魅力）。</p>
-<h2 id="u751F_u6D3B"><a href="#u751F_u6D3B" class="headerlink" title="生活"></a>生活</h2><h4 id="u7231_u60C5"><a href="#u7231_u60C5" class="headerlink" title="爱情"></a>爱情</h4><p>2015 年最大的收获是遇到了人生的另一半。几句箴言：性格相合，未来可期。这里不会细表。不过的确有些变化，比如更切身地体会到了生活与工作的平衡。这是必修的一课。</p>
-<h4 id="u65C5_u884C"><a href="#u65C5_u884C" class="headerlink" title="旅行"></a>旅行</h4><p>2015 年末桂花酿成了酒，便和妹子去苏州品尝。作为去年最后一场旅行，我们在平江路的一间茶楼上，细数了下 2015 年去过的城市。</p>
-<ul>
-<li>2015 年初的东北之行：哈尔滨，亚布力，呼兰区（哈尔滨市），长白山（延吉市），安图县（延吉市），沈阳。</li>
-<li>3 月份趁着早春的苏州之行</li>
-<li>4 月份武汉最舒服的日子去拜访妹子的老友</li>
-<li>7 月份的香港、深圳</li>
-<li>国庆的法意土之旅：巴黎，威尼斯，佛罗伦萨，比萨，罗马，伊斯坦布尔。</li>
-<li>以及 12 月岁末的苏州之行，喝了桂花酿，去了新开张的诚品书店。</li>
-</ul>
-<h4 id="u6587_u5B66_u7C7B_u4E66_u5355"><a href="#u6587_u5B66_u7C7B_u4E66_u5355" class="headerlink" title="文学类书单"></a>文学类书单</h4><ul>
-<li>《括号里的日本人》</li>
-<li>《单身社会》（阅读20%）</li>
-<li>《听客溪的朝圣》（阅读50%）</li>
-<li>《意大利之魅》</li>
-<li>《伊斯坦布尔：一座城市的记忆》（阅读20%）</li>
-<li>《托斯卡纳艳阳下（2014版）》（阅读80%）</li>
-<li>《三体》三部曲</li>
-<li>《梦的解析(彩色插图珍藏版)》（阅读30%）</li>
-<li>《门外汉的京都》（阅读80%）</li>
-</ul>
-<p>很多书是为了国庆的法意土之行准备。三体是在往返欧洲的13小时航班上阅读完毕。</p>
-<h2 id="u5EA7_u53F3_u94ED"><a href="#u5EA7_u53F3_u94ED" class="headerlink" title="座右铭"></a>座右铭</h2><p>近 5 年来我正经思考出过两套座右铭。</p>
-<p>『旅行是为了见识更多的世界，认识更多的人！』</p>
-<p>当时是实习一年，临近毕业即将正式入职。1 年半后，是：</p>
-<p>『应为匠人！』</p>
-<p>这本身体现了一种沉淀。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h2><p>2015 年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从 2015 年]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[2016 The Shawshank Redemption]]></title>
     <link href="http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/"/>
     <id>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</id>
@@ -664,6 +636,74 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="u7406_u8BBA_u51C6_u5907"><a href="#u7406_u8BBA_u51C6_u5907" class="headerlink" title="理论准备"></a>理论准备</h2><p>ISP 即 Interface Segregat]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2015 Annual Retro]]></title>
+    <link href="http://shane.hsi.rocks/2016/02/01/2015-Annual-Retro/"/>
+    <id>http://shane.hsi.rocks/2016/02/01/2015-Annual-Retro/</id>
+    <published>2016-01-31T16:00:00.000Z</published>
+    <updated>2016-02-19T00:17:23.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h2><p>2015年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从2015年2月开始，基本上就专注在此，至此有1年全职前端经验。</p>
+<p>由于进入了 <strong>前端</strong> 这个领域，今年学习了很多东西，并且由于前端社区相对未到成熟阶段，也思考了很多东西。</p>
+<p>先列个书单：</p>
+<h2 id="u4E66_u5355"><a href="#u4E66_u5355" class="headerlink" title="书单"></a>书单</h2><h4 id="u6280_u672F/_u65B9_u6CD5_u8BBA"><a href="#u6280_u672F/_u65B9_u6CD5_u8BBA" class="headerlink" title="技术/方法论"></a>技术/方法论</h4><ul>
+<li>《Spring 3.x企业应用开发实战》（始于14年，阅读70%）</li>
+<li>《Java RESTful Web Service实战》</li>
+<li>《JavaScript 语言精粹》（重读）</li>
+<li>《Effective JavaScript》</li>
+<li>《实现领域驱动设计》（重读）</li>
+<li>《WebKit技术内幕》</li>
+<li>《思考软件，创新设计：A段架构师的思考技术》（阅读50%）</li>
+<li>《JavaScript函数式编程》（阅读60%）</li>
+<li>《你不知道的JavaScript（上卷）》</li>
+<li>《编写可测试的JavaScript代码》</li>
+<li>《响应式Web设计：HTML5和CSS3实战》（阅读30%）</li>
+<li>《图解CSS3 核心技术与案例实战》（阅读70%）</li>
+<li>《Clojure Reactive Programming》（阅读40%）</li>
+<li>《Reactive Programming with Rxjs》</li>
+</ul>
+<p>2015年看得最多的就是 JavaScript 相关的书籍。源于两点，一定对 JavaScript 语法的陌生迫使我必须熟悉基础，二是在使用了很多框架（React，Redux 等）之后(自上而下)，再结合基础(自下而上)，互补地学习。</p>
+<p>关于前端学习还要重点推荐下 《WebKit技术内幕》，它打破了 HTML/CSS 于我的神秘性。HTML/CSS 都是 DSL，通过 WebKit 的底层技术实现，能更宏观地理解这两种声明式语言。有些玄乎，但是建议前端都来看下，由于可以不求甚解，甚至可以当做小说来读。</p>
+<p>另外就是这本《Reactive Programming with RxJS》，是花了11美元购入的电子书，纪念一下。因为对 RxJS 太过痴迷，等不及国内上市。响应式是一块，函数式又是另一块。涉足前端最令人欣喜地一点就是，对语言的理论有了一定的研究。</p>
+<h4 id="u8BBE_u8BA1"><a href="#u8BBE_u8BA1" class="headerlink" title="设计"></a>设计</h4><ul>
+<li>《设计之下:搜狐新闻客户端的用户体验设计》</li>
+<li>《西文字体2：经典款字体及其表现方法》（阅读30%）</li>
+</ul>
+<p>前端除了涉及到逻辑（JavaScript），但是它更原始的领域是结构（HTML），布局（CSS）。再往上一步，其实是设计，CSS 其实解决的是排版（多列布局，栅格布局）和定位（盒模型之间），这些其实是设计。第一本是导论类，至于字体，是因为字体相对结构简单又充满美感（今年恰好去过欧洲，能实地领略书中所讲字体的魅力）。</p>
+<h2 id="u751F_u6D3B"><a href="#u751F_u6D3B" class="headerlink" title="生活"></a>生活</h2><h4 id="u7231_u60C5"><a href="#u7231_u60C5" class="headerlink" title="爱情"></a>爱情</h4><p>2015年最大的收获是遇到了人生的另一半。几句箴言：性格相合，未来可期。这里不会细表。不过的确有些变化，比如更切身地体会到了生活与工作的平衡。这是必修的一课。</p>
+<h4 id="u65C5_u884C"><a href="#u65C5_u884C" class="headerlink" title="旅行"></a>旅行</h4><p>2015年末桂花酿成了酒，便和妹子去苏州品尝。作为去年最后一场旅行，我们在平江路的一间茶楼上，细数了下 2015 年去过的城市。</p>
+<ul>
+<li>2015年初的东北之行：哈尔滨，亚布力，呼兰区（哈尔滨市），长白山（延吉市），安图县（延吉市），沈阳。</li>
+<li>3月份趁着早春的苏州之行</li>
+<li>4月份武汉最舒服的日子去拜访妹子的老友</li>
+<li>7月份的香港、深圳</li>
+<li>国庆的法意土之旅：巴黎，威尼斯，佛罗伦萨，比萨，罗马，伊斯坦布尔。</li>
+<li>以及12月岁末的苏州之行，喝了桂花酿，去了新开张的诚品书店。</li>
+</ul>
+<h4 id="u6587_u5B66_u7C7B_u4E66_u5355"><a href="#u6587_u5B66_u7C7B_u4E66_u5355" class="headerlink" title="文学类书单"></a>文学类书单</h4><ul>
+<li>《括号里的日本人》</li>
+<li>《单身社会》（阅读20%）</li>
+<li>《听客溪的朝圣》（阅读50%）</li>
+<li>《意大利之魅》</li>
+<li>《伊斯坦布尔：一座城市的记忆》（阅读20%）</li>
+<li>《托斯卡纳艳阳下（2014版）》（阅读80%）</li>
+<li>《三体》三部曲</li>
+<li>《梦的解析(彩色插图珍藏版)》（阅读30%）</li>
+<li>《门外汉的京都》（阅读80%）</li>
+</ul>
+<p>很多书是为了国庆的法意土之行准备。三体是在往返欧洲的13小时航班上阅读完毕。</p>
+<h2 id="u5EA7_u53F3_u94ED"><a href="#u5EA7_u53F3_u94ED" class="headerlink" title="座右铭"></a>座右铭</h2><p>近5年来我正经思考出过两套座右铭。</p>
+<p>『旅行是为了见识更多的世界，认识更多的人！』</p>
+<p>当时是实习一年，临近毕业即将正式入职。1 年半后，经过某几个转折点后，重新总结了一句：</p>
+<p>『应为匠人！』</p>
+<p>这本身体现了一种沉淀。</p>
+<h2 id="u603B_u7ED3_u4E0B"><a href="#u603B_u7ED3_u4E0B" class="headerlink" title="总结下"></a>总结下</h2><p>总体来说，2015年是我成长较慢的过程。技术上，因为是转行，以积累为主，为量变，等待厚积而薄发。务虚。个人性格上，由于工作中缺少了镜子（或者叫做竞争者），也缺少了导师，有一些错误没有及时反思。而我本身非常喜欢和依赖自己的反思性格。所以，这也是后面需要加强的地方。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h2><p>2015年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从2015年2月开]]>
     </summary>
     
   </entry>
@@ -1142,59 +1182,6 @@
     <summary type="html">
     <![CDATA[<h2 id="u573A_u666F"><a href="#u573A_u666F" class="headerlink" title="场景"></a>场景</h2><p>一般是在 typeahead 时使用。</p>
 <figure class="highlight js"]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Write a React Select Component]]></title>
-    <link href="http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/"/>
-    <id>http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/</id>
-    <published>2016-01-21T02:07:45.000Z</published>
-    <updated>2016-01-27T07:53:16.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h1><p>今天写下 Select 组件。</p>
-<p>通过写 React Upload 组件，发现其实理解了上传的本质之后，后面只是用 React 的方式包装。所以，组件需要自已研发，这样才能加深理解，做到心中无框架，回归编程的通用。</p>
-<p>另外，在写 TypeScript 之后，类型的 mental modal 引入之后，前端开始变得有条理性。我相信设计是一项很重要的步骤，基于缜密的思维甚至依托严密的理论设计出来的事物才能响应变化。</p>
-<p>所以，Select 组件也决定自己写。</p>
-<h2 id="u76EE_u7684"><a href="#u76EE_u7684" class="headerlink" title="目的"></a>目的</h2><p>最终的形态分为几类：</p>
-<ul>
-<li>基本</li>
-<li>不可改，独立筛选框</li>
-<li>邮箱提示类</li>
-<li>Typeahead</li>
-<li>选项组</li>
-</ul>
-<p>暂时不做多选。</p>
-<h1 id="u6B65_u9AA4"><a href="#u6B65_u9AA4" class="headerlink" title="步骤"></a>步骤</h1><p>我先实现下『不可改，独立筛选框』，『基本』类似。</p>
-<h2 id="u7ED3_u6784"><a href="#u7ED3_u6784" class="headerlink" title="结构"></a>结构</h2><p>第一步还是先写结构， HTML。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx(</span> "<span class="attribute">container</span>")&#125;&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx("select")&#125;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span>Select the country ...<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx(</span> "<span class="attribute">drop</span>")&#125;&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx(</span> "<span class="attribute">search</span>")&#125;&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">autoComplete</span>=<span class="value">"off"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx(</span> "<span class="attribute">option-list</span>")&#125;&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx(</span> "<span class="attribute">option</span>")&#125;&gt;</span>China<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx(</span> "<span class="attribute">option</span>")&#125;&gt;</span>China Taiwan<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果不写 css，会发现除了没有边框外，已经达到了最终的效果（展开状态）。</p>
-<h2 id="u6837_u5F0F"><a href="#u6837_u5F0F" class="headerlink" title="样式"></a>样式</h2><p>简单写点样式。只要稍微设置下 border，padding 和 color，backgroud-color，其他暂时不设置。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.container</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">min-width</span>:<span class="value"> <span class="number">15rem</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.select</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.4rem</span> <span class="number">0.8rem</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#686868</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.select</span> &gt; <span class="tag">span</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#686868</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.drop</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#686868</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> -<span class="number">1px</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.1rem</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.search</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.2rem</span> .<span class="number">4rem</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.search</span> &gt; <span class="tag">input</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">1.5rem</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.option-list</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.4rem</span> <span class="number">0</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.option</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.4rem</span> <span class="number">0.5rem</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.option</span><span class="pseudo">:hover</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#0b97c4</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>写样式的时候，需要从设计的角度来想。比如这个组件的 display 一定是 <code>inline</code> 或者 <code>inline-block</code>。至于里面的结构的样式，其实已经不影响外面了。另外，<code>drop</code> 肯定是 <code>position: absolute</code>。</p>
-<h2 id="u4E8B_u4EF6"><a href="#u4E8B_u4EF6" class="headerlink" title="事件"></a>事件</h2><p>直接上代码吧。</p>
-<p>Select.tsx</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Option &#125; <span class="keyword">from</span> <span class="string">'./Option'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置 drop 是否显示</span></span><br><span class="line"><span class="keyword">const</span> hidden = &#123;</span><br><span class="line">  <span class="string">"display"</span>: <span class="string">"none"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> show = &#123;</span><br><span class="line">  <span class="string">"display"</span>: <span class="string">"block"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Select</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span>&lt;<span class="title">any</span>, <span class="title">any</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  private clickOutsideHandler: any;</span><br><span class="line"></span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="comment">// 常用的 state</span></span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      selected: &#123;</span><br><span class="line">        display: <span class="string">"Select the country ..."</span>,</span><br><span class="line">        value: <span class="literal">undefined</span></span><br><span class="line">      &#125;,</span><br><span class="line">      open: <span class="literal">false</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.onClickSelect = <span class="keyword">this</span>.onClickSelect.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.onClickOption = <span class="keyword">this</span>.onClickOption.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.onClickDocument = <span class="keyword">this</span>.onClickDocument.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.onChangeFilter = <span class="keyword">this</span>.onChangeFilter.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 组件在 Update 的时候做些事情，这可能是这个组件（复杂的组件）的特殊之处，</span></span><br><span class="line">  <span class="comment">// 1. focus 到 filter 框</span></span><br><span class="line">  <span class="comment">// 2. 注册 clickOutsideHandler，并注意在 open=false 时回收</span></span><br><span class="line">  componentDidUpdate() &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.open) &#123;</span><br><span class="line">      <span class="keyword">const</span> filterNode: any = findDOMNode(<span class="keyword">this</span>.refs[<span class="string">"filter"</span>]);</span><br><span class="line">      filterNode.focus();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!<span class="keyword">this</span>.clickOutsideHandler) &#123;</span><br><span class="line">        <span class="keyword">this</span>.clickOutsideHandler = addReactDomEventListener(<span class="built_in">document</span>, <span class="string">"mousedown"</span>, <span class="keyword">this</span>.onClickDocument);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.clickOutsideHandler) &#123;</span><br><span class="line">      <span class="keyword">this</span>.clickOutsideHandler.remove();</span><br><span class="line">      <span class="keyword">this</span>.clickOutsideHandler = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private onClickSelect() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      open: !<span class="keyword">this</span>.state.open</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private onClickOption(&#123; value, display &#125;) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      selected: &#123;</span><br><span class="line">        display: display,</span><br><span class="line">        value: value</span><br><span class="line">      &#125;,</span><br><span class="line">      filter: <span class="literal">undefined</span>,</span><br><span class="line">      open: <span class="literal">false</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 关闭 drop</span></span><br><span class="line">  private onClickDocument(event: Event) &#123;</span><br><span class="line">    <span class="keyword">const</span> target: EventTarget = event.target;</span><br><span class="line">    <span class="keyword">const</span> root = findDOMNode(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">const</span> dropNode = findDOMNode(<span class="keyword">this</span>.refs[<span class="string">"drop"</span>]);</span><br><span class="line">    <span class="comment">// 如果不包含</span></span><br><span class="line">    <span class="keyword">if</span> (!containsNode(root, target) &amp;&amp; !containsNode(dropNode, target)) &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;open: <span class="literal">false</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private onChangeFilter(event) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = event.target.value;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      filter: value</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">let</span> optionListV;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 筛选功能</span></span><br><span class="line">    <span class="keyword">const</span> filteredOptionList = _.filter(_.values(<span class="keyword">this</span>.props.options), (o: any) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (_.isEmpty(<span class="keyword">this</span>.state.filter)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="keyword">this</span>.state.filter, <span class="string">'i'</span>).test(o.desc);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (_.isEmpty(filteredOptionList)) &#123;</span><br><span class="line">        <span class="comment">// Option 设置了一个 disabled 的状态</span></span><br><span class="line">      optionListV = <span class="xml"><span class="tag">&lt;<span class="title">Option</span> <span class="attribute">disabled</span></span><br><span class="line">                            <span class="attribute">display</span>=<span class="value">'无匹配项'</span>/&gt;</span>;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      optionListV = _.map(filteredOptionList, (item: any) =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="title">Option</span> <span class="attribute">key</span>=<span class="value">&#123;item.value&#125;</span></span><br><span class="line">                        <span class="attribute">value</span>=<span class="value">&#123;item.value&#125;</span></span><br><span class="line">                        <span class="attribute">display</span>=<span class="value">&#123;item.display&#125;</span></span><br><span class="line">                        <span class="attribute">desc</span>=<span class="value">&#123;item.desc&#125;</span></span><br><span class="line">                        <span class="attribute">onClick</span>=<span class="value">&#123;this.onClickOption&#125;</span>/&gt;</span>)</span>;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx("container")&#125;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx("select")&#125;</span> <span class="attribute">onClick</span>=<span class="value">&#123;this.onClickSelect&#125;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">span</span>&gt;</span>&#123;this.state.selected.display&#125;<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">ref</span>=<span class="value">"drop"</span> <span class="attribute">className</span>=<span class="value">&#123;cx("drop")&#125;</span> <span class="attribute">style</span>=<span class="value">&#123;this.state.open?</span> <span class="attribute">show</span> <span class="attribute">:</span> <span class="attribute">hidden</span>&#125;&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx("search")&#125;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">input</span> <span class="attribute">ref</span>=<span class="value">"filter"</span></span><br><span class="line">                   <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">autoComplete</span>=<span class="value">"off"</span></span><br><span class="line">                   <span class="attribute">value</span>=<span class="value">&#123;this.state.filter&#125;</span></span><br><span class="line">                   <span class="attribute">onChange</span>=<span class="value">&#123;this.onChangeFilter&#125;</span>/&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx("option-list")&#125;</span>&gt;</span></span><br><span class="line">            &#123;optionListV&#125;</span><br><span class="line">          <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Option.tsx</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// &lt;reference path="../../../typings/ttsd.d.ts" /&gt;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; findDOMNode &#125; <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">const</span> styles = <span class="built_in">require</span>(<span class="string">"./Option.css"</span>);</span><br><span class="line"><span class="keyword">import</span> classNames <span class="keyword">from</span> <span class="string">"classnames/bind"</span>;</span><br><span class="line"><span class="keyword">const</span> cx = classNames.bind(styles);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Option</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span>&lt;<span class="title">any</span>, </span>&#123;&#125;&gt; &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.onClick = <span class="keyword">this</span>.onClick.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private onClick() &#123;</span><br><span class="line">    <span class="keyword">this</span>.props.onClick(&#123;</span><br><span class="line">      value: <span class="keyword">this</span>.props.value,</span><br><span class="line">      display: <span class="keyword">this</span>.props.display</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.props.disabled) &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx("disable")&#125;</span>&gt;</span>&#123;this.props.display&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">      )</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">className</span>=<span class="value">&#123;cx("option")&#125;</span> <span class="attribute">onClick</span>=<span class="value">&#123;this.onClick&#125;</span>&gt;</span>&#123;this.props.display&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="u601D_u8003"><a href="#u601D_u8003" class="headerlink" title="思考"></a>思考</h1><p>在写的过程中，发现很多 Select 其实可以更细化的拆分，比如 Option 可以泛化成 menu。这是其二。</p>
-<p>另外写组件的过程其实包含了很多事情，包括：</p>
-<ul>
-<li>结构</li>
-<li>样式</li>
-<li>事件</li>
-<li>值的处理</li>
-<li>甚至包括从总体来看组件的设计</li>
-</ul>
-<p>Select 的确有不同的形态，我发现很多组件尝试用 if-else，在同一个 <code>&lt;Select&gt;</code> 里做到统一。我认为这样是不好的。感性的原因是这是一种很弱的抽象，圈复杂度非常高，不利于代码维护。还有一个原因，也是我这两天自己研发组件得到的经验：开始不要想很多，一个场景对应一套实现；之后再考虑提取公用代码。</p>
-<p>这才是 <strong>设计之道</strong>。</p>
-<p>所以，暂时不考虑细节的部分，我认为 Select 组件已经开发完成了。代码都在那儿，如何重构是之后的事情。这种时候似乎应该 test-driven。考虑到 test-driven DSL 的恶心程度，在不是复合场景下（复合比如：样式+事件+数据流）不如手动测试。</p>
-<p>明天开发 trigger，popup 和 table。</p>
-<p>即使这些开发完毕了，也不要急着重构，而是上生产环境。慢慢抽出公用组件。刚开始都是丑陋的代码，慢慢变得合理高效。一下次输入很多知识点会非常低效。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="u5199_u5728_u524D_u9762"><a href="#u5199_u5728_u524D_u9762" class="headerlink" title="写在前面"></a>写在前面</h1><p>今天写下 Select 组件。</p>
-<p>通]]>
     </summary>
     
   </entry>
