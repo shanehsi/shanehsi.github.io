@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-19T00:35:54.000Z</updated>
+  <updated>2016-02-19T02:42:19.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,21 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Reading - Why I No Longer Use MVC Frameworks]]></title>
+    <link href="http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/"/>
+    <id>http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/</id>
+    <published>2016-02-19T02:40:25.000Z</published>
+    <updated>2016-02-19T02:42:19.000Z</updated>
+    <content type="html"><![CDATA[<p>原文链接：<a href="http://www.infoq.com/articles/no-more-mvc-frameworks" target="_blank" rel="external">Why I No Longer Use MVC Frameworks</a></p>
+<p>HN 讨论链接：<a href="https://news.ycombinator.com/item?id=11104356" target="_blank" rel="external">https://news.ycombinator.com/item?id=11104356</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原文链接：<a href="http://www.infoq.com/articles/no-more-mvc-frameworks" target="_blank" rel="external">Why I No Longer Use MVC Frameworks</a>]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Some Recent Doings]]></title>
@@ -1163,25 +1178,6 @@
     <summary type="html">
     <![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>今天来写下 tooltip 组件。</p>
 <p>如果今天有时间，写下 table 组件，同样，以上两个]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[JavaScript Regexp Contains Sub String]]></title>
-    <link href="http://shane.hsi.rocks/2016/01/21/JavaScript-Regexp-Contains-Sub-String/"/>
-    <id>http://shane.hsi.rocks/2016/01/21/JavaScript-Regexp-Contains-Sub-String/</id>
-    <published>2016-01-21T08:07:36.000Z</published>
-    <updated>2016-01-21T08:11:28.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="u573A_u666F"><a href="#u573A_u666F" class="headerlink" title="场景"></a>场景</h2><p>一般是在 typeahead 时使用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="xml"><span class="tag">&lt;<span class="title">substring</span>&gt;</span>, 'i').test(<span class="tag">&lt;<span class="title">string</span>&gt;</span>)</span>;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>&#39;i&#39;</code> 代表忽略大小写。</p>
-<p>也可以使用 <code>indexOf</code>，<code>&lt;string&gt;.indexOf(&lt;substring&gt;) !== -1</code>。可以看出不能方便的通过类似 <code>&#39;i&#39;</code> 设置忽略大小写。</p>
-<p>至于性能，根据浏览器实现不同性能有所差异。参考：<a href="http://stackoverflow.com/questions/5296268/fastest-way-to-check-a-string-contain-another-substring-in-javascript" target="_blank" rel="external">Fastest way to check a string contain another substring in Javascript?</a>。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="u573A_u666F"><a href="#u573A_u666F" class="headerlink" title="场景"></a>场景</h2><p>一般是在 typeahead 时使用。</p>
-<figure class="highlight js"]]>
     </summary>
     
   </entry>
