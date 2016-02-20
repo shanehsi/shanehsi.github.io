@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/</loc>
+    <lastmod>2016-02-20T13:43:49.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/01/28/Import-JavaScript-files-in-TypeScript/</loc>
     <lastmod>2016-02-20T13:01:09.000Z</lastmod>
   </url>
@@ -29,11 +34,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/</loc>
     <lastmod>2016-02-20T12:59:30.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/</loc>
-    <lastmod>2016-02-20T12:59:18.000Z</lastmod>
   </url>
   
   <url>
