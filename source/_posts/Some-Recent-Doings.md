@@ -27,4 +27,13 @@ tags:
 
 - You don't Know JS - this & prototype note 气宗修炼最佳秘籍。必须看完，复习，复读。
 
+---
+
+2016年02月20日21:38:27 更新
+
+由于读了这篇文章：[Why I No Longer Use MVC Frameworks](http://www.infoq.com/articles/no-more-mvc-frameworks) ，感觉有很多东西需要学习。
+
+好多事情。写这一篇文章的原因 -- 整理。
+
+所以，今天明天花时间系统学习如何使用 Omni Focus，材料来自 [知乎](https://www.zhihu.com/topic/19568532/top-answers)。
 
