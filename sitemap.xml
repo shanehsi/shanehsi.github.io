@@ -2,88 +2,118 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/</loc>
-    <lastmod>2016-02-20T12:49:04.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/01/2015-Annual-Retro/</loc>
-    <lastmod>2016-02-19T03:06:52.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/</loc>
-    <lastmod>2016-02-19T00:35:54.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/</loc>
-    <lastmod>2016-02-19T00:35:31.000Z</lastmod>
+    <lastmod>2016-02-20T12:59:53.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/02/06/Math-Requirements-for-Computer-Science/</loc>
-    <lastmod>2016-02-06T08:37:06.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/05/Execution-in-the-Kingdom-of-Nouns-zh-cn/</loc>
-    <lastmod>2016-02-05T09:24:56.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/05/Read-some-Zhihu-2016-02-05/</loc>
-    <lastmod>2016-02-05T08:30:47.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</loc>
-    <lastmod>2016-02-04T13:21:13.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/04/React-performance-zh-cn/</loc>
-    <lastmod>2016-02-04T09:11:56.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/04/Scroll-Position-with-React-zh-cn/</loc>
-    <lastmod>2016-02-04T07:28:22.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/04/JavaScript-new-constructor-this-from-zhihu/</loc>
-    <lastmod>2016-02-04T02:40:54.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/</loc>
-    <lastmod>2016-02-02T09:58:27.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/29/Books-to-Read/</loc>
-    <lastmod>2016-02-02T09:21:34.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</loc>
-    <lastmod>2016-02-02T09:21:26.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
-    <lastmod>2016-02-02T09:18:21.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/02/ISP-in-Front-end-Component-Development/</loc>
-    <lastmod>2016-02-02T06:48:34.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/01/15/Use-Router5/</loc>
+    <lastmod>2016-02-20T12:59:44.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://shane.hsi.rocks/2016/01/29/Twitter-Likes-Collections-Before-060129/</loc>
-    <lastmod>2016-01-29T08:40:18.000Z</lastmod>
+    <lastmod>2016-02-20T12:59:40.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/</loc>
+    <lastmod>2016-02-20T12:59:30.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/</loc>
+    <lastmod>2016-02-20T12:59:18.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/04/Scroll-Position-with-React-zh-cn/</loc>
+    <lastmod>2016-02-20T12:59:08.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
+    <lastmod>2016-02-20T12:59:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/</loc>
+    <lastmod>2016-02-20T12:58:48.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
+    <lastmod>2016-02-20T12:58:43.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/05/Read-some-Zhihu-2016-02-05/</loc>
+    <lastmod>2016-02-20T12:58:27.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</loc>
+    <lastmod>2016-02-20T12:58:17.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/04/React-performance-zh-cn/</loc>
+    <lastmod>2016-02-20T12:58:06.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/06/Math-Requirements-for-Computer-Science/</loc>
+    <lastmod>2016-02-20T12:57:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</loc>
+    <lastmod>2016-02-20T12:57:43.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/21/JavaScript-Regexp-Contains-Sub-String/</loc>
+    <lastmod>2016-02-20T12:57:37.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/04/JavaScript-new-constructor-this-from-zhihu/</loc>
+    <lastmod>2016-02-20T12:57:23.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/ISP-in-Front-end-Component-Development/</loc>
+    <lastmod>2016-02-20T12:57:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/20/Import-JavaScript-files-in-TypeScript/</loc>
+    <lastmod>2016-02-20T12:57:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/05/Execution-in-the-Kingdom-of-Nouns-zh-cn/</loc>
+    <lastmod>2016-02-20T12:56:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/28/Deep-Clone-in-JavaScript/</loc>
+    <lastmod>2016-02-20T12:56:24.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/29/Books-to-Read/</loc>
+    <lastmod>2016-02-20T12:56:10.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</loc>
+    <lastmod>2016-02-20T12:56:00.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/01/2015-Annual-Retro/</loc>
+    <lastmod>2016-02-20T12:55:43.000Z</lastmod>
   </url>
   
   <url>
@@ -92,18 +122,8 @@
   </url>
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/01/28/Deep-Clone-in-JavaScript/</loc>
-    <lastmod>2016-01-28T06:22:53.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://shane.hsi.rocks/2016/01/20/Git-Tips/</loc>
     <lastmod>2016-01-27T10:06:49.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/27/Import-JavaScript-files-in-TypeScript/</loc>
-    <lastmod>2016-01-27T09:01:54.000Z</lastmod>
   </url>
   
   <url>
@@ -124,26 +144,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/01/21/Write-a-React-Select-Component/</loc>
     <lastmod>2016-01-27T07:53:16.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/13/Read-TypeScript-Blog-Announcing-TypeScript-1-7/</loc>
-    <lastmod>2016-01-27T07:52:52.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/16/Learn-Redux/</loc>
-    <lastmod>2016-01-27T07:52:45.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/21/JavaScript-Regexp-Contains-Sub-String/</loc>
-    <lastmod>2016-01-21T08:11:28.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/15/Use-Router5/</loc>
-    <lastmod>2016-01-18T14:14:52.000Z</lastmod>
   </url>
   
   <url>

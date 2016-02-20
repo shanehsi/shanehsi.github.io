@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-20T12:49:04.000Z</updated>
+  <updated>2016-02-20T12:57:04.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -15,11 +15,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Reading - Why I No Longer Use MVC Frameworks]]></title>
+    <title><![CDATA[在 TypeScript 中 import JavaScript]]></title>
+    <link href="http://shane.hsi.rocks/2016/02/20/Import-JavaScript-files-in-TypeScript/"/>
+    <id>http://shane.hsi.rocks/2016/02/20/Import-JavaScript-files-in-TypeScript/</id>
+    <published>2016-02-20T12:57:04.000Z</published>
+    <updated>2016-02-20T12:57:04.000Z</updated>
+    <content type="html"><![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">TypeScript with KnockoutJS</a></p>
+<p>TypeScript 具有良好的教学作用。目前初步的想法是，直接 import 现有的 JavaScript 代码，然后对其进行封装。TypeScript 的类型系统，会提供完备的接口定义写法。</p>
+<p>这其实是一种组合式的重用方式。对于可用的直接 import 进来，对于不可用的进行重写。</p>
+<p>那如何在 TypeScript 文件中 import Javascript 呢？</p>
+<p>TypeScript 提供的特性就是写 Definition Files。在写的时候参考 <a href="https://github.com/borisyankov/DefinitelyTyped" target="_blank" rel="external">DefinitelyTyped</a> 的写法，先进行模仿。</p>
+<p>文件可以直接写在相应 js 文件的旁边，[name].d.ts。</p>
+<p>具体在写的时候，如果有新的问题或思路进行补充。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">Type]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[读 Why I No Longer Use MVC Frameworks]]></title>
     <link href="http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/"/>
     <id>http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/</id>
     <published>2016-02-19T02:40:25.000Z</published>
-    <updated>2016-02-20T12:49:04.000Z</updated>
+    <updated>2016-02-20T12:58:48.000Z</updated>
     <content type="html"><![CDATA[<p>原文链接：<a href="http://www.infoq.com/articles/no-more-mvc-frameworks" target="_blank" rel="external">Why I No Longer Use MVC Frameworks</a></p>
 <p>HN 讨论链接：<a href="https://news.ycombinator.com/item?id=11104356" target="_blank" rel="external">https://news.ycombinator.com/item?id=11104356</a></p>
 <p><strong>PS</strong>：这篇文章非常不直观地透露出民科和专科的区别。</p>
@@ -117,11 +137,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Some Recent Doings]]></title>
+    <title><![CDATA[最近在做的事情]]></title>
     <link href="http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/"/>
     <id>http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/</id>
     <published>2016-02-19T00:15:55.000Z</published>
-    <updated>2016-02-19T00:35:54.000Z</updated>
+    <updated>2016-02-20T12:59:18.000Z</updated>
     <content type="html"><![CDATA[<p>整理下最近在做的事情。</p>
 <blockquote>
 <p>不求快，也不求精美。这个博客，目前只是一种能方便记录的地方（这么说，电脑是我目前的主要生产力工具了）。<br>这是第一篇，整理最近在做的事情。我准备挑几个点，或者整理出依赖关系，找到一些目标。然后梳理下2016年的规划。</p>
@@ -156,11 +176,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Math Requirements for Computer Science]]></title>
+    <title><![CDATA[CS 的数学要求]]></title>
     <link href="http://shane.hsi.rocks/2016/02/06/Math-Requirements-for-Computer-Science/"/>
     <id>http://shane.hsi.rocks/2016/02/06/Math-Requirements-for-Computer-Science/</id>
     <published>2016-02-06T07:53:23.000Z</published>
-    <updated>2016-02-06T08:37:06.000Z</updated>
+    <updated>2016-02-20T12:57:54.000Z</updated>
     <content type="html"><![CDATA[<p>有感于这篇回答（<a href="https://www.zhihu.com/question/19635359" target="_blank" rel="external">什么是 Monad (Functional Programming)？</a>）的这一句话：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不就是自函子范畴里的幺半群么</span><br></pre></td></tr></table></figure>
 <p>对计算机所需要的数学或者就是纯粹的数学产生了一些兴趣。</p>
@@ -209,11 +229,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Execution in the Kingdom of Nouns zh_cn]]></title>
+    <title><![CDATA[Execution in the Kingdom of Nouns 译]]></title>
     <link href="http://shane.hsi.rocks/2016/02/05/Execution-in-the-Kingdom-of-Nouns-zh-cn/"/>
     <id>http://shane.hsi.rocks/2016/02/05/Execution-in-the-Kingdom-of-Nouns-zh-cn/</id>
     <published>2016-02-05T08:35:12.000Z</published>
-    <updated>2016-02-05T09:24:56.000Z</updated>
+    <updated>2016-02-20T12:56:41.000Z</updated>
     <content type="html"><![CDATA[<p>原文：<a href="http://steve-yegge.blogspot.tw/2006/03/execution-in-kingdom-of-nouns.html" target="_blank" rel="external">Execution in the Kingdom of Nouns</a></p>
 <blockquote>
 <p>他们脾气火爆，某些人-特别是动词（verbs）：他们极度自负-可以用形容词（adjectives）来做任何事，但不能用动词-然而，我却能掌控所有！深不可测吧！我就把话放这了！<br>矮胖子</p>
@@ -244,11 +264,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Read some Zhihu 2016-02-05]]></title>
+    <title><![CDATA[读一些知乎 2016-02-05]]></title>
     <link href="http://shane.hsi.rocks/2016/02/05/Read-some-Zhihu-2016-02-05/"/>
     <id>http://shane.hsi.rocks/2016/02/05/Read-some-Zhihu-2016-02-05/</id>
     <published>2016-02-05T07:21:46.000Z</published>
-    <updated>2016-02-05T08:30:47.000Z</updated>
+    <updated>2016-02-20T12:58:27.000Z</updated>
     <content type="html"><![CDATA[<p>原文：<a href="https://www.zhihu.com/question/19585576" target="_blank" rel="external">什么程序设计语言机制是处理异步 IO 最恰当的抽象？</a></p>
 <p>题干：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Web服务器有两大编程模型：线程式的和事件驱动的</span><br></pre></td></tr></table></figure>
@@ -318,11 +338,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[You don't Know JS - this & prototype note]]></title>
+    <title><![CDATA[You don't Know JS - this & prototype 笔记]]></title>
     <link href="http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/"/>
     <id>http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/</id>
     <published>2016-02-05T02:35:27.000Z</published>
-    <updated>2016-02-19T00:35:31.000Z</updated>
+    <updated>2016-02-20T12:59:53.000Z</updated>
     <content type="html"><![CDATA[<h1 id="1-__u5173_u4E8E_this"><a href="#1-__u5173_u4E8E_this" class="headerlink" title="1. 关于 this"></a>1. 关于 <code>this</code></h1><p><code>this</code> 关键字是 JavaScript 最复杂的机制之一。</p>
 <p>被自动定义在所有函数的作用域中。</p>
 <p>很难说清它指向什么。</p>
@@ -467,11 +487,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[React performance zh_cn]]></title>
+    <title><![CDATA[React performance 译]]></title>
     <link href="http://shane.hsi.rocks/2016/02/04/React-performance-zh-cn/"/>
     <id>http://shane.hsi.rocks/2016/02/04/React-performance-zh-cn/</id>
     <published>2016-02-04T07:31:26.000Z</published>
-    <updated>2016-02-04T09:11:56.000Z</updated>
+    <updated>2016-02-20T12:58:06.000Z</updated>
     <content type="html"><![CDATA[<p>原文：<a href="http://blog.vjeux.com/2013/javascript/react-performance.html" target="_blank" rel="external">React performance</a></p>
 <p>React is a JavaScript library for building user interfaces developed by Facebook. It has been designed from the ground up with performance in mind. In this article I will present how the diff algorithm and rendering work in React so you can optimize your own apps.</p>
 <p>这里展示下 React 用的 diff 算法和 rendering。</p>
@@ -538,11 +558,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Scroll Position with React zh_cn]]></title>
+    <title><![CDATA[Scroll Position with React 译]]></title>
     <link href="http://shane.hsi.rocks/2016/02/04/Scroll-Position-with-React-zh-cn/"/>
     <id>http://shane.hsi.rocks/2016/02/04/Scroll-Position-with-React-zh-cn/</id>
     <published>2016-02-04T07:00:38.000Z</published>
-    <updated>2016-02-04T07:28:22.000Z</updated>
+    <updated>2016-02-20T12:59:08.000Z</updated>
     <content type="html"><![CDATA[<p>原文：<a href="http://blog.vjeux.com/2013/javascript/scroll-position-with-react.html" target="_blank" rel="external">Scroll Position with React</a></p>
 <blockquote>
 <p>通过阅读 vjeux 的博客来学习下 React 的设计理念</p>
@@ -571,11 +591,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[JavaScript new constructor this from zhihu]]></title>
+    <title><![CDATA[JavaScript new constructor this 来自知乎]]></title>
     <link href="http://shane.hsi.rocks/2016/02/04/JavaScript-new-constructor-this-from-zhihu/"/>
     <id>http://shane.hsi.rocks/2016/02/04/JavaScript-new-constructor-this-from-zhihu/</id>
     <published>2016-02-04T02:22:19.000Z</published>
-    <updated>2016-02-04T02:40:54.000Z</updated>
+    <updated>2016-02-20T12:57:23.000Z</updated>
     <content type="html"><![CDATA[<p>知乎链接：<a href="https://www.zhihu.com/question/19951896" target="_blank" rel="external">JavaScript 中对象的 constructor 属性的作用是什么？</a></p>
 <p>主要解释：<code>constructor</code>。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a,b;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">A</span> (<span class="params">arg1,arg2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">this</span>.b=<span class="number">2</span>; </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  A.prototype.log = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">  &#125;</span><br><span class="line">  a = <span class="keyword">new</span> A();</span><br><span class="line">  b = <span class="keyword">new</span> A();</span><br><span class="line">&#125;)()</span><br><span class="line">a.log();</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line">b.log();</span><br><span class="line"><span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
@@ -597,11 +617,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Read React Structure]]></title>
+    <title><![CDATA[阅读 React 代码结构]]></title>
     <link href="http://shane.hsi.rocks/2016/02/02/Read-React-Structure/"/>
     <id>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</id>
     <published>2016-02-02T10:00:25.000Z</published>
-    <updated>2016-02-04T13:21:13.000Z</updated>
+    <updated>2016-02-20T12:58:17.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u58F0_u660E"><a href="#u58F0_u660E" class="headerlink" title="声明"></a>声明</h2><ul>
 <li>解读的是结构</li>
 </ul>
@@ -683,11 +703,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[2016 The Shawshank Redemption]]></title>
+    <title><![CDATA[2016 再观《肖申克的救赎》]]></title>
     <link href="http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/"/>
     <id>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</id>
     <published>2016-02-02T02:11:12.000Z</published>
-    <updated>2016-02-02T09:21:26.000Z</updated>
+    <updated>2016-02-20T12:56:00.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>Remember，hope is a good thing, maybe the best of things and no good thing ever dies.</p>
 <p>It takes a strong man to save himself，and a great man to save another.</p>
@@ -702,11 +722,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[ISP in Front-end Component Development]]></title>
+    <title><![CDATA[ISP 在前端开发中]]></title>
     <link href="http://shane.hsi.rocks/2016/02/02/ISP-in-Front-end-Component-Development/"/>
     <id>http://shane.hsi.rocks/2016/02/02/ISP-in-Front-end-Component-Development/</id>
     <published>2016-02-02T02:08:19.000Z</published>
-    <updated>2016-02-02T06:48:34.000Z</updated>
+    <updated>2016-02-20T12:57:16.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u7406_u8BBA_u51C6_u5907"><a href="#u7406_u8BBA_u51C6_u5907" class="headerlink" title="理论准备"></a>理论准备</h2><p>ISP 即 Interface Segregation Principle。</p>
 <p>多个客户端特定的接口好于一个通用接口</p>
 <blockquote>
@@ -743,11 +763,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[2015 Annual Retro]]></title>
+    <title><![CDATA[2015 年度回顾]]></title>
     <link href="http://shane.hsi.rocks/2016/02/01/2015-Annual-Retro/"/>
     <id>http://shane.hsi.rocks/2016/02/01/2015-Annual-Retro/</id>
     <published>2016-01-31T16:00:00.000Z</published>
-    <updated>2016-02-19T03:06:52.000Z</updated>
+    <updated>2016-02-20T12:55:43.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h2><p>2015年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从2015年2月开始，基本上就专注在此，至此有1年全职前端经验。</p>
 <p>由于进入了 <strong>前端</strong> 这个领域，今年学习了很多东西，并且由于前端社区相对未到成熟阶段，也思考了很多东西。</p>
 <p>先列个书单：</p>
@@ -811,11 +831,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Books to Read]]></title>
+    <title><![CDATA[要读书单]]></title>
     <link href="http://shane.hsi.rocks/2016/01/29/Books-to-Read/"/>
     <id>http://shane.hsi.rocks/2016/01/29/Books-to-Read/</id>
     <published>2016-01-29T09:28:38.000Z</published>
-    <updated>2016-02-02T09:21:34.000Z</updated>
+    <updated>2016-02-20T12:56:10.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p><a href="http://book.douban.com/subject/1491830/" target="_blank" rel="external">栅格系统与版式设计</a>，参考链接：<a href="https://zh.wikipedia.org/wiki/%E6%A0%85%E6%A0%BC%E8%AE%BE%E8%AE%A1" target="_blank" rel="external">栅格设计</a></p>
 </li>
@@ -831,11 +851,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Thoughts on Web Development (To Update)]]></title>
+    <title><![CDATA[Web 开发的思考（不间断更新）]]></title>
     <link href="http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/"/>
     <id>http://shane.hsi.rocks/2016/01/29/Thoughts-on-Web-Development-To-Update/</id>
     <published>2016-01-29T09:02:05.000Z</published>
-    <updated>2016-02-02T09:58:27.000Z</updated>
+    <updated>2016-02-20T12:59:30.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u4EC0_u4E48_u662F_UI"><a href="#u4EC0_u4E48_u662F_UI" class="headerlink" title="什么是 UI"></a>什么是 UI</h2><p>UI 层抽象成最终的 HTML（DOM 结构，树状层级结构）和样式（CSS）。这块可以再次回顾下《WebKit技术内幕》中的 render 部分，回顾的原因是拟合出适当的布局方式。</p>
 <p>UI 上会绑定 Event。抽象成两种：</p>
 <ul>
@@ -1006,11 +1026,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Twitter Likes Collections Before 060129]]></title>
+    <title><![CDATA[060129 前的 Twitter 收集]]></title>
     <link href="http://shane.hsi.rocks/2016/01/29/Twitter-Likes-Collections-Before-060129/"/>
     <id>http://shane.hsi.rocks/2016/01/29/Twitter-Likes-Collections-Before-060129/</id>
     <published>2016-01-29T03:17:40.000Z</published>
-    <updated>2016-01-29T08:40:18.000Z</updated>
+    <updated>2016-02-20T12:59:40.000Z</updated>
     <content type="html"><![CDATA[<h2 id="RxJS"><a href="#RxJS" class="headerlink" title="RxJS"></a>RxJS</h2><ul>
 <li><p>egghead.io 上的 RxJS <a href="https://egghead.io/lessons/rxjs-reacting-to-multiple-inputs-using-rxjs-s-combinelatest?utm_content=bufferc97fc&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" target="_blank" rel="external">课程</a></p>
 </li>
@@ -1193,37 +1213,17 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Deep Clone in JavaScript]]></title>
+    <title><![CDATA[JavaScript 的 Deep Clone]]></title>
     <link href="http://shane.hsi.rocks/2016/01/28/Deep-Clone-in-JavaScript/"/>
     <id>http://shane.hsi.rocks/2016/01/28/Deep-Clone-in-JavaScript/</id>
     <published>2016-01-28T02:02:57.000Z</published>
-    <updated>2016-01-28T06:22:53.000Z</updated>
+    <updated>2016-02-20T12:56:24.000Z</updated>
     <content type="html"><![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/4459928/how-to-deep-clone-in-javascript" target="_blank" rel="external">How to Deep clone in javascript</a></p>
 <p>深入理解后会涉及到 JavaScript 语言的基础知识。</p>
 <p>尝试使用 TypeScript 方便 JavaScript 的深克隆。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/4459928/how-to-deep-clone-in-javascript" target="_blank" rel="external">How to Deep clone ]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Import JavaScript files in TypeScript]]></title>
-    <link href="http://shane.hsi.rocks/2016/01/27/Import-JavaScript-files-in-TypeScript/"/>
-    <id>http://shane.hsi.rocks/2016/01/27/Import-JavaScript-files-in-TypeScript/</id>
-    <published>2016-01-27T09:01:54.000Z</published>
-    <updated>2016-01-27T09:01:54.000Z</updated>
-    <content type="html"><![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">TypeScript with KnockoutJS</a></p>
-<p>TypeScript 具有良好的教学作用。目前初步的想法是，直接 import 现有的 JavaScript 代码，然后对其进行封装。TypeScript 的类型系统，会提供完备的接口定义写法。</p>
-<p>这其实是一种组合式的重用方式。对于可用的直接 import 进来，对于不可用的进行重写。</p>
-<p>那如何在 TypeScript 文件中 import Javascript 呢？</p>
-<p>TypeScript 提供的特性就是写 Definition Files。在写的时候参考 <a href="https://github.com/borisyankov/DefinitelyTyped" target="_blank" rel="external">DefinitelyTyped</a> 的写法，先进行模仿。</p>
-<p>文件可以直接写在相应 js 文件的旁边，[name].d.ts。</p>
-<p>具体在写的时候，如果有新的问题或思路进行补充。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">Type]]>
     </summary>
     
   </entry>
