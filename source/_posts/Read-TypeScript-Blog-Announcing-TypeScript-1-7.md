@@ -1,4 +1,4 @@
-title: 'Read TypeScript Blog, Announcing TypeScript 1.7'
+title: 读 TypeScript 博客 Announcing TypeScript 1.7
 date: 2016-01-13 10:10:24
 tags:
 ---

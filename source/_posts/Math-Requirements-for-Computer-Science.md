@@ -1,4 +1,4 @@
-title: Math Requirements for Computer Science
+title: CS 的数学要求
 date: 2016-02-06 15:53:23
 tags:
 ---

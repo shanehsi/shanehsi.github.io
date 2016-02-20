@@ -1,4 +1,4 @@
-title: Learn Redux
+title: 学习 Redux
 date: 2016-01-16 13:01:29
 tags:
 ---

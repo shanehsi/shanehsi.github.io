@@ -1,4 +1,4 @@
-title: Thoughts on Web Development (To Update)
+title: Web 开发的思考（不间断更新）
 date: 2016-01-29 17:02:05
 tags:
 ---

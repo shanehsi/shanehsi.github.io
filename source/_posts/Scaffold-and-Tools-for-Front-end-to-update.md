@@ -1,4 +1,4 @@
-title: Scaffold and Tools for Front-end (will update regularly)
+title: 前端的结构和工具（不间断更新）
 date: 2016-01-13 14:36:49
 tags:
 ---

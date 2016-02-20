@@ -1,4 +1,4 @@
-title: Execution in the Kingdom of Nouns zh_cn
+title: Execution in the Kingdom of Nouns 译
 date: 2016-02-05 16:35:12
 tags:
 ---

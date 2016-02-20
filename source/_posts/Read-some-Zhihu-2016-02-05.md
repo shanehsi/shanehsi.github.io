@@ -1,4 +1,4 @@
-title: Read some Zhihu 2016-02-05
+title: 读一些知乎 2016-02-05
 date: 2016-02-05 15:21:46
 tags:
 ---

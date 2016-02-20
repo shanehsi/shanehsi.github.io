@@ -1,4 +1,4 @@
-title: React performance zh_cn
+title: React performance 译
 date: 2016-02-04 15:31:26
 tags:
 ---

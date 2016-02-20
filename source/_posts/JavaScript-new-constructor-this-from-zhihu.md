@@ -1,4 +1,4 @@
-title: JavaScript new constructor this from zhihu
+title: JavaScript new constructor this 来自知乎
 date: 2016-02-04 10:22:19
 tags:
 ---

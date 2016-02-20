@@ -1,4 +1,4 @@
-title: ISP in Front-end Component Development
+title: ISP 在前端开发中
 date: 2016-02-02 10:08:19
 tags:
 ---

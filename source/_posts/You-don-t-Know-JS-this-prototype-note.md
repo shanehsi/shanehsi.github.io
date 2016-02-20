@@ -1,4 +1,4 @@
-title: You don't Know JS - this & prototype note
+title: You don't Know JS - this & prototype 笔记
 date: 2016-02-05 10:35:27
 tags:
 ---

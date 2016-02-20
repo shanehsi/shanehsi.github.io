@@ -1,4 +1,4 @@
-title: 'Hub, Makes Git Better with Github'
+title: Hub, Makes Git Better with Github
 date: 2016-01-29 09:56:39
 tags:
 ---

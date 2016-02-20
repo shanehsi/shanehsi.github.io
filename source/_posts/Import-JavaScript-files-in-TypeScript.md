@@ -1,4 +1,5 @@
-title: Import JavaScript files in TypeScript
+title: 在 TypeScript 中 import JavaScript 
+date: 2016-01-28
 tags:
 ---
 

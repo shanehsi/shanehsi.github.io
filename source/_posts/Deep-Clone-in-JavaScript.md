@@ -1,4 +1,4 @@
-title: Deep Clone in JavaScript
+title: JavaScript 的 Deep Clone
 date: 2016-01-28 10:02:57
 tags:
 ---
