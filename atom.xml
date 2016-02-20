@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-20T12:57:04.000Z</updated>
+  <updated>2016-02-20T12:58:48.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,26 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[在 TypeScript 中 import JavaScript]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/20/Import-JavaScript-files-in-TypeScript/"/>
-    <id>http://shane.hsi.rocks/2016/02/20/Import-JavaScript-files-in-TypeScript/</id>
-    <published>2016-02-20T12:57:04.000Z</published>
-    <updated>2016-02-20T12:57:04.000Z</updated>
-    <content type="html"><![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">TypeScript with KnockoutJS</a></p>
-<p>TypeScript 具有良好的教学作用。目前初步的想法是，直接 import 现有的 JavaScript 代码，然后对其进行封装。TypeScript 的类型系统，会提供完备的接口定义写法。</p>
-<p>这其实是一种组合式的重用方式。对于可用的直接 import 进来，对于不可用的进行重写。</p>
-<p>那如何在 TypeScript 文件中 import Javascript 呢？</p>
-<p>TypeScript 提供的特性就是写 Definition Files。在写的时候参考 <a href="https://github.com/borisyankov/DefinitelyTyped" target="_blank" rel="external">DefinitelyTyped</a> 的写法，先进行模仿。</p>
-<p>文件可以直接写在相应 js 文件的旁边，[name].d.ts。</p>
-<p>具体在写的时候，如果有新的问题或思路进行补充。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">Type]]>
-    </summary>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[读 Why I No Longer Use MVC Frameworks]]></title>
@@ -1191,7 +1171,7 @@
     <link href="http://shane.hsi.rocks/2016/01/29/Hub-Makes-Git-Better-with-Github/"/>
     <id>http://shane.hsi.rocks/2016/01/29/Hub-Makes-Git-Better-with-Github/</id>
     <published>2016-01-29T01:56:39.000Z</published>
-    <updated>2016-01-29T01:58:46.000Z</updated>
+    <updated>2016-02-20T13:00:57.000Z</updated>
     <content type="html"><![CDATA[<p>链接：<a href="https://hub.github.com/" target="_blank" rel="external">hub</a>。</p>
 <p>github 的常用功能的命令行客户端。实现了如：</p>
 <ul>
@@ -1224,6 +1204,26 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/4459928/how-to-deep-clone-in-javascript" target="_blank" rel="external">How to Deep clone ]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在 TypeScript 中 import JavaScript]]></title>
+    <link href="http://shane.hsi.rocks/2016/01/28/Import-JavaScript-files-in-TypeScript/"/>
+    <id>http://shane.hsi.rocks/2016/01/28/Import-JavaScript-files-in-TypeScript/</id>
+    <published>2016-01-27T16:00:00.000Z</published>
+    <updated>2016-02-20T13:01:09.000Z</updated>
+    <content type="html"><![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">TypeScript with KnockoutJS</a></p>
+<p>TypeScript 具有良好的教学作用。目前初步的想法是，直接 import 现有的 JavaScript 代码，然后对其进行封装。TypeScript 的类型系统，会提供完备的接口定义写法。</p>
+<p>这其实是一种组合式的重用方式。对于可用的直接 import 进来，对于不可用的进行重写。</p>
+<p>那如何在 TypeScript 文件中 import Javascript 呢？</p>
+<p>TypeScript 提供的特性就是写 Definition Files。在写的时候参考 <a href="https://github.com/borisyankov/DefinitelyTyped" target="_blank" rel="external">DefinitelyTyped</a> 的写法，先进行模仿。</p>
+<p>文件可以直接写在相应 js 文件的旁边，[name].d.ts。</p>
+<p>具体在写的时候，如果有新的问题或思路进行补充。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考：<a href="http://stackoverflow.com/questions/12689716/typescript-with-knockoutjs/12692174#12692174" target="_blank" rel="external">Type]]>
     </summary>
     
   </entry>

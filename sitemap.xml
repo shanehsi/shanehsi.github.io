@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/01/28/Import-JavaScript-files-in-TypeScript/</loc>
+    <lastmod>2016-02-20T13:01:09.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/01/29/Hub-Makes-Git-Better-with-Github/</loc>
+    <lastmod>2016-02-20T13:00:57.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/02/05/You-don-t-Know-JS-this-prototype-note/</loc>
     <lastmod>2016-02-20T12:59:53.000Z</lastmod>
   </url>
@@ -87,11 +97,6 @@
   </url>
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/02/20/Import-JavaScript-files-in-TypeScript/</loc>
-    <lastmod>2016-02-20T12:57:04.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://shane.hsi.rocks/2016/02/05/Execution-in-the-Kingdom-of-Nouns-zh-cn/</loc>
     <lastmod>2016-02-20T12:56:41.000Z</lastmod>
   </url>
@@ -114,11 +119,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/02/01/2015-Annual-Retro/</loc>
     <lastmod>2016-02-20T12:55:43.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/01/29/Hub-Makes-Git-Better-with-Github/</loc>
-    <lastmod>2016-01-29T01:58:46.000Z</lastmod>
   </url>
   
   <url>
