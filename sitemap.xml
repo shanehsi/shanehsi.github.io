@@ -2,13 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/02/23/Java-Knowledge-Points-20160223/</loc>
-    <lastmod>2016-02-23T13:47:47.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</loc>
+    <lastmod>2016-02-23T14:28:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/23/Time-Management-Reading-from-Zhihu/</loc>
+    <lastmod>2016-02-23T14:27:22.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://shane.hsi.rocks/2016/02/22/Financing-Knownledge-from-Zhihu/</loc>
-    <lastmod>2016-02-22T10:29:49.000Z</lastmod>
+    <lastmod>2016-02-23T13:59:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/23/Java-Knowledge-Points-20160223/</loc>
+    <lastmod>2016-02-23T13:47:47.000Z</lastmod>
   </url>
   
   <url>
@@ -119,11 +129,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/01/29/Books-to-Read/</loc>
     <lastmod>2016-02-20T12:56:10.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/02/2016-The-Shawshank-Redemption/</loc>
-    <lastmod>2016-02-20T12:56:00.000Z</lastmod>
   </url>
   
   <url>
