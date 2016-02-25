@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</loc>
+    <lastmod>2016-02-24T14:27:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/24/Java-Knowledge-Points-20160224/</loc>
+    <lastmod>2016-02-24T06:29:41.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/02/24/Do-Some-Tweet-Reading-2016-02-24/</loc>
     <lastmod>2016-02-24T03:24:27.000Z</lastmod>
   </url>
@@ -84,11 +94,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/02/05/Read-some-Zhihu-2016-02-05/</loc>
     <lastmod>2016-02-20T12:58:27.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</loc>
-    <lastmod>2016-02-20T12:58:17.000Z</lastmod>
   </url>
   
   <url>
