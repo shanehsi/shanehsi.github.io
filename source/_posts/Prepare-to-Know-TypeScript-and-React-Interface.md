@@ -1,4 +1,4 @@
-title: Prepare to Know TypeScript and React Interface
+title: 准备学习 TypeScript 语法帮助理解 React 接口
 date: 2016-02-25 08:16:20
 tags:
 ---
