@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-25T00:26:23.000Z</updated>
+  <updated>2016-02-25T09:29:31.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[TypeScript 的一些高级语法和使用场景]]></title>
+    <link href="http://shane.hsi.rocks/2016/02/25/Some-Advanced-Syntax-in-TypeScript/"/>
+    <id>http://shane.hsi.rocks/2016/02/25/Some-Advanced-Syntax-in-TypeScript/</id>
+    <published>2016-02-25T08:49:34.000Z</published>
+    <updated>2016-02-25T09:29:31.000Z</updated>
+    <content type="html"><![CDATA[<p>直接从 <a href="https://github.com/Microsoft/TypeScript/" target="_blank" rel="external">Microsoft/TypeScript</a> 和 <a href="https://github.com/angular/angular" target="_blank" rel="external">angular</a> 找。也会从 RxJS 中找。</p>
+<h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">namespace ts.formatting &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="export"><a href="#export" class="headerlink" title="export"></a>export</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> interface TextRange &#123;</span><br><span class="line">    pos: number;</span><br><span class="line">    end: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> interface TextRangeWithKind extends TextRange &#123;</span><br><span class="line">    kind: SyntaxKind;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="generics__u548C_u58F0_u660E"><a href="#generics__u548C_u58F0_u660E" class="headerlink" title="generics 和声明"></a>generics 和声明</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> interface <span class="built_in">Map</span>&lt;T&gt; &#123;</span><br><span class="line">    [index: string]: T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>[index: string]</code> 这种声明 Dictionary 的方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> interface SymbolTable &#123;</span><br><span class="line">    [index: string]: <span class="built_in">Symbol</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u9AD8_u7EA7_u7C7B_u578B"><a href="#u9AD8_u7EA7_u7C7B_u578B" class="headerlink" title="高级类型"></a>高级类型</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> type Path = string &amp; &#123; __pathBrand: any &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="enums"><a href="#enums" class="headerlink" title="enums"></a>enums</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> enum NodeFlags &#123;</span><br><span class="line">    None =               <span class="number">0</span>,</span><br><span class="line">    Export =             <span class="number">1</span> &lt;&lt; <span class="number">0</span>,  <span class="comment">// Declarations</span></span><br><span class="line">    Ambient =            <span class="number">1</span> &lt;&lt; <span class="number">1</span>,  <span class="comment">// Declarations</span></span><br><span class="line">    Public =             <span class="number">1</span> &lt;&lt; <span class="number">2</span>,  <span class="comment">// Property/Method</span></span><br><span class="line">    Private =            <span class="number">1</span> &lt;&lt; <span class="number">3</span>,  <span class="comment">// Property/Method</span></span><br><span class="line">    Protected =          <span class="number">1</span> &lt;&lt; <span class="number">4</span>,  <span class="comment">// Property/Method</span></span><br><span class="line"></span><br><span class="line">    Modifier = Export | Ambient | Public | Private | Protected | Static | Abstract | Default | Async,</span><br><span class="line">    AccessibilityModifier = Public | Private | Protected,</span><br><span class="line">    BlockScoped = Let | Const,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和不加 <code>const</code> 的区别：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> enum ExitStatus &#123;</span><br><span class="line">    Success = <span class="number">0</span>,</span><br><span class="line">    DiagnosticsPresent_OutputsSkipped = <span class="number">1</span>,</span><br><span class="line">    DiagnosticsPresent_OutputsGenerated = <span class="number">2</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> type EntityName = Identifier | QualifiedName;</span><br></pre></td></tr></table></figure>
+<h2 id="u7B2C_u4E00_u770B_u5230_toString"><a href="#u7B2C_u4E00_u770B_u5230_toString" class="headerlink" title="第一看到 toString"></a>第一看到 toString</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///&lt;reference path='references.ts' /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* @internal */</span></span><br><span class="line">namespace ts.formatting &#123;</span><br><span class="line">    <span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Rule</span> </span>&#123;</span><br><span class="line">        constructor(</span><br><span class="line">            public Descriptor: RuleDescriptor,</span><br><span class="line">            public Operation: RuleOperation,</span><br><span class="line">            public Flag: RuleFlags = RuleFlags.None) &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public toString() &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"[desc="</span> + <span class="keyword">this</span>.Descriptor + <span class="string">","</span> +</span><br><span class="line">                <span class="string">"operation="</span> + <span class="keyword">this</span>.Operation + <span class="string">","</span> +</span><br><span class="line">                <span class="string">"flag="</span> + <span class="keyword">this</span>.Flag + <span class="string">"]"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="implements"><a href="#implements" class="headerlink" title="implements"></a>implements</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Observable</span>&lt;<span class="title">T</span>&gt; <span class="title">implements</span> <span class="title">CoreOperators</span>&lt;<span class="title">T</span>&gt;  </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>直接从 <a href="https://github.com/Microsoft/TypeScript/" target="_blank" rel="external">Microsoft/TypeScript</a> 和 <a href="https://github.]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[准备学习 TypeScript 语法帮助理解 React 接口]]></title>
@@ -1117,26 +1144,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="u5DE5_u4F5C"><a href="#u5DE5_u4F5C" class="headerlink" title="工作"></a>工作</h2><p>2015年最大的收获就是 <strong>前端</strong> 技能的提升。事实上，从2015年2月开]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[要读书单]]></title>
-    <link href="http://shane.hsi.rocks/2016/01/29/Books-to-Read/"/>
-    <id>http://shane.hsi.rocks/2016/01/29/Books-to-Read/</id>
-    <published>2016-01-29T09:28:38.000Z</published>
-    <updated>2016-02-20T12:56:10.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><p><a href="http://book.douban.com/subject/1491830/" target="_blank" rel="external">栅格系统与版式设计</a>，参考链接：<a href="https://zh.wikipedia.org/wiki/%E6%A0%85%E6%A0%BC%E8%AE%BE%E8%AE%A1" target="_blank" rel="external">栅格设计</a></p>
-</li>
-<li><p><a href="http://book.douban.com/subject/1276767/" target="_blank" rel="external">设计几何学</a></p>
-</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ul>
-<li><p><a href="http://book.douban.com/subject/1491830/" target="_blank" rel="external">栅格系统与版式设计</a>，参考链接：<a href="https://zh.wikipedi]]>
     </summary>
     
   </entry>
