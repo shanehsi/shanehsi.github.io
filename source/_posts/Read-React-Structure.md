@@ -1576,5 +1576,29 @@ module.exports = ReactCompositeComponent;
 ```
 
 
+---
+
+## 停一下 & 回顾
+
+2016年02月24日22:09:36
+
+React 之前的读法，有点类似于是学习细节。
+
+下一步想换个思路：
+
+- 一是不断学习 TypeScript 的语法，不断重构
+- 理解 React 的思路，一条线走下去（完成一个最简单的功能）
+- 然后实现
+- 然后不断填充细节
+- 不断重构
+
+### pseudo-react
+
+React.createClass(
+
+React.createFactory(
+
+ReactDOM.render(
+
 
 
