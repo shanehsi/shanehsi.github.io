@@ -2,6 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8-Other/</loc>
+    <lastmod>2016-02-26T00:27:46.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/25/Read-Again-The-TypeScript-Handbook-2016-02-25/</loc>
+    <lastmod>2016-02-26T00:21:10.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8-Classes/</loc>
+    <lastmod>2016-02-26T00:21:09.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8/</loc>
+    <lastmod>2016-02-25T23:47:49.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/02/25/Alternative-to-iFrames-with-HTML5/</loc>
+    <lastmod>2016-02-25T11:33:26.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/02/25/Some-Advanced-Syntax-in-TypeScript/</loc>
     <lastmod>2016-02-25T09:29:31.000Z</lastmod>
   </url>
