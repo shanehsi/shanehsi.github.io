@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-27T02:07:19.000Z</updated>
+  <updated>2016-02-27T02:26:59.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://shane.hsi.rocks/2016/02/27/Read-TypeScript-Deep-Dive/"/>
     <id>http://shane.hsi.rocks/2016/02/27/Read-TypeScript-Deep-Dive/</id>
     <published>2016-02-27T01:28:10.000Z</published>
-    <updated>2016-02-27T02:07:19.000Z</updated>
+    <updated>2016-02-27T02:26:59.000Z</updated>
     <content type="html"><![CDATA[<h2 id="extends"><a href="#extends" class="headerlink" title="__extends"></a>__extends</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> __extends = <span class="keyword">this</span>.__extends || <span class="function"><span class="keyword">function</span> (<span class="params">d, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.constructor = d; &#125;</span><br><span class="line">    __.prototype = b.prototype;</span><br><span class="line">    d.prototype = <span class="keyword">new</span> __();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>d - derived class<br>b - base class</p>
 <p><strong>1.</strong> 将 static members 复制到 d。</p>
@@ -52,6 +52,12 @@
 <p>-&gt; d.prototype = { <strong>proto</strong>: <strong>.prototype}<br>-&gt; d.prototype = { </strong>proto__: b.prototype }</p>
 <p>等下，我们需要 d 的 prototype.constructor 保持原来的。</p>
 <p>d.prototype.constructor = d;</p>
+<p>注意：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span>(<span class="params">d, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b)</span><br><span class="line">        <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.constructor = d; &#125;</span><br><span class="line">    d.prototype = b === <span class="literal">null</span> </span><br><span class="line">        ? <span class="built_in">Object</span>.create(b) </span><br><span class="line">        : (__.prototype = b.prototype, <span class="keyword">new</span> __());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>多了一步判断。其中 <code>(__.prototype = b.prototype, new __())</code> 叫做逗号操作符，可以在一行运行多条语句。</p>
+<p>其中，Object.create(null)：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个原型为null的空对象</span></span><br><span class="line">o = <span class="built_in">Object</span>.create(<span class="literal">null</span>); <span class="comment">// o.__proto__ === undefined</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">o = &#123;&#125;;</span><br><span class="line"><span class="comment">// 以字面量方式创建的空对象就相当于:</span></span><br><span class="line">o = <span class="built_in">Object</span>.create(<span class="built_in">Object</span>.prototype);<span class="comment">// o.__proto__ === Object &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>弄懂上面的区别。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="extends"><a href="#extends" class="headerlink" title="__extends"></a>__extends</h2><figure class="highlight js"><table><tr><td class]]>
