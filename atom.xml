@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-26T00:27:46.000Z</updated>
+  <updated>2016-02-27T02:07:19.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[阅读 TypeScript Deep Dive]]></title>
+    <link href="http://shane.hsi.rocks/2016/02/27/Read-TypeScript-Deep-Dive/"/>
+    <id>http://shane.hsi.rocks/2016/02/27/Read-TypeScript-Deep-Dive/</id>
+    <published>2016-02-27T01:28:10.000Z</published>
+    <updated>2016-02-27T02:07:19.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="extends"><a href="#extends" class="headerlink" title="__extends"></a>__extends</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> __extends = <span class="keyword">this</span>.__extends || <span class="function"><span class="keyword">function</span> (<span class="params">d, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.constructor = d; &#125;</span><br><span class="line">    __.prototype = b.prototype;</span><br><span class="line">    d.prototype = <span class="keyword">new</span> __();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>d - derived class<br>b - base class</p>
+<p><strong>1.</strong> 将 static members 复制到 d。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b) <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];</span><br></pre></td></tr></table></figure>
+<p><strong>2.</strong> 设置 d 的 class function 的 prototype 可选的查找 b 的 proto 的成员。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.prototype.__proto__ = b.prototype</span><br></pre></td></tr></table></figure>
+<p>详细解释下 <strong>2</strong>。</p>
+<p>首先解释为什么 <code>d.prototype.__proto__ = b.prototype</code> 和 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.constructor = d; &#125;</span><br><span class="line">__.prototype = b.prototype;</span><br><span class="line">d.prototype = <span class="keyword">new</span> __();</span><br></pre></td></tr></table></figure>
+<p>等价。</p>
+<p>然后解释这句话的重要性。</p>
+<p>先了解这些概念：</p>
+<ol>
+<li><code>__proto__</code></li>
+<li>prototype</li>
+<li>effect of <code>new</code> on <code>this</code> inside the called function</li>
+<li>effect of <code>new</code> on <code>prototype</code> and <code>__proto__</code></li>
+</ol>
+<p>每一个 JavaScript 对象都有 <code>__proto__</code>。其中一个目的是：当 <code>obj.property</code> 找不到，会找 <code>obj.__proto__.property</code>，然后 <code>obj.__proto__.__.proto__.property</code>。这就是原型继承。</p>
+<p>另一个有用的信息是，所有的 JavaScript function 有一个 property 叫做 <code>prototype</code>。并且有一个 member 叫做 <code>constructor</code> 指向这个 function。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line"><span class="built_in">console</span>.log(Foo.prototype);</span><br><span class="line"><span class="built_in">console</span>.log(Foo.prototype.constructor === Foo);</span><br></pre></td></tr></table></figure>
+<p>现在再看下：<code>new</code> 对 <code>this</code> 的作用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.bar = <span class="number">123</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newFoo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(newFoo.bar); <span class="comment">// 123</span></span><br></pre></td></tr></table></figure>
+<p>大意是：<code>this</code> 会指向新创建的对象。原因是，<strong>在 Function 上使用 <code>new</code> 将 <code>prototype</code> 复制到新创建对象的 <code>__proto__</code></strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(foo.__proto__ === Foo.prototype); <span class="comment">// True</span></span><br></pre></td></tr></table></figure>
+<p>以上。</p>
+<p>现在看下： <code>__extends__</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.constructor = d; &#125;</span><br><span class="line">__.prototype = b.prototype;</span><br><span class="line">d.prototype = <span class="keyword">new</span> __();</span><br></pre></td></tr></table></figure>
+<p>d.prototype.<strong>proto</strong> = __.prototype</p>
+<p>-&gt; d.prototype = { <strong>proto</strong>: <strong>.prototype}<br>-&gt; d.prototype = { </strong>proto__: b.prototype }</p>
+<p>等下，我们需要 d 的 prototype.constructor 保持原来的。</p>
+<p>d.prototype.constructor = d;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="extends"><a href="#extends" class="headerlink" title="__extends"></a>__extends</h2><figure class="highlight js"><table><tr><td class]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[TypeScript Spec Version 1.8 - Other]]></title>
@@ -109,7 +154,7 @@
     <link href="http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8/"/>
     <id>http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8/</id>
     <published>2016-02-25T23:32:36.000Z</published>
-    <updated>2016-02-25T23:47:49.000Z</updated>
+    <updated>2016-02-27T01:26:14.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Ambient_Declaration"><a href="#Ambient_Declaration" class="headerlink" title="Ambient Declaration"></a>Ambient Declaration</h2><p><a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#11-ambient-declarations" target="_blank" rel="external">Ambient Declaration</a></p>
 <p>An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. </p>
 <p>引入一个变量，仅在 TypeScript 范围，不会生成 JavaScript 代码。</p>
@@ -1019,39 +1064,6 @@
     <summary type="html">
     <![CDATA[<p>原文：<a href="http://blog.vjeux.com/2013/javascript/react-performance.html" target="_blank" rel="external">React performance</a></p>
 <p>Rea]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Scroll Position with React 译]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/04/Scroll-Position-with-React-zh-cn/"/>
-    <id>http://shane.hsi.rocks/2016/02/04/Scroll-Position-with-React-zh-cn/</id>
-    <published>2016-02-04T07:00:38.000Z</published>
-    <updated>2016-02-20T12:59:08.000Z</updated>
-    <content type="html"><![CDATA[<p>原文：<a href="http://blog.vjeux.com/2013/javascript/scroll-position-with-react.html" target="_blank" rel="external">Scroll Position with React</a></p>
-<blockquote>
-<p>通过阅读 vjeux 的博客来学习下 React 的设计理念</p>
-</blockquote>
-<p>Dealing with scroll position when you insert content is usually a difficult problem to solve. We’ll see how to use React life cycle methods to solve it elegantly.</p>
-<p>当插入 content 时会改变 scroll position 一般来说是比较复杂的问题。我们来看下如何使用 React life cycle 方法来优雅解决。</p>
-<h2 id="Insertion_at_the_bottom__u5728_u5E95_u90E8_u63D2_u5165"><a href="#Insertion_at_the_bottom__u5728_u5E95_u90E8_u63D2_u5165" class="headerlink" title="Insertion at the bottom 在底部插入"></a>Insertion at the bottom 在底部插入</h2><p>The first example is to maintain the scroll position at the bottom when an element is inserted at the bottom. A common use case is a chat application.</p>
-<p>当插入新的元素到底部，继续保持在底部。比如聊天应用。</p>
-<p>In order to scroll at the bottom, we can do that on componentDidUpdate. It happens every time the element is re-rendered.</p>
-<p>为了滚动到底部，可以在 componentDidUpdate 来做。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">componentDidUpdate: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = <span class="keyword">this</span>.getDOMNode();</span><br><span class="line">  node.scrollTop = node.scrollHeight;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><code>Element.scrollTop</code> 指拿到 element 向上滑动的像素。关键这个操作有 side effect，scrollTop 修改之后，会触发一个动作。应该叫做 node.scrollTop(node.scrollHeight)</p>
-<p><code>Element.scrollHeight</code> 只读属性，是指元素内容的高度，包括看不见的（滚动的）。</p>
-<p>But this is going to always scroll to the bottom, which can be very annoying if you want to read what was above. Instead you want to scroll only if the user was already at the bottom. To do that, we can check the scroll position before the component has updated with componentWillUpdate and scroll if necessary at componentDidUpdate</p>
-<p>但是这样做的话，会始终滚到底部（比如当你想滚动到上面看内容，来了条新的内容，就滚到下面）。现在的需求是，只有已经在底部，才滚动。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">componentWillUpdate: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> node = <span class="keyword">this</span>.getDOMNode();</span><br><span class="line">  <span class="comment">// 搞了一个实例变量在保存状态</span></span><br><span class="line">  <span class="keyword">this</span>.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;</span><br><span class="line">&#125;,</span><br><span class="line"> </span><br><span class="line">componentDidUpdate: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.shouldScrollBottom) &#123;</span><br><span class="line">    <span class="keyword">var</span> node = <span class="keyword">this</span>.getDOMNode();</span><br><span class="line">    node.scrollTop = node.scrollHeight</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>发现盒模型的各种 Height 概念挺多的<br>读一下文档</p>
-</blockquote>
-<h2 id="Conclusion__u7ED3_u8BBA"><a href="#Conclusion__u7ED3_u8BBA" class="headerlink" title="Conclusion 结论"></a>Conclusion 结论</h2><p>React has not been designed to handle scroll position natively. However, it provides escape hatches from the declarative paradigm in order to be able to implement them.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>原文：<a href="http://blog.vjeux.com/2013/javascript/scroll-position-with-react.html" target="_blank" rel="external">Scroll Position with Re]]>
     </summary>
     
   </entry>
