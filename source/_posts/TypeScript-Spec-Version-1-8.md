@@ -110,6 +110,4 @@ interface JQueryStatic {
     (query: string): JQuery;
     (ready: () => any): any; // overload
 }
-
-
 ```
