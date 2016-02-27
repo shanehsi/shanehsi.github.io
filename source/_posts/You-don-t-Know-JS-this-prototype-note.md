@@ -363,11 +363,11 @@ foo.call(obj); //2
 
 如果是 primitive 类型的值，会被转换成它的对象形式（`new String(..)`、`new Boolean(..)`、`new Number(..)`。这通常被称为『装箱』。
 
-可惜，显式绑定也并不能解决丢失绑定的问题。
+可惜，显式绑定也并不能解决丢失绑定的问题。原因是会修改。现在要做的是，找到一种方式，不会修改 this。
 
 **1. 硬绑定**
 
-显式绑定的一种变种可以解决这个问题（通过创建一个包裹函数）：
+显式绑定的一种变种可以解决这个问题（通过创建一个包裹函数，这样起作用的 `call` 就不会被修改了）：
 
 ```js
 function foo() {
@@ -447,7 +447,7 @@ JavaScript 中，构造函数只是使用 `new` 操作符时被调用的函数�
 使用 `new` 来调用函数，或者说发生构造函数调用时，会自动执行以下操作：
 
 1. 创建（或者说构造）一个全新的对象
-2. 这个新对象会被执行[[原型]]链接
+2. 这个新对象会被执行[[原型]]链接，即将构造函数的 prototype 复制到新对象的 `__proto__`。
 3. 这个新对象会绑定到函数调用的 `this`
 4. 如果函数没有返回其他对象，那么 `new` 表达式中的函数调用会自动返回这个新对象
 
@@ -464,4 +464,84 @@ console.log(bar.a); // 2
 
 ## 2.3 优先级
 
+本节介绍了 ES5 和 MDN `bind` 的实现（polyfill），new 的优先级是会改变硬绑定的 this。这么设计的原因是为了做『部分应用』，是『柯里化』的一种。
+
+```js
+function foo(p1, p2) {
+    this.val = p1 + p2;
+}
+var bar = foo.bind(null, "p1");
+var baz = new bar("p2");
+baz.val; //p1p2
+```
+
+## 2.4 规则的例外
+
+### 2.4.1 被忽略的 this
+
+如果传入 null 或者 undefined，会使用默认绑定。
+
+```js
+function foo() {
+    console.log(this.a);
+}
+var a = 2;
+foo.call(null);
+```
+
+所以使用的 null 要注意下影响面。
+
+更安全的 `this`，是做一个特殊对象。其实是为了规避这条例外的规则，传入一个不是 null，但是也没啥意义的特殊对象。
+
+```js
+var ø = Object.create(null);
+```
+
+### 2.4.2 间接引用
+
+> 这个我觉得不是其规则例外，而是一种伪装的规则。
+
+```js
+function foo() {
+    console.log( this.a );
+}
+
+var a = 2; // global
+var o = { a: 3, foo: foo};
+var p = { a : 4 };
+
+o.foo(); //3
+(p.foo = o.foo)(); // 2
+```
+
+其中 `(p.foo = o.foo)()` 看，调用操作符的位置。
+
+但是如果是：
+
+```js
+p.foo = o.foo;
+p.foo(); // 4
+```
+
+## 2.5 this词法
+
+ES6 介绍的胖箭头函数，`=>`。不适用 this 的四条标准规则，而是根据外层（函数或者全局）作用域来决定 this。当然，外层的 this 是适用于上述四条标准规则的。（像是静态动态的结合）。
+
+箭头函数的 this 无法被修改，通过 new 也不行。
+
+其实就是我们经常在 ES5 用到的方式。
+
+```js
+function foo() {
+    var self = this; // lexical capture of this
+    setTimeout( function(){
+        console.log( self.a );
+    }, 100 );
+}
+```
+
+如果经常编写 this 风格的代码，但绝大多数情况都使用 self = this 或者箭头函数来否定 this 机制，那你或许应当：
+
+- 只使用词法作用域并完全抛弃错误 this 风格的代码。
+- 完全使用 this 风格，在必要时使用 bind，尽量避免使用 self=this 或者箭头函数。
 
