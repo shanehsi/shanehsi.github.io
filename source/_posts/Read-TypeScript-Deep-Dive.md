@@ -102,5 +102,35 @@ d.prototype.__proto__ = __.prototype
 
 d.prototype.constructor = d;
 
+注意：
 
+```js
+var __extends = (this && this.__extends) || function(d, b) {
+    for (var p in b)
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+
+    function __() { this.constructor = d; }
+    d.prototype = b === null 
+        ? Object.create(b) 
+        : (__.prototype = b.prototype, new __());
+};
+```
+
+多了一步判断。其中 `(__.prototype = b.prototype, new __())` 叫做逗号操作符，可以在一行运行多条语句。
+
+其中，Object.create(null)：
+
+```js
+var o;
+
+// 创建一个原型为null的空对象
+o = Object.create(null); // o.__proto__ === undefined
+
+
+o = {};
+// 以字面量方式创建的空对象就相当于:
+o = Object.create(Object.prototype);// o.__proto__ === Object {}
+```
+
+弄懂上面的区别。
 
