@@ -545,3 +545,331 @@ function foo() {
 - 只使用词法作用域并完全抛弃错误 this 风格的代码。
 - 完全使用 this 风格，在必要时使用 bind，尽量避免使用 self=this 或者箭头函数。
 
+# 3 对象
+
+## 3.1 语法
+
+对象可以通过两种形式定义：声明（文字）形式和构造形式。
+
+文字语法：
+
+```js
+var myObj = {
+    key: value
+}
+```
+
+构造形式（非常少见）：
+
+```js
+var myObj = new Object();
+myObj.key = value;
+```
+
+## 3.2 类型
+
+一共六种主要类型（术语是语言类型）：
+
+- string
+- number
+- boolean
+- null
+- undefined
+- object
+
+前5个是简单基本类型（primitive），本身不是对象。
+
+> typeof null 返回的是 "object"，这是语言本身的一个 bug，null 本身是基本类型。出现这个 bug 的原因是，不同的对象在底层都表示为二进制。在 JavaScript 中，二进制前三位都是0，被判断为 object 类型。null 的二进制表示全是0。
+
+有一种常见的错误说法是，JavaScript 中万物皆对象。
+
+**内置对象**：某些名字和 primitive 类型一样，具体稍后介绍：
+
+- String
+- Number
+- Boolean
+- Object
+- Function
+- Array
+- Date
+- RegExp
+- Error
+
+## 3.3 内容
+
+### 3.3.4 复制对象
+
+JavaScript 初学者最常见的问题之一就是如何复制一个对象。实际上比较复杂。
+
+```js
+function() anotherFunction { /* ... */ }
+var anotherObject = {
+    c: true
+};
+var anotherArray = [];
+var myObject = {
+    a: 2,
+    b: anotherObject, // 引用，不是复制
+    c: anotherArray, // 另一个引用
+    d: anotherFunction
+};
+anotherArray.push(anotherObject, myObject);
+```
+
+那么，如何准确地表示 myObject 的复制呢？
+
+首先，要判断是浅复制还是深复制。
+
+浅复制中，新对象中的 `a:2` 是一份新的拷贝，但是，`b`，`c,`，`d` 只是引用，新对象也是引用。
+
+如果是深复制，会有循环引用导致死循环。
+
+对于 JSON 安全 的对象，有一种巧妙的：
+
+```js
+var newObj = JSON.parse(JSON.stringify(someObj));
+```
+
+相比于深复制，浅复制相对易懂问题少，Object.assign()，第一个参数就是目标对象，后面是源对象。它会遍历所有源对象的可枚举（enumerable）的自有键（owned key，后面介绍）并把它们复制（使用 `=` 操作符）到目标对象，最后返回目标对象。
+
+> 下一节介绍『属性描述符』以及 `Object.defineProperty()` 的用法。要注意，由于 `Object.assign` 就是使用 `=` 操作符来赋值，所以源对象属性的一些特性（比如 `writable`）不会被复制到目标对象。
+
+### 3.3.5 属性描述符
+
+在 ES5 之前，JavaScript 没有提供检测属性特性的方法，比如判断属性是否是只读。
+
+从 ES5 开始，所有的属性具备属性描述符。
+
+```js
+var myObject = {
+    a: 2
+};
+Object.getOwnPropertyDescriptor(myObject, "a");
+// {
+// value: 2,
+//    writable: true,
+//    enumerable: true,
+//    configurable: true
+// }
+```
+
+所以，可不仅仅是一个 2。可写，可枚举，可配置。
+
+我们可以使用 `Object.defineProperty()` 来添加一个新属性，或者修改一个已有属性（如果它是 `configurable`。
+
+```js
+var myObject = {};
+Object.defineProperty(myObject, "a", {
+    value: 2,
+    writable: true,
+    configurable: true,
+    enumerable: true
+});
+myObject.a; //2
+```
+
+**1. Writable**
+
+```js
+var myObject = {};
+ Object.defineProperty( myObject, "a", {
+     value: 2,
+     writable: false, // not writable!
+     configurable: true,
+     enumerable: true
+ } );
+ myObject.a = 3;
+ myObject.a; // 2
+```
+
+如你所见，修改失败。如果是 "use strict"; 则会报错。
+
+```js
+myObject.a = 3; // TypeError
+```
+
+**2. Configurable**
+
+表示是否可以使用 `defineProperty`。
+
+```js
+var myObject = {
+    a: 2
+};
+
+myObject.a = 3;
+myObject.a; // 3
+Object.defineProperty(myObject, "a", {
+    value: 4,
+    writable: true,
+    configurable: false, //       enumerable: true
+});
+
+myObject.a; // 4
+myObject.a = 5;
+myObject.a; // 5
+Object.defineProperty(myObject, "a", {
+    value: 6,
+    writable: true,
+    configurable: true,
+    enumerable: true
+}); // TypeError，不管是不是严格模式
+```
+
+```js
+有一个小小的意外，即便属性是 configurable: false，依然可以 writable 由 true 改为 false。不能由 false 改为 true。
+```
+
+除了无法修改，`configurable: false` 还会禁止删除这个属性（`delete` 不会报错，静默失败）。
+
+**3. Enumerable**
+
+这个属性描述符（Property Descriptor）控制的是属性是否会出现在对象的属性枚举中。比如 `for .. in`。
+
+### 3.3.6 不变性
+
+1. 对象常量
+
+结合 `writable: false` 和 `configurable: false`。
+
+2. 禁止扩展
+
+`Object.preventExtensions()`。
+
+```js
+var myObject = {
+     a:2
+ };
+ Object.preventExtensions( myObject );
+ myObject.b = 3;
+ myObject.b; // undefined，严格模式是 TypeError
+```
+
+3. 密封
+
+`Object.seal(..)`。实际上在一个现有对象上调用 `Object.preventExtensions()`，并将现有（由于了禁止扩展，也无法添加新的属性）属性的 `configurable: false`。密封之后，禁止扩展，也不能重新配置或者删除。但是可以修改属性的值。
+
+4. 冻结
+
+`Object.freeze(..)`。这个方法会在现有对象上调用 `Object.seal()`，并把所有对象的 `writable: false`。这样就无法修改他们的值。
+
+这个方法是应用在对象上的级别最高的不可变性。（但是，这个对象引用的其他对象是不受影响的）。
+
+### 3.3.7 [[Get]]
+
+属性访问在实现时有一个微妙却非常重要的细节：
+
+```js
+var myObject = {
+    a: 2
+};
+myObject.a; // 2
+```
+
+`myObject.a` 在 `myObject` 实际上是实现的 `[[Get]]` 操作（有点像函数调用，`[[Get]]()`）。
+
+```js
+var myObject = {
+     a: undefined
+ };
+ myObject.a; // undefined
+ myObject.b; // undefined
+```
+
+从返回值看好像没有区别，但是底层 `[[Get]]` 做了更复杂的处理。
+
+稍后会介绍如何区分。
+
+### 3.3.8 [[Put]]
+
+### 3.3.9 Getter 和 Setter
+
+```js
+var myObject = {
+    get a() {
+        return 2;
+    }
+};
+
+Object.defineProperty(myObject,
+    "b": {
+        get: function() {
+            return this.a * 2
+        },
+        enumerable: true
+    }
+);
+
+myObject.a; // 2
+myObject.b; // 4
+```
+
+```js
+var myObject = {
+    get a() {
+        return 2;
+    }
+};
+
+
+myObject.a = 3;
+myObject.a; // 2
+```
+
+```js
+var myObject = {
+    get a() {
+        return this._a_;
+    },
+    set a(val) {
+        this._a_ = val * 2;
+    }
+};
+myObject.a = 2;
+myObject.a; // 4
+
+```
+
+### 3.3.10 存在性
+
+暂时不看。
+
+# 4. 混合对象 『类』
+
+实例化（instantiation），继承（inheritance）和（相对）多态（polymorphism）。
+
+## 4.1 类理论
+
+认为，好的设计是将数据和它相关的行为打包（封住）。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
