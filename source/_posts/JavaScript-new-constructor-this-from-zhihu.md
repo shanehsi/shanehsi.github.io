@@ -66,7 +66,3 @@ b.log2();
 知乎链接：[如何理解 JavaScript 中的 this 关键字？](https://www.zhihu.com/question/19636194)
 
 详细：[JavaScript中的对象查找](http://otakustay.com/object-lookup-in-javascript/)。
-
-
-
-
