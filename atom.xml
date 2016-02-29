@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-02-29T12:24:28.000Z</updated>
+  <updated>2016-02-29T12:33:12.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/"/>
     <id>http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/</id>
     <published>2016-02-29T12:05:48.000Z</published>
-    <updated>2016-02-29T12:24:28.000Z</updated>
+    <updated>2016-02-29T12:33:12.000Z</updated>
     <content type="html"><![CDATA[<p>今天正式转组。当前时间20:05，状态累。虽然现在有很多想法，由于状态不佳，所以想形成一篇博客，保留下自己的零碎想法。</p>
 <ul>
 <li>新组有很多新的业务领域知识需要摄入</li>
@@ -34,6 +34,17 @@
 <p>不管挑战如何，都会有解决方案。有些自己参与即可，有些也急不来，需要和团队不断的沟通。</p>
 <p>Cat 中间件的熟悉主要是自己。但是比较快速的方式是问他们看哪些指标？Cat 调试的方式也不多。Cat 的文档相对蛮多的。总结出一篇博客。这个基本上就可以标记为 done。</p>
 <p>其他基本上通过沟通。要快速和团队融合。目标是2周，3月中旬找 Lead 沟通下年度目标。沟通的具体内容我需要找长辈和朋友商量下。</p>
+<p>今天和一个同事聊天，他说一定要有目标。</p>
+<p>所以，这才是我最大的挑战。</p>
+<p>上周五在公司的目标管理课程上，讲师分享了一个例子。对一所学校的毕业生，30年后的现状进行了调查。</p>
+<ul>
+<li>依然坚持30年前定下的目标的极少部分人，成为了精英和上层人物</li>
+<li>坚持了10年的，成为了专家</li>
+<li>坚持了3年的，成为了中产</li>
+<li>一直在更换目标的，成为了普通人</li>
+</ul>
+<p>出去其中的生搬硬造，道理却是出来了。</p>
+<p>这才是我最大的挑战。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>今天正式转组。当前时间20:05，状态累。虽然现在有很多想法，由于状态不佳，所以想形成一篇博客，保留下自己的零碎想法。</p>
@@ -66,8 +77,9 @@
     <link href="http://shane.hsi.rocks/2016/02/29/Java-Knowledge-Points-20160229/"/>
     <id>http://shane.hsi.rocks/2016/02/29/Java-Knowledge-Points-20160229/</id>
     <published>2016-02-29T08:30:04.000Z</published>
-    <updated>2016-02-29T10:14:58.000Z</updated>
-    <content type="html"><![CDATA[<p>区分目录：</p>
+    <updated>2016-02-29T12:27:11.000Z</updated>
+    <content type="html"><![CDATA[<p>注：未填充答案。</p>
+<p>区分目录：</p>
 <ul>
 <li>src/main/resources/META-INF/</li>
 <li>webapps下的那个META-INF</li>
@@ -80,13 +92,14 @@
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">http:</span><span class="comment">//www.google.com/search?q=java.lang.AbstractMethodError%3A+org.apache.xerces.dom.DocumentImpl.setXmlStandalone</span></span><br></pre></td></tr></table></figure>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>区分目录：</p>
+    <![CDATA[<p>注：未填充答案。</p>
+<p>区分目录：</p>
 <ul>
 <li>src/main/resources/META-INF/</li>
 <li>webapps下的那个META-INF</li>
 </ul>
 <p>错误：</p>
-<p><code>java.lang.AbstractMethodError]]>
+<p><code>java.lang.Abs]]>
     </summary>
     
   </entry>
