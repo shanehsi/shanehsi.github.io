@@ -26,3 +26,7 @@ NoClassDefFoundError产生的原因：
 - 加载时从外存储器找不到需要的class就出现ClassNotFoundException 
 - 连接时从内存找不到需要的class就出现NoClassDefFoundError
 
+
+[出现java.lang.UnsupportedClassVersionError 错误的原因](http://blog.csdn.net/shendl/article/details/1050611)
+
+出现java.lang.UnsupportedClassVersionError 错误的原因，是因为我们使用高版本的JDK编译的Java class文件试图在较低版本的JVM上运行，所报的错误。
