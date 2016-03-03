@@ -251,5 +251,30 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObject = &#123;</span><br><span class="line">    get a() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._a_;</span><br><span class="line">    &#125;,</span><br><span class="line">    set a(val) &#123;</span><br><span class="line">        <span class="keyword">this</span>._a_ = val * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">myObject.a = <span class="number">2</span>;</span><br><span class="line">myObject.a; <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
 <h3 id="3-3-10__u5B58_u5728_u6027"><a href="#3-3-10__u5B58_u5728_u6027" class="headerlink" title="3.3.10 存在性"></a>3.3.10 存在性</h3><p>暂时不看。</p>
 <h1 id="4-__u6DF7_u5408_u5BF9_u8C61__u300E_u7C7B_u300F"><a href="#4-__u6DF7_u5408_u5BF9_u8C61__u300E_u7C7B_u300F" class="headerlink" title="4. 混合对象 『类』"></a>4. 混合对象 『类』</h1><p>实例化（instantiation），继承（inheritance）和（相对）多态（polymorphism）。</p>
-<h2 id="4-1__u7C7B_u7406_u8BBA"><a href="#4-1__u7C7B_u7406_u8BBA" class="headerlink" title="4.1 类理论"></a>4.1 类理论</h2><p>认为，好的设计是将数据和它相关的行为打包（封住）。</p>
+<h2 id="4-1__u7C7B_u7406_u8BBA"><a href="#4-1__u7C7B_u7406_u8BBA" class="headerlink" title="4.1 类理论"></a>4.1 类理论</h2><p>面向对象认为，数据和操作数据的行为本质上是互联的。好的设计是将数据和它相关的行为打包（封住）。这个在 CS 中叫做数据结构。</p>
+<p>继承类是对基类定义的特殊化。</p>
+<p>类，继承和实例化。所谓实例化，类只是抽象的表示，必须实例化后才能进行操作。</p>
+<p>类的另一个核心概念是多态，父类的通用行为可以被子类用更特殊的行为重写。</p>
+<p>类理论强烈建议父类和子类使用相同的方法名表示特定的行为。</p>
+<p>我们之后会看到，在 JavaScript 代码中会降低代码的可读性和健壮性。</p>
+<h3 id="4-1-3_JavaScript__u4E2D_u7684_u300E_u7C7B_u300F"><a href="#4-1-3_JavaScript__u4E2D_u7684_u300E_u7C7B_u300F" class="headerlink" title="4.1.3 JavaScript 中的『类』"></a>4.1.3 JavaScript 中的『类』</h3><p>其他语言中的类和JavaScript 中的『类』不一样。</p>
+<h2 id="4-2__u7C7B_u7684_u673A_u5236"><a href="#4-2__u7C7B_u7684_u673A_u5236" class="headerlink" title="4.2 类的机制"></a>4.2 类的机制</h2><p>由于很多开发者喜欢面向类的设计模式，下面会介绍如何在 JavaScript 中实现类以及存在的一些问题。</p>
+<h2 id="4-4__u6DF7_u5165"><a href="#4-4__u6DF7_u5165" class="headerlink" title="4.4 混入"></a>4.4 混入</h2><p>在继承或者实例化时，JavaScript 的对象机制并不会自动执行复制行为。简单来说，JavaScript 只有对象，并不存在可以实例化的『类』。</p>
+<p>一个对象不会被复制到其他对象，只是被关联起来。</p>
+<p>JavaScript 程序员也想出了一种方法来模拟类的复制行为 - 混入。</p>
+<p>包括：显式和隐式。</p>
+<h1 id="5__u539F_u578B"><a href="#5__u539F_u578B" class="headerlink" title="5 原型"></a>5 原型</h1><p><code>[[Prototype]]</code> 链。（也就是 <code>__proto__</code>）。</p>
+<h2 id="5-1__5B_5BPrototype_5D_5D"><a href="#5-1__5B_5BPrototype_5D_5D" class="headerlink" title="5.1 [[Prototype]]"></a>5.1 <code>[[Prototype]]</code></h2><p>是 JavaScript 对象的一个特殊的内置属性，其实就是对其他对象的引用。几乎所有的对象在创建时 <code>[[Prototype]]</code>  都会被赋予一个非空的值。</p>
+<p>注意：对象的 <code>[[Prototype]]</code> 可以为空，虽然很少见。</p>
+<p>稍后会介绍 <code>Object.create(..)</code> 的原理。现在只需要知道，它会创建一个对象并把这个对象的 <code>[[prototype]]</code> 关联到指定的对象。</p>
+<h3 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a><code>Object.prototype</code></h3><p>哪里是 <code>[[Prototype]]</code> 的尽头？</p>
+<p>所有普通的 <code>[[Prototype]]</code> 链最终都指向内置的 <code>Object.prototype</code>。</p>
+<h3 id="5-1-2__u5C5E_u6027_u8BBE_u7F6E_u548C_u5C4F_u853D"><a href="#5-1-2__u5C5E_u6027_u8BBE_u7F6E_u548C_u5C4F_u853D" class="headerlink" title="5.1.2 属性设置和屏蔽"></a>5.1.2 属性设置和屏蔽</h3><p><code>myObject.foo = &quot;bar&quot;</code></p>
+<p>主要涉及到 <code>[[Prototype]]</code> 链上层是否有 <code>foo</code>，是否是只读 <code>writable:false</code>，或者是不是存在 <code>setter</code>。</p>
+<p>总之，这里面有很多规则没有做到封闭。有例外。</p>
+<h1 id="5-2__u300E_u7C7B_u300F"><a href="#5-2__u300E_u7C7B_u300F" class="headerlink" title="5.2 『类』"></a>5.2 『类』</h1><p>JavaScript 和面向类的语言不同，它没有类来作为对象的抽象模式或者蓝图。</p>
+<p>JavaScript 只有对象。可以不通过类，直接创建对象。</p>
+<h3 id="5-2-1__u300E_u7C7B_u300F_u51FD_u6570"><a href="#5-2-1__u300E_u7C7B_u300F_u51FD_u6570" class="headerlink" title="5.2.1 『类』函数"></a>5.2.1 『类』函数</h3><p>模仿类。</p>
+<p>利用函数的一种特性，所有函数都会默认拥有一个名为 <code>prototype</code> 的公有并且不可枚举的属性。它会指向另一个对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo.prototype;</span><br></pre></td></tr></table></figure>
 </div></article></div></section><footer><div class="paginator"><a href="/2016/02/05/Read-some-Zhihu-2016-02-05/" class="prev">上一篇</a><a href="/2016/02/04/React-performance-zh-cn/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
