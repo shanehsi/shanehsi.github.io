@@ -2,13 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/03/07/Let-s-Learn-a-Shell-Script/</loc>
-    <lastmod>2016-03-07T07:47:46.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/</loc>
+    <lastmod>2016-03-07T08:16:23.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/</loc>
-    <lastmod>2016-03-07T07:44:29.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</loc>
+    <lastmod>2016-03-07T08:15:59.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/07/Let-s-Learn-a-Shell-Script/</loc>
+    <lastmod>2016-03-07T07:47:46.000Z</lastmod>
   </url>
   
   <url>
@@ -84,11 +89,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/02/25/Prepare-to-Know-TypeScript-and-React-Interface/</loc>
     <lastmod>2016-02-25T00:26:23.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/02/Read-React-Structure/</loc>
-    <lastmod>2016-02-24T14:27:33.000Z</lastmod>
   </url>
   
   <url>
