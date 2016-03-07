@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-01T07:19:43.000Z</updated>
+  <updated>2016-03-07T07:47:46.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[学一个 shell 脚本]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/07/Let-s-Learn-a-Shell-Script/"/>
+    <id>http://shane.hsi.rocks/2016/03/07/Let-s-Learn-a-Shell-Script/</id>
+    <published>2016-03-07T07:45:44.000Z</published>
+    <updated>2016-03-07T07:47:46.000Z</updated>
+    <content type="html"><![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash&#10;# ------------------&#10;# &#32447;&#19978;&#38745;&#24577;&#37096;&#32626;&#33050;&#26412;&#10;#&#10;# @history&#10;#&#10;# ------------------&#10;&#10;WORKSPACE=`pwd`&#10;DIRNAME=`dirname $0`    # &#36820;&#22238;&#36825;&#20010;&#33050;&#26412;&#25991;&#20214;&#25918;&#32622;&#30340;&#30446;&#24405;&#65292;&#28982;&#21518;&#21487;&#20197;&#26681;&#25454;&#36825;&#20010;&#30446;&#24405;&#23450;&#20301;&#35201;&#36816;&#34892;&#31243;&#24207;&#30340;&#30456;&#23545;&#20301;&#32622;&#10;&#10;STATIC_PATH=/opt/xoxo/static/&#10;TEST_STATIC_PATH=/opt/xoxo/static/test&#10;PROJECT_PATH=$WORKSPACE/xxyy-container&#10;DEPLOY_PATH=$PROJECT_PATH/src/main/webapp/deploy/&#10;&#10;pwd;&#10;echo $DIRNAME;  # &#25171;&#21360;&#24403;&#21069;&#30446;&#24405;&#10;&#10;chmod u+x $DIRNAME/color.sh &#38;&#38; source $DIRNAME/color.sh     # &#32473; color.sh &#22686;&#21152;&#25191;&#34892;&#26435;&#38480;&#65292;&#24182;&#20869;&#32852;&#10;if [ $? -eq 0 ]; then   # $? &#19978;&#20010;&#21629;&#20196;&#30340;&#36864;&#20986;&#29366;&#24577;&#65292;&#25110;&#20989;&#25968;&#30340;&#36820;&#22238;&#20540;&#12290;&#10;    echo -e &#34;$&#123;Gre&#125;&#25191;&#34892;color.sh&#25104;&#21151;$&#123;RCol&#125;&#34;&#10;else&#10;    echo &#34;&#25191;&#34892;color.sh&#20986;&#38169;&#20102;&#34;&#10;    exit 1&#10;fi&#10;&#10;cd $DIRNAME &#38;&#38; pwd&#10;&#10;npm install --registry=http://r.npm.xoxo.com     # npm install&#65292;&#24182;&#20351;&#29992; xoxo &#28304;&#65292;&#24403;&#28982;&#36825;&#37324;&#30340;&#20195;&#30721;&#19981;&#20381;&#36182; xoxo &#28304;&#65292;&#36825;&#21477;&#35805;&#21487;&#33021;&#20250;&#25302;&#24930;&#36895;&#24230;&#65288;&#27604;&#22914;&#28857;&#35780; CI &#26080;&#27861;&#35775;&#38382; xoxo &#28304;&#65289;&#10;&#10;if [ $? -eq 0 ]; then&#10;    echo -e &#34;$&#123;Gre&#125;npm&#20381;&#36182;&#21253;&#21152;&#36733;&#23436;&#25104;$&#123;RCol&#125;&#34;&#10;else&#10;    echo -e &#34;$&#123;On_Red&#125;npm&#20381;&#36182;&#21253;&#21152;&#36733;&#22833;&#36133;$&#123;RCol&#125;&#34;&#10;    exit 1;&#10;fi&#10;&#10;# &#20989;&#25968;&#65292;&#35843;&#29992; grunt deploy&#10;grunt_deploy () &#123;&#10;    # grunt task &#30340;&#21442;&#25968; --target&#65292;--project_path&#10;    grunt deploy --target=$1 --project_path=$PROJECT_PATH&#10;&#10;    if [ $? -eq 0 ]; then&#10;        echo -e &#34;$&#123;Gre&#125;$1&#21069;&#31471;&#32534;&#35793;&#25104;&#21151;$&#123;RCol&#125;&#34;&#10;    else&#10;        echo -e &#34;$&#123;On_Red&#125;&#25191;&#34892;&#22833;&#36133;&#12290;&#12290;&#12290;$&#123;RCol&#125;&#34;&#10;        echo &#34;&#23558;&#37325;&#26032;&#32534;&#35793;$1&#34;&#10;        echo -e &#34;\n\n\n\n&#34;;&#10;        # &#37325;&#26032;&#32534;&#35793;&#19968;&#27425;&#65292;&#24182; verbose &#25171;&#21360;&#10;        grunt deploy --target=$1 --project_path=$PROJECT_PATH --verbose&#10;        echo &#34;----------------------&#34;&#10;        echo &#34;$1&#34;&#10;        exit 1;&#10;    fi&#10;&#125;&#10;&#10;# &#20989;&#25968;&#35843;&#29992;&#65292;&#22312;&#20989;&#25968;&#23454;&#29616;&#20013;&#36890;&#36807; $1 $2 ... $9 &#26469;&#25509;&#21463;&#20989;&#25968;&#35843;&#29992;&#26102;&#30340;&#21464;&#37327;&#10;grunt_deploy xxyy&#10;&#10;echo -e &#39;$&#123;Gre&#125;&#25335;&#36125;&#38745;&#24577;&#36164;&#28304;&#21040;&#38745;&#24577;&#26381;&#21153;&#22120;$&#123;RCol&#125;&#39;&#10;&#10;rsync_static () &#123;&#10;    rsync -avi $DEPLOY_PATH xoxo@mobile-static0$1:$STATIC_PATH&#10;&#10;    if [ $? -eq 0 ]; then&#10;        echo -e &#34;$&#123;Gre&#125;rsync &#21040; mobile-static0$1 &#25104;&#21151;$&#123;RCol&#125;&#34;&#10;    else&#10;        echo -e &#34;$&#123;On_Red&#125;rsync &#21040; mobile-static0$1 &#22833;&#36133;$&#123;RCol&#125;&#34;&#10;        exit 1&#10;    fi&#10;&#125;&#10;&#10;rsync_yf_static () &#123;&#10;    # -a, --archive &#24402;&#26723;&#27169;&#24335;&#65292;&#34920;&#31034;&#20197;&#36882;&#24402;&#26041;&#24335;&#20256;&#36755;&#25991;&#20214;&#65292;&#24182;&#20445;&#25345;&#25152;&#26377;&#25991;&#20214;&#23646;&#24615;&#65292;&#31561;&#20110;-rlptgoD &#10;    # -a, --archive               archive mode; same as -rlptgoD (no -H)&#10;    # -v, --verbose &#35814;&#32454;&#27169;&#24335;&#36755;&#20986; &#10;    # -i, --itemize-changes       output a change-summary for all updates&#10;    # &#36825;&#26159; ssh &#36890;&#36947;&#20256;&#20837;&#65292;&#29992;&#25143;&#21517; xoxo &#22320;&#22336; yf-mobile-static0$1&#65288;&#21363;&#65292;yf-mobile-static0xxyy&#65289;&#10;    # &#20174; $DEPLOY_PATH -&#62; &#36828;&#31243;&#26426;&#22120;&#19978;&#30340; $STATIC_PATH&#10;    rsync -avi $DEPLOY_PATH xoxo@yf-mobile-static0$1:$STATIC_PATH&#10;&#10;    if [ $? -eq 0 ]; then&#10;        echo -e &#34;$&#123;Gre&#125;rsync &#21040; yf-mobile-static0$1 &#25104;&#21151;$&#123;RCol&#125;&#34;&#10;    else&#10;        echo -e &#34;$&#123;On_Red&#125;rsync &#21040; yf-mobile-static0$1 &#22833;&#36133;$&#123;RCol&#125;&#34;&#10;        exit 1&#10;    fi&#10;&#125;&#10;&#10;# rsync_static 1&#10;# rsync_static 2&#10;&#10;rsync_yf_static 1&#10;rsync_yf_static 2&#10;&#10;# &#28165;&#31354;&#21457;&#24067;&#21518;&#30340;&#38745;&#24577;&#25991;&#20214;&#10;rm -rf $DEPLOY_PATH</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="li]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Spring 3.1 M1: Unified Property Management]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/03/Spring-3-1-M1-Unified-Property-Management/"/>
+    <id>http://shane.hsi.rocks/2016/03/03/Spring-3-1-M1-Unified-Property-Management/</id>
+    <published>2016-03-03T11:10:21.000Z</published>
+    <updated>2016-03-07T07:44:08.000Z</updated>
+    <content type="html"><![CDATA[<p>参考链接：<a href="http://spring.io/blog/2011/02/15/spring-3-1-m1-unified-property-management/" target="_blank" rel="external">Spring 3.1 M1: Unified Property Management</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考链接：<a href="http://spring.io/blog/2011/02/15/spring-3-1-m1-unified-property-management/" target="_blank" rel="external">Spring 3.1 M1: ]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Manager Topic from ZhiHu]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/03/Manager-Topic-from-ZhiHu/"/>
+    <id>http://shane.hsi.rocks/2016/03/03/Manager-Topic-from-ZhiHu/</id>
+    <published>2016-03-03T05:57:37.000Z</published>
+    <updated>2016-03-03T05:57:37.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Java Knowledage Points 2016-03-01]]></title>
@@ -51,7 +92,7 @@
     <link href="http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/"/>
     <id>http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/</id>
     <published>2016-02-29T12:05:48.000Z</published>
-    <updated>2016-02-29T12:33:12.000Z</updated>
+    <updated>2016-03-07T07:44:29.000Z</updated>
     <content type="html"><![CDATA[<p>今天正式转组。当前时间20:05，状态累。虽然现在有很多想法，由于状态不佳，所以想形成一篇博客，保留下自己的零碎想法。</p>
 <ul>
 <li>新组有很多新的业务领域知识需要摄入</li>
@@ -75,7 +116,7 @@
 <li>坚持了3年的，成为了中产</li>
 <li>一直在更换目标的，成为了普通人</li>
 </ul>
-<p>出去其中的生搬硬造，道理却是出来了。</p>
+<p>除去其中的生搬硬造，道理却是出来了。</p>
 <p>这才是我最大的挑战。</p>
 ]]></content>
     <summary type="html">
@@ -664,205 +705,6 @@
     <content type="html"></content>
     <summary type="html">
     
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读 Why I No Longer Use MVC Frameworks]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/"/>
-    <id>http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/</id>
-    <published>2016-02-19T02:40:25.000Z</published>
-    <updated>2016-02-20T12:58:48.000Z</updated>
-    <content type="html"><![CDATA[<p>原文链接：<a href="http://www.infoq.com/articles/no-more-mvc-frameworks" target="_blank" rel="external">Why I No Longer Use MVC Frameworks</a></p>
-<p>HN 讨论链接：<a href="https://news.ycombinator.com/item?id=11104356" target="_blank" rel="external">https://news.ycombinator.com/item?id=11104356</a></p>
-<p><strong>PS</strong>：这篇文章非常不直观地透露出民科和专科的区别。</p>
-<blockquote>
-<p>The worst part of my job these days is designing APIs for front-end developers. </p>
-</blockquote>
-<p>笑尿。前端程序员首先要是个程序员。程序员的专业素养需要有。</p>
-<p>是的，作者直接答应了前端的没有设计的 API，然后项目完成后，就会有超级多的 API。</p>
-<blockquote>
-<p>and where I touched the sheer power of reactive and functional programming, a journey focused on simplicity and scraping the bloat that our industry is so good at producing.</p>
-</blockquote>
-<p>好吧，这篇文章是推销 Functional 和 Reactive 的。作者认为它们是专注于简洁性的。</p>
-<blockquote>
-<p>Facebook, so far, has resisted fixing that gap at the framework level.</p>
-</blockquote>
-<p>Facebook 拒绝在 React 的框架级别引入 MVC 这些解决数据（API）的特性。</p>
-<blockquote>
-<p>After using React and seeing what was coming in Angular2, I felt depressed: these frameworks systematically force me to use the BFF “Screen Scraping” pattern where every server-side API matches the dataset of a screen, in and out.</p>
-</blockquote>
-<p>作者又叹息了。每一个服务端的 API 对应屏幕上的一个 dataset。</p>
-<blockquote>
-<p>That’s when I had my “to hell with it” moment. I’ll just build a Web app without React, without Angular, no MVC framework whatsoever, to see if I could find a better articulation between the View and the underlying APIs.</p>
-</blockquote>
-<p>所以，这篇文章要探讨的就是，View 和底层 APIs 的关系。</p>
-<blockquote>
-<p>What I really liked about React was the relationship between the model and the view. The fact that React is not template based and that the view itself has no way to request data felt like a reasonable path to explore (you can only to pass data to the view).</p>
-</blockquote>
-<p>作者很喜欢 React 处理 Model 和 View 的方式，是传递，而不是请求。职责解耦。sole purpose。</p>
-<blockquote>
-<p>When you look long enough, you realize that the sole purpose of React is to decompose the view in a series of (pure) functions and the JSX syntax:</p>
-<p><v params="{M}/"><br>is nothing different than:<br>V = f( M )</v></p>
-</blockquote>
-<p>非常精简的 <code>V=f(M)</code>。</p>
-<blockquote>
-<p> GraphQL is nothing more than a declarative way to create a view-model. Being forced to shape the model to match the view is the problem, not the solution. </p>
-</blockquote>
-<p>对作者的这个观点持保留态度。继续看。</p>
-<blockquote>
-<p>Unlike templates or “queries written by front-end engineers”, functions do not require the model to fit the view.<br>When the view is created from a function (as opposed to a template or a query) you can transform the model as needed to best represent the view without adding artificial constraints on the shape of the model.</p>
-</blockquote>
-<p>这是作者对上述观点的继续解答。因为 View 是 function，而不是 templates 或者 query。而 function 是不需要 model 来符合 view 的。因为你可以按需改变 model 的形状来符合 view。</p>
-<blockquote>
-<p>For instance, if the view displays a value v and a graphical indicator as to whether this value is great, good or bad, there is no reason to have the indicator’s value in your model: the function should simply compute the value of the indicator from the value v provided by the model.<br> V = f( vm(M) )</p>
-</blockquote>
-<p>根据作者举得这个例子，我理解了。作者认为根据一个 v，来计算 great，good，bad。这个 great，good，bad 不应该放在 model。</p>
-<p>但是应该放在 view model 里啊。问题是，model -&gt; view model 的这层逻辑应该放在哪里？</p>
-<p>其实很简单，以网络传输最小字节数为基准。我 view 只应该要我想要的。我不要有逻辑。给我什么就显示什么。逻辑意味着维护成本，浏览器端维护意味着可能的泄露。</p>
-<blockquote>
-<p>As a veteran MDE practitioner, I can assure you that you are infinitely better off writing code than metadata, be it as a template or a complex query language like GraphQL.</p>
-</blockquote>
-<p>那是因为 metadata 做的语义化的东西概念太多太杂。</p>
-<blockquote>
-<p>The natural interface they create allows you to “theme” your Web app or Website or render the view in different technologies (native for instance).</p>
-</blockquote>
-<p>theme 这个词很吸引我。</p>
-<blockquote>
-<p>The function implementations have the potential to enhance the way we implement responsive design as well.</p>
-</blockquote>
-<p>作者说，函数式实现也有利于增强响应式设计的实现方式。</p>
-<blockquote>
-<p>But most importantly, this approach allows the view to declare the minimum contract with the model and leaves the decision to the model as to what it the best way to bring this data to the view. Aspects like caching, lazy loading, orchestration, consistency are entirely under the control of the model. Unlike templates or GraphQL there is never a need to serve a direct request crafted from the view perspective.</p>
-</blockquote>
-<p>最重要的就是，view 可以对 model 声明尽可能少的 contract。model 来负责一些切面需求，比如缓存，延迟加载，组合，一致性。</p>
-<p>注：model，不希望有 model 这个粒度，而是类似于 GraphQL 的，property 粒度的。这块的确会复杂，但是如果把数据结构图理清的话，会把这块完全抽象出去。</p>
-<blockquote>
-<p>The core issue here is, as Andre Medeiros so eloquently puts it, that the MVC pattern is “interactive” (as opposed to Reactive). In traditional MVC, the action (controller) would call an update method on the model and upon success (or error) decide how to update the view. As he points out, it does not have to be that way, there is another equally valid, Reactive, path if you consider that actions should merely pass values to the model, regardless of the outcome, rather than deciding how the model should be updated.</p>
-</blockquote>
-<p>MVC 模式是交互式的。在传统的 MVC 模式中，action (controller) 会调用 model 上的 update 方法。然后根据是 success 或者 error 来更新 view。Andre Medeiros 也指出，可以使用另一种同样有效的，响应式的方案，只要你把 action 只是传递值给 model，不用关心结果。</p>
-<blockquote>
-<p>The key question then becomes: how do you integrate actions in the reactive flow?</p>
-</blockquote>
-<p>这的确是很多人争论的，flux 中的 action 需不需要？</p>
-<blockquote>
-<p>If you want to understand a thing or two about Actions, you may want to take a look at TLA+. TLA stands for “Temporal Logic of Actions”, a formalism invented by Dr. Lamport, who got a Turing award for it.<br> In TLA+, actions are pure functions:<br>            data’ = A (data)</p>
-<p>I really like the TLA+ prime notation because it reinforces the fact that functions are mere transformations on a given data set.</p>
-</blockquote>
-<p>作者首先引入了 TLA 的概念。Actions 是纯函数。并且强化了事实，函数只是所给数据集的转化。</p>
-<blockquote>
-<p>With that in mind, a reactive MVC would probably look like:<br>            V = f( M.present( A(data) ) ) </p>
-<p>Actions, again, are pure functions, with no state and no side effect (with respect to the model, not counting logging for instance).</p>
-</blockquote>
-<p>Actions 是纯函数，没有状态和副作用。比如没有计数日志这些。</p>
-<blockquote>
-<p>This paragraph is very important, so please read carefully. We have seen that, in TLA+, the actions have no side effects and the resulting state is computed, once the model processed the action outputs and updated itself. That is a fundamental departure from the traditional state-machine semantics where the action specifies the resulting state, i.e. the resulting state is independent of the model. In TLA+, the actions that are enabled and therefore available to be triggered in the state representation (i.e. the view) are not linked directly to the action that triggered the state change. In other words, state machines should not be specified as tuples that connect two states (S1, A, S2) as they traditionally are, they are rather tuples of the form (Sk, Ak1, Ak2,…) that specify all the actions enabled, given a state Sk, with the resulting state being computed after an action has been applied to the system, and the model has processed the updates.</p>
-</blockquote>
-<p>这一段很重要，我也全段摘出解读。</p>
-<p>在 TLA+ 中，actions 是没有副作用的，结果状态是计算出来的，有 model 来处理 actions outputs，自己更新自己。这和传统的状态机语法有本质的区别，在状态机中，结果状态是有 action 指定的，和 model 是独立的。</p>
-<p>在 TLA+ 中，可以在 state representation（比如 view）被触发的 actions  不是用来触发 state change 的 action。</p>
-<p>所以，状态机不能再表示为连接两种状态的管道（tuple），即 <code>(S1, A, S2)</code>，而是，给定一个状态，<code>Sk</code>，然后再给定所有的启用的 actions，即 <code>(Sk, Ak1, Ak2, ...)</code>。结果状态是在一个 action 被用于应用后计算出来的，由 model 来处理。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>原文链接：<a href="http://www.infoq.com/articles/no-more-mvc-frameworks" target="_blank" rel="external">Why I No Longer Use MVC Frameworks</a>]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[最近在做的事情]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/"/>
-    <id>http://shane.hsi.rocks/2016/02/19/Some-Recent-Doings/</id>
-    <published>2016-02-19T00:15:55.000Z</published>
-    <updated>2016-02-20T13:43:49.000Z</updated>
-    <content type="html"><![CDATA[<p>整理下最近在做的事情。</p>
-<blockquote>
-<p>不求快，也不求精美。这个博客，目前只是一种能方便记录的地方（这么说，电脑是我目前的主要生产力工具了）。<br>这是第一篇，整理最近在做的事情。我准备挑几个点，或者整理出依赖关系，找到一些目标。然后梳理下2016年的规划。</p>
-</blockquote>
-<p>一篇一篇的看下。</p>
-<ul>
-<li>2015 Annual Retro 记录了我2015年的努力。前端，JavaScript，CSS，甚至想涉足设计方面。以及简单的看了下 Webkit 导论。和一些 Functional，Reactive 的学习。</li>
-<li><p>2015 Annual Retro 文学类书单和旅行。</p>
-</li>
-<li><p>2016 The Shawshank Redemption 我其实想说的是，要有理想，要有远见。远见这种东西，顾名思义，能见远。然而，一是，目力难及，二是我更倾向于做好当前事。所以，如果要有远见，必须在每天繁杂的事务中，节余出一些时间来，看书也好，其他方式也好，每天少量的积累。这就需要很好的规划性。</p>
-</li>
-<li><p>2016 The Shawshank Redemption 关于规划性和时间的利用上，希望再次探讨下娱乐的意义。娱乐对于我来说，主要就是看动漫，看知乎等等，能不能把这些从心态上规避掉。</p>
-</li>
-<li><p>ISP in Front-end Component Development 这是我的一个设想。我认为前端目前比较没有设计性，很多东西得不到积累。所谓的很多东西，如果前端能抽象出标准和实现来，可能就相对容易积累一点。只可惜由于动态语言的特性，大家都不喜欢抽象出细粒度的接口，仅仅提供最终的实现。我希望能找出，React.js 的 View 层的接口等等。</p>
-</li>
-<li><p>JavaScript new constructor this from zhihu 气宗。这块必须要修炼，难度也不大，概念相对来说是最少，只是坑坑洼洼的细节较多（相比于有用的细节）。再次强调，这块肯定是后面要积累的。也不要说，即使之后不做 JavaScript 了，不需要。即使之后学习 Java 了，这块也不能丢。练好了，夯实了，确保融入记忆里了，再说。不要一件事做一半。</p>
-</li>
-<li><p>Thoughts on Web Development (To Update) 这个是我去年到现在一直在思考的问题，越思考发现涉及到的细节越多，也就有了一系列的思考。这个话题比较大，基本涉及了我工作的领域前端所有需求。这块希望能根据区别分解下，然后找到每个点的依赖，联系。</p>
-</li>
-<li><p>Use Router5 自己写 Router，实际上是奔着 Navigator Stack 去的。</p>
-</li>
-<li><p>You don’t Know JS - this &amp; prototype note 气宗修炼最佳秘籍。必须看完，复习，复读。</p>
-</li>
-</ul>
-<hr>
-<p>2016年02月20日21:38:27 更新</p>
-<p>由于读了这篇文章：<a href="http://www.infoq.com/articles/no-more-mvc-frameworks" target="_blank" rel="external">Why I No Longer Use MVC Frameworks</a> ，感觉有很多东西需要学习。</p>
-<p>好多事情。写这一篇文章的原因 – 整理。</p>
-<p>所以，今天明天花时间系统学习如何使用 Omni Focus，材料来自 <a href="https://www.zhihu.com/topic/19568532/top-answers" target="_blank" rel="external">知乎</a>。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>整理下最近在做的事情。</p>
-<blockquote>
-<p>不求快，也不求精美。这个博客，目前只是一种能方便记录的地方（这么说，电脑是我目前的主要生产力工具了）。<br>这是第一篇，整理最近在做的事情。我准备挑几个点，或者整理出依赖关系，找到一些目标。然后梳理下2016]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[CS 的数学要求]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/06/Math-Requirements-for-Computer-Science/"/>
-    <id>http://shane.hsi.rocks/2016/02/06/Math-Requirements-for-Computer-Science/</id>
-    <published>2016-02-06T07:53:23.000Z</published>
-    <updated>2016-02-20T12:57:54.000Z</updated>
-    <content type="html"><![CDATA[<p>有感于这篇回答（<a href="https://www.zhihu.com/question/19635359" target="_blank" rel="external">什么是 Monad (Functional Programming)？</a>）的这一句话：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不就是自函子范畴里的幺半群么</span><br></pre></td></tr></table></figure>
-<p>对计算机所需要的数学或者就是纯粹的数学产生了一些兴趣。</p>
-<p>学习数学一直是我心中的小小的欲望，奈何能力有限，资源不足。不过，数学的魅力的确深远，如果能够知道自己平日里做的很多工作、很多想法都可以有一种模式或是一种解释，真是一件幸事。</p>
-<p>来自：<a href="http://www.guokr.com/question/146597/" target="_blank" rel="external">计算机专业的数学应学到什么水平？应该学习数学的那些分支？</a></p>
-<p>应用比较广泛的基础课：</p>
-<ul>
-<li><p>微积分（计算机建立模型的时候常常会用到）</p>
-</li>
-<li><p>线性代数（像著名的 page rank 就是特征值理论的一个重要应用. 很多问题最终都能化为求解线性方程组问题(例如, 用有限差分法或有限元法解偏微分方程, 用最小二乘法求最佳逼近,等等). 线性代数知识还常在机器学习或数据挖掘中被用来降低数据的维度. 还有很多其他的应用.）</p>
-</li>
-<li><p>概率论，数理统计，随机过程（在最近的人工智能的各个领域则是非常重要的基础, 很多机器学习算法都是基于统计模型的, 像 Bayes 统计什么的应用极为广泛(例如垃圾邮件过滤.)）</p>
-</li>
-</ul>
-<p>和计算机相关的：</p>
-<ul>
-<li>离散数学（离散数学不同的书选取的内容不大一样, 不过一般都有逻辑阿, 图论阿, 有的还有自动机什么的, 一看就和计算机关系紧密.）</li>
-<li>数值分析（数学理论大多是抽象的, 想在计算机上用就离不开数值分析了; 用数值方法解一些无法求出解析解的方程也很有实用价值.）</li>
-</ul>
-<p>和不同专业相关的数学知识：</p>
-<ul>
-<li><p>像是信息安全, 编码方面的, <strong>数论</strong> 知识自然不可缺少, 建议多学一些代数知识, 也包括代数几何啊什么的. (<strong>复变函数</strong> 什么的都是基础啊….)</p>
-</li>
-<li><p>像是(离散)算法方面的, 可以学学 Knuth 的具体数学, 另外还得学些运筹学, 图论, 组合数学什么的.</p>
-</li>
-<li><p>像是图形处理方面, 恐怕就需要很多几何知识了, 学几何这玩意代数和分析都得好, 像解析几何, 射影几何, 微分几何, 黎曼几何, 代数几何, 拓扑学呀都在这个领域用的上. 还得熟悉样条理论, 曲线与曲面的表示啊等等.</p>
-</li>
-<li><p>图像处理, 也需要不少数学. 最近利用偏微分方程,反问题啊来研究图像处理的很热门. 还有傅立叶分析, 小波分析呀都很有用.</p>
-</li>
-<li><p>人工智能相关的话, 得把概率, 统计, 随机过程什么的学的更深入一些.</p>
-</li>
-</ul>
-<hr>
-<p>另外在维基百科里也有一些猎奇：</p>
-<p>这些是由 monad（单子） 引出的？</p>
-<ul>
-<li>范畴论</li>
-<li>抽象代数</li>
-</ul>
-<p>另外这一篇非常全面：<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E5%AD%A6%E7%A7%91%E5%88%86%E7%B1%BB%E6%A0%87%E5%87%86" target="_blank" rel="external">数学学科分类标准</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>有感于这篇回答（<a href="https://www.zhihu.com/question/19635359" target="_blank" rel="external">什么是 Monad (Functional Programming)？</a>）的这一句话：</]]>
     </summary>
     
   </entry>
