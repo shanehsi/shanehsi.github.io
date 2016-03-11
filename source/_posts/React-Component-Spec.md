@@ -9,6 +9,8 @@ tags:
 - √ 样式提供 css 文件，不同业务可以有不同的引入方式
 - √ 组件的输出需要是完整的编译后的代码（可以考虑只提供 CommonJS 风格），而不是编译前的 es6 代码，不应该把编译过程交给使用方
 
+## 结构和样式
+
 **样式提供 css 文件，不同业务可以有不同的引入方式**：
 
 这也就是为什么样式要和 HTML 分离的原因了。目前蚂蚁用的是 namespace。
@@ -17,11 +19,20 @@ tags:
 
 这样感觉，less 很好的（讨厌 sass，嫌他复杂，依赖还有个 C 扩展，每次安装，每次改 npm 都一丢丢问题）。
 
+### 更多想法
+
+- 结构很重要，最好提供文档，帮助写样式
+- 我不想信 CSS，当然很多的属性可以再聚集成大的属性，用 PostCSS。但是我不想做标准化的事情。是个长期积淀的过程。
+
+## 前端的 ISP
+
 **拥抱开源，多利用开源组件，在其基础上做一些本地化，二次开发，最好可以提 pr 反向回馈开源组件**：
 
 目前 JavaScript 社区，能把接口定义好，再回馈。目前还是以 Monolithic 为主。
 
 前端如何服务化，做到 micro，需要思考。[Linux 为什么还要坚持使用宏内核？](http://www.zhihu.com/question/20314255)。
+
+## 先宏后微，目录隔离
 
 **组件小而美，互相独立，不要搞大而全的 ui 框架，但是需要统一的架构（css，demo，test 等）**：
 
@@ -51,7 +62,6 @@ HTML/CSS 之外的功能。这块功能的逻辑性是够强的，可以使用 O
 
 ## css 的讨论
 
-```
 我觉得还是有好处的。说一些自己的经历和由此产生的想法。
 如果每个组件都有单独的 CSS 文件，那么对于复杂的可能引入很多组件的项目来说，这个问题该怎么解决呢？因为如果是用 React 做项目的话，肯定要把基础的 HTML 结构放到顶层 React Component 里提供复用，如果使用最简单的方式，把组件的 CSS 以 形式写在 里，可能会有几个问题：1. 真正引用我们的组件的 React Component 并不能直接接触到 ，如果需要 inject 的话，就得用 document.head.appendChild(linkElement) 这种比较脏的形式，而且会导致 server rendering 的结果和浏览器端结果 checksum 不一致（会有 warning）。如果引用我们组件的 React Component 自身是会被重复引用的组件，很可能 元素会被重复写入 ；或者当组件的生命周期结束的时候，相应的 又没有从 DOM 被移除。如果不能妥善处理 元素，会有几个潜在问题：1. 里边出现大量重复的 ; 2. 大量重复无意义的请求; 3. CSS 很难合并; 4. CSS 文件自身变得难以管理，组件更新乃至替换组件变成了复杂、有风险的事情。为了避开这些问题，对方可能会选择使用 Reducer 这种集成化的解决方案，然而 Reducer 是在 Browserify 之上的封装（抱歉不是特别了解 Reducer，只看过源码，可能理解有误），选择 Reducer 也就意味着牺牲了自由度，对方需要放弃原来的 Browserify / WebPack 技术栈，也就是放弃大量的开源插件，这是有风险的事情，更何况让对方接受一个不是非常知名的集成解决方案并不是十分容易的事情。原本使用 React 组件只是类似调用一个函数那么简单的事情，为什么对方应该考虑这么多呢？
 对于我们之前做项目来说，因为使用 Browerify 打包，CSS 地址必须 hardcode 到想要引用这个 CSS 的地方去，而且，不能使用常量，地址必须以某种非常特殊且明确的形式写在那里（或者写个简单的 transform 可以稍微解决得好一点，至少做 rebase 会简单些），不仅开发体验差、CSS 资源难管理，而且仍然会有前边提到的 checksum 不一致的问题。
@@ -60,6 +70,8 @@ HTML/CSS 之外的功能。这块功能的逻辑性是够强的，可以使用 O
 个人认为比较理想的方式仍然是把 CSS 写在外部文件里，我们不仅可以使用各种 CSS Preprocessor，还可以同时使用 PostCSS 做更多事情。但是前边提到的引入 CSS 文件的问题怎么解决？我们自己开发一套解决方案不是一个很容易让人接受的方式（比如我一直一直都不太能接受 FES，总觉得一旦开始用它的框架，以后整个项目的发展空间就被框在它提供的功能范围里了，这是很大的风险）；其次，CSS 可以提供很好的可复用性，比如说 className，它本来就是一个 Class。我们可以利用一些工具在 build 阶段把 CSS 中的各种 className 替换成有规则的 ID，然后提供一个方法帮助组件在 JS 里调用这些被替换掉的 className；如果 className 样式提供的还不够的话，组件自身可以再在元素的 style 里进行扩展。而基于 PostCSS 的 Autoprefixer 可以让我们的 CSS 拥有更广泛的适用范围，甚至阿里开发的 CSSGrace 可以让我们的 CSS 兼容到 IE6，但只需要写最新的无前缀的 CSS 属性。
 那么怎么把 CSS 加载到页面中呢，甚至最好还能实现 server rendering？
 比如可以实现这样一个 React Component：
+
+```js
 import fs from 'fs';
 import React, { PropTypes } from 'react';
 
@@ -78,8 +90,11 @@ Style.propTypes = {
 };
 
 export default Style;
+```
+
 然后在写组件的时候：
 
+```js
 import React, { PropTypes } from 'react';
 import Style from '@mtfe/react-tools/utils/Style.js';
 import classNameUtils from '@mtfe/react-tools/utils/className.js';
@@ -102,7 +117,11 @@ class MyAwesomeComponent extends React.Component {
 }
 
 export default MyAwesomeComponent;
+```
+
 最后当别人调用我们的组件的时候：
+
+```js
 import React, { PropTypes } from 'react';
 import AwesomeComponent from 'my-awesome-component';
 
@@ -123,8 +142,12 @@ class App extends React.Component {
         );
     }
 }
+```
+
 无需关心样式，组件和样式就都渲染出来了。CSS 部分可以做预处理和后处理，className 允许禁止转换，保持原来的 className，同时添加命名空间，方便用户自己对组件样式进行二次定制，甚至干脆允许禁止加载组件自己的样式，样式部分完全由用户自己去处理；组件的样式 <ComponentStyle />会在内部统计被加载的次数，将只被渲染一次（对于 server rendering 来说很有好处），而且当组件生命周期结束时，会自动判断是否需要把相应的样式从 DOM 中移除。因为 className 是被替换过的，因此没有命名空间的问题，组件变成了真正的组件，是可以随时调用的资源。如果用户觉得这些配置有些麻烦，可以封装一下组件再用。
 当然，实现上面这些，困难在于：CSS 样式必须在组件 build 的时候就打包进去（这其实并不难），而且我们需要把对 CSS 类名解析的结果一并打包进去，提供可定制性。build 后的目录结构可能是这样的：
+
+```
 | ...
 | lib
 | -- index.js
@@ -140,9 +163,10 @@ class App extends React.Component {
 | -- img
 | ---- icon.png
 | ...
+```
+
 只把资源相关的东西 build 进去，其他依赖并没有 build 进去，这和 WebPack / Browserify 打包是不一样的。
 因为急着出门，先写到这里……很多地方比较乱，请大家多提问题和意见
-```
 
 
 
