@@ -2,13 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/03/10/A-Maven-Tip/</loc>
-    <lastmod>2016-03-10T09:51:45.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/03/09/React-Component-Spec/</loc>
+    <lastmod>2016-03-11T08:06:58.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/03/09/React-Component-Spec/</loc>
-    <lastmod>2016-03-09T08:03:54.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/</loc>
+    <lastmod>2016-03-11T08:05:25.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/10/A-Maven-Tip/</loc>
+    <lastmod>2016-03-10T09:56:32.000Z</lastmod>
   </url>
   
   <url>
@@ -174,11 +179,6 @@
   <url>
     <loc>http://shane.hsi.rocks/2016/01/13/Scaffold-and-Tools-for-Front-end-to-update/</loc>
     <lastmod>2016-02-20T12:59:02.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/02/19/Reading-Why-I-No-Longer-Use-MVC-Frameworks/</loc>
-    <lastmod>2016-02-20T12:58:48.000Z</lastmod>
   </url>
   
   <url>
