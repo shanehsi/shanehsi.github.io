@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Gulp API · Shane Hsi Rocks</title><meta name="description" content="我很喜欢 gulp。接口很纯粹，模块化的思路很简洁。
+所谓模块化的思路，就是 pipe，公用一套 steamm，vinyl。把文件的处理给分块。
+
+src
+dest
+task
+
+纯粹一点，js 不要引用 font，css，img。
+不对，js 必须引用 svg，font，css，img 这些。
+因为可以 inline。
+前端比较麻烦的就是，各种格式都要用。我觉得还是没有必要 inline 吧。根据标准走。
+如果经常变化的，inline（比如验证码图片）。所以，inline 是一种特殊需求的解决方案，不要做通用场景。
+那其中一个 task 就来了。
+
+字体文件的合并
+图片的合并，sprite
+
+
+图片优化的其他策略，比如通过css，svg，iconfont 代替图片之类的。不是 task。
+
+这些是单独的开发流程。都是对其他资源的引用。
+
+&lt;h2 id=&quot;u9644_uFF1A_u518D_u8C08_u524D_u7AE"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Gulp API</h1><div class="post-meta"><div class="post-time">Mar 13, 2016</div></div><div class="post-content"><p>我很喜欢 gulp。接口很纯粹，模块化的思路很简洁。</p>
+<p>所谓模块化的思路，就是 pipe，公用一套 steamm，vinyl。把文件的处理给分块。</p>
+<ul>
+<li>src</li>
+<li>dest</li>
+<li>task</li>
+</ul>
+<p>纯粹一点，js 不要引用 font，css，img。</p>
+<p><del>不对，js 必须引用 svg，font，css，img 这些。</del></p>
+<p><del>因为可以 inline。</del></p>
+<p>前端比较麻烦的就是，各种格式都要用。我觉得还是没有必要 inline 吧。根据标准走。</p>
+<p>如果经常变化的，inline（比如验证码图片）。所以，inline 是一种特殊需求的解决方案，不要做通用场景。</p>
+<p>那其中一个 task 就来了。</p>
+<ul>
+<li>字体文件的合并</li>
+<li>图片的合并，sprite</li>
+</ul>
+<blockquote>
+<p>图片优化的其他策略，比如通过css，svg，iconfont 代替图片之类的。不是 task。</p>
+</blockquote>
+<p>这些是单独的开发流程。都是对其他资源的引用。</p>
+<hr>
+<h2 id="u9644_uFF1A_u518D_u8C08_u524D_u7AEF_u9700_u6C42"><a href="#u9644_uFF1A_u518D_u8C08_u524D_u7AEF_u9700_u6C42" class="headerlink" title="附：再谈前端需求"></a>附：再谈前端需求</h2><p>其他资源搞定了。</p>
+<p>现在是 html，css 开发。</p>
+<p>大的东西，一般不希望变（比如布局）。首先，作为大的东西，语义本来就很少。比如，只是设定边界。如果变，就可能变了30%。</p>
+<p>如果是小的东西，可以变，变的话，只变了 1%。比如。小的东西，语义非常多。</p>
+<p>大的东西都是精炼好的，职责单一的。才能做通用。</p>
+<p>从布局组件来看，React 我觉得不好模拟。</p>
+<p>不是我包含你，而是你附着我。</p>
+<p>而且，因为是 whole store，不需要特殊的通信逻辑。</p>
+<p>数据如果很慢的话，DOM 慢就不怕了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Anchor.Head&gt;</span><br><span class="line">    &lt;Elem.Logo&gt;</span><br><span class="line">    &lt;/Elem.Logo&gt;</span><br><span class="line">    &lt;Elem.</span><br><span class="line">&lt;/Anchor.Head&gt;</span><br><span class="line">&lt;Anchor.Anchor1&gt;</span><br><span class="line">&lt;/Anchor.Anchor1&gt;</span><br><span class="line">&lt;Anchor.Anchor2&gt;</span><br><span class="line">&lt;/Anchor.Anchor2&gt;</span><br><span class="line">&lt;Anchor.Foot&gt;</span><br><span class="line">&lt;/Anchor.Foot&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>看更新：</p>
+</blockquote>
+<p>从左至右，从上至下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">L</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">L.Sidebar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">L.Sidebar</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">L.Head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">L.Head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">L.Workspace</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">L.Workspace</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">L</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">L.Head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">L.OmniSearch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">L.OmniSearch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">L.FunctonArea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">L.FunctonArea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">L.Head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">L.OmniSearch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">E.SearchBox</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">E.SearchBox</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">L.OmniSearch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">L.FunctonArea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">E.LFA.Add</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">E.Apps</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">E.LFA.Help</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">E.Setting</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">E.Notification</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">E.LFA.Uesr</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">L.FunctonArea</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>考虑到命名冲突，加入 namespace。</p>
+<p>总之，不要提前抽象。而是合并抽象，类似于一种吸纳进标准库的流程。</p>
+<p>Layout Store 来做 Layout Component 间通信。</p>
+<p>One Single Store is also true. 因为，其实是 stream 的 merge。</p>
+<p>从前端问题出发，做逻辑分类。便于精细处理。</p>
+<blockquote>
+<p>细分会变复杂，组织要用标准原语。降低复杂度。</p>
+</blockquote>
+<p>不要考虑性能，考虑性能瓶颈。</p>
+<p>更多的考虑可读性。</p>
+<p>其实，对 Component 再做下 Layout 和 Element 的逻辑分类。是映射于 CSS 的定位、布局相关属性和样式相关属性。</p>
+<p>现在的分类标准是：</p>
+<p><strong>如果要做 Loading 样式（就是线稿中间的默认空白显示），则分成 Layout 和 Element</strong>。</p>
+<p>因为没有必要特别细化空白显示的结构。所以，Layout 到很微笑时，就没必要了。代码逻辑可以 monolithic 一点。反正可控好维护。</p>
+<p>当然，如果分类了，就纯粹些（指 CSS 属性的运用）。</p>
+<p>比如，Layout 的 Empty Placeholder 如何被加载到的 Data 和 View 替换？</p>
+<p>挂载点的替换。在 React 里其实就是 Children。这块逻辑看起来不属于 Layout，而是为 Layout 在这个 context 中一个必备功能。可以抽出。</p>
+<p>现在还有一个 portal 的还需要想好如何处理？</p>
+<p>相对定位，这种两个 box 状态的绑定，是浏览器原生提供的。自己做一套不必。</p>
+</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2016/03/10/A-Maven-Tip/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
