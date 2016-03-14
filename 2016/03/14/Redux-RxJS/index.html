@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Redux RxJS · Shane Hsi Rocks</title><meta name="description" content="使用 RxJS 的目的是为了引入 stream 的操作。
+
+actions 作为 mutations 保留，并且 view 对 actions 是 imperative。
+store 监听 action。
+
+stream 在进入 store 之前 merge 一次。
+
+store 到 view，最简单的是通过 throttle，交给 requestAnimationFrame。
+（但是如果有 animation store，可以在加入一层 merge）
+
+"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Redux RxJS</h1><div class="post-meta"><div class="post-time">Mar 14, 2016</div></div><div class="post-content"><p>使用 RxJS 的目的是为了引入 stream 的操作。</p>
+<ul>
+<li>actions 作为 mutations 保留，并且 view 对 actions 是 imperative。</li>
+<li><p>store 监听 action。</p>
+</li>
+<li><p>stream 在进入 store 之前 merge 一次。</p>
+</li>
+<li>store 到 view，最简单的是通过 throttle，交给 requestAnimationFrame。</li>
+<li>（但是如果有 animation store，可以在加入一层 merge）</li>
+</ul>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/03/14/Redux-multiple-stores-why-not/" class="prev">上一篇</a><a href="/2016/03/13/Gulp-API/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

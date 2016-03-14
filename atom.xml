@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-14T02:01:07.000Z</updated>
+  <updated>2016-03-14T09:12:11.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Redux - multiple stores, why not?]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/14/Redux-multiple-stores-why-not/"/>
+    <id>http://shane.hsi.rocks/2016/03/14/Redux-multiple-stores-why-not/</id>
+    <published>2016-03-14T08:55:32.000Z</published>
+    <updated>2016-03-14T09:12:11.000Z</updated>
+    <content type="html"><![CDATA[<p>实话说，我不认为一个 store 是好事情。</p>
+<p>实话说，我不认为多个 store 会出什么问题。当然也遇到过问题：</p>
+<ul>
+<li>如果一个 store 保存 当前考核周期</li>
+<li>另一个 store 会根据当前考核周期获取考核群体列表</li>
+</ul>
+<p>这样 store 之间拿数据很麻烦。</p>
+<p>如果是一个 store 就很方便。其实没有遇到过 flux 中的 <code>waitFor</code> 的场景。即使遇到，redux 也无法解决。它本身也是按照顺序执行 reducer 更新 state 的。</p>
+<p>最大的问题就是，拿数据很麻烦。毕竟逻辑上分开了。有时又要它们在一起使用。这块没有 common pattern。</p>
+<p><a href="http://stackoverflow.com/questions/33619775/redux-multiple-stores-why-not" target="_blank" rel="external">stackoverflow - Redux - multiple stores, why not?</a></p>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>As a note: I’ve read the docs for Redux (Baobab, too), and I’ve done a fair share of Googling &amp; testing.</p>
+<p>Why is it so strongly suggested that a Redux app have only one store?</p>
+<p>I understand the pros/cons of a single-store setup vs a multiple store setup (There are many Q&amp;A on SO on this subject).</p>
+<p>IMO, this architectural decision belongs to the app developers <strong>based on their projects’ needs</strong>. So why is it so strongly suggested for Redux, almost to the point of sounding mandatory (though nothing is stopping us from making multiple stores)?</p>
+<p>EDIT: feedback after converting to single-store</p>
+<p><strong>After a few months working with redux on what many would consider a complex SPA, I can say that the single store structure has been a pure delight to work with.</strong> </p>
+<p>作者反水了。看看原因。</p>
+<p>A few points that might help others understand why single store vs many store is a moot question in many, many use-cases:</p>
+<ul>
+<li>it’s reliable: we use selectors to dig through the app state and obtain context-relevant information. We know that all the needed data is in a single store. It avoids all questioning as to where state issues could be.</li>
+</ul>
+<p>还好。实变形不变。</p>
+<ul>
+<li>it’s fast: our store currently has close to 100 reducers, if not more. Even at that count, only a handful of reducers process data on any given dispatch, the others just return the previous state. The argument that a huge/complex store (nbr of reducers) is slow is pretty much moot. At least we’ve not seen any performance issues coming from there.</li>
+</ul>
+<p>store 会慢吗？逻辑多，或者不必要的逻辑多才会慢。</p>
+<ul>
+<li>debugging friendly: while this is a most convincing argument to use redux as a whole, it also goes for single store vs multiple store. When building an app you’re bound to have state errors in the process (programmer mistakes), it’s normal. The PITA is when those errors take hours to debug. Thanks to the single store (and redux-logger) we’ve never spent more than a few minutes on any given state issue.<br>a few pointers</li>
+</ul>
+<p>The true challenge in building your redux store is when deciding how to structure it. Firstly, because changing structure down the road is just a major pain. Secondly, because it largely determines how you’ll be using, and querying your app data for any process. There are many suggestions on how to structure a store. In our case we found the following to be ideal:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  apis: &#123;     <span class="comment">// data from various services</span></span><br><span class="line">    api1: &#123;&#125;,</span><br><span class="line">    api2: &#123;&#125;,</span><br><span class="line">    ...</span><br><span class="line">  &#125;, </span><br><span class="line">  components: &#123;&#125; <span class="comment">// UI state data for each widget, component, you name it </span></span><br><span class="line">  session: &#123;&#125; <span class="comment">// session-specific information</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Hopefully this feedback will help others.</p>
+<hr>
+<h2 id="Answer"><a href="#Answer" class="headerlink" title="Answer"></a>Answer</h2><p>There are edge cases when you might use multiple stores (e.g. if you have performance problems with updating lists of thousands of items that are on screen at the same time many times per second). That said it’s an exception, and in most apps you never need more than a single store.</p>
+<p>作者说，只有考虑到性能，才会用到多个 stores。</p>
+<p>Why do we stress this in the docs? Because most people coming from Flux will assume multiple stores is the solution to making update code modular. However Redux has a different solution for this: reducer composition.</p>
+<p>所以嘛？就是实变形不变（逻辑上一致的）。</p>
+<p>Having multiple reducers that are further split into a reducer tree is how you keep updates modular in Redux. If you don’t recognize this, and go for multiple stores without fully understanding reducer composition first, you will miss many benefits of Redux single store architecture:</p>
+<p>Using reducer composition makes it easy to implement “dependent updates” a la waitFor in Flux by writing a reducer manually calling other reducers with additional information and in a specific order.</p>
+<p>reducer 是通过 function 来组合。而且 waitFor 也可以通过顺序调用 reducer 实现。</p>
+<p>当然，Rx 的 stream 也可以组合啊。</p>
+<p>With a single store, it’s very easy to persist, hydrate, and read the state. Server rendering and data prefetching is trivial because there is just one data storage that needs to be filled and rehydrated on the client, and JSON can describe its contents without worrying about store’s ID or name.</p>
+<p>在 store -&gt; view 之间给一个点，介入这个点就可以。比如直接一个 Store.subject.onNext(…, initalState)。</p>
+<p>A single store makes Redux DevTools time travel features possible. It also makes community extensions like redux-undo or redux-optimist easy because they operate on the reducer level. Such “reducer enhancers” can’t be written for stores.</p>
+<p>但是，我对 DE 没啥兴趣。time travel 到可以做。</p>
+<p>Single store guarantees that the subscriptions are called only after the dispatch has been processed. That is, by the time listeners are notified, the state has been fully updated. With many stores, there is no such guarantees. This is one of the reasons Flux needs the waitFor crutch. With a single store, this is not a problem you see in the first place.</p>
+<p>这个的确是，只监听一个 store，所有的 reducer 都是完成了，才告诉 view 可以更新了。</p>
+<p>Above all, multiple stores are unnecessary in Redux (except for performance edge cases which you are supposed to profile first anyway). We make it an important point in the docs so you are encouraged to learn reducer composition and other Redux patterns instead of using Redux as if it was Flux, and losing its benefits.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>实话说，我不认为一个 store 是好事情。</p>
+<p>实话说，我不认为多个 store 会出什么问题。当然也遇到过问题：</p>
+<ul>
+<li>如果一个 store 保存 当前考核周期</li>
+<li>另一个 store 会根据当前考核周期获取考核群体列表</l]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Redux RxJS]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/14/Redux-RxJS/"/>
+    <id>http://shane.hsi.rocks/2016/03/14/Redux-RxJS/</id>
+    <published>2016-03-14T07:53:21.000Z</published>
+    <updated>2016-03-14T09:12:22.000Z</updated>
+    <content type="html"><![CDATA[<p>使用 RxJS 的目的是为了引入 stream 的操作。</p>
+<ul>
+<li>actions 作为 mutations 保留，并且 view 对 actions 是 imperative。</li>
+<li><p>store 监听 action。</p>
+</li>
+<li><p>stream 在进入 store 之前 merge 一次。</p>
+</li>
+<li>store 到 view，最简单的是通过 throttle，交给 requestAnimationFrame。</li>
+<li>（但是如果有 animation store，可以在加入一层 merge）</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>使用 RxJS 的目的是为了引入 stream 的操作。</p>
+<ul>
+<li>actions 作为 mutations 保留，并且 view 对 actions 是 imperative。</li>
+<li><p>store 监听 action。</p>
+</li>
+]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Gulp API]]></title>
@@ -632,73 +725,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>直接从 <a href="https://github.com/Microsoft/TypeScript/" target="_blank" rel="external">Microsoft/TypeScript</a> 和 <a href="https://github.]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[准备学习 TypeScript 语法帮助理解 React 接口]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/25/Prepare-to-Know-TypeScript-and-React-Interface/"/>
-    <id>http://shane.hsi.rocks/2016/02/25/Prepare-to-Know-TypeScript-and-React-Interface/</id>
-    <published>2016-02-25T00:16:20.000Z</published>
-    <updated>2016-02-25T00:26:23.000Z</updated>
-    <content type="html"><![CDATA[<p>题外话，或者说是引子。因为 React 我对前端和程序产生了扩散性的兴趣，具体不在此言。尝试阅读 React 源码也有 2 次，从不同的角度。效率和方法上都不会完美，不过每次都有收获，不断扩充对前端的认识。</p>
-<p>这次我希望了解 React 的 interface。ES6 才引入 class 的概念，让我一个从 C#/Java 后台开发者开发 JavaScript 开始有设计感（沿用后台语言开发的思维）。</p>
-<blockquote>
-<p>当然，ES5 以及去年函数式编程的推广也让我摄入了些非 OO 的知识。不过，我对 lambda 表达式肯定没有 OO 熟练。所以函数式上，我目前只会编写些 utility 来处理 Collection。让可读性增强。</p>
-</blockquote>
-<p>这次我是第 3 次尝试阅读 React 源码。并使用 TypeScript 写 interface，第一步不具体实现。</p>
-<p>我希望能够学习 TypeScript 的语法和摸清 React 的设计架构。</p>
-<p>TypeScript 语法我准备参照目前最火的 TypeScript 开源项目：<a href="https://github.com/Microsoft/TypeScript/" target="_blank" rel="external">Microsoft/TypeScript</a> 和 <a href="https://github.com/angular/angular" target="_blank" rel="external">angular</a>。前者历时更长，后者更新。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>题外话，或者说是引子。因为 React 我对前端和程序产生了扩散性的兴趣，具体不在此言。尝试阅读 React 源码也有 2 次，从不同的角度。效率和方法上都不会完美，不过每次都有收获，不断扩充对前端的认识。</p>
-<p>这次我希望了解 React 的 interface。]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Java 知识点 2016年02月24日]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/24/Java-Knowledge-Points-20160224/"/>
-    <id>http://shane.hsi.rocks/2016/02/24/Java-Knowledge-Points-20160224/</id>
-    <published>2016-02-24T03:30:33.000Z</published>
-    <updated>2016-02-24T06:29:41.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="MethodInvokingFactoryBean"><a href="#MethodInvokingFactoryBean" class="headerlink" title="MethodInvokingFactoryBean"></a>MethodInvokingFactoryBean</h2><p>从配置文件开始看。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"mnsInvokerBean"</span> <span class="attribute">class</span>=<span class="value">"com.*.*.MnsInvoker"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">class</span>=<span class="value">"org.springframework.beans.factory.config.MethodInvokingFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"targetObject"</span> <span class="attribute">ref</span>=<span class="value">"mnsInvokerBean"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"targetMethod"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">value</span>&gt;</span>registerHttpService<span class="tag">&lt;/<span class="title">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"arguments"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">list</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">value</span>&gt;</span>$&#123;tesla_appkey&#125;<span class="tag">&lt;/<span class="title">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">value</span>&gt;</span>$&#123;jetty.port&#125;<span class="tag">&lt;/<span class="title">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>主要是这个 <code>MethodInvokingFactoryBean</code>。</p>
-<p>参考：<a href="http://blog.csdn.net/kongxx/article/details/6011441" target="_blank" rel="external">Spring实战之org.springframework.beans.factory.config.MethodInvokingFactoryBean</a>。</p>
-<p>讲解的很直观。</p>
-<p>在用spring管理我们的类的时候有时候希望有些属性值是</p>
-<ul>
-<li>来源于一些配置文件，</li>
-<li>系统属性，</li>
-<li>或者一些方法调用的结果</li>
-</ul>
-<p>对于前两种使用方式可以使用spring的PropertyPlaceholderConfigurer类来注入，对于后一种则可以使用org.springframework.beans.factory.config.MethodInvokingFactoryBean类来生成需要注入的bean的属性。</p>
-<p>通过MethodInvokingFactory Bean类，可注入方法返回值。 MethodInvokingFactoryBean用来 <strong>获得某个方法的返回值</strong>，该方法既可以是静态方法，也可以是实例方法。该方法的返回值 <strong>可以注入bean实例属性</strong>，<strong>也可以直接定义成bean实例</strong>。</p>
-<p>另参考：<a href="http://blog.sina.com.cn/s/blog_72ef7bea0102wa0v.html" target="_blank" rel="external">Spring Boot Hello MethodInvokingFactoryBean and MethodInvokingBean</a>。</p>
-<h2 id="bean__u914D_u7F6E_u4E4B_init-method__u548C_lazy-init_u3002"><a href="#bean__u914D_u7F6E_u4E4B_init-method__u548C_lazy-init_u3002" class="headerlink" title="bean 配置之 init-method 和 lazy-init。"></a>bean 配置之 init-method 和 lazy-init。</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">bean</span> <span class="attribute">id</span>=<span class="value">"mtConfigClient"</span> <span class="attribute">class</span>=<span class="value">"com.*.*.config.MtConfigClient"</span> <span class="attribute">init-method</span>=<span class="value">"init"</span> <span class="attribute">lazy-init</span>=<span class="value">"false"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>关于 <code>init-method</code> 和 <code>lazy-init</code>。</p>
-<p>其中关于 <code>init-method</code>，涉及到的概念是 <a href="http://sexycoding.iteye.com/blog/1046775" target="_blank" rel="external">Spring bean 的生命周期</a>。Spring 允许 Bean 在初始化完成后以及销毁前执行特定的操作。</p>
-<p>常用的三种指定特定操作的方法：</p>
-<ul>
-<li>通过实现InitializingBean/DisposableBean 接口来定制初始化之后/销毁之前的操作方法；</li>
-<li>通过 <bean> 元素的 init-method/destroy-method属性指定初始化之后 /销毁之前调用的操作方法；</bean></li>
-<li>在指定方法上加上@PostConstruct或@PreDestroy注解来制定该方法是在初始化之后还是销毁之前调用。</li>
-</ul>
-<p>这几种方法的先后顺序为（参考：<a href="http://blog.csdn.net/caihaijiang/article/details/8629725" target="_blank" rel="external">Spring容器中的Bean几种初始化方法和销毁方法的先后顺序</a>)：</p>
-<p><strong>Bean在实例化的过程中：Constructor &gt; @PostConstruct &gt;InitializingBean &gt; init-method</strong></p>
-<p><strong>Bean在销毁的过程中：@PreDestroy &gt; DisposableBean &gt; destroy-method</strong></p>
-<p>其中关于 <code>lazy-init</code>，默认是 false。可以在 applicationContext.xml 里配置：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">beans</span> <span class="attribute">default-lazy-init</span>=<span class="value">"true"</span> &gt;</span>   </span><br><span class="line">      <span class="tag">&lt;<span class="title">bean</span> <span class="attribute">class</span> =<span class="value">"org.xxxx.bean"</span> &gt;</span>   </span><br><span class="line">      ......</span><br><span class="line"><span class="tag">&lt;/<span class="title">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这个应该只在开发环境中可以使用。</p>
-<blockquote>
-<p>ApplicationContext实现的默认行为就是在启动时将所有singleton bean提前进行实例化。提前实例化意味着作为初始化过程的一部分，ApplicationContext实例会创建并配置所有的singleton bean。通常情况下这是件好事，因为这样在配置中的任何错误就会即刻被发现（否则的话可能要花几个小时甚至几天）。</p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="MethodInvokingFactoryBean"><a href="#MethodInvokingFactoryBean" class="headerlink" title="MethodInvokingFactoryBean"></a>MethodInvok]]>
     </summary>
     
   </entry>

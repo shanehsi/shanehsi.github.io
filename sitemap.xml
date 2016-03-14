@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/03/14/Redux-RxJS/</loc>
+    <lastmod>2016-03-14T09:12:22.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/14/Redux-multiple-stores-why-not/</loc>
+    <lastmod>2016-03-14T09:12:11.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/03/13/Gulp-API/</loc>
     <lastmod>2016-03-14T02:01:07.000Z</lastmod>
   </url>
