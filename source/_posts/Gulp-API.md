@@ -5,6 +5,8 @@ tags:
 
 我很喜欢 gulp。接口很纯粹，模块化的思路很简洁。
 
+> 也就是说，我不喜欢 npm scripts。或者说是 shell 脚本。宁愿写 plguin 把逻辑模块化。
+
 所谓模块化的思路，就是 pipe，公用一套 steamm，vinyl。把文件的处理给分块。
 
 - src
