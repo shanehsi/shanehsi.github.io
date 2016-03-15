@@ -1,4 +1,4 @@
-title: 读书笔记: Reactive Programming with RxJS
+title: Reactive Programming with RxJS - 笔记
 date: 2016-03-14 14:28:04
 tags:
 ---
