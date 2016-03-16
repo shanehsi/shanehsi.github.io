@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-16T00:36:47.000Z</updated>
+  <updated>2016-03-16T00:52:54.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/"/>
     <id>http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/</id>
     <published>2016-03-16T00:04:07.000Z</published>
-    <updated>2016-03-16T00:36:47.000Z</updated>
+    <updated>2016-03-16T00:52:54.000Z</updated>
     <content type="html"><![CDATA[<p>It seems that a new paradigm is coming. Facebook and Netflix have come up with different implementations for that idea. Some people are calling it <a href="http://www.infoq.com/presentations/domain-driven-architecture" target="_blank" rel="external">Demand-Driven Architecture</a>, but before I show you some solutions, let’s go over some history to understand the problem. I will use the example that Netflix provides, but I think that most of us will find the patterns familiar.</p>
 <p>来自 Netflix 的一个例子（应该是共性的）</p>
 <p>Just for clarity, let’s assume that we have an on-demand streaming service — quite similar to Netflix :) — that has three microservices. One contains the genres, another one the titles and the last one contains the ratings that different users give to those titles. As we’re in 2015 we’ll discard RPC as architectural style and we’ll go with a RESTful design. Let’s briefly enumerate the characteristics of a RESTful design:</p>
@@ -93,7 +93,7 @@
     <link href="http://shane.hsi.rocks/2016/03/15/Redux-APIs/"/>
     <id>http://shane.hsi.rocks/2016/03/15/Redux-APIs/</id>
     <published>2016-03-15T09:02:36.000Z</published>
-    <updated>2016-03-15T23:27:45.000Z</updated>
+    <updated>2016-03-16T01:09:10.000Z</updated>
     <content type="html"><![CDATA[<p>因为我在使用 rxjs 自己做一个简单的 flux。主要目的是做精细的 stream 控制。</p>
 <p>这里想借鉴下 Redux 的 API 设计。</p>
 <p>从例子看：</p>
@@ -111,6 +111,7 @@
 <p>counter 的 model，或者 store</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store=&#123;state&#125; animateStore=&#123;&#125;&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Component</span> /&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="title">Provider</span>&gt;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>还是使用 redux 的 API 吧。只不过是使用 RxJS 来实现。</p>
+<img src="/2016/03/15/Redux-APIs/diagram.png" alt="diagram.png" title="">
 ]]></content>
     <summary type="html">
     <![CDATA[<p>因为我在使用 rxjs 自己做一个简单的 flux。主要目的是做精细的 stream 控制。</p>
