@@ -100,3 +100,5 @@ counter 的 model，或者 store
 
 还是使用 redux 的 API 吧。只不过是使用 RxJS 来实现。
 
+{% asset_img diagram.png %}
+
