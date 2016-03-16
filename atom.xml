@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-16T00:52:54.000Z</updated>
+  <updated>2016-03-16T06:22:28.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,107 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Falcor Getting Start]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/16/Falcor-Getting-Start/"/>
+    <id>http://shane.hsi.rocks/2016/03/16/Falcor-Getting-Start/</id>
+    <published>2016-03-16T02:54:11.000Z</published>
+    <updated>2016-03-16T06:22:28.000Z</updated>
+    <content type="html"><![CDATA[<p>对 Falcor 的期望是：</p>
+<ul>
+<li>在 app state 和 backend service 之间做一个中间层</li>
+<li>不要管理太多 data flow</li>
+<li>不要侵入 view</li>
+</ul>
+<p>参考文章：<a href="https://netflix.github.io/falcor/starter/what-is-falcor.html" target="_blank" rel="external">What is Falcor?</a></p>
+<p>Falcor is the innovative data platform that powers the Netflix UIs. Falcor allows you to model all your backend data as a single Virtual JSON object on your Node server. On the client you work with your remote JSON object using familiar JavaScript operations like get, set, and call. If you know your data, you know your API.</p>
+<p>建模 所有的 backend data 到 一个单独的 Virutal JSON object，到你的 Node server（但是似乎 Java server 也有了）。</p>
+<p>在客户端，使用熟悉的 JavaScript 操作，比如 <code>get</code>，<code>set</code>，<code>call</code>。API 是不需要学习成本的。只要了解数据。</p>
+<p>Falcor is middleware. It is not a replacement for your application server, database, or MVC framework. Instead Falcor can be used to optimize communication between the layers of a new or existing application.</p>
+<p>Falcor 是一个 middleware。</p>
+<p>不是代替 application server，database，或者 MVC framework。</p>
+<p>Falcor 是用来 优化 layers 之间的 communication。</p>
+<h2 id="One_Model_Everywhere"><a href="#One_Model_Everywhere" class="headerlink" title="One Model Everywhere"></a>One Model Everywhere</h2><p>Falcor allows you to model all of your backend data as a single JSON resource on the application server.</p>
+<p>Falcor 可以允许你将所有的 backend data 在 application server 上建模成一个单独的 JSON resource。</p>
+<img src="/2016/03/16/Falcor-Getting-Start/falcor-network-diagram.png" alt="falcor-network-diagram.png" title="">
+<p>Clients request subsets of this JSON resource on demand, just like they would from an in-memory JSON object. To retrieve values from the JSON resource on the server, the client passes the server JavaScript paths to each desired value within the JSON object. The server responds with a subset of the JSON object that contains only those values.</p>
+<p>客户端会按需请求 JSON resource 的子集，就像是获取一个内存中的 JSON 对象。</p>
+<p>客户端会通过参数：每个需要的值的 JavaScript paths 来请求服务端。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/model.json?paths=[<span class="string">"user.name"</span>, <span class="string">"user.surname"</span>, <span class="string">"user.address"</span>]</span><br><span class="line"></span><br><span class="line">GET /model.json?paths=[<span class="string">"user.name"</span>, <span class="string">"user.surname"</span>, <span class="string">"user.address"</span>]</span><br><span class="line">&#123;</span><br><span class="line">  user: &#123;</span><br><span class="line">    name: <span class="string">"Frank"</span>,</span><br><span class="line">    surname: <span class="string">"Underwood"</span>,</span><br><span class="line">    address: <span class="string">"1600 Pennsylvania Avenue, Washington, DC"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Exposing all data as a single URL allows clients to request all of the data they need in a single network request. This can reduce latency by avoiding sequential server round trips.</p>
+<p>一个 endpoint 暴露所有的数据，可以：</p>
+<ul>
+<li>通过避免后续的往返请求减少网络延迟</li>
+</ul>
+<p>In order to ensure that your application server remains stateless, Falcor provides a specialized Router which routes requests for values within the JSON object to different backend services.</p>
+<p>为了保证你的 <strong>应用服务器</strong> 保持无状态型，Falcor 提供了一个特殊的 <strong>Router</strong>，用来路由对不同的 backend services 的请求。</p>
+<p>Instead of matching URLs, the Falcor Router matches one or more JavaScript paths.</p>
+<p>Falcor Router 不是通过符合 URLs，而是符合 JavaScript paths：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> Router([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// matches user.name or user.surname or user.address</span></span><br><span class="line">    route: <span class="string">"user['name','surname','address']"</span>,</span><br><span class="line">    get(pathSet) &#123;</span><br><span class="line">      <span class="comment">// pathSet could be ["user", ["name"]], ["user", ["name", "surname"]], ["user", ["surname", "address"]] and so on...</span></span><br><span class="line">      userService.</span><br><span class="line">        getUser(getUserID()).</span><br><span class="line">        then(<span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> pathSet[<span class="number">1</span>].</span><br><span class="line">            map(<span class="function"><span class="keyword">function</span>(<span class="params">userKey</span>) </span>&#123;</span><br><span class="line">              <span class="comment">// return response for each individual requested path</span></span><br><span class="line">              <span class="keyword">return</span> &#123;</span><br><span class="line">                path: [<span class="string">"user"</span>, userKey],</span><br><span class="line">                value: user[userKey]</span><br><span class="line">              &#125;;</span><br><span class="line">            &#125;);</span><br><span class="line">         &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<p>看出来了吗？这个 <code>get</code> 类似于 GraphQL 的 resolve 方法。</p>
+<p>pathSet 是可能的路径集合。</p>
+<p>The Falcor Router allows you to expose a single JSON model to the client, while giving you the flexibility to store your data anywhere.</p>
+<p>只是对 backend data 做建模，最终暴露一个 JSON model 给客户端。</p>
+<p>但也保证了灵活性来在其他地方存储 data。</p>
+<img src="/2016/03/16/Falcor-Getting-Start/services-diagram.png" alt="services-diagram.png" title="">
+<h2 id="The_Data_is_the_API"><a href="#The_Data_is_the_API" class="headerlink" title="The Data is the API"></a>The Data is the API</h2><p>You do not need to learn a complicated service layer to work with your data when you are using Falcor. If you know your data, you know your API. Falcor allows you to work with remote data the same way you work with local data, using JavaScript paths and operations. The primary difference is that Falcor’s client API is asynchronous.</p>
+<p>你不需要学习一个复杂的 service layer 来处理 data。没有新增的语义，完全是 JavaScript Object 的 API。唯一的区别就是，Falcor’s client API 是异步的。</p>
+<p>Here’s an example retrieving the surname of a user directly from an in-memory JSON object using a simple JavaScript path.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> model = &#123;</span><br><span class="line">  user: &#123;</span><br><span class="line">    name: <span class="string">"Frank"</span>,</span><br><span class="line">    surname: <span class="string">"Underwood"</span>,</span><br><span class="line">    address: <span class="string">"1600 Pennsylvania Avenue, Washington, DC"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// prints "Underwood"</span></span><br><span class="line"><span class="built_in">console</span>.log(model.user.surname);</span><br></pre></td></tr></table></figure>
+<p>Applications that use Falcor do not work directly with JSON data. Instead they work with their JSON data indirectly using a Falcor Model. The Falcor Model allows you to use familiar idioms like JavaScript paths and JavaScript operations to work with your data. The primary difference between working with JSON data directly and using a Falcor Model, is that a Falcor Model has an asynchronous API.</p>
+<p>使用 Falcor 的应用并不会直接和 JSON data 打交道，而是通过 Falcor Model。</p>
+<p>Falcor Model 提供了类似于 JavaScript paths 和 operations 的 API。只是他是异步的。</p>
+<p>Let’s rewrite the code above using a Falcor Model instead of working with the JSON directly:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> model = <span class="keyword">new</span> falcor.Model(&#123;</span><br><span class="line">  cache: &#123;</span><br><span class="line">    user: &#123;</span><br><span class="line">      name: <span class="string">"Frank"</span>,</span><br><span class="line">      surname: <span class="string">"Underwood"</span>,</span><br><span class="line">      address: <span class="string">"1600 Pennsylvania Avenue, Washington, DC"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// prints "Underwood" eventually</span></span><br><span class="line">model.</span><br><span class="line">  getValue(<span class="string">"user.surname"</span>).</span><br><span class="line">  then(<span class="function"><span class="keyword">function</span>(<span class="params">surname</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(surname);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>Note that we use the same JavaScript path to retrieve our data as when we worked with the JSON data directly. The only difference is that the result is pushed to a callback when it becomes available.</p>
+<p>The advantage of working with your data using Falcor’s asynchronous API is that you can move your data anywhere on the network without changing the client code that consumes the data. Using the Falcor Model, we only need to change a few lines of code to alter the previous example to work with remote data.</p>
+<p>好处是，获取的 API 相同，不用变。但是 model 的值却可以放在其他地方。比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> model = <span class="keyword">new</span> falcor.Model(&#123;</span><br><span class="line">  source: <span class="keyword">new</span> falcor.HttpDataSource(<span class="string">"/model.json"</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// prints "Underwood" eventually</span></span><br><span class="line">model.</span><br><span class="line">  getValue(<span class="string">"user.surname"</span>).</span><br><span class="line">  then(<span class="function"><span class="keyword">function</span>(<span class="params">surname</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(surname);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>Now instead of working with in-memory JSON data, Falcor remotes requests for data to the application server’s Virtual JSON object. The Router retrieves the data from the data store with the information, and sends back only the requested fields.</p>
+<p>现在是请求唯一的 endpoint，<code>/model.json</code>。</p>
+<img src="/2016/03/16/Falcor-Getting-Start/falcor-end-to-end.png" alt="falcor-end-to-end.png" title="">
+<p>Using an asynchronous API allows you to use the same programming model regardless of whether your data is local or remote. With Falcor it is common practice to begin development immediately by mocking the server’s JSON object. Once the server’s JSON resource has been written, the Falcor Model is connected to the server JSON using an HttpDataSource. No other client code needs to change. This approach can shrink project timelines by decoupling client and server developers.</p>
+<p>使用一套异步 API 操作数据，不用关心数据在 local 还是 remote。</p>
+<p>通用的实践就是，立即 mock server 的 JSON object。一旦 server 的 JSON resource 写好后，Falcor Model 就可以通过 HTTPDataSource 连接上 server 的 JSON。</p>
+<p>不需要改变任何客户端代码。</p>
+<h2 id="Bind_to_the_Cloud"><a href="#Bind_to_the_Cloud" class="headerlink" title="Bind to the Cloud"></a>Bind to the Cloud</h2><p>In most MVC systems, controllers are responsible for retrieving data from the server. <strong>One pattern for building applications with Falcor is to have your views retrieve data directly from the Falcor Model, just as they would from an in-memory JSON object</strong>. This pattern is sometimes referred to as Async MVC, because the communication between the view and the model is asynchronous.</p>
+<p>在大多的 MVC 系统里，controllers 负责从 server 获取数据。<strong>在 Falcor 中，views 直接从 Falcor Model 获取数据。这是其中一种 pattern</strong>。</p>
+<p>这种模式有时叫做 Async MVC。因为 view 和 model 之间是 async 的。</p>
+<img src="/2016/03/16/Falcor-Getting-Start/async-mvc.png" alt="async-mvc.png" title="">
+<p>In addition to decoupling controllers and views, Async MVC can improve the efficiency of your application’s network requests. When the view drives the data fetching, only the data absolutely required to render a view is retrieved from the server.</p>
+<p>因为 Views 来声明需要什么数据，也就是必须的数据才获取。提高了效率。</p>
+<p>In addition to Async MVC there are a variety of different patterns for integrating Falcor into your application. We are looking to the community for help building adapters for the various frameworks in use today.</p>
+<p>除了 Async MVC，其他的 pattern 期待社区帮助构建。</p>
+<h1 id="How_Does_Falcor_Work_3F"><a href="#How_Does_Falcor_Work_3F" class="headerlink" title="How Does Falcor Work?"></a>How Does Falcor Work?</h1><p>原文：<a href="https://netflix.github.io/falcor/starter/how-does-falcor-work.html" target="_blank" rel="external">How Does Falcor Work?</a></p>
+<p>The Falcor Model transparently handles all network communication with the server. In order to ensure efficient client/server interactions, the Falcor Model applies a variety of different optimizations:</p>
+<p>Faclor Model 隐式地处理着和 server 的网络请求。为了保证高效的 client/server 交互，Falcor Model 应用了一些列优化。</p>
+<h2 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h2><p>Falcor maintains a fast in–memory cache that contains all of the values previously retrieved from the application server’s JSON object. If a request is made for information that is already available in the cache, the data will be retrieved from the cache and sent to the consumer’s callback as soon as possible.</p>
+<p>Falcor 维护了一套快速的内存缓存，保存了之前所有从服务端获得的 JSON 对象。如果请求的信息在 cache 中已有，则从 cache 中获取，理解给 consumer 的 callback。</p>
+<img src="/2016/03/16/Falcor-Getting-Start/model-caching.png" alt="model-caching.png" title="">
+<p>To prevent the cache growing larger than the available memory on the device, developers can configure a maximum size for the cache. When the cache grows beyond the maximum size, the least-recently-used values are purged. This makes it possible to run the same application on an inexpensive mobile device or a powerful desktop machine.</p>
+<p>为防止 cache 超过可用设备内存，开发者可以控制下 cache 的最大值。通过 LRU 算法清除。有客户端决定。</p>
+<h2 id="Batching"><a href="#Batching" class="headerlink" title="Batching"></a>Batching</h2><p>Falcor’s ability to select as much or as little data from the network in a single request gives it the flexibility to batch multiple small requests for data into a single large request. The Falcor model can be configured to collect up multiple requests, and schedule them to be sent to the data source at once.</p>
+<p>Falcor 可以打包小的请求到一个大的请求。涉及的逻辑是 schedule。</p>
+<img src="/2016/03/16/Falcor-Getting-Start/batching.png" alt="batching.png" title="">
+<p>In this example, we make a request for three individual values from the Model, and only a single coarse-grained request is sent to the data source</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> log = <span class="built_in">console</span>.log.bind(<span class="built_in">console</span>);</span><br><span class="line"><span class="keyword">var</span> httpDataSource = <span class="keyword">new</span> falcor.HttpDataSource(<span class="string">"/model.json"</span>);</span><br><span class="line"><span class="keyword">var</span> model = <span class="keyword">new</span> falcor.Model(&#123; source: httpDataSource &#125;);</span><br><span class="line"><span class="keyword">var</span> batchModel = model.batch();</span><br><span class="line"></span><br><span class="line">batchModel.getValue(<span class="string">"todos[0].name"</span>).then(log);</span><br><span class="line">batchModel.getValue(<span class="string">"todos[1].name"</span>).then(log);</span><br><span class="line">batchModel.getValue(<span class="string">"todos[2].name"</span>).then(log);</span><br><span class="line"></span><br><span class="line"><span class="comment">// The previous three model requests only send a single request</span></span><br><span class="line"><span class="comment">// to the httpDataSource: "todos[0..2].name"</span></span><br></pre></td></tr></table></figure>
+<p>The ability to batch requests can significantly improve performance when using a network protocol with a high connection cost (ex. HTTP).</p>
+<p>batch 可以极大的提升高开销网络协议（比如 HTTP）的性能。</p>
+<h2 id="Request_Deduping"><a href="#Request_Deduping" class="headerlink" title="Request Deduping"></a>Request Deduping</h2><p>In addition to batching outgoing requests, the Falcor Model dedupes requests. If a request is made for a value for which there is already an outstanding request, no additional request is made. This allows individual application views to retrieve their own data without having to coordinate with other views, just as if they were retrieving data from a fast in-memory JSON store.</p>
+<p>除了 batching 对外的 requests，Falcor Model 也会对请求去重。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>对 Falcor 的期望是：</p>
+<ul>
+<li>在 app state 和 backend service 之间做一个中间层</li>
+<li>不要管理太多 data flow</li>
+<li>不要侵入 view</li>
+</ul>
+<p>参考文章：<a hre]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Transcending REST and RPC]]></title>
@@ -942,72 +1043,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="Type_Aliases"><a href="#Type_Aliases" class="headerlink" title="Type Aliases"></a><a href="https://github.com/Microsoft/TypeScript/b]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[TypeScript Spec Version 1.8 - Classes]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8-Classes/"/>
-    <id>http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8-Classes/</id>
-    <published>2016-02-25T23:54:14.000Z</published>
-    <updated>2016-02-26T00:21:09.000Z</updated>
-    <content type="html"><![CDATA[<p>本身，JavaScript practice has two very common design patterns: the module pattern and the class pattern.</p>
-<p>简单来说，Roughly speaking, the module pattern uses closures to hide names and to encapsulate private data, while the class pattern uses prototype chains to implement many variations on object-oriented inheritance mechanisms. </p>
-<p>module 模式是利用闭包。</p>
-<p>class 模式用原型链来实现 OO 继承机制。</p>
-<blockquote>
-<p>但是注意，EC2015 引入了 module 机制和 module pattern 实现的原理不同，为了防止混淆，在 TypeScript 中，module pattern 对应的是 namespace。</p>
-</blockquote>
-<p><a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#16-classes" target="_blank" rel="external">Classes</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BankAccount</span> </span>&#123;  </span><br><span class="line">    balance = <span class="number">0</span>;  </span><br><span class="line">    deposit(credit: number) &#123;  </span><br><span class="line">        <span class="keyword">this</span>.balance += credit;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.balance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>生成的 JavaScript（TypeScript 的目标是生成 consistent，idiomatic 的 JavaScript 代码）：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> BankAccount = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">BankAccount</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.balance = <span class="number">0</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    BankAccount.prototype.deposit = <span class="function"><span class="keyword">function</span>(<span class="params">credit</span>) </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.balance += credit;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.balance;  </span><br><span class="line">    &#125;;  </span><br><span class="line">    <span class="keyword">return</span> BankAccount;  </span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<p>OK，回过头看 <code>class BankAccount</code>，它做了：</p>
-<ul>
-<li>creates a variable named ‘BankAccount’</li>
-<li>whose value is the constructor function for ‘BankAccount’ instances.</li>
-<li>also creates an instance type of the same name. </li>
-</ul>
-<p>关于 instance type，如果用接口可以这样写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface BankAccount &#123;  </span><br><span class="line">    balance: number;  </span><br><span class="line">    deposit(credit: number): number;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>If we were to write out the function type declaration for the ‘BankAccount’ constructor variable, it would have the following form.</p>
-<p>即，这是关于第一点，BankAccount 的值是一个 constructor 函数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> BankAccount: <span class="keyword">new</span>() =&gt; BankAccount;</span><br></pre></td></tr></table></figure>
-<p>The function signature is prefixed with the keyword ‘new’ indicating that the ‘BankAccount’ function must be called as a constructor. It is possible for a function’s type to have both call and constructor signatures. For example, the type of the built-in JavaScript Date object includes both kinds of signatures.</p>
-<p>在 constructor 里做些初始化：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BankAccount</span> </span>&#123;  </span><br><span class="line">    balance: number;  </span><br><span class="line">    constructor(initially: number) &#123;  </span><br><span class="line">        <span class="keyword">this</span>.balance = initially;  </span><br><span class="line">    &#125;  </span><br><span class="line">    deposit(credit: number) &#123;  </span><br><span class="line">        <span class="keyword">this</span>.balance += credit;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.balance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>简化版本：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BankAccount</span> </span>&#123;  </span><br><span class="line">    constructor(public balance: number) &#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">    deposit(credit: number) &#123;  </span><br><span class="line">        <span class="keyword">this</span>.balance += credit;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.balance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The ‘public’ keyword denotes that the constructor parameter is to be retained as a field. </p>
-<p>Public is the default accessibility for class members, but a programmer can also specify private or protected accessibility for a class member.</p>
-<p>Section 8 provides additional information about classes.</p>
-<p>继承。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CheckingAccount</span> <span class="keyword">extends</span> <span class="title">BankAccount</span> </span>&#123;  </span><br><span class="line">    constructor(balance: number) &#123;  </span><br><span class="line">        <span class="keyword">super</span>(balance);  </span><br><span class="line">    &#125;  </span><br><span class="line">    writeCheck(debit: number) &#123;  </span><br><span class="line">        <span class="keyword">this</span>.balance -= debit;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>生成的核心代码： In the emitted JavaScript code, the prototype of ‘CheckingAccount’ will chain to the prototype of ‘BankAccount’.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">__extends(CheckingAccount, _super);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> __extends = (<span class="keyword">this</span> &amp;&amp; <span class="keyword">this</span>.__extends) || <span class="function"><span class="keyword">function</span>(<span class="params">d, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> b)</span><br><span class="line">        <span class="keyword">if</span> (b.hasOwnProperty(p)) d[p] = b[p];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__</span>(<span class="params"></span>) </span>&#123; <span class="keyword">this</span>.constructor = d; &#125;</span><br><span class="line">    d.prototype = b === <span class="literal">null</span> ? <span class="built_in">Object</span>.create(b) : (__.prototype = b.prototype, <span class="keyword">new</span> __());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>更多：</p>
-<p>Since instance member variable initializers are equivalent to assignments to properties of this in the constructor, the example</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;  </span><br><span class="line">    public name: string;  </span><br><span class="line">    public address: string;  </span><br><span class="line">    public retired = <span class="literal">false</span>;  </span><br><span class="line">    public manager: Employee = <span class="literal">null</span>;  </span><br><span class="line">    public reports: Employee[] = [];  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>等价：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;  </span><br><span class="line">    public name: string;  </span><br><span class="line">    public address: string;  </span><br><span class="line">    public retired: boolean;  </span><br><span class="line">    public manager: Employee;  </span><br><span class="line">    public reports: Employee[];  </span><br><span class="line">    constructor() &#123;  </span><br><span class="line">        <span class="keyword">this</span>.retired = <span class="literal">false</span>;  </span><br><span class="line">        <span class="keyword">this</span>.manager = <span class="literal">null</span>;  </span><br><span class="line">        <span class="keyword">this</span>.reports = [];  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>更多的见 <a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#8" target="_blank" rel="external">Classes</a></p>
-<p>namespace：</p>
-<h2 id="1-10_Namespaces"><a href="#1-10_Namespaces" class="headerlink" title="1.10 Namespaces"></a>1.10 Namespaces</h2><p>产生背景：</p>
-<p>TypeScript enforces encapsulation of implementation in classes at design time (by restricting use of private and protected members), but cannot enforce encapsulation at runtime because all object properties are accessible at runtime. </p>
-<p>JavaScript 怎么做到：</p>
-<p>In JavaScript, a very common way to enforce encapsulation at runtime is to use the module pattern: encapsulate private fields and methods using closure variables.</p>
-<p>其他好处：</p>
-<p>The module pattern can also provide the ability to introduce namespaces, avoiding use of the global namespace for most software components.</p>
-<p>在 JavaScript 是这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">exports</span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> key = generateSecretKey();  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span>(<span class="params">message</span>) </span>&#123;  </span><br><span class="line">        sendSecureMessage(message, key);  </span><br><span class="line">    &#125;  </span><br><span class="line">    exports.sendMessage = sendMessage;  </span><br><span class="line">&#125;)(MessageModule);</span><br></pre></td></tr></table></figure>
-<p>在 TypeScript 这么做 </p>
-<p>TypeScript namespaces provide a mechanism for succinctly expressing the module pattern. In TypeScript, programmers can combine the module pattern with the class pattern by nesting namespaces and classes within an outer namespace.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">namespace M &#123;  </span><br><span class="line">    <span class="keyword">var</span> s = <span class="string">"hello"</span>;  </span><br><span class="line">    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> s;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">M.f();  </span><br><span class="line">M.s;  <span class="comment">// Error, s is not exported</span></span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>本身，JavaScript practice has two very common design patterns: the module pattern and the class pattern.</p>
-<p>简单来说，Roughly speaking, the m]]>
     </summary>
     
   </entry>
