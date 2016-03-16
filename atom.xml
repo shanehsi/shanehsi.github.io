@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-15T08:47:35.000Z</updated>
+  <updated>2016-03-16T00:36:47.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,113 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Transcending REST and RPC]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/"/>
+    <id>http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/</id>
+    <published>2016-03-16T00:04:07.000Z</published>
+    <updated>2016-03-16T00:36:47.000Z</updated>
+    <content type="html"><![CDATA[<p>It seems that a new paradigm is coming. Facebook and Netflix have come up with different implementations for that idea. Some people are calling it <a href="http://www.infoq.com/presentations/domain-driven-architecture" target="_blank" rel="external">Demand-Driven Architecture</a>, but before I show you some solutions, let’s go over some history to understand the problem. I will use the example that Netflix provides, but I think that most of us will find the patterns familiar.</p>
+<p>来自 Netflix 的一个例子（应该是共性的）</p>
+<p>Just for clarity, let’s assume that we have an on-demand streaming service — quite similar to Netflix :) — that has three microservices. One contains the genres, another one the titles and the last one contains the ratings that different users give to those titles. As we’re in 2015 we’ll discard RPC as architectural style and we’ll go with a RESTful design. Let’s briefly enumerate the characteristics of a RESTful design:</p>
+<p>假设和 Netflix 一样，有一个即时流服务 - 有3个微服务。一个包含 种类，一个是 标题，一个是 （对标题的）评级。</p>
+<p>在 2015 我们放弃了 RPC，选择了 RESTful。</p>
+<p>简要列举下 RESTful 设计的特性：</p>
+<ul>
+<li><p>HTTP verbs have direct correspondence with CRUD verbs. One of the benefits is that clients can understand what is going on the server without digging into the implementation. For instance, we know that PUT is idempotent, so as there will not be any side effect, the client can call to that endpoint several times in a row without any issue.</p>
+</li>
+<li><p>We use extensive HTTP caching. Through headers like Cache-Control or ETag, we leverage one of the most juicy features of HTTP: caching resources.</p>
+</li>
+<li><p>HATEOAS for the win. Every single representation should have links to different representations so the clients can navigate through our backend like a graph. <a href="http://www.restapitutorial.com/" target="_blank" rel="external">Further reading</a></p>
+</li>
+</ul>
+<blockquote>
+<p>HATEOAS Hypermedia as the Engine of Application State</p>
+</blockquote>
+<ul>
+<li>统一接口（理解起来方便）</li>
+<li>直接利用 HTTP cache</li>
+<li>HATEOAS</li>
+</ul>
+<h2 id="REST_limitations"><a href="#REST_limitations" class="headerlink" title="REST limitations"></a>REST limitations</h2><p>Let’s imagine that we send a GET to the genres endpoint. The response will include links to other GET requests like titles/1234 or ratings/6789. If we have the title “Titanic” in different genres (romance, drama and DiCaprioRules) you can see how the client is going to do at least two redundant requests. Apart from that the client is going to reshape the data whenever it comes back since it’s likely that the client won’t need every single field that those responses include. So, we have two problems with this design:</p>
+<ul>
+<li>High latency as we don’t optimize calls.</li>
+<li><p>Large message sizes.</p>
+</li>
+<li><p>Round requests，没有做优化（通过 HATEOAS）</p>
+</li>
+<li>数据量太大，很多数据字段不需要</li>
+</ul>
+<h2 id="Patching_REST_with_RPC"><a href="#Patching_REST_with_RPC" class="headerlink" title="Patching REST with RPC"></a>Patching REST with RPC</h2><p>One way of overcoming these problems is customising our requests with query params. You can say to the server something like “give me only a couple of the fields that you expose on that representation“” or whatever arbitrary parameter. That means that you’ll lose the caching that HTTP offers as now you’ll have a ton of possible not-really-resources to cache.</p>
+<p>通过 query params，这样就没有了 HTTP 提供的 cache。</p>
+<p>Also you can create new abstractions ad-hoc that aggregate that for the client. In fact one of the benefits of CQRS is being able to create different views of your internal entities, so the demands of the client doesn’t affect your domain modeling. That has a problem though: there is a big a coupling with the server. Our system has a massive amount of fragmentation as you can stream over Android, iOS, TVs and also, different versions of the same client device. Therefore there are going to be different needs and rhythms and the coordination between backend and clients is going to be really messy.</p>
+<p>Ad-hoc endpoint。由于终端太多，view model 太多，不好维护。</p>
+<p>Also, CQRS is amazing in the fact that you could decide to model your system around different bounded contexts, i.e, different CQRS deployables. If your client needs a view that aggregate data from two CQRS units, you have the same problem.</p>
+<h2 id="Demand_driven_architecture_to_the_rescue"><a href="#Demand_driven_architecture_to_the_rescue" class="headerlink" title="Demand driven architecture to the rescue"></a>Demand driven architecture to the rescue</h2><p>This leads to the point of Demand Driven Architectures. Conceptually the backend is just a single entity and, since it’s modeled using REST principles, it’s defining what is the shape of the data. However, we’re going to have tons of clients with different needs and all of them need to twist themselves in order to get the shape of the data that they want. Would it be great if clients could just send queries to the logical data unit called backend?</p>
+<p>概念上，backend 只有一个入口，也是用 REST 原则建模。</p>
+<p>If we think in a relational database the concept is similar. We have different tables (rest endpoints, resources, backend services) and we have a query language that allows us to join and shape the data easily. Some of the optimizations of that query will be done by the platform that runs those queries.</p>
+<p>用一种 QL 来 query，join 多个 tables（rest endpoints，resources，backend services）。QL 也可以被优化。</p>
+<h2 id="Falcor_and_JSON_Graph"><a href="#Falcor_and_JSON_Graph" class="headerlink" title="Falcor and JSON Graph"></a>Falcor and JSON Graph</h2><p>Netflix has created a tool called <a href="http://netflix.github.io/falcor" target="_blank" rel="external">Falcor</a> that tries to solve this concrete problem. Clients won’t talk with the backend services directly anymore, instead of they will send queries to a Falcor service that will do the routing, aggregations, projections and optimizations. This is an image from Falcor’s official documentation.</p>
+<p>Clients 不在和 backend services 直接通信，而是先发送 queries 到一个 Falcor service，后者会进行 routing，aggragations（集合），projections（投影）和 optimizations（优化）。</p>
+<img src="/2016/03/16/Transcending-REST-and-RPC/falcor-network-diagram.png" alt="Falcor Network Diagram" title="Falcor Network Diagram">
+<p>They based that platform on the idea of JSON Graph. Let me explain it briefly. JSON is in essence a tree structure. However, most of our data has relationships so it should be modeled like a graph. Using REST design programmers usually solve that problem through ids, but that makes our life really difficult (think about problems like cache invalidation). As they say:</p>
+<p>基于 JSON Graph。</p>
+<p>JSON 本身是树结构，但是 data 一般有关系（relationships），所以应该建模成 graph。</p>
+<p>RESTful 一般通过 ids 来解决。但是问题也有，比如 cache invalidation。</p>
+<blockquote>
+<p>JSON Graph is valid JSON and can be parsed by any JSON parser. However JSON Graph introduces new primitive types to JSON to allow JSON to be used to represent graph information in a simple and consistent way.</p>
+</blockquote>
+<p>JSON Graph 是有效的 JSON，可以被解析。但是 JSON Graph 引入了新的基本类型到 JSON，可以让其用简单一致的方式展示 graph 信息。</p>
+<p>They borrow the idea from unix filesystem. That filesystem is a tree, but thanks to symlinks you can emulate the behaviour of a graph. That has massive implications in the way that Falcor optimises calls to backend services. Instead of keeping some values in a denormalised fashion, Falcor keeps references to that normalised value, so, if you ask for a value that has been already retrieved, Falcor will avoid that call. Also That makes cache invalidation much easier.</p>
+<p>借鉴了 Unix 文件系统的思路。文件系统是 tree，但是通过 symlinks，可以模拟 graph。</p>
+<p>Falcor 优化了对后端服务的调用：值通过标准化方式被引用，可以做缓存和缓存失效。</p>
+<img src="/2016/03/16/Transcending-REST-and-RPC/falcor-services-diagram-1024x518.png" alt="falcor-services-diagram-1024x518.png" title="">
+<p>As you can see in the example, we don’t store denormalised documents for titles inside of genres, but a reference through a titles map indexed by id. I can show you some code that I’ve been working on for a proof of concept. Falcor server side is currently only available on Node.js but there are <a href="https://twitter.com/falcorjs/status/575657256475189248" target="_blank" rel="external">plans to porting it into another platforms</a>.</p>
+<p>没有存储非范式文档的 title 在 generes 里。而是通过 reference。(flatten javasript)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/model.json'</span>, falcorKoa.dataSourceRoute(<span class="keyword">new</span> FalcorRouter([</span><br><span class="line">        &#123;</span><br><span class="line">            route: <span class="string">"teamsById[&#123;integers:teamIds&#125;]['name', 'memberCount']"</span>,</span><br><span class="line">            get  : <span class="function"><span class="keyword">function</span>(<span class="params">pathSet</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">const</span> teamIds = pathSet.teamIds;</span><br><span class="line">                <span class="keyword">const</span> keys = pathSet[<span class="number">2</span>];</span><br><span class="line">                <span class="keyword">return</span> teamsService.getTeams()</span><br><span class="line">                        .then(<span class="function"><span class="keyword">function</span>(<span class="params">teams</span>) </span>&#123;</span><br><span class="line">                            <span class="keyword">var</span> results = [];</span><br><span class="line">                            teamIds.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">teamId</span>) </span>&#123;</span><br><span class="line">                                keys.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">                                    <span class="keyword">var</span> team = teams[teamId];</span><br><span class="line">                                    results.push(&#123;</span><br><span class="line">                                        path : [<span class="string">'team'</span>, teamId, key],</span><br><span class="line">                                        value: team[key]</span><br><span class="line">                                    &#125;);</span><br><span class="line">                                &#125;);</span><br><span class="line">                            &#125;);</span><br><span class="line">                            <span class="keyword">return</span> results;</span><br><span class="line">                        &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ])));</span><br></pre></td></tr></table></figure>
+<p>客户端：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> model = <span class="keyword">new</span> falcor.Model(&#123; source: <span class="keyword">new</span> falcor.HttpDataSource(<span class="string">'/model.json'</span>) &#125;);</span><br><span class="line">model.get(<span class="string">'teamsById['</span><span class="number">1234</span><span class="string">', '</span><span class="number">456</span><span class="string">'].name'</span>);</span><br><span class="line">model.get(<span class="string">'teamsById['</span><span class="number">789</span><span class="string">']['</span>name<span class="string">', '</span>memberCount<span class="string">']'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="IN_CONCLUSION"><a href="#IN_CONCLUSION" class="headerlink" title="IN CONCLUSION"></a>IN CONCLUSION</h2><p>There are no silver bullets in software and nobody is claiming than Falcor or GraphQL are going to solve every single problem with client/server integration. However, if you have an application with a lot of clients and your backend has a complex data model, it might be worth giving this new paradigm a try.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>It seems that a new paradigm is coming. Facebook and Netflix have come up with different implementations for that idea. Some people are c]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Redux APIs]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/15/Redux-APIs/"/>
+    <id>http://shane.hsi.rocks/2016/03/15/Redux-APIs/</id>
+    <published>2016-03-15T09:02:36.000Z</published>
+    <updated>2016-03-15T23:27:45.000Z</updated>
+    <content type="html"><![CDATA[<p>因为我在使用 rxjs 自己做一个简单的 flux。主要目的是做精细的 stream 控制。</p>
+<p>这里想借鉴下 Redux 的 API 设计。</p>
+<p>从例子看：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">render(</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">Provider</span> <span class="attribute">store</span>=<span class="value">&#123;store&#125;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">App</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">Provider</span>&gt;</span>,</span><br><span class="line">  document.getElementById('root') /&gt;</span><br><span class="line">)</span></span><br></pre></td></tr></table></figure>
+<p>store 是通过 context 全局可见的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: state.counter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapDispatchToProps</span>(<span class="params">dispatch</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> bindActionCreators(CounterActions, dispatch)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(Counter)</span><br></pre></td></tr></table></figure>
+<p>connect 里主要的是 mapStateToProps。类似于 cursor 的功能。</p>
+<h2 id="API_Design_2016-03-15_17_3A11_3A11"><a href="#API_Design_2016-03-15_17_3A11_3A11" class="headerlink" title="API Design 2016-03-15 17:11:11"></a>API Design 2016-03-15 17:11:11</h2><h3 id="store__u901A_u8FC7_context__u4F20_u9012"><a href="#store__u901A_u8FC7_context__u4F20_u9012" class="headerlink" title="store 通过 context 传递"></a>store 通过 context 传递</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">state$.subscribe(<span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;</span><br><span class="line">  ReactDOM.render(</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Component</span> /&gt;</span>,</span><br><span class="line">    document.getElementById('root'));</span><br><span class="line">&#125;);</span></span><br></pre></td></tr></table></figure>
+<p>变成？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">state$.subscribe( state =&gt; render(</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Provider</span> <span class="attribute">store</span>=<span class="value">&#123;state&#125;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">Component</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="title">Provider</span>&gt;</span> ,  document.getElementById('root')   /&gt;</span><br><span class="line">)</span>);</span><br></pre></td></tr></table></figure>
+<p>让 state 全局可见。不用显式往下传递。</p>
+<h3 id="cursor__u62FF_u503C"><a href="#cursor__u62FF_u503C" class="headerlink" title="cursor 拿值"></a>cursor 拿值</h3><p>view 直接修改 store（或者调用 store 里的方法）。暂时不觉得 actions 有什么特别大的作用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line">@cursor(state =&gt; &#123;</span><br><span class="line">    return state.counter;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="keyword">extends</span> <span class="title">Component</span>&lt;<span class="title">any</span>, <span class="title">any</span>&gt; </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; value, onIncrement, onDecrement &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    onIncrement(<span class="xml"><span class="tag">&lt;<span class="title">mutations</span>&gt;</span>)</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">p</span>&gt;</span> /&gt;</span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Counter;</span><br></pre></td></tr></table></figure>
+<p>因为 store 已经全局可见了。所以 <code>cursor</code> 肯定是可以拿到值的。</p>
+<p>counter 的 model，或者 store</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store=&#123;state&#125; animateStore=&#123;&#125;&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Component</span> /&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="title">Provider</span>&gt;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>还是使用 redux 的 API 吧。只不过是使用 RxJS 来实现。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>因为我在使用 rxjs 自己做一个简单的 flux。主要目的是做精细的 stream 控制。</p>
+<p>这里想借鉴下 Redux 的 API 设计。</p>
+<p>从例子看：</p>
+<figure class="highlight js"><table><tr><td]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[immutable-js 入门]]></title>
@@ -900,65 +1007,6 @@
     <summary type="html">
     <![CDATA[<p>本身，JavaScript practice has two very common design patterns: the module pattern and the class pattern.</p>
 <p>简单来说，Roughly speaking, the m]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[TypeScript Spec Version 1.8 - Ambient Declarations (Object Types)]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8/"/>
-    <id>http://shane.hsi.rocks/2016/02/26/TypeScript-Spec-Version-1-8/</id>
-    <published>2016-02-25T23:32:36.000Z</published>
-    <updated>2016-02-27T01:26:14.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="Ambient_Declaration"><a href="#Ambient_Declaration" class="headerlink" title="Ambient Declaration"></a>Ambient Declaration</h2><p><a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#11-ambient-declarations" target="_blank" rel="external">Ambient Declaration</a></p>
-<p>An ambient declaration introduces a variable into a TypeScript scope, but has zero impact on the emitted JavaScript program. </p>
-<p>引入一个变量，仅在 TypeScript 范围，不会生成 JavaScript 代码。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">declare <span class="keyword">var</span> <span class="built_in">document</span>;  </span><br><span class="line"><span class="built_in">document</span>.title = <span class="string">"Hello"</span></span><br></pre></td></tr></table></figure>
-<p>Section 1.3 provides a more extensive example of how a programmer can add type information for jQuery and other libraries.</p>
-<h2 id="Object_Types"><a href="#Object_Types" class="headerlink" title="Object Types"></a>Object Types</h2><p><a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#1.3" target="_blank" rel="external">1.3 Object Types</a></p>
-<p>TypeScript programmers use object types to declare their expectations of object behavior. </p>
-<p>适用 object types 声明对象的行为。</p>
-<p>主要接着 ambient declaration，对 jQuery 的声明。</p>
-<p>先了解下 object tyeps：</p>
-<h3 id="object_type_literal"><a href="#object_type_literal" class="headerlink" title="object type literal"></a>object type literal</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MakePoint: () =&gt; &#123;  </span><br><span class="line">    x: number; y: number;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">interface Friend &#123;  </span><br><span class="line">    name: string;  </span><br><span class="line">    favoriteColor?: string;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">friend: Friend</span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> name = friend.name;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(&#123; name: <span class="string">"Fred"</span> &#125;);  <span class="comment">// Ok  </span></span><br><span class="line">add(&#123; favoriteColor: <span class="string">"blue"</span> &#125;);  <span class="comment">// Error, name required  </span></span><br><span class="line">add(&#123; name: <span class="string">"Jill"</span>, favoriteColor: <span class="string">"green"</span> &#125;);  <span class="comment">// Ok</span></span><br></pre></td></tr></table></figure>
-<h3 id="jQuery_Ambient_Declaration"><a href="#jQuery_Ambient_Declaration" class="headerlink" title="jQuery Ambient Declaration"></a>jQuery Ambient Declaration</h3><p>结果：</p>
-<ul>
-<li><code>$</code> 有 methods，fields</li>
-<li><code>$</code> 本身也是 function</li>
-<li><code>$</code> 作为 function 还可以被 overload</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">interface JQuery &#123;  </span><br><span class="line">    text(content: string);  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">interface JQueryStatic &#123;  </span><br><span class="line">    get(url: string, callback: (data: string) =&gt; any);     </span><br><span class="line">    (query: string): JQuery;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="keyword">var</span> $: JQueryStatic;</span><br><span class="line"></span><br><span class="line">$.get(<span class="string">"http://mysite.org/divContent"</span>,  </span><br><span class="line">      <span class="function"><span class="keyword">function</span> (<span class="params">data: string</span>) </span>&#123;  </span><br><span class="line">          $(<span class="string">"div"</span>).text(data);  </span><br><span class="line">      &#125;  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>The ‘JQueryStatic’ interface references another interface: ‘JQuery’. </p>
-<p>Finally, the ‘JQueryStatic’ interface contains a bare function signature</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(query: string): JQuery;</span><br></pre></td></tr></table></figure>
-<p>The bare signature indicates that instances of the interface are callable. 接口的实例是可以被调用的。</p>
-<p>This example illustrates that TypeScript function types are just special cases of TypeScript object types. Specifically, function types are object types that contain one or more call signatures. Function types 是 object types 的一种，即包含一个以上的 call signature。</p>
-<p>Function types 也可以用 literal 表示。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f: &#123; (): string; &#125;;  </span><br><span class="line"><span class="keyword">var</span> sameType: () =&gt; string = f;     <span class="comment">// Ok  </span></span><br><span class="line"><span class="keyword">var</span> nope: () =&gt; number = sameType;  <span class="comment">// Error: type mismatch</span></span><br></pre></td></tr></table></figure>
-<p>重载。To specify multiple behaviors, TypeScript supports overloading of function signatures in object types. </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface JQueryStatic &#123;  </span><br><span class="line">    get(url: string, callback: (data: string) =&gt; any);     </span><br><span class="line">    (query: string): JQuery;</span><br><span class="line">    (ready: () =&gt; any): any; <span class="comment">// overload</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="Ambient_Declaration"><a href="#Ambient_Declaration" class="headerlink" title="Ambient Declaration"></a>Ambient Declaration</h2><p><a]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Alternative to iFrames with HTML5]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/25/Alternative-to-iFrames-with-HTML5/"/>
-    <id>http://shane.hsi.rocks/2016/02/25/Alternative-to-iFrames-with-HTML5/</id>
-    <published>2016-02-25T11:31:54.000Z</published>
-    <updated>2016-02-25T11:33:26.000Z</updated>
-    <content type="html"><![CDATA[<p>不知道 Facebook 一个页面是怎么放多个团队的页面的。</p>
-<p>可以找时间思考下。</p>
-<p>参考下：<a href="http://stackoverflow.com/questions/8702704/alternative-to-iframes-with-html5" target="_blank" rel="external">Alternative to iFrames with HTML5</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>不知道 Facebook 一个页面是怎么放多个团队的页面的。</p>
-<p>可以找时间思考下。</p>
-<p>参考下：<a href="http://stackoverflow.com/questions/8702704/alternative-to-iframes-wit]]>
     </summary>
     
   </entry>
