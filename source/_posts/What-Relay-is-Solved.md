@@ -5,14 +5,8 @@ tags:
 
 {% asset_img 0.png %}
 
-~~~~~~~~~~~~
-
 {% asset_img 1.png %}
 
-~~~~~~~~~~~~
-
 {% asset_img 2.png %}
-
-~~~~~~~~~~~~
 
 {% asset_img 3.png %}
