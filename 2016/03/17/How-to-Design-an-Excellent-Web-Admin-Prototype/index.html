@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 如何设计出色的网站后台原型？- 知乎问题学习 · Shane Hsi Rocks</title><meta name="description" content="Q：新手请教，如何设计出色的网站后台的原型？前辈们都有那些什么工作方法，设计经验，请不吝赐教!~
+作者：justinlam
+严重不同意最高票的回答。对 信息系统逻辑 的理解太表面。
+没错，在设计系统时最开始确实是要定义好模块结构的划分，但是划分的方法不应该按照功能模块而是 按照业务逻辑进行划分。首先在 规划系统时要思考这个系统的作用到底是解决了什么问题或者对企业带来了怎么样的提升 。在这个大的环境下确定了之后，需求分析的阶段，应该按照业务的职责区块来划分子系统。
+
+应该一直维护一个图谱，每一块的都是相连的。可以乱，可以花时间整理。
+注：作者认为这个是 在使用上是达不到出色的。原因是划分的方式。
+
+
+这张图应该是 很普遍而且典型的后台管理系统，但是这样的系统无论是在"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">如何设计出色的网站后台原型？- 知乎问题学习</h1><div class="post-meta"><div class="post-time">Mar 17, 2016</div></div><div class="post-content"><p>Q：新手请教，如何设计出色的网站后台的原型？前辈们都有那些什么工作方法，设计经验，请不吝赐教!~</p>
+<p>作者：justinlam</p>
+<p>严重不同意最高票的回答。对 <strong>信息系统逻辑</strong> 的理解太表面。</p>
+<p>没错，在设计系统时最开始确实是要定义好模块结构的划分，但是划分的方法不应该按照功能模块而是 <strong>按照业务逻辑进行划分</strong>。首先在 <strong>规划系统时要思考这个系统的作用到底是解决了什么问题或者对企业带来了怎么样的提升</strong> 。在这个大的环境下确定了之后，需求分析的阶段，应该按照业务的职责区块来划分子系统。</p>
+<blockquote>
+<p>应该一直维护一个图谱，每一块的都是相连的。可以乱，可以花时间整理。</p>
+<p>注：作者认为这个是 <strong>在使用上是达不到出色的</strong>。原因是划分的方式。</p>
+</blockquote>
+<img src="/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/zhihu-1.png" alt="zhihu-1.png" title="">
+<p>这张图应该是 <strong>很普遍而且典型的后台管理系统</strong>，但是这样的系统无论是在开发还是使用我认为都是 <strong>达不到出色的</strong>。图中的板块划分采用 <strong>“业务名词+管理”</strong> 来进行命名，实际上也就是 <strong>以”物”为线索</strong> 贯穿整个系统。但是在实际操作中 <strong>物与物之间的传递都是交错</strong> 在一起的，例如图中的项目管理板块中包含了”合同管理”，在合同管理板块中又包含了”合同管理”那么究竟是哪个进行管理呢，项目管理中是否又包含权限的区分呢，这样的划分明显是有问题的。我在另一个回答上提到过 <strong>“穷尽不重复”</strong> 的划分方法，其实在这里就可以体现出作用来。</p>
+<blockquote>
+<p><strong>物与物之间的传递都是交错</strong>，就是 graph。上例的划分是 tree。</p>
+</blockquote>
+<p>那么正确的后台划分子系统的方式应该是 <strong>按照业务流程</strong> 来划分，以 <strong>“事”</strong> 为线索贯穿系统。采用 <strong>业务流程的环节</strong> 进行划分可以有效的 <strong>避免重复和混乱</strong> 的现象，对整个系统的架构都是非常清晰明了的。想要以”事”为线索进行梳理，有一个很好的方法就是使用 <strong>UML中的构件图</strong> 的来解决。对于产品人员，只需要理解构件图的思想，画出一个轻量级的框架。</p>
+<blockquote>
+<p><strong>按照业务流程</strong>，采用 <strong>业务流程的环节</strong> 进行划分。有效的 <strong>避免重复和混乱</strong> 。</p>
+</blockquote>
+<img src="/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/zhihu-2.png" alt="zhihu-2.png" title="">
+<p>首先在构件图中两个最重要的概念 <strong>构件和接口</strong> 对应着 <strong>事件和流程</strong> ，接口与接口之间只存在 <strong>实现(代表这个流程由这个事件提供的)和使用(代表这个事件要使用这个流程)</strong> 这两个关系。理解了这一概念之后就可以对 <strong>事与事，事与流程，流程与流程之间进行连接</strong>。</p>
+<img src="/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/zhihu-3.png" alt="zhihu-3.png" title="">
+<p>画构件图，<strong>第一步是识别建模的构件集合，也就是对主题域进行划分</strong>。可以按照 <strong>工作职责范围(部门)</strong> 划分成不同的 <strong>主题域</strong>，划分的时候也可以根据需要 <strong>进行多级的嵌套</strong> ，这样可以更容易理解上下级之间的关联。例如软件开发商可以按照开发人员，产品人员，销售人员职责不同进行第一级区块划分，然后再根据开发人员负责的不同环节进行第二级部门的划分。那么根据区块就可以很容易划分出”销售”和”研发”两个主题域。</p>
+<blockquote>
+<p>构件的集合，可以理解成 namespace。可以镜像于 <strong>部门（工作职责）</strong><br>嵌套关系，可以镜像于 Job Family。</p>
+<p>Job Family Group -&gt; Job Family 职业群，职业<br>Job Family + Management Level = Job Profile 职能<br>Job Profile + Organizaiton = Position 职位</p>
+</blockquote>
+<p>在研发这个主题域内主要负责针对软件研发进行管理，经过设计，研发，测试这几个阶段生产出成型的软件。那么这块就可以命名为”研发管理系统子系统”。</p>
+<p>在销售这个主题域内主要负责对客户的销售，客户培训，售后服务等，因此这块可以命名为”客户服务管理子系统”。</p>
+<p>在一般的系统中往往会加入后勤板块，在这个板块内含有硬件，财政和人员这些基本模板，可以划分成“硬件服务管理子系统”，”财政管理子系统”和”人员管理子系统”。后面两个子系统按照范围界定的原则相对独立，所以在前期设计中暂不考虑。</p>
+<img src="/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/zhihu-4.png" alt="zhihu-4.png" title="">
+<p>第二步需要把 <strong>功能不同的模块</strong> 划分成 <strong>构件</strong>，同时 <strong>确定构件与构件之间的接口，也就是开始绘制构件图</strong>。首先每一个主题域就是一个构件，这个比较好理解。先分析各个主题域之间的关系，四个系统两两之间有不同的关系。因为人员管理子系统相对比较独立，所以这块可以最后考虑。</p>
+<p>“研发管理系统子系统”与”客户服务管理子系统”:研发管理需要获取客户服务管理中的订单详情、研发要求、客户资料等；而客户服务管理需要获取研发管理中的项目进展、功能设置等。</p>
+<p>“研发管理系统子系统”与”硬件服务管理子系统”:研发管理需要知道数据库和服务器的情况，后台资源占用的情况；硬件服务管理需要获取研发团队的项目进度，功能规划和版本维护的情况。</p>
+<p>“客户服务管理子系统”与”硬件服务管理子系统”: 硬件服务管理需要知道客户的基本信息以便确定投入什么硬件支持；客户服务管理系统一般就不需要从后台服务系统获取信息。</p>
+<img src="/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/zhihu-5.png" alt="zhihu-5.png" title="">
+<p>（上图是一个比较简单的原型，实际规划还要考虑主题域之间更多关联）</p>
+<p>最后一步 <strong>进行主题域范围的明确，界定每个主题域内进行的功能以及相关的事件</strong>。在一些书籍中也把这个关系成为 <strong>上下文关系</strong>，即主题域与功能之间父级与子级的概念。在这个阶段要考虑到 Customer 与 Worker 之间的关系。找到系统中所有的客户，考虑这些客户会引起什么事件的发生，这些事件会引起Worker什么样的工作，讲这些都考虑进来。然后再补充Worker主动发起的动作，那么一个系统的所有事件就能没有遗漏地梳理完整了。这里值得注意的是，对于研发管理子系统而言，其他的客服管理，财政管理都属于是客户关系。他们对于研发关系系统属于消费者的动作。</p>
+<blockquote>
+<p>差不多理解作者的思想，核心是从流程触发，找到节点，找到节点间的接口。类似于 SOA，或者 FP。所以，需要一种 stream 的通用格式。<br>但是需要 namespace 之类的进行划分。这一块可以参考领域驱动设计。</p>
+</blockquote>
+<img src="/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/zhihu-6.png" alt="zhihu-6.png" title="">
+<p>通过以上三步可以把一个系统大致的框架搭建起来。这样搭建的好处在于系统的业务流程很清晰，无论是对于研发还是使用者而言都是有好处的，每个人都能清楚地意识到自己在做什么事情。上述分析方法是徐峰老师提出的 <strong>SERU需求分析法</strong> 中关于主题域确定，也就是系统框架结构确定的第一步，这也是设计一个系统最根基的地方，然后才是去考虑更细化，更精准的业务流程设计。把根基打好再去做子系统内部的规划就变得比较简单。对于一个系统，在设计时一定要有“自上而下”的思想，从最大的环境去考虑问题，这样才不会在后期规划中因为突然插入的东西变得混乱。(图片有部分来自网络，侵删)</p>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://zhuanlan.zhihu.com/justinlam/20383851" target="_blank" rel="external">SERU最佳需求分析方法</a></li>
+<li><a href="https://book.douban.com/subject/3265691/" target="_blank" rel="external">软件需求最佳实践</a></li>
+</ul>
+</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2016/03/17/What-Relay-is-Solved/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
