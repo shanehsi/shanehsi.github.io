@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-22T06:32:17.000Z</updated>
+  <updated>2016-03-23T02:24:18.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[前端技术选型思考于2016年03月23日]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/23/2016-03-23-Front-End-General-Techniques-Thoughts/"/>
+    <id>http://shane.hsi.rocks/2016/03/23/2016-03-23-Front-End-General-Techniques-Thoughts/</id>
+    <published>2016-03-23T01:40:04.000Z</published>
+    <updated>2016-03-23T02:24:18.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li>HTML/CSS</li>
+<li>React</li>
+<li>Redux</li>
+<li>React Router</li>
+<li>Rx</li>
+<li>Falcor/Relay/GraphQL</li>
+<li>Express</li>
+</ul>
+<p>分层的话：</p>
+<table>
+<thead>
+<tr>
+<th>分层</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML/CSS - UI, UE</td>
+</tr>
+<tr>
+<td>View - React</td>
+</tr>
+<tr>
+<td>Data flow - Redux/Rx</td>
+</tr>
+<tr>
+<td>Ajax/Cache - Falcor</td>
+</tr>
+<tr>
+<td>Backend - Express/Falcor Endpoint</td>
+</tr>
+</tbody>
+</table>
+<p>其他的：</p>
+<ul>
+<li>Test<ul>
+<li>Ava</li>
+<li>Enzyme</li>
+</ul>
+</li>
+<li>React Router</li>
+<li>Webpack module bundler</li>
+<li>Proxy</li>
+<li>Mock Server</li>
+</ul>
+<p><strong>优先级</strong>：</p>
+<ol>
+<li>Ava/Enzyme </li>
+<li>Redux/Rx</li>
+<li>HTML/CSS</li>
+<li>Faclor</li>
+<li>Express</li>
+<li>Mock Server</li>
+<li>Proxy</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li>HTML/CSS</li>
+<li>React</li>
+<li>Redux</li>
+<li>React Router</li>
+<li>Rx</li>
+<li>Falcor/Relay/GraphQL</li>
+<li>Express</li>
+</ul>
+]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[npm link]]></title>
@@ -1095,20 +1173,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="li]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Spring 3.1 M1: Unified Property Management]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/03/Spring-3-1-M1-Unified-Property-Management/"/>
-    <id>http://shane.hsi.rocks/2016/03/03/Spring-3-1-M1-Unified-Property-Management/</id>
-    <published>2016-03-03T11:10:21.000Z</published>
-    <updated>2016-03-07T07:44:08.000Z</updated>
-    <content type="html"><![CDATA[<p>参考链接：<a href="http://spring.io/blog/2011/02/15/spring-3-1-m1-unified-property-management/" target="_blank" rel="external">Spring 3.1 M1: Unified Property Management</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>参考链接：<a href="http://spring.io/blog/2011/02/15/spring-3-1-m1-unified-property-management/" target="_blank" rel="external">Spring 3.1 M1: ]]>
     </summary>
     
   </entry>
