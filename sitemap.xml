@@ -2,8 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/03/22/npm-link/</loc>
+    <lastmod>2016-03-22T06:32:17.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/22/Learn-Github-RESTful-API-v3/</loc>
+    <lastmod>2016-03-22T03:56:31.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/22/Setting-up-webpack-dev-middleware-in-Express/</loc>
+    <lastmod>2016-03-22T02:31:32.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/17/Thoughts-on-Progressive-Web-Development/</loc>
+    <lastmod>2016-03-17T10:59:59.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/</loc>
-    <lastmod>2016-03-17T08:08:57.000Z</lastmod>
+    <lastmod>2016-03-17T08:10:20.000Z</lastmod>
   </url>
   
   <url>

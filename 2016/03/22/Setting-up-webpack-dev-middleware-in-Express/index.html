@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Setting up webpack-dev-middleware in Express · Shane Hsi Rocks</title><meta name="description" content="需要了解几个概念：
+
+Express 和 connect 的区别
+Express middleware 的原理大概了解
+
+Webpack dev 的几个概念：
+a. webpack dev server 完全可以 self-running 的 dev server，并包含 live reloading。：
+b. webpack dev middleware，：
+是一个 simple wrapper middleware for webpack。 It serves the files emitted from webpack over a connect server.
+和 bundling as files 相比的优势：
+
+No files are written to disk, it handles the files in memory。
+If files changed in watch mode, the middleware no "><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Setting up webpack-dev-middleware in Express</h1><div class="post-meta"><div class="post-time">Mar 22, 2016</div></div><div class="post-content"><p>需要了解几个概念：</p>
+<ol>
+<li>Express 和 connect 的区别</li>
+<li>Express middleware 的原理大概了解</li>
+</ol>
+<p>Webpack dev 的几个概念：</p>
+<p><strong>a. webpack dev server 完全可以 self-running 的 dev server，并包含 live reloading。</strong>：</p>
+<p><strong>b. webpack dev middleware，</strong>：</p>
+<p>是一个 simple wrapper middleware for webpack。 It serves the files emitted from webpack over a <strong>connect server</strong>.</p>
+<p>和 bundling as files 相比的优势：</p>
+<ol>
+<li>No files are written to disk, it handles the files <strong>in memory</strong>。</li>
+<li>If files changed <strong>in watch mode</strong>, the middleware no longer serves the old bundle, but <strong>delays requests until the compiling has finished</strong>. You don’t have to wait before refreshing the page after a file modification.</li>
+</ol>
+<p><strong>c. webpack hot middleware</strong></p>
+<p>Webpack hot reloading using only webpack-dev-middleware. This allows you to add hot reloading into an existing server without webpack-dev-server.</p>
+<p>以上两种 middleware 的区别可能要看代码。从文档和我的理解来说：</p>
+<ol>
+<li>dev 是 in memory</li>
+<li>hot 是依赖了 dev，并增加了 hot reload</li>
+</ol>
+<p>因为已经有 Express 作为 server，所以，目的是：</p>
+<p><strong>use webpack-dev-server as a middleware</strong></p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/03/22/Learn-Github-RESTful-API-v3/" class="prev">上一篇</a><a href="/2016/03/17/Thoughts-on-Progressive-Web-Development/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

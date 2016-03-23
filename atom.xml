@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-17T08:08:57.000Z</updated>
+  <updated>2016-03-22T06:32:17.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -15,11 +15,139 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[npm link]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/22/npm-link/"/>
+    <id>http://shane.hsi.rocks/2016/03/22/npm-link/</id>
+    <published>2016-03-22T06:26:37.000Z</published>
+    <updated>2016-03-22T06:32:17.000Z</updated>
+    <content type="html"><![CDATA[<p>参考链接：<a href="http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears" target="_blank" rel="external">justjs: node.js tutorials</a></p>
+<p><strong>npm link: symbolic links to the rescue</strong></p>
+<p>Fortunately npm provides a tool to avoid this tedium. And it’s easy to use. But there’s a catch.</p>
+<p>Here’s how it’s supposed to work:</p>
+<ol>
+<li><p>cd to src/appy</p>
+</li>
+<li><p>Run “<strong>npm link</strong>“. This creates a symbolic link from a global folder to the src/appy folder.</p>
+</li>
+<li><p>cd to src/mysite</p>
+</li>
+<li><p>Run “<strong>npm link appy</strong>“. This links “node_modules/appy” in this particular project to the global folder, so that “require” calls looking for appy wind up loading it from your development folder, src/appy.</p>
+</li>
+</ol>
+<p>Mission accomplished… almost. If you installed Node in a typical way, using MacPorts or Ubuntu’s apt-get, then npm’s “global” folders are probably in a location shared system-wide, like /opt/local/npm or /usr/lib/npm. And this is not good, because it means those “npm link” commands are going to fail unless you run them as root.</p>
+<p>如何删除呢？</p>
+<p>参考链接：<a href="http://stackoverflow.com/questions/19094630/how-do-i-uninstall-a-package-installed-using-npm-link" target="_blank" rel="external">How do I uninstall a package installed using npm link?</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm rm --global foo&#10;npm ls --global foo # &#26816;&#26597;&#19979;</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考链接：<a href="http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears" target="_blank" rel="external">justjs: node]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Learn Github RESTful API v3]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/22/Learn-Github-RESTful-API-v3/"/>
+    <id>http://shane.hsi.rocks/2016/03/22/Learn-Github-RESTful-API-v3/</id>
+    <published>2016-03-22T03:37:01.000Z</published>
+    <updated>2016-03-22T03:56:31.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>meida type:</strong></p>
+<p>最基本：<br>    application/json</p>
+<p>其他类似于上传功能等单独定义。</p>
+<p><strong>响应</strong></p>
+<p>Response Header:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Status</span>: <span class="string">200 OK</span></span><br><span class="line"></span><br><span class="line"><span class="1c">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>分页</strong></p>
+<p>/search/users?q=xx&amp;pageIndex=1&amp;pageSize=10</p>
+<p>| 名称 | 类型 | 描述 |<br>| q | string | 关键词 |<br>| pageIndex | number | 第几页 |<br>| pageSize | number | 每页分几个 |</p>
+<p><strong>错误</strong></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Status</span>: <span class="string">500 INTERNAL SERVER ERROR</span></span><br><span class="line"></span><br><span class="line"><span class="css"><span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">error</span>:<span class="value"> <span class="string">'...'</span></span><br><span class="line"></span></span></span>&#125;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>meida type:</strong></p>
+<p>最基本：<br>    application/json</p>
+<p>其他类似于上传功能等单独定义。</p>
+<p><strong>响应</strong></p>
+<p>Response Header]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Setting up webpack-dev-middleware in Express]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/22/Setting-up-webpack-dev-middleware-in-Express/"/>
+    <id>http://shane.hsi.rocks/2016/03/22/Setting-up-webpack-dev-middleware-in-Express/</id>
+    <published>2016-03-22T01:21:32.000Z</published>
+    <updated>2016-03-22T02:31:32.000Z</updated>
+    <content type="html"><![CDATA[<p>需要了解几个概念：</p>
+<ol>
+<li>Express 和 connect 的区别</li>
+<li>Express middleware 的原理大概了解</li>
+</ol>
+<p>Webpack dev 的几个概念：</p>
+<p><strong>a. webpack dev server 完全可以 self-running 的 dev server，并包含 live reloading。</strong>：</p>
+<p><strong>b. webpack dev middleware，</strong>：</p>
+<p>是一个 simple wrapper middleware for webpack。 It serves the files emitted from webpack over a <strong>connect server</strong>.</p>
+<p>和 bundling as files 相比的优势：</p>
+<ol>
+<li>No files are written to disk, it handles the files <strong>in memory</strong>。</li>
+<li>If files changed <strong>in watch mode</strong>, the middleware no longer serves the old bundle, but <strong>delays requests until the compiling has finished</strong>. You don’t have to wait before refreshing the page after a file modification.</li>
+</ol>
+<p><strong>c. webpack hot middleware</strong></p>
+<p>Webpack hot reloading using only webpack-dev-middleware. This allows you to add hot reloading into an existing server without webpack-dev-server.</p>
+<p>以上两种 middleware 的区别可能要看代码。从文档和我的理解来说：</p>
+<ol>
+<li>dev 是 in memory</li>
+<li>hot 是依赖了 dev，并增加了 hot reload</li>
+</ol>
+<p>因为已经有 Express 作为 server，所以，目的是：</p>
+<p><strong>use webpack-dev-server as a middleware</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>需要了解几个概念：</p>
+<ol>
+<li>Express 和 connect 的区别</li>
+<li>Express middleware 的原理大概了解</li>
+</ol>
+<p>Webpack dev 的几个概念：</p>
+<p><strong>a. webpa]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Thoughts on Progressive Web Development]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/17/Thoughts-on-Progressive-Web-Development/"/>
+    <id>http://shane.hsi.rocks/2016/03/17/Thoughts-on-Progressive-Web-Development/</id>
+    <published>2016-03-17T09:00:44.000Z</published>
+    <updated>2016-03-17T10:59:59.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u6837_u5F0F"><a href="#u6837_u5F0F" class="headerlink" title="样式"></a>样式</h2><p>样式使用 ant.design。</p>
+<p>样式不会变。ant.design 的就很好。</p>
+<p>但是如何使用 React 实现？可以修改。反正对用户的（接口）不要变。</p>
+<h2 id="u4F46_u662F_u57FA_u672C_u7684_Layout__u8981_u5B9A_u4E0B_u6765"><a href="#u4F46_u662F_u57FA_u672C_u7684_Layout__u8981_u5B9A_u4E0B_u6765" class="headerlink" title="但是基本的 Layout 要定下来"></a>但是基本的 Layout 要定下来</h2><img src="/2016/03/17/Thoughts-on-Progressive-Web-Development/mockup.png" alt="mockup.png" title="">
+<p>借鉴的淘宝的。可以很顺畅的放下 </p>
+<ul>
+<li>logo</li>
+<li>omni serach</li>
+<li>function area, ex. notification, help</li>
+<li>left side bar</li>
+<li>tab bar</li>
+</ul>
+<p>不要给用户选择。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u6837_u5F0F"><a href="#u6837_u5F0F" class="headerlink" title="样式"></a>样式</h2><p>样式使用 ant.design。</p>
+<p>样式不会变。ant.design 的就很好。</p>
+<]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[如何设计出色的网站后台原型？- 知乎问题学习]]></title>
     <link href="http://shane.hsi.rocks/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/"/>
     <id>http://shane.hsi.rocks/2016/03/17/How-to-Design-an-Excellent-Web-Admin-Prototype/</id>
     <published>2016-03-17T07:11:18.000Z</published>
-    <updated>2016-03-17T08:08:57.000Z</updated>
+    <updated>2016-03-17T08:10:20.000Z</updated>
     <content type="html"><![CDATA[<p>Q：新手请教，如何设计出色的网站后台的原型？前辈们都有那些什么工作方法，设计经验，请不吝赐教!~</p>
 <p>作者：justinlam</p>
 <p>严重不同意最高票的回答。对 <strong>信息系统逻辑</strong> 的理解太表面。</p>
@@ -981,110 +1109,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>参考链接：<a href="http://spring.io/blog/2011/02/15/spring-3-1-m1-unified-property-management/" target="_blank" rel="external">Spring 3.1 M1: ]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Manager Topic from ZhiHu]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/03/Manager-Topic-from-ZhiHu/"/>
-    <id>http://shane.hsi.rocks/2016/03/03/Manager-Topic-from-ZhiHu/</id>
-    <published>2016-03-03T05:57:37.000Z</published>
-    <updated>2016-03-03T05:57:37.000Z</updated>
-    <content type="html"></content>
-    <summary type="html">
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Java Knowledage Points 2016-03-01]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/01/Java-Knowledage-Points-2016-03-01/"/>
-    <id>http://shane.hsi.rocks/2016/03/01/Java-Knowledage-Points-2016-03-01/</id>
-    <published>2016-03-01T03:56:17.000Z</published>
-    <updated>2016-03-01T07:19:43.000Z</updated>
-    <content type="html"><![CDATA[<p>在将两家公司的基础中间件合并时出现的错误。</p>
-<p><a href="http://my.oschina.net/jasonultimate/blog/166932" target="_blank" rel="external">ClassNotFoundException和NoClassDefFoundError的区别</a>。</p>
-<p>Java支持使用Class.forName方法来动态地加载类，任意一个类的类名如果被作为参数传递给这个方法都将导致该类被加载到JVM内存中，如果这个类在 <strong>类路径中没有被找到</strong> ，那么此时就会在运行时抛出ClassNotFoundException异常。</p>
-<p>要解决这个问题很容易，唯一需要做的就是要确保所需的类连同它依赖的包存在于类路径中。当Class.forName被调用的时候，类加载器会查找类路径中的类，如果找到了那么这个类就会被成功加载，如果没找到，那么就会抛出ClassNotFountException，除了Class.forName，ClassLoader.loadClass、ClassLOader.findSystemClass在动态加载类到内存中的时候也可能会抛出这个异常。</p>
-<p>另外还有一个导致ClassNotFoundException的原因就是：当一个类已经某个类加载器加载到内存中了，此时 <strong>另一个类加载器</strong> 又尝试着动态地从同一个包中加载这个类。</p>
-<blockquote>
-<p>两个类加载器动态加载冲突。</p>
-</blockquote>
-<p>NoClassDefFoundError产生的原因：</p>
-<p>如果JVM或者ClassLoader实例尝试加载（可以通过正常的方法调用，也可能是使用new来创建新的对象）类的时候却找不到类的定义。要查找的类 <strong>在编译的时候是存在的，运行的时候却找不到了</strong>。这个错误往往是你使用new操作符来创建一个新的对象但却找不到该对象对应的类。这个时候就会导致NoClassDefFoundError.</p>
-<p>由于NoClassDefFoundError是有JVM引起的，所以不应该尝试捕捉这个错误。</p>
-<p>解决这个问题的办法就是：<strong>查找那些在开发期间存在于类路径下但在运行期间却不在类路径下的类</strong>。</p>
-<ul>
-<li>加载时从外存储器找不到需要的class就出现ClassNotFoundException </li>
-<li>连接时从内存找不到需要的class就出现NoClassDefFoundError</li>
-</ul>
-<p><a href="http://blog.csdn.net/shendl/article/details/1050611" target="_blank" rel="external">出现java.lang.UnsupportedClassVersionError 错误的原因</a></p>
-<p>出现java.lang.UnsupportedClassVersionError 错误的原因，是因为我们使用高版本的JDK编译的Java class文件试图在较低版本的JVM上运行，所报的错误。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在将两家公司的基础中间件合并时出现的错误。</p>
-<p><a href="http://my.oschina.net/jasonultimate/blog/166932" target="_blank" rel="external">ClassNotFoundExcept]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[新部门，新角色，新目标]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/"/>
-    <id>http://shane.hsi.rocks/2016/02/29/New-Department-New-Roles-New-Goals/</id>
-    <published>2016-02-29T12:05:48.000Z</published>
-    <updated>2016-03-07T08:16:23.000Z</updated>
-    <content type="html"><![CDATA[<p>今天正式转组。当前时间20:05，状态累。虽然现在有很多想法，由于状态不佳，所以想形成一篇博客，保留下自己的零碎想法。</p>
-<ul>
-<li>新组有很多新的业务领域知识需要摄入</li>
-<li>Java 点评中间件需要熟悉，主要是 Cat</li>
-<li>用户端 Java 的技术特点需要熟悉</li>
-<li>这边技术团队的技术特点需要熟悉</li>
-</ul>
-<p>以上是近期，或者叫做直面的挑战。</p>
-<blockquote>
-<p>现在身体状况的确有些不好，很想睡觉。 然后过了5分钟左右，中间问了下妈妈外婆的身体状况。背景音乐从『IT 公论』换成中孝介的歌声。状态稍微恢复了点。</p>
-</blockquote>
-<p>不管挑战如何，都会有解决方案。有些自己参与即可，有些也急不来，需要和团队不断的沟通。</p>
-<p>Cat 中间件的熟悉主要是自己。但是比较快速的方式是问他们看哪些指标？Cat 调试的方式也不多。Cat 的文档相对蛮多的。总结出一篇博客。这个基本上就可以标记为 done。</p>
-<p>其他基本上通过沟通。要快速和团队融合。目标是2周，3月中旬找 Lead 沟通下年度目标。沟通的具体内容我需要找长辈和朋友商量下。</p>
-<p>今天和一个同事聊天，他说一定要有目标。</p>
-<p>所以，这才是我最大的挑战。</p>
-<p>上周五在公司的目标管理课程上，讲师分享了一个例子。对一所学校的毕业生，30年后的现状进行了调查。</p>
-<ul>
-<li>依然坚持30年前定下的目标的极少部分人，成为了精英和上层人物</li>
-<li>坚持了10年的，成为了专家</li>
-<li>坚持了3年的，成为了中产</li>
-<li>一直在更换目标的，成为了普通人</li>
-</ul>
-<p>除去其中的生搬硬造，道理却是出来了。</p>
-<p>这才是我最大的挑战。</p>
-<h2 id="u6211_u8981_u6362_u5DE5_u4F5C_u4E86"><a href="#u6211_u8981_u6362_u5DE5_u4F5C_u4E86" class="headerlink" title="我要换工作了"></a>我要换工作了</h2><p>变化的太快了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>今天正式转组。当前时间20:05，状态累。虽然现在有很多想法，由于状态不佳，所以想形成一篇博客，保留下自己的零碎想法。</p>
-<ul>
-<li>新组有很多新的业务领域知识需要摄入</li>
-<li>Java 点评中间件需要熟悉，主要是 Cat</li>
-<li>用户端 J]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[SSH Login with Saved Password]]></title>
-    <link href="http://shane.hsi.rocks/2016/02/29/SSH-Login-with-Saved-Password/"/>
-    <id>http://shane.hsi.rocks/2016/02/29/SSH-Login-with-Saved-Password/</id>
-    <published>2016-02-29T11:30:41.000Z</published>
-    <updated>2016-02-29T11:37:39.000Z</updated>
-    <content type="html"><![CDATA[<p>参考文档：<a href="http://serverfault.com/questions/241588/how-to-automate-ssh-login-with-password" target="_blank" rel="external">How to automate SSH login with password?</a></p>
-<p>参考文档：<a href="https://gist.github.com/arunoda/7790979" target="_blank" rel="external">Installing SSHPASS</a>。</p>
-<p>之后可以编写脚本了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>参考文档：<a href="http://serverfault.com/questions/241588/how-to-automate-ssh-login-with-password" target="_blank" rel="external">How to auto]]>
     </summary>
     
   </entry>
