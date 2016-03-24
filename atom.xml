@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-23T02:24:18.000Z</updated>
+  <updated>2016-03-23T09:45:25.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -15,11 +15,76 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[学习 Ava 和 Enzyme]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/23/Learn-Ava-and-Enzyme/"/>
+    <id>http://shane.hsi.rocks/2016/03/23/Learn-Ava-and-Enzyme/</id>
+    <published>2016-03-23T03:06:23.000Z</published>
+    <updated>2016-03-23T09:45:25.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Ava"><a href="#Ava" class="headerlink" title="Ava"></a>Ava</h1><p><a href="https://github.com/sindresorhus/ava" target="_blank" rel="external">github</a>。</p>
+<p>ava 配置很简单</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"awesome-package"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"ava"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"ava"</span>: <span class="string">"^0.11.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'ava'</span>;</span><br><span class="line"></span><br><span class="line">test(<span class="string">'foo'</span>, t =&gt; &#123;</span><br><span class="line">    t.pass();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">test(<span class="string">'bar'</span>, <span class="keyword">async</span> t =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> bar = <span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>);</span><br><span class="line"></span><br><span class="line">    t.is(<span class="keyword">await</span> bar, <span class="string">'bar'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>跑测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="built_in">test</span></span><br><span class="line">npm <span class="built_in">test</span> -- --watch</span><br></pre></td></tr></table></figure>
+<p>更多的配置在 pakcage.json 中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"ava"</span>: &#123;</span><br><span class="line">    <span class="string">"files"</span>: [</span><br><span class="line">      <span class="string">"my-test-folder/*.js"</span>,</span><br><span class="line">      <span class="string">"!**/not-this-file.js"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"source"</span>: [</span><br><span class="line">      <span class="string">"**/*.&#123;js,jsx&#125;"</span>,</span><br><span class="line">      <span class="string">"!dist/**/*"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"match"</span>: [</span><br><span class="line">      <span class="string">"*oo"</span>,</span><br><span class="line">      <span class="string">"!foo"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"failFast"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"tap"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"require"</span>: [</span><br><span class="line">      <span class="string">"babel-register"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"babel"</span>: <span class="string">"inherit"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于对 ES2015 的支持。Ava 是内置了 Babel 6，Ava 使用的配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"presets"</span>: [</span><br><span class="line">    <span class="string">"es2015"</span>,</span><br><span class="line">    <span class="string">"stage-2"</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="string">"espower"</span>,</span><br><span class="line">    <span class="string">"transform-runtime"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以修改的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"ava"</span>: &#123;</span><br><span class="line">         <span class="string">"babel"</span>: &#123;</span><br><span class="line">             <span class="string">"presets"</span>: [</span><br><span class="line">                    <span class="string">"es2015"</span>,</span><br><span class="line">                    <span class="string">"stage-0"</span>,</span><br><span class="line">                    <span class="string">"react"</span></span><br><span class="line">             ]</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并且可以使用 <code>inherit</code> 来使用 <code>.babelrc</code> 的配置，不用再为了 ava 在 transpile 一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"babel"</span>: &#123;</span><br><span class="line">        <span class="string">"presets"</span>: [</span><br><span class="line">            <span class="string">"es2015"</span>,</span><br><span class="line">            <span class="string">"stage-0"</span>,</span><br><span class="line">            <span class="string">"react"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"ava"</span>: &#123;</span><br><span class="line">        <span class="string">"babel"</span>: <span class="string">"inherit"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但不管怎样，Note that AVA will always apply the <code>espower</code> and <code>transform-runtime</code> plugins.</p>
+<h2 id="u6587_u6863"><a href="#u6587_u6863" class="headerlink" title="文档"></a>文档</h2><p>建议使用 async function</p>
+<p>We highly recommend the use of async functions. They make asynchronous code concise and readable, and they implicitly return a promise so you don’t have to.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="keyword">await</span> promiseFn();</span><br><span class="line">    t.true(value);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// async arrow function</span></span><br><span class="line">test(<span class="keyword">async</span> t =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="keyword">await</span> promiseFn();</span><br><span class="line">    t.true(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>下面的句子看下，涉及到 spec 文件的放置目录。</p>
+<p>Test files are run from their current directory, so process.cwd() is always the same as <strong>dirname. You can just use relative paths instead of doing path.join(</strong>dirname, ‘relative/path’).</p>
+<p>其他的 API 用到再看。</p>
+<h2 id="u6D4B_u8BD5_u6D4F_u89C8_u5668"><a href="#u6D4B_u8BD5_u6D4F_u89C8_u5668" class="headerlink" title="测试浏览器"></a>测试浏览器</h2><p>依赖 <code>jsdom</code>。</p>
+<p><a href="https://github.com/sindresorhus/ava/blob/master/docs/recipes/browser-testing.md" target="_blank" rel="external">Setting up AVA for browser testing</a></p>
+<h1 id="Enzyme"><a href="#Enzyme" class="headerlink" title="Enzyme"></a>Enzyme</h1><p>文章介绍，<a href="https://medium.com/airbnb-engineering/enzyme-javascript-testing-utilities-for-react-a417e5e5090f#.sjli8b8zm" target="_blank" rel="external">Enzyme: JavaScript Testing utilities for React</a></p>
+<p><a href="https://github.com/airbnb/enzyme/" target="_blank" rel="external">github</a></p>
+<p>Airbnb open sourced Enzyme, a JavaScript library for testing React components. </p>
+<p>Historically, testing UI has been hard to accomplish for a variety of reasons, but using React removes a lot of these hurdles. We hope that enzyme does a good job removing the remaining ones!</p>
+<p>测试 UI 很难，React 帮我们除去了大多的障碍，希望 enzyme 等除去剩下的。</p>
+<h2 id="Declarative_UIs_are_Testable_UIs"><a href="#Declarative_UIs_are_Testable_UIs" class="headerlink" title="Declarative UIs are Testable UIs"></a>Declarative UIs are Testable UIs</h2><p>Pure functions (and thus React components) are much easier to test because they simply return a description for what UI of the component should look like, given some application state, rather than actually mutating the UI and having side-effects. This “description” is known as a “Virtual DOM” and is a tree-like data structure.</p>
+<ul>
+<li>Pure Function 易测试，input -&gt; output，没有 side effects</li>
+<li>测试 Virutal DOM，a tree-like data structure.</li>
+</ul>
+<p>Making assertions on the state of a React render tree can include a lot of boilerplate code and is hard to read, which detracts from the value of the test. Moreover, directly asserting on the resulting tree can strongly couple your tests to implementation details that end up making your tests extremely fragile.</p>
+<ul>
+<li>测试 React 的 render tree 会有很多 boilerplate 代码。难以阅读，也就降低了 test 的价值。</li>
+<li>直接 assert resulting tree 会将 test 和实现细节强耦合，最终 fragile。</li>
+</ul>
+<p>Enzyme makes asking questions about the rendered output of your React components easy and intuitive by providing a fluent interface around rendered React components.</p>
+<p>Enzyme 做的事情是，提供了 fluent interface。</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>Enzyme exports three different “modes” to render and test components, shallow, mount, and render. Shallow is the recommended mode to start with since it does a better job of isolating your tests to just a single component. If shallow doesn’t work for your use case (for example, if you are relying on the presence of a real DOM), mount or render likely will.</p>
+<p>Enzyme 有3种“模式”来 render 和 test 组件。</p>
+<ul>
+<li>shallow 推荐，</li>
+<li>mount </li>
+<li>render</li>
+</ul>
+<h2 id="Github__u7684_u6587_u6863"><a href="#Github__u7684_u6587_u6863" class="headerlink" title="Github 的文档"></a>Github 的文档</h2><p>Enzyme is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.</p>
+<p>Enzyme’s API is meant to be intuitive and flexible by mimicking jQuery’s API for DOM manipulation and traversal.</p>
+<p>模拟了 jQuery 操作和 traverse DOM 的 API。</p>
+<p>对于 <code>React 0.14</code>：</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i --<span class="built_in">save</span>-<span class="built_in">dev</span> react-addons-test-utils@<span class="number">1.4</span></span><br><span class="line">npm i --<span class="built_in">save</span>-<span class="built_in">dev</span> react-dom@<span class="number">1.4</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Ava"><a href="#Ava" class="headerlink" title="Ava"></a>Ava</h1><p><a href="https://github.com/sindresorhus/ava" target="_blank" rel=]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[前端技术选型思考于2016年03月23日]]></title>
     <link href="http://shane.hsi.rocks/2016/03/23/2016-03-23-Front-End-General-Techniques-Thoughts/"/>
     <id>http://shane.hsi.rocks/2016/03/23/2016-03-23-Front-End-General-Techniques-Thoughts/</id>
     <published>2016-03-23T01:40:04.000Z</published>
-    <updated>2016-03-23T02:24:18.000Z</updated>
+    <updated>2016-03-23T03:41:25.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>HTML/CSS</li>
 <li>React</li>
@@ -68,7 +133,7 @@
 </ul>
 <p><strong>优先级</strong>：</p>
 <ol>
-<li>Ava/Enzyme </li>
+<li>Ava/Enzyme - 黑盒</li>
 <li>Redux/Rx</li>
 <li>HTML/CSS</li>
 <li>Faclor</li>
@@ -1159,20 +1224,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h2><figure class="highlight js"><table><tr><td class="gutt]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[学一个 shell 脚本]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/07/Let-s-Learn-a-Shell-Script/"/>
-    <id>http://shane.hsi.rocks/2016/03/07/Let-s-Learn-a-Shell-Script/</id>
-    <published>2016-03-07T07:45:44.000Z</published>
-    <updated>2016-03-07T07:47:46.000Z</updated>
-    <content type="html"><![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash&#10;# ------------------&#10;# &#32447;&#19978;&#38745;&#24577;&#37096;&#32626;&#33050;&#26412;&#10;#&#10;# @history&#10;#&#10;# ------------------&#10;&#10;WORKSPACE=`pwd`&#10;DIRNAME=`dirname $0`    # &#36820;&#22238;&#36825;&#20010;&#33050;&#26412;&#25991;&#20214;&#25918;&#32622;&#30340;&#30446;&#24405;&#65292;&#28982;&#21518;&#21487;&#20197;&#26681;&#25454;&#36825;&#20010;&#30446;&#24405;&#23450;&#20301;&#35201;&#36816;&#34892;&#31243;&#24207;&#30340;&#30456;&#23545;&#20301;&#32622;&#10;&#10;STATIC_PATH=/opt/xoxo/static/&#10;TEST_STATIC_PATH=/opt/xoxo/static/test&#10;PROJECT_PATH=$WORKSPACE/xxyy-container&#10;DEPLOY_PATH=$PROJECT_PATH/src/main/webapp/deploy/&#10;&#10;pwd;&#10;echo $DIRNAME;  # &#25171;&#21360;&#24403;&#21069;&#30446;&#24405;&#10;&#10;chmod u+x $DIRNAME/color.sh &#38;&#38; source $DIRNAME/color.sh     # &#32473; color.sh &#22686;&#21152;&#25191;&#34892;&#26435;&#38480;&#65292;&#24182;&#20869;&#32852;&#10;if [ $? -eq 0 ]; then   # $? &#19978;&#20010;&#21629;&#20196;&#30340;&#36864;&#20986;&#29366;&#24577;&#65292;&#25110;&#20989;&#25968;&#30340;&#36820;&#22238;&#20540;&#12290;&#10;    echo -e &#34;$&#123;Gre&#125;&#25191;&#34892;color.sh&#25104;&#21151;$&#123;RCol&#125;&#34;&#10;else&#10;    echo &#34;&#25191;&#34892;color.sh&#20986;&#38169;&#20102;&#34;&#10;    exit 1&#10;fi&#10;&#10;cd $DIRNAME &#38;&#38; pwd&#10;&#10;npm install --registry=http://r.npm.xoxo.com     # npm install&#65292;&#24182;&#20351;&#29992; xoxo &#28304;&#65292;&#24403;&#28982;&#36825;&#37324;&#30340;&#20195;&#30721;&#19981;&#20381;&#36182; xoxo &#28304;&#65292;&#36825;&#21477;&#35805;&#21487;&#33021;&#20250;&#25302;&#24930;&#36895;&#24230;&#65288;&#27604;&#22914;&#28857;&#35780; CI &#26080;&#27861;&#35775;&#38382; xoxo &#28304;&#65289;&#10;&#10;if [ $? -eq 0 ]; then&#10;    echo -e &#34;$&#123;Gre&#125;npm&#20381;&#36182;&#21253;&#21152;&#36733;&#23436;&#25104;$&#123;RCol&#125;&#34;&#10;else&#10;    echo -e &#34;$&#123;On_Red&#125;npm&#20381;&#36182;&#21253;&#21152;&#36733;&#22833;&#36133;$&#123;RCol&#125;&#34;&#10;    exit 1;&#10;fi&#10;&#10;# &#20989;&#25968;&#65292;&#35843;&#29992; grunt deploy&#10;grunt_deploy () &#123;&#10;    # grunt task &#30340;&#21442;&#25968; --target&#65292;--project_path&#10;    grunt deploy --target=$1 --project_path=$PROJECT_PATH&#10;&#10;    if [ $? -eq 0 ]; then&#10;        echo -e &#34;$&#123;Gre&#125;$1&#21069;&#31471;&#32534;&#35793;&#25104;&#21151;$&#123;RCol&#125;&#34;&#10;    else&#10;        echo -e &#34;$&#123;On_Red&#125;&#25191;&#34892;&#22833;&#36133;&#12290;&#12290;&#12290;$&#123;RCol&#125;&#34;&#10;        echo &#34;&#23558;&#37325;&#26032;&#32534;&#35793;$1&#34;&#10;        echo -e &#34;\n\n\n\n&#34;;&#10;        # &#37325;&#26032;&#32534;&#35793;&#19968;&#27425;&#65292;&#24182; verbose &#25171;&#21360;&#10;        grunt deploy --target=$1 --project_path=$PROJECT_PATH --verbose&#10;        echo &#34;----------------------&#34;&#10;        echo &#34;$1&#34;&#10;        exit 1;&#10;    fi&#10;&#125;&#10;&#10;# &#20989;&#25968;&#35843;&#29992;&#65292;&#22312;&#20989;&#25968;&#23454;&#29616;&#20013;&#36890;&#36807; $1 $2 ... $9 &#26469;&#25509;&#21463;&#20989;&#25968;&#35843;&#29992;&#26102;&#30340;&#21464;&#37327;&#10;grunt_deploy xxyy&#10;&#10;echo -e &#39;$&#123;Gre&#125;&#25335;&#36125;&#38745;&#24577;&#36164;&#28304;&#21040;&#38745;&#24577;&#26381;&#21153;&#22120;$&#123;RCol&#125;&#39;&#10;&#10;rsync_static () &#123;&#10;    rsync -avi $DEPLOY_PATH xoxo@mobile-static0$1:$STATIC_PATH&#10;&#10;    if [ $? -eq 0 ]; then&#10;        echo -e &#34;$&#123;Gre&#125;rsync &#21040; mobile-static0$1 &#25104;&#21151;$&#123;RCol&#125;&#34;&#10;    else&#10;        echo -e &#34;$&#123;On_Red&#125;rsync &#21040; mobile-static0$1 &#22833;&#36133;$&#123;RCol&#125;&#34;&#10;        exit 1&#10;    fi&#10;&#125;&#10;&#10;rsync_yf_static () &#123;&#10;    # -a, --archive &#24402;&#26723;&#27169;&#24335;&#65292;&#34920;&#31034;&#20197;&#36882;&#24402;&#26041;&#24335;&#20256;&#36755;&#25991;&#20214;&#65292;&#24182;&#20445;&#25345;&#25152;&#26377;&#25991;&#20214;&#23646;&#24615;&#65292;&#31561;&#20110;-rlptgoD &#10;    # -a, --archive               archive mode; same as -rlptgoD (no -H)&#10;    # -v, --verbose &#35814;&#32454;&#27169;&#24335;&#36755;&#20986; &#10;    # -i, --itemize-changes       output a change-summary for all updates&#10;    # &#36825;&#26159; ssh &#36890;&#36947;&#20256;&#20837;&#65292;&#29992;&#25143;&#21517; xoxo &#22320;&#22336; yf-mobile-static0$1&#65288;&#21363;&#65292;yf-mobile-static0xxyy&#65289;&#10;    # &#20174; $DEPLOY_PATH -&#62; &#36828;&#31243;&#26426;&#22120;&#19978;&#30340; $STATIC_PATH&#10;    rsync -avi $DEPLOY_PATH xoxo@yf-mobile-static0$1:$STATIC_PATH&#10;&#10;    if [ $? -eq 0 ]; then&#10;        echo -e &#34;$&#123;Gre&#125;rsync &#21040; yf-mobile-static0$1 &#25104;&#21151;$&#123;RCol&#125;&#34;&#10;    else&#10;        echo -e &#34;$&#123;On_Red&#125;rsync &#21040; yf-mobile-static0$1 &#22833;&#36133;$&#123;RCol&#125;&#34;&#10;        exit 1&#10;    fi&#10;&#125;&#10;&#10;# rsync_static 1&#10;# rsync_static 2&#10;&#10;rsync_yf_static 1&#10;rsync_yf_static 2&#10;&#10;# &#28165;&#31354;&#21457;&#24067;&#21518;&#30340;&#38745;&#24577;&#25991;&#20214;&#10;rm -rf $DEPLOY_PATH</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="li]]>
     </summary>
     
   </entry>
