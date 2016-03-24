@@ -33,7 +33,7 @@ tags:
 
 **优先级**：
 
-1. Ava/Enzyme 
+1. Ava/Enzyme - 黑盒
 2. Redux/Rx
 3. HTML/CSS
 4. Faclor
