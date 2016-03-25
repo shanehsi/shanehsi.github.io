@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/03/25/Wechat-Chat-Note-about-Synchronous-Asynchronous-Parallel-Concurrency/</loc>
+    <lastmod>2016-03-25T10:11:18.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/25/Test-Tools-AVA-with-Sinon-JS/</loc>
+    <lastmod>2016-03-25T09:54:24.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/03/25/My-First-Try-to-Design-a-Web-App/</loc>
-    <lastmod>2016-03-25T09:19:04.000Z</lastmod>
+    <lastmod>2016-03-25T09:21:59.000Z</lastmod>
   </url>
   
   <url>
