@@ -288,11 +288,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Learn Github RESTful API v3]]></title>
+    <title><![CDATA[学习 Github RESTful API v3]]></title>
     <link href="http://shane.hsi.rocks/2016/03/22/Learn-Github-RESTful-API-v3/"/>
     <id>http://shane.hsi.rocks/2016/03/22/Learn-Github-RESTful-API-v3/</id>
     <published>2016-03-22T03:37:01.000Z</published>
-    <updated>2016-03-22T03:56:31.000Z</updated>
+    <updated>2016-03-26T00:45:41.000Z</updated>
     <content type="html"><![CDATA[<p><strong>meida type:</strong></p>
 <p>最基本：<br>    application/json</p>
 <p>其他类似于上传功能等单独定义。</p>
@@ -316,11 +316,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Setting up webpack-dev-middleware in Express]]></title>
+    <title><![CDATA[Express 设置 webpack-dev-middleware]]></title>
     <link href="http://shane.hsi.rocks/2016/03/22/Setting-up-webpack-dev-middleware-in-Express/"/>
     <id>http://shane.hsi.rocks/2016/03/22/Setting-up-webpack-dev-middleware-in-Express/</id>
     <published>2016-03-22T01:21:32.000Z</published>
-    <updated>2016-03-22T02:31:32.000Z</updated>
+    <updated>2016-03-26T00:45:57.000Z</updated>
     <content type="html"><![CDATA[<p>需要了解几个概念：</p>
 <ol>
 <li>Express 和 connect 的区别</li>
@@ -358,11 +358,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Thoughts on Progressive Web Development]]></title>
+    <title><![CDATA[渐进增强 Web 开发的思考]]></title>
     <link href="http://shane.hsi.rocks/2016/03/17/Thoughts-on-Progressive-Web-Development/"/>
     <id>http://shane.hsi.rocks/2016/03/17/Thoughts-on-Progressive-Web-Development/</id>
     <published>2016-03-17T09:00:44.000Z</published>
-    <updated>2016-03-17T10:59:59.000Z</updated>
+    <updated>2016-03-26T00:47:21.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u6837_u5F0F"><a href="#u6837_u5F0F" class="headerlink" title="样式"></a>样式</h2><p>样式使用 ant.design。</p>
 <p>样式不会变。ant.design 的就很好。</p>
 <p>但是如何使用 React 实现？可以修改。反正对用户的（接口）不要变。</p>
@@ -448,11 +448,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[What Relay is Solved]]></title>
+    <title><![CDATA[Relay 解决的问题]]></title>
     <link href="http://shane.hsi.rocks/2016/03/17/What-Relay-is-Solved/"/>
     <id>http://shane.hsi.rocks/2016/03/17/What-Relay-is-Solved/</id>
     <published>2016-03-17T02:30:46.000Z</published>
-    <updated>2016-03-17T02:38:23.000Z</updated>
+    <updated>2016-03-26T00:47:49.000Z</updated>
     <content type="html"><![CDATA[<img src="/2016/03/17/What-Relay-is-Solved/0.png" alt="0.png" title="">
 <img src="/2016/03/17/What-Relay-is-Solved/1.png" alt="1.png" title="">
 <img src="/2016/03/17/What-Relay-is-Solved/2.png" alt="2.png" title="">
@@ -466,11 +466,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Getting Started With Falcor]]></title>
+    <title><![CDATA[开始学习 Falcor]]></title>
     <link href="http://shane.hsi.rocks/2016/03/16/Getting-Started-With-Falcor/"/>
     <id>http://shane.hsi.rocks/2016/03/16/Getting-Started-With-Falcor/</id>
     <published>2016-03-16T06:55:41.000Z</published>
-    <updated>2016-03-16T10:05:05.000Z</updated>
+    <updated>2016-03-26T00:48:09.000Z</updated>
     <content type="html"><![CDATA[<p><a href="https://auth0.com/blog/2015/08/28/getting-started-with-falcor/" target="_blank" rel="external">Getting Started With Falcor</a></p>
 <h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><p>In this tutorial, we will look at some of Falcor’s basic operations and show how they can be used to construct a virtual JSON model from a data source. The example data we’ll use will model a handful of JavaScript conferences. We’ll start on the client side and eventually move everything over to be served from a NodeJS back end. </p>
 <p>会涉及到 Falcor 的一些基本操作。</p>
@@ -535,11 +535,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Falcor Getting Start]]></title>
+    <title><![CDATA[Falcor 开始]]></title>
     <link href="http://shane.hsi.rocks/2016/03/16/Falcor-Getting-Start/"/>
     <id>http://shane.hsi.rocks/2016/03/16/Falcor-Getting-Start/</id>
     <published>2016-03-16T02:54:11.000Z</published>
-    <updated>2016-03-16T06:22:28.000Z</updated>
+    <updated>2016-03-26T00:48:27.000Z</updated>
     <content type="html"><![CDATA[<p>对 Falcor 的期望是：</p>
 <ul>
 <li>在 app state 和 backend service 之间做一个中间层</li>
@@ -636,11 +636,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Transcending REST and RPC]]></title>
+    <title><![CDATA[好于 REST 和 RPC 的设计]]></title>
     <link href="http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/"/>
     <id>http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/</id>
     <published>2016-03-16T00:04:07.000Z</published>
-    <updated>2016-03-16T00:52:54.000Z</updated>
+    <updated>2016-03-26T00:48:59.000Z</updated>
     <content type="html"><![CDATA[<p>It seems that a new paradigm is coming. Facebook and Netflix have come up with different implementations for that idea. Some people are calling it <a href="http://www.infoq.com/presentations/domain-driven-architecture" target="_blank" rel="external">Demand-Driven Architecture</a>, but before I show you some solutions, let’s go over some history to understand the problem. I will use the example that Netflix provides, but I think that most of us will find the patterns familiar.</p>
 <p>来自 Netflix 的一个例子（应该是共性的）</p>
 <p>Just for clarity, let’s assume that we have an on-demand streaming service — quite similar to Netflix :) — that has three microservices. One contains the genres, another one the titles and the last one contains the ratings that different users give to those titles. As we’re in 2015 we’ll discard RPC as architectural style and we’ll go with a RESTful design. Let’s briefly enumerate the characteristics of a RESTful design:</p>
@@ -894,11 +894,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Redux - multiple stores, why not?]]></title>
+    <title><![CDATA[Redux 为什么不要多个 stores？]]></title>
     <link href="http://shane.hsi.rocks/2016/03/14/Redux-multiple-stores-why-not/"/>
     <id>http://shane.hsi.rocks/2016/03/14/Redux-multiple-stores-why-not/</id>
     <published>2016-03-14T08:55:32.000Z</published>
-    <updated>2016-03-14T09:12:11.000Z</updated>
+    <updated>2016-03-26T00:52:23.000Z</updated>
     <content type="html"><![CDATA[<p>实话说，我不认为一个 store 是好事情。</p>
 <p>实话说，我不认为多个 store 会出什么问题。当然也遇到过问题：</p>
 <ul>
