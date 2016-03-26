@@ -1,4 +1,4 @@
-title: Thoughts on Progressive Web Development
+title: 渐进增强 Web 开发的思考
 date: 2016-03-17 17:00:44
 tags:
 ---

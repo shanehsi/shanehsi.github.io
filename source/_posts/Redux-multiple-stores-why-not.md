@@ -1,4 +1,4 @@
-title: Redux - multiple stores, why not?
+title: Redux 为什么不要多个 stores？
 date: 2016-03-14 16:55:32
 tags:
 ---
