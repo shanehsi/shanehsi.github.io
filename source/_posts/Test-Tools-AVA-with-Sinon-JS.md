@@ -14,5 +14,34 @@ Keep in mind that the `beforeEach` and `afterEach` hooks run just before and aft
 [for example]:https://github.com/sindresorhus/ava/issues/560
 [run serially]:https://github.com/sindresorhus/ava#running-tests-serially
 
+如果要设置一些 global state，比如 spying `console.log`，则需要保证 tests 是串行运行的。
+
+或者使用 `context` object 来保存原先的 log。
+
+```js
+import test from 'ava';
+import sinon from 'sinon';
+
+test.beforeEach(t => {
+    t.context.log = console.log;
+
+    console.log = sinon.spy();
+});
+
+test.afterEach(t => {
+    console.log = t.context.log;
+});
+
+test('first', t => {
+    console.log('first');
+    t.true(console.log.calledOnce);
+});
+
+test('second', t => {
+    console.log('second');
+    t.true(console.log.calledOnce);
+});
+```
+
 
 

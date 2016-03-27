@@ -3,7 +3,56 @@ date: 2016-03-23 11:06:23
 tags:
 ---
 
-# Ava
+
+# 最后的总结放前头
+
+## AVA
+
+AVA 本身是 test runner，暂时还没有测试到 promise，asnyc/await，observable，所以这块后续学习。
+
+主要是学习 API。包括 assertion 和 其他。
+
+### `t.pass([message])/t.fail`
+
+手动设置 pass 还是 fail，可选 message。
+
+### `t.ok(value, [message])/t.notOk`
+
+值是 truthy 的。
+
+### `t.true(value, [message])/t.false`
+
+值是 `true` 的。
+
+### `t.is(value, expected, [message])/t.not`
+
+判断 equal。
+
+### `t.same(value, expected, [message])/t.notSame`
+
+判断 deep equal。
+
+### `t.throws(function|promise, [error, [message]])/t.notThrows`
+
+function 抛出 error，promise reject 一个 error。
+
+```js
+"ava": {
+    "babel": "inherit",
+    "failFast": true,
+    "require": [
+      "babel-register",
+      "./test/helpers/setup-browser-env.js"
+    ]
+  }
+```
+
+- `t.plan(1)` 保证 assertion 执行的次数不多不少。
+- `t.only`
+- `t.skip`
+- `test.todo('will think about writing this later')`
+
+# AVA
 
 [github](https://github.com/sindresorhus/ava)。
 
@@ -150,8 +199,6 @@ Test files are run from their current directory, so process.cwd() is always the 
 
 [Setting up AVA for browser testing](https://github.com/sindresorhus/ava/blob/master/docs/recipes/browser-testing.md)
 
-
-
 # Enzyme
 
 文章介绍，[Enzyme: JavaScript Testing utilities for React](https://medium.com/airbnb-engineering/enzyme-javascript-testing-utilities-for-react-a417e5e5090f#.sjli8b8zm)
@@ -204,7 +251,6 @@ Enzyme's API is meant to be intuitive and flexible by mimicking jQuery's API for
 npm i --save-dev react-addons-test-utils@1.4
 npm i --save-dev react-dom@1.4
 ```
-
 
 
 
