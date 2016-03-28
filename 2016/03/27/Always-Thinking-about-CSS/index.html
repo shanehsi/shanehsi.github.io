@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 一直念着想着 CSS · Shane Hsi Rocks</title><meta name="description" content="并不是不喜欢 CSS。而是找不到 CSS 的学习好方法。这东西就和学数学一样（原谅我用数学比较，因为我一直后悔没有多练习数学题），要大量的实践，总结规律，然后新的场景用总结的规律尝试去套，不能套的要去拓展和完善规律。
+
+哪一天我也能学好数学？O(∩_∩)O
+
+反正我不喜欢熟记一堆堆的理论然后找最佳实践，事实证明这样做真的好难好难。/(ㄒoㄒ)/~~
+目前终于有了一个好的机会，在好的时间：
+
+做一个不是很复杂的 web app。
+我脑海里已经有了一堆一堆的理论，什么 position relative/absolute，display inline-block/block。盒模型内部的目前觉得还好。
+
+2016年03月27日19:50:38&lt;a href=&quot;#u60F3_"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">一直念着想着 CSS</h1><div class="post-meta"><div class="post-time">Mar 27, 2016</div></div><div class="post-content"><p>并不是不喜欢 CSS。而是找不到 CSS 的学习好方法。这东西就和学数学一样（原谅我用数学比较，因为我一直后悔没有多练习数学题），要大量的实践，总结规律，然后新的场景用总结的规律尝试去套，不能套的要去拓展和完善规律。</p>
+<blockquote>
+<p>哪一天我也能学好数学？O(∩_∩)O</p>
+</blockquote>
+<p>反正我不喜欢熟记一堆堆的理论然后找最佳实践，事实证明这样做真的好难好难。/(ㄒoㄒ)/~~</p>
+<p>目前终于有了一个好的机会，在好的时间：</p>
+<ul>
+<li>做一个不是很复杂的 web app。</li>
+<li>我脑海里已经有了一堆一堆的理论，什么 position relative/absolute，display inline-block/block。盒模型内部的目前觉得还好。</li>
+</ul>
+<h2 id="2016_u5E7403_u670827_u65E519_3A50_3A38"><a href="#2016_u5E7403_u670827_u65E519_3A50_3A38" class="headerlink" title="2016年03月27日19:50:38"></a>2016年03月27日19:50:38</h2><h3 id="u60F3_u5230_u7684"><a href="#u60F3_u5230_u7684" class="headerlink" title="想到的"></a>想到的</h3><p>现在第一个要解决的是大的布局问题。这个用 position 可以很好的解决。</p>
+<p>absolute 做大的布局的摆布。</p>
+<p>relative 其实是做定位的时候，借用下其他元素的容量。这个看起来好难好难。但用的时候真的必须要。比如下面说到的同一行布局。</p>
+<p>但是其实 relative 更多的是做些一些位移。要深刻理解 relative，应该比较下 relative/static。</p>
+<p>参考：<a href="http://stackoverflow.com/questions/5011211/difference-between-static-and-relative-positioning" target="_blank" rel="external">Difference between static and relative positioning</a>。</p>
+<p><strong>Statically positioned elements don’t obey <code>left</code>, <code>top</code>, <code>right</code> and <code>bottom</code> rules:</strong>。就酱，static 不会相对于自己的 normal position 位移。</p>
+<p>如果有这样的需求就是 relative。</p>
+<p>然而 absolute 都不用考虑 sibling，只要考虑 parent（为了方便定位，找一个好的 parent，^_^）。</p>
+<p>同行摆布使用 <code>inline-block</code>，加上 <code>vertial-align: top</code>。参考：<a href="http://stackoverflow.com/questions/9273016/why-is-this-inline-block-element-pushed-downward" target="_blank" rel="external">Why is this inline-block element pushed downward?</a></p>
+<p><code>inline-block</code> 是来替换 float（部分场景下，即放在同一行，但是如果真有一部分按左对齐，一部分按右对齐，还是得要 float），以及模拟 <code>table-cell</code> 这个（或者也可能是 ul li，突然发现，语义化元素的自带样式会和 css 有部分功能的重叠）。</p>
+<p>参考：<a href="http://www.zhangxinxu.com/wordpress/2010/11/%E6%8B%9C%E6%8B%9C%E4%BA%86%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80-%E5%9F%BA%E4%BA%8Edisplayinline-block%E7%9A%84%E5%88%97%E8%A1%A8%E5%B8%83%E5%B1%80/" target="_blank" rel="external">拜拜了,浮动布局-基于display:inline-block的列表布局</a>。这里重点说下 <code>line-height</code> 方法。</p>
+<p>我还要解决一个问题，<strong>垂直居中问题</strong>。</p>
+<p>一般是设置，<code>height</code> 和 <code>line-height</code>（这个是 wrapper） 相同，而且 <code>line-height</code> 要大于 <code>font-size</code>（一般也是这样）。<strong>而且只适用于单行文字</strong>。</p>
+<blockquote>
+<p>By default equal space will be given above and below the text and so the text will sit in the vertical center.</p>
+</blockquote>
+<p>其他几种方法是：</p>
+<p><code>Vertical-Align</code> 是最简单的方法。但是它只适用于 <code>table-cell</code> 和一些 <code>inline</code>（估计 <code>inline-block</code> 不行）。也就是不适用于 block 元素。</p>
+<p>网上关于垂直居中的文章特别多：比如这篇 <a href="http://vanseodesign.com/css/vertical-centering/" target="_blank" rel="external">6 Methods For Vertical Centering With CSS</a></p>
+<p>我觉得其他的方法就研究 [lost] 吧（复杂的场景）。</p>
+<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>关键还是要总结下原语。CSS 和 HTML 分开还是就使用 HTML（JSX）的名字做布局？分开的话，都是用 HTML 的话，就是有两类 Component。一类 layout。关键是这样写 Layout 可不可以重用。能重用的话，就完美了。</p>
+</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2016/03/27/Why-is-this-inline-block-element-pushed-downward/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
