@@ -2,18 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shane.hsi.rocks/2016/03/27/Why-is-this-inline-block-element-pushed-downward/</loc>
-    <lastmod>2016-03-27T13:28:05.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://shane.hsi.rocks/2016/03/27/Always-Thinking-about-CSS/</loc>
-    <lastmod>2016-03-27T13:17:36.000Z</lastmod>
+    <loc>http://shane.hsi.rocks/2016/03/29/ES7-Decorator-Function-Transform/</loc>
+    <lastmod>2016-03-29T05:38:02.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://shane.hsi.rocks/2016/03/27/Learn-connect-API-of-react-redux/</loc>
-    <lastmod>2016-03-27T07:08:29.000Z</lastmod>
+    <lastmod>2016-03-29T03:19:26.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/27/Always-Thinking-about-CSS/</loc>
+    <lastmod>2016-03-28T02:14:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/27/Why-is-this-inline-block-element-pushed-downward/</loc>
+    <lastmod>2016-03-27T13:28:05.000Z</lastmod>
   </url>
   
   <url>
