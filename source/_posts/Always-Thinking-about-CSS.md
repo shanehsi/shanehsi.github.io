@@ -14,6 +14,26 @@ tags:
 - 做一个不是很复杂的 web app。
 - 我脑海里已经有了一堆一堆的理论，什么 position relative/absolute，display inline-block/block。盒模型内部的目前觉得还好。
 
+## 所有的总结
+
+### 总结 2016年03月27日19:50:38
+
+关键还是要总结下原语。CSS 和 HTML 分开还是就使用 HTML（JSX）的名字做布局？分开的话，都是用 HTML 的话，就是有两类 Component。一类 layout。关键是这样写 Layout 可不可以重用。能重用的话，就完美了。
+
+### 总结 2016年03月28日10:07:53
+
+## 2016年03月28日10:07:53
+
+### 碎碎念
+
+margin 是可以重叠的，使用这个有风险。使用 margin 主要是为了隔开一些距离。其实只要一方隔开就行，可以选择 main part 设置 margin。
+
+margin 和 padding 都可以隔开，建议在隔开这块，用 margin 多一点。画出的线条很漂亮（当然是因为 margin 隔着 border，而 padding 隔着的是看不见的字体周围的线条，从设计上也是 border 更有效）。
+
+{% asset_img 1.png %}
+
+### 总结
+
 ## 2016年03月27日19:50:38
 
 ### 想到的
