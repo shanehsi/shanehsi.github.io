@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-03-29T05:38:02.000Z</updated>
+  <updated>2016-04-01T05:46:16.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -15,12 +15,51 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Spring IoC有什么好处呢？]]></title>
+    <link href="http://shane.hsi.rocks/2016/04/01/What-s-the-Benefis-of-IoC/"/>
+    <id>http://shane.hsi.rocks/2016/04/01/What-s-the-Benefis-of-IoC/</id>
+    <published>2016-04-01T05:41:10.000Z</published>
+    <updated>2016-04-01T05:46:16.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="https://www.zhihu.com/question/23277575" target="_blank" rel="external">原文链接</a></p>
+<p>私以为以上各位都没有对spring ioc的精髓讲解到位。大多都在很模糊的说是什么，抽象化的表述或者含糊其辞的说概念。</p>
+<p>ioc的思想最核心的地方在于，资源不由使用资源的双方管理，而由 <strong>不使用资源的第三方管理</strong> ，这可以带来很多好处。第一，资源集中管理，实现 <strong>资源的可配置和易管理</strong> 。第二，降低了使用资源双方的依赖程度，也就是我们说的耦合度。</p>
+<p>也就是说，甲方要达成某种目的不需要直接依赖乙方，它只需要达到的目的告诉第三方机构就可以了，比如甲方需要一双袜子，而乙方它卖一双袜子，它要把袜子卖出去，并不需要自己去直接找到一个卖家来完成袜子的卖出。它也只需要找第三方，告诉别人我要卖一双袜子。这下好了，甲乙双方进行交易活动，都不需要自己直接去找卖家，相当于程序内部开放接口，卖家由第三方作为参数传入。甲乙互相不依赖，而且只有在进行交易活动的时候，甲才和乙产生联系。反之亦然。这样做什么好处么呢，甲乙可以在对方不真实存在的情况下独立存在，而且保证不交易时候无联系，想交易的时候可以很容易的产生联系。甲乙交易活动不需要双方见面，避免了双方的互不信任造成交易失败的问题。因为交易由第三方来负责联系，而且甲乙都认为第三方可靠。那么交易就能很可靠很灵活的产生和进行了。</p>
+<p>这就是ioc的核心思想。生活中这种例子比比皆是，支付宝在整个淘宝体系里就是庞大的ioc容器，交易双方之外的第三方，提供可靠性可依赖可灵活变更交易方的资源管理中心。另外人事代理也是，雇佣机构和个人之外的第三方。嗯，就这样，希望对题主有帮助。</p>
+<p>==========================update===========================<br>在以上的描述中，诞生了两个专业词汇，依赖注入和控制反转<br>所谓的依赖注入，则是，甲方开放接口，在它需要的时候，能够讲乙方传递进来(注入)<br>所谓的控制反转，甲乙双方不相互依赖，交易活动的进行不依赖于甲乙任何一方，整个活动的进行由第三方负责管理。</p>
+<p>这就是spring IOC的思想所在，不要只谈DI IOC这些概念。</p>
+<p>人之所恶在好为人师,不实知，谨慎言。</p>
+<p>作者：OneNoodle<br>链接：<a href="https://www.zhihu.com/question/23277575/answer/24259844" target="_blank" rel="external">https://www.zhihu.com/question/23277575/answer/24259844</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="https://www.zhihu.com/question/23277575" target="_blank" rel="external">原文链接</a></p>
+<p>私以为以上各位都没有对spring ioc的精髓讲解到位。大多都在很模糊的说是什]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[TypeScript typings]]></title>
+    <link href="http://shane.hsi.rocks/2016/03/30/TypeScript-typings/"/>
+    <id>http://shane.hsi.rocks/2016/03/30/TypeScript-typings/</id>
+    <published>2016-03-30T03:57:29.000Z</published>
+    <updated>2016-03-30T03:58:03.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://stackoverflow.com/questions/35919693/typescript-cannot-find-name-ipromise-in-rxjs-definition" target="_blank" rel="external">TypeScript cannot find name IPromise in RxJS definition</a></p>
+<p>The RxJS type definition from DefinitelyTyped does appear to be outdated. Instead, use the type definition provided by the npm package.</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typings install --save --ambient npm:rx/ts/rx<span class="class">.all</span><span class="class">.d</span><span class="class">.ts</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://stackoverflow.com/questions/35919693/typescript-cannot-find-name-ipromise-in-rxjs-definition" target="_blank" rel="extern]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[ES7 Decorator 与函数变换]]></title>
     <link href="http://shane.hsi.rocks/2016/03/29/ES7-Decorator-Function-Transform/"/>
     <id>http://shane.hsi.rocks/2016/03/29/ES7-Decorator-Function-Transform/</id>
     <published>2016-03-29T05:27:04.000Z</published>
-    <updated>2016-03-29T05:38:02.000Z</updated>
-    <content type="html"><![CDATA[<p>参考 <a href="https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;mid=403162136&amp;idx=1&amp;sn=f0aeab0902d162bc98d8d8ad7ee54eea&amp;scene=1&amp;srcid=03268Ti8r6XeNBGPBxy39syx&amp;key=710a5d99946419d99cbbb6cc99d9c7bc24e8ce6d4b121c9f69356e50711854f238101bd28ac34ee76fa549b9a41949b7&amp;ascene=0&amp;uin=NTkwMTI4NTM1&amp;devicetype=iMac+MacBookPro10%2C2+OSX+OSX+10.11.1+build(15B42" target="_blank" rel="external">ES7 Decorator 与函数变换</a>&amp;version=11020201&amp;pass_ticket=O19NczYz2X7rkObDsncE5KRTY9TsXZEHMhIhCu1ABDd3ggb25Ip3wYlMn%2FZEP1pF)</p>
+    <updated>2016-03-30T14:31:46.000Z</updated>
+    <content type="html"><![CDATA[<p>参考 <a href="https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;mid=403162136&amp;idx=1&amp;sn=f0aeab0902d162bc98d8d8ad7ee54eea" target="_blank" rel="external">ES7 Decorator 与函数变换</a></p>
 <p>这里面有很多的例子非常好。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mul</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1, arr2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr1.concat(arr2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在是 2 个数做 +，*，数组连接。</p>
@@ -30,7 +69,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (...args) =&gt; args.reduce(target);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> add_many = reducer(add);</span><br><span class="line"><span class="keyword">let</span> mul_many = reducer(mul);</span><br><span class="line"><span class="keyword">let</span> concat_many = reducer(concat);</span><br></pre></td></tr></table></figure>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>参考 <a href="https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;mid=403162136&amp;idx=1&amp;sn=f0aeab0902d162bc98d8d8ad7ee54eea&amp;sce]]>
+    <![CDATA[<p>参考 <a href="https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;mid=403162136&amp;idx=1&amp;sn=f0aeab0902d162bc98d8d8ad7ee54eea" target]]>
     </summary>
     
   </entry>
@@ -117,7 +156,7 @@
     <link href="http://shane.hsi.rocks/2016/03/27/Learn-connect-API-of-react-redux/"/>
     <id>http://shane.hsi.rocks/2016/03/27/Learn-connect-API-of-react-redux/</id>
     <published>2016-03-27T06:52:52.000Z</published>
-    <updated>2016-03-29T03:19:26.000Z</updated>
+    <updated>2016-03-29T09:39:10.000Z</updated>
     <content type="html"><![CDATA[<p>这个 API 是设计的相当复杂啊。</p>
 <p>从文档先了解下它实现的功能。</p>
 <h3 id="connect_28_5BmapStateToProps_5D_2C__5BmapDispatchToProps_5D_2C__5BmergeProps_5D_2C__5Boptions_5D_29"><a href="#connect_28_5BmapStateToProps_5D_2C__5BmapDispatchToProps_5D_2C__5BmergeProps_5D_2C__5Boptions_5D_29" class="headerlink" title="connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])"></a><code>connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])</code></h3><p>Connects a React component to a Redux store.</p>
@@ -834,114 +873,6 @@
 <li>不要侵入 view</li>
 </ul>
 <p>参考文章：<a hre]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[好于 REST 和 RPC 的设计]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/"/>
-    <id>http://shane.hsi.rocks/2016/03/16/Transcending-REST-and-RPC/</id>
-    <published>2016-03-16T00:04:07.000Z</published>
-    <updated>2016-03-26T00:48:59.000Z</updated>
-    <content type="html"><![CDATA[<p>It seems that a new paradigm is coming. Facebook and Netflix have come up with different implementations for that idea. Some people are calling it <a href="http://www.infoq.com/presentations/domain-driven-architecture" target="_blank" rel="external">Demand-Driven Architecture</a>, but before I show you some solutions, let’s go over some history to understand the problem. I will use the example that Netflix provides, but I think that most of us will find the patterns familiar.</p>
-<p>来自 Netflix 的一个例子（应该是共性的）</p>
-<p>Just for clarity, let’s assume that we have an on-demand streaming service — quite similar to Netflix :) — that has three microservices. One contains the genres, another one the titles and the last one contains the ratings that different users give to those titles. As we’re in 2015 we’ll discard RPC as architectural style and we’ll go with a RESTful design. Let’s briefly enumerate the characteristics of a RESTful design:</p>
-<p>假设和 Netflix 一样，有一个即时流服务 - 有3个微服务。一个包含 种类，一个是 标题，一个是 （对标题的）评级。</p>
-<p>在 2015 我们放弃了 RPC，选择了 RESTful。</p>
-<p>简要列举下 RESTful 设计的特性：</p>
-<ul>
-<li><p>HTTP verbs have direct correspondence with CRUD verbs. One of the benefits is that clients can understand what is going on the server without digging into the implementation. For instance, we know that PUT is idempotent, so as there will not be any side effect, the client can call to that endpoint several times in a row without any issue.</p>
-</li>
-<li><p>We use extensive HTTP caching. Through headers like Cache-Control or ETag, we leverage one of the most juicy features of HTTP: caching resources.</p>
-</li>
-<li><p>HATEOAS for the win. Every single representation should have links to different representations so the clients can navigate through our backend like a graph. <a href="http://www.restapitutorial.com/" target="_blank" rel="external">Further reading</a></p>
-</li>
-</ul>
-<blockquote>
-<p>HATEOAS Hypermedia as the Engine of Application State</p>
-</blockquote>
-<ul>
-<li>统一接口（理解起来方便）</li>
-<li>直接利用 HTTP cache</li>
-<li>HATEOAS</li>
-</ul>
-<h2 id="REST_limitations"><a href="#REST_limitations" class="headerlink" title="REST limitations"></a>REST limitations</h2><p>Let’s imagine that we send a GET to the genres endpoint. The response will include links to other GET requests like titles/1234 or ratings/6789. If we have the title “Titanic” in different genres (romance, drama and DiCaprioRules) you can see how the client is going to do at least two redundant requests. Apart from that the client is going to reshape the data whenever it comes back since it’s likely that the client won’t need every single field that those responses include. So, we have two problems with this design:</p>
-<ul>
-<li>High latency as we don’t optimize calls.</li>
-<li><p>Large message sizes.</p>
-</li>
-<li><p>Round requests，没有做优化（通过 HATEOAS）</p>
-</li>
-<li>数据量太大，很多数据字段不需要</li>
-</ul>
-<h2 id="Patching_REST_with_RPC"><a href="#Patching_REST_with_RPC" class="headerlink" title="Patching REST with RPC"></a>Patching REST with RPC</h2><p>One way of overcoming these problems is customising our requests with query params. You can say to the server something like “give me only a couple of the fields that you expose on that representation“” or whatever arbitrary parameter. That means that you’ll lose the caching that HTTP offers as now you’ll have a ton of possible not-really-resources to cache.</p>
-<p>通过 query params，这样就没有了 HTTP 提供的 cache。</p>
-<p>Also you can create new abstractions ad-hoc that aggregate that for the client. In fact one of the benefits of CQRS is being able to create different views of your internal entities, so the demands of the client doesn’t affect your domain modeling. That has a problem though: there is a big a coupling with the server. Our system has a massive amount of fragmentation as you can stream over Android, iOS, TVs and also, different versions of the same client device. Therefore there are going to be different needs and rhythms and the coordination between backend and clients is going to be really messy.</p>
-<p>Ad-hoc endpoint。由于终端太多，view model 太多，不好维护。</p>
-<p>Also, CQRS is amazing in the fact that you could decide to model your system around different bounded contexts, i.e, different CQRS deployables. If your client needs a view that aggregate data from two CQRS units, you have the same problem.</p>
-<h2 id="Demand_driven_architecture_to_the_rescue"><a href="#Demand_driven_architecture_to_the_rescue" class="headerlink" title="Demand driven architecture to the rescue"></a>Demand driven architecture to the rescue</h2><p>This leads to the point of Demand Driven Architectures. Conceptually the backend is just a single entity and, since it’s modeled using REST principles, it’s defining what is the shape of the data. However, we’re going to have tons of clients with different needs and all of them need to twist themselves in order to get the shape of the data that they want. Would it be great if clients could just send queries to the logical data unit called backend?</p>
-<p>概念上，backend 只有一个入口，也是用 REST 原则建模。</p>
-<p>If we think in a relational database the concept is similar. We have different tables (rest endpoints, resources, backend services) and we have a query language that allows us to join and shape the data easily. Some of the optimizations of that query will be done by the platform that runs those queries.</p>
-<p>用一种 QL 来 query，join 多个 tables（rest endpoints，resources，backend services）。QL 也可以被优化。</p>
-<h2 id="Falcor_and_JSON_Graph"><a href="#Falcor_and_JSON_Graph" class="headerlink" title="Falcor and JSON Graph"></a>Falcor and JSON Graph</h2><p>Netflix has created a tool called <a href="http://netflix.github.io/falcor" target="_blank" rel="external">Falcor</a> that tries to solve this concrete problem. Clients won’t talk with the backend services directly anymore, instead of they will send queries to a Falcor service that will do the routing, aggregations, projections and optimizations. This is an image from Falcor’s official documentation.</p>
-<p>Clients 不在和 backend services 直接通信，而是先发送 queries 到一个 Falcor service，后者会进行 routing，aggragations（集合），projections（投影）和 optimizations（优化）。</p>
-<img src="/2016/03/16/Transcending-REST-and-RPC/falcor-network-diagram.png" alt="Falcor Network Diagram" title="Falcor Network Diagram">
-<p>They based that platform on the idea of JSON Graph. Let me explain it briefly. JSON is in essence a tree structure. However, most of our data has relationships so it should be modeled like a graph. Using REST design programmers usually solve that problem through ids, but that makes our life really difficult (think about problems like cache invalidation). As they say:</p>
-<p>基于 JSON Graph。</p>
-<p>JSON 本身是树结构，但是 data 一般有关系（relationships），所以应该建模成 graph。</p>
-<p>RESTful 一般通过 ids 来解决。但是问题也有，比如 cache invalidation。</p>
-<blockquote>
-<p>JSON Graph is valid JSON and can be parsed by any JSON parser. However JSON Graph introduces new primitive types to JSON to allow JSON to be used to represent graph information in a simple and consistent way.</p>
-</blockquote>
-<p>JSON Graph 是有效的 JSON，可以被解析。但是 JSON Graph 引入了新的基本类型到 JSON，可以让其用简单一致的方式展示 graph 信息。</p>
-<p>They borrow the idea from unix filesystem. That filesystem is a tree, but thanks to symlinks you can emulate the behaviour of a graph. That has massive implications in the way that Falcor optimises calls to backend services. Instead of keeping some values in a denormalised fashion, Falcor keeps references to that normalised value, so, if you ask for a value that has been already retrieved, Falcor will avoid that call. Also That makes cache invalidation much easier.</p>
-<p>借鉴了 Unix 文件系统的思路。文件系统是 tree，但是通过 symlinks，可以模拟 graph。</p>
-<p>Falcor 优化了对后端服务的调用：值通过标准化方式被引用，可以做缓存和缓存失效。</p>
-<img src="/2016/03/16/Transcending-REST-and-RPC/falcor-services-diagram-1024x518.png" alt="falcor-services-diagram-1024x518.png" title="">
-<p>As you can see in the example, we don’t store denormalised documents for titles inside of genres, but a reference through a titles map indexed by id. I can show you some code that I’ve been working on for a proof of concept. Falcor server side is currently only available on Node.js but there are <a href="https://twitter.com/falcorjs/status/575657256475189248" target="_blank" rel="external">plans to porting it into another platforms</a>.</p>
-<p>没有存储非范式文档的 title 在 generes 里。而是通过 reference。(flatten javasript)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/model.json'</span>, falcorKoa.dataSourceRoute(<span class="keyword">new</span> FalcorRouter([</span><br><span class="line">        &#123;</span><br><span class="line">            route: <span class="string">"teamsById[&#123;integers:teamIds&#125;]['name', 'memberCount']"</span>,</span><br><span class="line">            get  : <span class="function"><span class="keyword">function</span>(<span class="params">pathSet</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">const</span> teamIds = pathSet.teamIds;</span><br><span class="line">                <span class="keyword">const</span> keys = pathSet[<span class="number">2</span>];</span><br><span class="line">                <span class="keyword">return</span> teamsService.getTeams()</span><br><span class="line">                        .then(<span class="function"><span class="keyword">function</span>(<span class="params">teams</span>) </span>&#123;</span><br><span class="line">                            <span class="keyword">var</span> results = [];</span><br><span class="line">                            teamIds.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">teamId</span>) </span>&#123;</span><br><span class="line">                                keys.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">                                    <span class="keyword">var</span> team = teams[teamId];</span><br><span class="line">                                    results.push(&#123;</span><br><span class="line">                                        path : [<span class="string">'team'</span>, teamId, key],</span><br><span class="line">                                        value: team[key]</span><br><span class="line">                                    &#125;);</span><br><span class="line">                                &#125;);</span><br><span class="line">                            &#125;);</span><br><span class="line">                            <span class="keyword">return</span> results;</span><br><span class="line">                        &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ])));</span><br></pre></td></tr></table></figure>
-<p>客户端：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> model = <span class="keyword">new</span> falcor.Model(&#123; source: <span class="keyword">new</span> falcor.HttpDataSource(<span class="string">'/model.json'</span>) &#125;);</span><br><span class="line">model.get(<span class="string">'teamsById['</span><span class="number">1234</span><span class="string">', '</span><span class="number">456</span><span class="string">'].name'</span>);</span><br><span class="line">model.get(<span class="string">'teamsById['</span><span class="number">789</span><span class="string">']['</span>name<span class="string">', '</span>memberCount<span class="string">']'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="IN_CONCLUSION"><a href="#IN_CONCLUSION" class="headerlink" title="IN CONCLUSION"></a>IN CONCLUSION</h2><p>There are no silver bullets in software and nobody is claiming than Falcor or GraphQL are going to solve every single problem with client/server integration. However, if you have an application with a lot of clients and your backend has a complex data model, it might be worth giving this new paradigm a try.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>It seems that a new paradigm is coming. Facebook and Netflix have come up with different implementations for that idea. Some people are c]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Redux APIs]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/15/Redux-APIs/"/>
-    <id>http://shane.hsi.rocks/2016/03/15/Redux-APIs/</id>
-    <published>2016-03-15T09:02:36.000Z</published>
-    <updated>2016-03-16T01:09:10.000Z</updated>
-    <content type="html"><![CDATA[<p>因为我在使用 rxjs 自己做一个简单的 flux。主要目的是做精细的 stream 控制。</p>
-<p>这里想借鉴下 Redux 的 API 设计。</p>
-<p>从例子看：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">render(</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">Provider</span> <span class="attribute">store</span>=<span class="value">&#123;store&#125;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">App</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">Provider</span>&gt;</span>,</span><br><span class="line">  document.getElementById('root') /&gt;</span><br><span class="line">)</span></span><br></pre></td></tr></table></figure>
-<p>store 是通过 context 全局可见的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: state.counter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapDispatchToProps</span>(<span class="params">dispatch</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> bindActionCreators(CounterActions, dispatch)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps, mapDispatchToProps)(Counter)</span><br></pre></td></tr></table></figure>
-<p>connect 里主要的是 mapStateToProps。类似于 cursor 的功能。</p>
-<h2 id="API_Design_2016-03-15_17_3A11_3A11"><a href="#API_Design_2016-03-15_17_3A11_3A11" class="headerlink" title="API Design 2016-03-15 17:11:11"></a>API Design 2016-03-15 17:11:11</h2><h3 id="store__u901A_u8FC7_context__u4F20_u9012"><a href="#store__u901A_u8FC7_context__u4F20_u9012" class="headerlink" title="store 通过 context 传递"></a>store 通过 context 传递</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">state$.subscribe(<span class="function"><span class="keyword">function</span> (<span class="params">state</span>) </span>&#123;</span><br><span class="line">  ReactDOM.render(</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Component</span> /&gt;</span>,</span><br><span class="line">    document.getElementById('root'));</span><br><span class="line">&#125;);</span></span><br></pre></td></tr></table></figure>
-<p>变成？</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">state$.subscribe( state =&gt; render(</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Provider</span> <span class="attribute">store</span>=<span class="value">&#123;state&#125;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">Component</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="title">Provider</span>&gt;</span> ,  document.getElementById('root')   /&gt;</span><br><span class="line">)</span>);</span><br></pre></td></tr></table></figure>
-<p>让 state 全局可见。不用显式往下传递。</p>
-<h3 id="cursor__u62FF_u503C"><a href="#cursor__u62FF_u503C" class="headerlink" title="cursor 拿值"></a>cursor 拿值</h3><p>view 直接修改 store（或者调用 store 里的方法）。暂时不觉得 actions 有什么特别大的作用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line">@cursor(state =&gt; &#123;</span><br><span class="line">    return state.counter;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="keyword">extends</span> <span class="title">Component</span>&lt;<span class="title">any</span>, <span class="title">any</span>&gt; </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; value, onIncrement, onDecrement &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    onIncrement(<span class="xml"><span class="tag">&lt;<span class="title">mutations</span>&gt;</span>)</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">p</span>&gt;</span> /&gt;</span><br><span class="line">    )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Counter;</span><br></pre></td></tr></table></figure>
-<p>因为 store 已经全局可见了。所以 <code>cursor</code> 肯定是可以拿到值的。</p>
-<p>counter 的 model，或者 store</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store=&#123;state&#125; animateStore=&#123;&#125;&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">Component</span> /&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="title">Provider</span>&gt;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>还是使用 redux 的 API 吧。只不过是使用 RxJS 来实现。</p>
-<img src="/2016/03/15/Redux-APIs/diagram.png" alt="diagram.png" title="">
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>因为我在使用 rxjs 自己做一个简单的 flux。主要目的是做精细的 stream 控制。</p>
-<p>这里想借鉴下 Redux 的 API 设计。</p>
-<p>从例子看：</p>
-<figure class="highlight js"><table><tr><td]]>
     </summary>
     
   </entry>

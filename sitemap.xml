@@ -2,13 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/04/01/What-s-the-Benefis-of-IoC/</loc>
+    <lastmod>2016-04-01T05:46:16.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/03/29/ES7-Decorator-Function-Transform/</loc>
-    <lastmod>2016-03-29T05:38:02.000Z</lastmod>
+    <lastmod>2016-03-30T14:31:46.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/03/30/TypeScript-typings/</loc>
+    <lastmod>2016-03-30T03:58:03.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://shane.hsi.rocks/2016/03/27/Learn-connect-API-of-react-redux/</loc>
-    <lastmod>2016-03-29T03:19:26.000Z</lastmod>
+    <lastmod>2016-03-29T09:39:10.000Z</lastmod>
   </url>
   
   <url>
