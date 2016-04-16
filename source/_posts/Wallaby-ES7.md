@@ -79,5 +79,7 @@ module.exports = function (wallaby) {
 
 写到这，我觉得要把 Wallaby/Configuration file 从头到尾看一遍。
 
+更新：已经看完了。
+
 
 
