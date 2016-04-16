@@ -2,6 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/04/16/Wallaby-js-Configuration-file/</loc>
+    <lastmod>2016-04-16T08:15:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/04/16/JavaScript-existential-operator-alternative-syntax/</loc>
+    <lastmod>2016-04-16T08:06:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/04/16/Wallaby-ES7/</loc>
+    <lastmod>2016-04-16T05:00:01.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/04/16/Monorepo/</loc>
+    <lastmod>2016-04-16T04:44:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/04/16/Wallaby-node/</loc>
+    <lastmod>2016-04-16T04:37:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/04/16/Babel-Stage-x-Syntax/</loc>
+    <lastmod>2016-04-16T04:28:04.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/04/16/Wallaby-Intro/</loc>
     <lastmod>2016-04-16T04:02:14.000Z</lastmod>
   </url>
