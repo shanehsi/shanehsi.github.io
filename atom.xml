@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-04-16T08:06:57.000Z</updated>
+  <updated>2016-04-16T09:00:29.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Test mock terminology]]></title>
+    <link href="http://shane.hsi.rocks/2016/04/16/Test-mock-terminology/"/>
+    <id>http://shane.hsi.rocks/2016/04/16/Test-mock-terminology/</id>
+    <published>2016-04-16T08:45:55.000Z</published>
+    <updated>2016-04-16T09:00:29.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://sinonjs.org/#examples" target="_blank" rel="external">sinon examples</a> 非常的清晰。</p>
+<p>找到一篇中文：<a href="http://www.tuicool.com/articles/iAz6fi" target="_blank" rel="external">置换测试: Mock, Stub 和其他</a></p>
+<ul>
+<li><p>double - 理解为置换，它是所有模拟测试对象的 <strong>统称</strong>，我们也可以称它为替身。</p>
+</li>
+<li><p>stub - 测试桩，它能实现当特定的方法被调用时，返回一个指定的模拟值（每次一致的模拟数据）。</p>
+</li>
+</ul>
+<p>以 sinon.js 为例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stub = sinon.stub().returns(<span class="number">42</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>spy - 侦查，它负责汇报情况，持续追踪什么方法 <strong>被调用了</strong> ，以及调用过程中 <strong>传递了哪些参数</strong> 。比如一个特定的方法是否被调用或者是否使用正确的参数调用。当你需要测试两个对象间的 某些<strong>协议</strong> 或者关系时会非常有用。</li>
+</ul>
+<blockquote>
+<p>关键是方法间的 <strong>协议</strong>。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">it(<span class="string">"calls the original function"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> spy = sinon.spy();</span><br><span class="line">    <span class="keyword">var</span> proxy = once(spy);</span><br><span class="line"></span><br><span class="line">    proxy();</span><br><span class="line"></span><br><span class="line">    assert(spy.called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>mock - 与 spy 类似，有些许不同。 spy 追踪所有的方法调用，并在事后让你写断言，而 mock 通常需要你 <strong>事先设定期望</strong>。你告诉它你期望发生什么，然后执行测试代码并验证最后的结果与事先定义的期望是否一致。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">it(<span class="string">"returns the return value from the original function"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myAPI = &#123; method: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; &#125;;</span><br><span class="line">    <span class="keyword">var</span> mock = sinon.mock(myAPI);</span><br><span class="line">    mock.expects(<span class="string">"method"</span>).once().returns(<span class="number">42</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> proxy = once(myAPI.method);</span><br><span class="line"></span><br><span class="line">    assert.equals(proxy(), <span class="number">42</span>);</span><br><span class="line">    mock.verify();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>fake - <strong>具备完整</strong> 功能实现和行为的对象，行为上来说它和这个类型的真实对象上一样，但不同于它所模拟的类，它使测试变得更加容易。一个典型的例子是使用内存中的数据库来生成一个数据持久化对象，而不是去访问一个真正的生产环境的数据库。</li>
+</ul>
+<p>对细节有更多，参考 <a href="http://martinfowler.com/articles/mocksArentStubs.html" target="_blank" rel="external">Mocks Aren’t Stubs</a></p>
+<h2 id="u6A21_u62DF_u4E3B_u4E49_u8005__28Mockists_29_vs-__u7EDF_u8BA1_u4E3B_u4E49_u8005__28Statists_29"><a href="#u6A21_u62DF_u4E3B_u4E49_u8005__28Mockists_29_vs-__u7EDF_u8BA1_u4E3B_u4E49_u8005__28Statists_29" class="headerlink" title="模拟主义者 (Mockists) vs. 统计主义者 (Statists)"></a>模拟主义者 (Mockists) vs. 统计主义者 (Statists)</h2><p>总结下，模拟的是行为（内部的），统计的是最终状态。</p>
+<p>许多关于模拟对象的讨论主要是衍生自 Fowler 的文章的，它们讨论了两种不同类型的程序员，模拟主义者和统计主义者，所写的测试。</p>
+<p>模拟主意的方式是测试对象之间的交互。通过使用模拟对象，你可以更容易地验证被测对象是否遵循了它与其他类已建立的协议，使得在正确的时间发生正确的外部调用。对于那些使用行为驱动 (behavior-driven) 的开发者来说，这种测试可以驱动出更好的生产代码，因为你需要明确模拟出特定的方法，这可以帮你设计出在两个对象之间使用的更优雅的API，这种想法与模拟驱动紧密联系在一起。因此模拟主义的测试更偏向于单元级别的测试，而不是完全的端到端 (end-to-end) 测试。</p>
+<p>统计主义的方式是不使用模拟对象。这种思路是测试时只测试状态而不是行为，因此这种类型的测试更加健壮。使用模拟测试时，如果你更新了实际类的行为，模拟类也需要同步更新；如果你忘了这么做，你可能会遇到测试可以通过但是代码却不能正确工作的情况。通过强调在测试环境中只使用那些真正的代码，统计主意的测试可以帮助你 <strong>减少测试代码和实现代码的耦合度，并降低出错率</strong>。这种类型的测试，您可能已经猜到，适合于更全面的端到端的测试。</p>
+<p>当然，并不是说有两个对立的程序员学派；你不可能看到模拟主义和统计主义的当街对决。这种分歧是有用的，但是，得认识到 mock 在有些时候是你的工具箱里最好的工具，但是有时候又不是。不同类型的测试适用于不同的任务，并且最高效的测试套件往往是不同测试风格的集合体。仔细考虑你到底想要用单个测试来验证些什么，这能帮助你找到最合适的测试方式，而且能帮你决定对于当前工作来说，使用模拟测试对象是否是正确的工具。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://sinonjs.org/#examples" target="_blank" rel="external">sinon examples</a> 非常的清晰。</p>
+<p>找到一篇中文：<a href="http://www.tuicool]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Wallaby Summary]]></title>
+    <link href="http://shane.hsi.rocks/2016/04/16/Wallaby-Summary/"/>
+    <id>http://shane.hsi.rocks/2016/04/16/Wallaby-Summary/</id>
+    <published>2016-04-16T08:38:36.000Z</published>
+    <updated>2016-04-16T08:45:25.000Z</updated>
+    <content type="html"><![CDATA[<p>测试基础：</p>
+<p>Mocha + expect(assertion) + sinon</p>
+<ul>
+<li><p>Node + TypeScript</p>
+</li>
+<li><p>Browser + webpack + TypeScript(to ES6) + Babel(ES7，主要是 async/await)</p>
+</li>
+<li><p>React tsx</p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>测试基础：</p>
+<p>Mocha + expect(assertion) + sinon</p>
+<ul>
+<li><p>Node + TypeScript</p>
+</li>
+<li><p>Browser + webpack + TypeScript(to ES6) ]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Wallaby.js TypeScript Node Browser]]></title>
+    <link href="http://shane.hsi.rocks/2016/04/16/Wallaby-js-TypeScript-Node-Browser/"/>
+    <id>http://shane.hsi.rocks/2016/04/16/Wallaby-js-TypeScript-Node-Browser/</id>
+    <published>2016-04-16T08:20:07.000Z</published>
+    <updated>2016-04-16T08:34:27.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u7ED3_u5408_webpack__u7684"><a href="#u7ED3_u5408_webpack__u7684" class="headerlink" title="结合 webpack 的"></a>结合 webpack 的</h2><p>用到了 wallaby-webpack postprocessor 和 TypeScript。</p>
+<p>package.json</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"chai"</span>: <span class="string">"^2.1.2"</span>,</span><br><span class="line">    <span class="string">"wallaby-webpack"</span>: <span class="string">"*"</span>,</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^1.7.3"</span>,</span><br><span class="line">    <span class="string">"ts-loader"</span>: <span class="string">"^0.5.5"</span>,</span><br><span class="line">    <span class="string">"typescript"</span>: <span class="string">"*"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>tsconfig.json</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="string">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"es5"</span>,</span><br><span class="line">    <span class="string">"noEmit"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"exclude"</span>: [</span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"files"</span>: [</span><br><span class="line">    <span class="string">"typings/tsd.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/assertion-error/assertion-error.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/chai/chai.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/jasmine/jasmine.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/node/node.d.ts"</span>,</span><br><span class="line">    <span class="string">"test/personSpec.ts"</span>,</span><br><span class="line">    <span class="string">"src/Person.ts"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>wallaby.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wallabyWebpack = <span class="built_in">require</span>(<span class="string">'wallaby-webpack'</span>);</span><br><span class="line"><span class="keyword">var</span> webpackPostprocessor = wallabyWebpack(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="comment">// load 为 false，是因为用到了 webpack。</span></span><br><span class="line">      &#123; pattern: <span class="string">'src/**/*.ts'</span>, load: <span class="literal">false</span> &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      &#123; pattern: <span class="string">'test/**/*Spec.ts'</span>, load: <span class="literal">false</span> &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 结合 webpack</span></span><br><span class="line">    postprocessor: webpackPostprocessor,</span><br><span class="line"></span><br><span class="line">    bootstrap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// required to trigger test loading</span></span><br><span class="line">      <span class="built_in">window</span>.__moduleBundler.loadTests();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="u7EAF_TypeScript"><a href="#u7EAF_TypeScript" class="headerlink" title="纯 TypeScript"></a>纯 TypeScript</h2><p>安装下 jasmine 的 typings</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">w</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="string">'src/*Browser.ts'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/*BrowserSpec.ts'</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后是这么引用 Jasmine 的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///&lt;reference path="../typings/jasmine/jasmine.d.ts"/&gt;</span></span><br><span class="line"><span class="comment">///&lt;reference path="../src/sayingsBrowser.ts"/&gt;</span></span><br><span class="line"></span><br><span class="line">describe(<span class="string">'Sayings Greeter'</span>, () =&gt; &#123;</span><br><span class="line">    it(<span class="string">'should greet'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="keyword">var</span> greeter = <span class="keyword">new</span> Sayings.Greeter(<span class="string">'John'</span>);</span><br><span class="line">        expect(greeter.greet()).toBe(<span class="string">'Hello, John'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>纯的 TypeScript。基本没啥这么写的。要么就用 webpack 来写。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">w</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="string">'src/*Node.ts'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/*NodeSpec.ts'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    env: &#123;</span><br><span class="line">      type: <span class="string">'node'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// you may remove the setting if you have a tsconfig.json file where the same is set</span></span><br><span class="line">    compilers: &#123;</span><br><span class="line">      <span class="string">'**/*.ts'</span>: w.compilers.typeScript(&#123;<span class="built_in">module</span>: <span class="string">'commonjs'</span>&#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// By default TypeScript compiler renames .ts files to .js files.</span></span><br><span class="line">    <span class="comment">// If you'd like to not do it and for example use your own renaming strategy,</span></span><br><span class="line">    <span class="comment">// you may pass 'noRename' option to TS compiler</span></span><br><span class="line">    <span class="comment">//  '**/*.ts': w.compilers.typeScript(&#123; noRename: true &#125;)</span></span><br><span class="line">    <span class="comment">// and may use preprocessors to rename files the way you like:</span></span><br><span class="line">    <span class="comment">//preprocessors: &#123;</span></span><br><span class="line">    <span class="comment">//  '**/*.ts': file =&gt; file.rename(file.path + '.js').content</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u7ED3_u5408_webpack__u7684"><a href="#u7ED3_u5408_webpack__u7684" class="headerlink" title="结合 webpack 的"></a>结合 webpack 的</h2><p>用到]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[JavaScript existential operator alternative syntax]]></title>
@@ -140,7 +238,7 @@
     <link href="http://shane.hsi.rocks/2016/04/16/Wallaby-ES7/"/>
     <id>http://shane.hsi.rocks/2016/04/16/Wallaby-ES7/</id>
     <published>2016-04-16T04:28:53.000Z</published>
-    <updated>2016-04-16T05:00:01.000Z</updated>
+    <updated>2016-04-16T08:17:08.000Z</updated>
     <content type="html"><![CDATA[<p>先看看 package.json</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-core"</span>: <span class="string">"^6.4.5"</span>,</span><br><span class="line">    <span class="string">"babel-polyfill"</span>: <span class="string">"^6.3.14"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.3.13"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.3.13"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中 babel-polyfill 上次用到过，对于支持 async/await 必须：</p>
@@ -161,6 +259,7 @@
 </blockquote>
 <p>还有一个是 <code>compilers</code>。链接 <a href="https://wallabyjs.com/docs/config/compilers.html" target="_blank" rel="external">Compilers</a></p>
 <p>写到这，我觉得要把 Wallaby/Configuration file 从头到尾看一遍。</p>
+<p>更新：已经看完了。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>先看看 package.json</p>
@@ -618,194 +717,6 @@
     <![CDATA[<p><a href="https://github.com/webpack/less-loader" target="_blank" rel="external">webpack/less-loader</a></p>
 <p>这里面的小细节还蛮多的。</p>
 <p>开发时：</]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[学习 Ava 和 Enzyme]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/23/Learn-Ava-and-Enzyme/"/>
-    <id>http://shane.hsi.rocks/2016/03/23/Learn-Ava-and-Enzyme/</id>
-    <published>2016-03-23T03:06:23.000Z</published>
-    <updated>2016-03-27T05:29:08.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="u6700_u540E_u7684_u603B_u7ED3_u653E_u524D_u5934"><a href="#u6700_u540E_u7684_u603B_u7ED3_u653E_u524D_u5934" class="headerlink" title="最后的总结放前头"></a>最后的总结放前头</h1><h2 id="AVA"><a href="#AVA" class="headerlink" title="AVA"></a>AVA</h2><p>AVA 本身是 test runner，暂时还没有测试到 promise，asnyc/await，observable，所以这块后续学习。</p>
-<p>主要是学习 API。包括 assertion 和 其他。</p>
-<h3 id="t-pass_28_5Bmessage_5D_29/t-fail"><a href="#t-pass_28_5Bmessage_5D_29/t-fail" class="headerlink" title="t.pass([message])/t.fail"></a><code>t.pass([message])/t.fail</code></h3><p>手动设置 pass 还是 fail，可选 message。</p>
-<h3 id="t-ok_28value_2C__5Bmessage_5D_29/t-notOk"><a href="#t-ok_28value_2C__5Bmessage_5D_29/t-notOk" class="headerlink" title="t.ok(value, [message])/t.notOk"></a><code>t.ok(value, [message])/t.notOk</code></h3><p>值是 truthy 的。</p>
-<h3 id="t-true_28value_2C__5Bmessage_5D_29/t-false"><a href="#t-true_28value_2C__5Bmessage_5D_29/t-false" class="headerlink" title="t.true(value, [message])/t.false"></a><code>t.true(value, [message])/t.false</code></h3><p>值是 <code>true</code> 的。</p>
-<h3 id="t-is_28value_2C_expected_2C__5Bmessage_5D_29/t-not"><a href="#t-is_28value_2C_expected_2C__5Bmessage_5D_29/t-not" class="headerlink" title="t.is(value, expected, [message])/t.not"></a><code>t.is(value, expected, [message])/t.not</code></h3><p>判断 equal。</p>
-<h3 id="t-same_28value_2C_expected_2C__5Bmessage_5D_29/t-notSame"><a href="#t-same_28value_2C_expected_2C__5Bmessage_5D_29/t-notSame" class="headerlink" title="t.same(value, expected, [message])/t.notSame"></a><code>t.same(value, expected, [message])/t.notSame</code></h3><p>判断 deep equal。</p>
-<h3 id="t-throws_28function_7Cpromise_2C__5Berror_2C__5Bmessage_5D_5D_29/t-notThrows"><a href="#t-throws_28function_7Cpromise_2C__5Berror_2C__5Bmessage_5D_5D_29/t-notThrows" class="headerlink" title="t.throws(function|promise, [error, [message]])/t.notThrows"></a><code>t.throws(function|promise, [error, [message]])/t.notThrows</code></h3><p>function 抛出 error，promise reject 一个 error。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"ava"</span>: &#123;</span><br><span class="line">    <span class="string">"babel"</span>: <span class="string">"inherit"</span>,</span><br><span class="line">    <span class="string">"failFast"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"require"</span>: [</span><br><span class="line">      <span class="string">"babel-register"</span>,</span><br><span class="line">      <span class="string">"./test/helpers/setup-browser-env.js"</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>t.plan(1)</code> 保证 assertion 执行的次数不多不少。</li>
-<li><code>t.only</code></li>
-<li><code>t.skip</code></li>
-<li><code>test.todo(&#39;will think about writing this later&#39;)</code></li>
-</ul>
-<h1 id="AVA-1"><a href="#AVA-1" class="headerlink" title="AVA"></a>AVA</h1><p><a href="https://github.com/sindresorhus/ava" target="_blank" rel="external">github</a>。</p>
-<p>ava 配置很简单</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"awesome-package"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"ava"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"ava"</span>: <span class="string">"^0.11.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'ava'</span>;</span><br><span class="line"></span><br><span class="line">test(<span class="string">'foo'</span>, t =&gt; &#123;</span><br><span class="line">    t.pass();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">test(<span class="string">'bar'</span>, <span class="keyword">async</span> t =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> bar = <span class="built_in">Promise</span>.resolve(<span class="string">'bar'</span>);</span><br><span class="line"></span><br><span class="line">    t.is(<span class="keyword">await</span> bar, <span class="string">'bar'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>跑测试：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="built_in">test</span></span><br><span class="line">npm <span class="built_in">test</span> -- --watch</span><br></pre></td></tr></table></figure>
-<p>更多的配置在 pakcage.json 中。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"ava"</span>: &#123;</span><br><span class="line">    <span class="string">"files"</span>: [</span><br><span class="line">      <span class="string">"my-test-folder/*.js"</span>,</span><br><span class="line">      <span class="string">"!**/not-this-file.js"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"source"</span>: [</span><br><span class="line">      <span class="string">"**/*.&#123;js,jsx&#125;"</span>,</span><br><span class="line">      <span class="string">"!dist/**/*"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"match"</span>: [</span><br><span class="line">      <span class="string">"*oo"</span>,</span><br><span class="line">      <span class="string">"!foo"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"failFast"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"tap"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"require"</span>: [</span><br><span class="line">      <span class="string">"babel-register"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"babel"</span>: <span class="string">"inherit"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>关于对 ES2015 的支持。Ava 是内置了 Babel 6，Ava 使用的配置如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"presets"</span>: [</span><br><span class="line">    <span class="string">"es2015"</span>,</span><br><span class="line">    <span class="string">"stage-2"</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="string">"espower"</span>,</span><br><span class="line">    <span class="string">"transform-runtime"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以修改的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"ava"</span>: &#123;</span><br><span class="line">         <span class="string">"babel"</span>: &#123;</span><br><span class="line">             <span class="string">"presets"</span>: [</span><br><span class="line">                    <span class="string">"es2015"</span>,</span><br><span class="line">                    <span class="string">"stage-0"</span>,</span><br><span class="line">                    <span class="string">"react"</span></span><br><span class="line">             ]</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>并且可以使用 <code>inherit</code> 来使用 <code>.babelrc</code> 的配置，不用再为了 ava 在 transpile 一次。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"babel"</span>: &#123;</span><br><span class="line">        <span class="string">"presets"</span>: [</span><br><span class="line">            <span class="string">"es2015"</span>,</span><br><span class="line">            <span class="string">"stage-0"</span>,</span><br><span class="line">            <span class="string">"react"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"ava"</span>: &#123;</span><br><span class="line">        <span class="string">"babel"</span>: <span class="string">"inherit"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但不管怎样，Note that AVA will always apply the <code>espower</code> and <code>transform-runtime</code> plugins.</p>
-<h2 id="u6587_u6863"><a href="#u6587_u6863" class="headerlink" title="文档"></a>文档</h2><p>建议使用 async function</p>
-<p>We highly recommend the use of async functions. They make asynchronous code concise and readable, and they implicitly return a promise so you don’t have to.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="keyword">await</span> promiseFn();</span><br><span class="line">    t.true(value);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// async arrow function</span></span><br><span class="line">test(<span class="keyword">async</span> t =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="keyword">await</span> promiseFn();</span><br><span class="line">    t.true(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>下面的句子看下，涉及到 spec 文件的放置目录。</p>
-<p>Test files are run from their current directory, so process.cwd() is always the same as <strong>dirname. You can just use relative paths instead of doing path.join(</strong>dirname, ‘relative/path’).</p>
-<p>其他的 API 用到再看。</p>
-<h2 id="u6D4B_u8BD5_u6D4F_u89C8_u5668"><a href="#u6D4B_u8BD5_u6D4F_u89C8_u5668" class="headerlink" title="测试浏览器"></a>测试浏览器</h2><p>依赖 <code>jsdom</code>。</p>
-<p><a href="https://github.com/sindresorhus/ava/blob/master/docs/recipes/browser-testing.md" target="_blank" rel="external">Setting up AVA for browser testing</a></p>
-<h1 id="Enzyme"><a href="#Enzyme" class="headerlink" title="Enzyme"></a>Enzyme</h1><p>文章介绍，<a href="https://medium.com/airbnb-engineering/enzyme-javascript-testing-utilities-for-react-a417e5e5090f#.sjli8b8zm" target="_blank" rel="external">Enzyme: JavaScript Testing utilities for React</a></p>
-<p><a href="https://github.com/airbnb/enzyme/" target="_blank" rel="external">github</a></p>
-<p>Airbnb open sourced Enzyme, a JavaScript library for testing React components. </p>
-<p>Historically, testing UI has been hard to accomplish for a variety of reasons, but using React removes a lot of these hurdles. We hope that enzyme does a good job removing the remaining ones!</p>
-<p>测试 UI 很难，React 帮我们除去了大多的障碍，希望 enzyme 等除去剩下的。</p>
-<h2 id="Declarative_UIs_are_Testable_UIs"><a href="#Declarative_UIs_are_Testable_UIs" class="headerlink" title="Declarative UIs are Testable UIs"></a>Declarative UIs are Testable UIs</h2><p>Pure functions (and thus React components) are much easier to test because they simply return a description for what UI of the component should look like, given some application state, rather than actually mutating the UI and having side-effects. This “description” is known as a “Virtual DOM” and is a tree-like data structure.</p>
-<ul>
-<li>Pure Function 易测试，input -&gt; output，没有 side effects</li>
-<li>测试 Virutal DOM，a tree-like data structure.</li>
-</ul>
-<p>Making assertions on the state of a React render tree can include a lot of boilerplate code and is hard to read, which detracts from the value of the test. Moreover, directly asserting on the resulting tree can strongly couple your tests to implementation details that end up making your tests extremely fragile.</p>
-<ul>
-<li>测试 React 的 render tree 会有很多 boilerplate 代码。难以阅读，也就降低了 test 的价值。</li>
-<li>直接 assert resulting tree 会将 test 和实现细节强耦合，最终 fragile。</li>
-</ul>
-<p>Enzyme makes asking questions about the rendered output of your React components easy and intuitive by providing a fluent interface around rendered React components.</p>
-<p>Enzyme 做的事情是，提供了 fluent interface。</p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>Enzyme exports three different “modes” to render and test components, shallow, mount, and render. Shallow is the recommended mode to start with since it does a better job of isolating your tests to just a single component. If shallow doesn’t work for your use case (for example, if you are relying on the presence of a real DOM), mount or render likely will.</p>
-<p>Enzyme 有3种“模式”来 render 和 test 组件。</p>
-<ul>
-<li>shallow 推荐，</li>
-<li>mount </li>
-<li>render</li>
-</ul>
-<h2 id="Github__u7684_u6587_u6863"><a href="#Github__u7684_u6587_u6863" class="headerlink" title="Github 的文档"></a>Github 的文档</h2><p>Enzyme is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.</p>
-<p>Enzyme’s API is meant to be intuitive and flexible by mimicking jQuery’s API for DOM manipulation and traversal.</p>
-<p>模拟了 jQuery 操作和 traverse DOM 的 API。</p>
-<p>对于 <code>React 0.14</code>：</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i --<span class="built_in">save</span>-<span class="built_in">dev</span> react-addons-test-utils@<span class="number">1.4</span></span><br><span class="line">npm i --<span class="built_in">save</span>-<span class="built_in">dev</span> react-dom@<span class="number">1.4</span></span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="u6700_u540E_u7684_u603B_u7ED3_u653E_u524D_u5934"><a href="#u6700_u540E_u7684_u603B_u7ED3_u653E_u524D_u5934" class="headerlink" title]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[前端技术选型思考于2016年03月23日]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/23/2016-03-23-Front-End-General-Techniques-Thoughts/"/>
-    <id>http://shane.hsi.rocks/2016/03/23/2016-03-23-Front-End-General-Techniques-Thoughts/</id>
-    <published>2016-03-23T01:40:04.000Z</published>
-    <updated>2016-03-23T03:41:25.000Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li>HTML/CSS</li>
-<li>React</li>
-<li>Redux</li>
-<li>React Router</li>
-<li>Rx</li>
-<li>Falcor/Relay/GraphQL</li>
-<li>Express</li>
-</ul>
-<p>分层的话：</p>
-<table>
-<thead>
-<tr>
-<th>分层</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HTML/CSS - UI, UE</td>
-</tr>
-<tr>
-<td>View - React</td>
-</tr>
-<tr>
-<td>Data flow - Redux/Rx</td>
-</tr>
-<tr>
-<td>Ajax/Cache - Falcor</td>
-</tr>
-<tr>
-<td>Backend - Express/Falcor Endpoint</td>
-</tr>
-</tbody>
-</table>
-<p>其他的：</p>
-<ul>
-<li>Test<ul>
-<li>Ava</li>
-<li>Enzyme</li>
-</ul>
-</li>
-<li>React Router</li>
-<li>Webpack module bundler</li>
-<li>Proxy</li>
-<li>Mock Server</li>
-</ul>
-<p><strong>优先级</strong>：</p>
-<ol>
-<li>Ava/Enzyme - 黑盒</li>
-<li>Redux/Rx</li>
-<li>HTML/CSS</li>
-<li>Faclor</li>
-<li>Express</li>
-<li>Mock Server</li>
-<li>Proxy</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ul>
-<li>HTML/CSS</li>
-<li>React</li>
-<li>Redux</li>
-<li>React Router</li>
-<li>Rx</li>
-<li>Falcor/Relay/GraphQL</li>
-<li>Express</li>
-</ul>
-]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[npm link]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/22/npm-link/"/>
-    <id>http://shane.hsi.rocks/2016/03/22/npm-link/</id>
-    <published>2016-03-22T06:26:37.000Z</published>
-    <updated>2016-03-22T06:32:17.000Z</updated>
-    <content type="html"><![CDATA[<p>参考链接：<a href="http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears" target="_blank" rel="external">justjs: node.js tutorials</a></p>
-<p><strong>npm link: symbolic links to the rescue</strong></p>
-<p>Fortunately npm provides a tool to avoid this tedium. And it’s easy to use. But there’s a catch.</p>
-<p>Here’s how it’s supposed to work:</p>
-<ol>
-<li><p>cd to src/appy</p>
-</li>
-<li><p>Run “<strong>npm link</strong>“. This creates a symbolic link from a global folder to the src/appy folder.</p>
-</li>
-<li><p>cd to src/mysite</p>
-</li>
-<li><p>Run “<strong>npm link appy</strong>“. This links “node_modules/appy” in this particular project to the global folder, so that “require” calls looking for appy wind up loading it from your development folder, src/appy.</p>
-</li>
-</ol>
-<p>Mission accomplished… almost. If you installed Node in a typical way, using MacPorts or Ubuntu’s apt-get, then npm’s “global” folders are probably in a location shared system-wide, like /opt/local/npm or /usr/lib/npm. And this is not good, because it means those “npm link” commands are going to fail unless you run them as root.</p>
-<p>如何删除呢？</p>
-<p>参考链接：<a href="http://stackoverflow.com/questions/19094630/how-do-i-uninstall-a-package-installed-using-npm-link" target="_blank" rel="external">How do I uninstall a package installed using npm link?</a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm rm --global foo&#10;npm ls --global foo # &#26816;&#26597;&#19979;</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>参考链接：<a href="http://justjs.com/posts/npm-link-developing-your-own-npm-modules-without-tears" target="_blank" rel="external">justjs: node]]>
     </summary>
     
   </entry>
