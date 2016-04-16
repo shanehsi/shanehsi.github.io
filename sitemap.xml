@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/04/16/Wallaby-Intro/</loc>
+    <lastmod>2016-04-16T04:02:14.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/04/01/What-s-the-Benefis-of-IoC/</loc>
     <lastmod>2016-04-01T05:46:16.000Z</lastmod>
   </url>

@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Wallaby Intro · Shane Hsi Rocks</title><meta name="description" content="介绍 Wallaby.jsWhat about a list of main features?
+continuous testing 持续测试，性能不错
+browser code unit testing，测试 browser，是依赖（PhantomJs, Electron or node.js）
+node.js unit testing
+Supports many testing frameworks（Jasmine 默认）
+支持 ES6 and React JSX
+支持 TypeScript, CoffeeScri"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Wallaby Intro</h1><div class="post-meta"><div class="post-time">Apr 16, 2016</div></div><div class="post-content"><h1 id="u4ECB_u7ECD_Wallaby-js"><a href="#u4ECB_u7ECD_Wallaby-js" class="headerlink" title="介绍 Wallaby.js"></a>介绍 Wallaby.js</h1><h2 id="What_about_a_list_of_main_features_3F"><a href="#What_about_a_list_of_main_features_3F" class="headerlink" title="What about a list of main features?"></a>What about a list of main features?</h2><ul>
+<li>continuous testing 持续测试，性能不错</li>
+<li>browser code unit testing，测试 browser，是依赖（PhantomJs, Electron or node.js）</li>
+<li>node.js unit testing</li>
+<li>Supports many testing frameworks（Jasmine 默认）</li>
+<li>支持 ES6 and React JSX</li>
+<li>支持 TypeScript, CoffeeScript, and ES7</li>
+<li>支持  Webpack and Browserify</li>
+</ul>
+<p>其他的包括：</p>
+<ul>
+<li>可扩展 preprocessors, compilers and more</li>
+<li>性能（只跑变动的，并行的跑，跑选择的）</li>
+<li>实时覆盖率</li>
+<li>在编辑器 inline 显示 expectations, errors and console.log messages</li>
+<li>显示跑的 test 的变量的 data</li>
+<li>test 执行的截图？？</li>
+</ul>
+<h2 id="u548C_Karma_2C_Mocha__u7684_u533A_u522B"><a href="#u548C_Karma_2C_Mocha__u7684_u533A_u522B" class="headerlink" title="和 Karma, Mocha 的区别"></a>和 Karma, Mocha 的区别</h2><p>其他的 runner，需要手动跑，配置 watch，跑所有的 tests，test 的结果是显示在其他的地方，需要切换。</p>
+<h2 id="u6587_u7AE0_u94FE_u63A5"><a href="#u6587_u7AE0_u94FE_u63A5" class="headerlink" title="文章链接"></a>文章链接</h2><ul>
+<li>所有文档 <a href="http://wallabyjs.com/docs/" target="_blank" rel="external">地址</a></li>
+<li>切换不同的 test framework <a href="https://wallabyjs.com/docs/integration/overview.html#supported-testing-frameworks" target="_blank" rel="external">favorite testing framework</a>，主要考虑到如何测试 async/await, promise, observable 这些。Jasmine 似乎不够强大。选择更通用的 mocha 吧。Jasmine 的文档写的也是一绝（不好读）。mocha 肯定有解决 async/await 的方法。社区支持很好。</li>
+</ul>
+<p>默认的 test framework：</p>
+<blockquote>
+<p>By default, wallaby.js is using jasmine for browser and mocha for node.</p>
+</blockquote>
+<p>Todo list:</p>
+<ul>
+<li><p>[ ]  wallaby</p>
+<ul>
+<li><p>[ ] webpack</p>
+</li>
+<li><p>[ ] typescript</p>
+</li>
+<li><p>[ ] mocha</p>
+</li>
+<li><p>[ ] async/await</p>
+</li>
+<li><p>[ ] promise</p>
+</li>
+<li><p>[ ] rx observable</p>
+</li>
+<li><p>[ ] node (express)</p>
+</li>
+</ul>
+</li>
+<li><p>[ ] koa 2</p>
+<ul>
+<li>[ ] wallaby</li>
+</ul>
+</li>
+<li><p>测试 React，如何集成 tsx？</p>
+</li>
+<li>测试 node <a href="https://wallabyjs.com/docs/integration/node.html" target="_blank" rel="external">Node.js</a>，特别是 typescript。</li>
+<li><a href="https://wallabyjs.com/docs/integration/typescript.html" target="_blank" rel="external">测试 TypeScript</a></li>
+<li><a href="https://wallabyjs.com/docs/integration/es-next.html" target="_blank" rel="external">集成 Babel</a></li>
+<li><a href="https://wallabyjs.com/docs/integration/webpack.html" target="_blank" rel="external">集成 webpack</a></li>
+<li><a href="https://wallabyjs.com/docs/config/preprocessors.html" target="_blank" rel="external">支持 preprocessors</a></li>
+</ul>
+</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2016/04/01/What-s-the-Benefis-of-IoC/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
