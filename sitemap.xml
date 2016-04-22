@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/04/23/Read-recompose-API/</loc>
+    <lastmod>2016-04-22T23:19:32.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/04/18/ECSS-Reading-Notes/</loc>
+    <lastmod>2016-04-18T06:39:07.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/04/16/Test-mock-terminology/</loc>
     <lastmod>2016-04-16T09:00:29.000Z</lastmod>
   </url>

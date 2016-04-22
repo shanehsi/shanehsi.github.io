@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-04-16T09:00:29.000Z</updated>
+  <updated>2016-04-22T23:19:32.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Read recompose API]]></title>
+    <link href="http://shane.hsi.rocks/2016/04/23/Read-recompose-API/"/>
+    <id>http://shane.hsi.rocks/2016/04/23/Read-recompose-API/</id>
+    <published>2016-04-22T23:14:48.000Z</published>
+    <updated>2016-04-22T23:19:32.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><h2 id="u6570_u636E_u6D41"><a href="#u6570_u636E_u6D41" class="headerlink" title="数据流"></a>数据流</h2><p>这种方式不好用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Counter = withState(</span><br><span class="line">  <span class="string">'counter'</span>, <span class="string">'setCounter'</span>, <span class="number">0</span></span><br><span class="line">)((&#123; counter, setCounter &#125;) =&gt; (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">      Count: &#123;counter&#125;</span><br><span class="line">      <span class="tag">&lt;<span class="title">button</span> <span class="attribute">onClick</span>=<span class="value">&#123;()</span> =&gt;</span> setCounter(n =&gt; n + 1)&#125;&gt;Increment<span class="tag">&lt;/<span class="title">button</span>&gt;</span> /&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="title">button</span> <span class="attribute">onClick</span>=<span class="value">&#123;()</span> =&gt;</span> setCounter(n =&gt; n - 1)&#125;&gt;Decrement<span class="tag">&lt;/<span class="title">button</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  )</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>√ 这种方式符合 redux-style，目前够清晰。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> counterReducer = (count, action) =&gt; &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">  <span class="keyword">case</span> INCREMENT:</span><br><span class="line">    <span class="keyword">return</span> count + <span class="number">1</span></span><br><span class="line">  <span class="keyword">case</span> DECREMENT:</span><br><span class="line">    <span class="keyword">return</span> count - <span class="number">1</span></span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Counter = withReducer(</span><br><span class="line">  <span class="string">'counter'</span>, <span class="string">'dispatch'</span>, counterReducer, <span class="number">0</span></span><br><span class="line">)((&#123; counter, dispatch &#125;) =&gt; (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line">      Count: &#123;counter&#125;</span><br><span class="line">      <span class="tag">&lt;<span class="title">button</span> <span class="attribute">onClick</span>=<span class="value">&#123;()</span> =&gt;</span> dispatch(&#123; type: INCREMENT &#125;)&#125;&gt;Increment<span class="tag">&lt;/<span class="title">button</span>&gt;</span> /&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="title">button</span> <span class="attribute">onClick</span>=<span class="value">&#123;()</span> =&gt;</span> dispatch(&#123; type: DECREMENT &#125;)&#125;&gt;Decrement<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  )</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="u6027_u80FD"><a href="#u6027_u80FD" class="headerlink" title="性能"></a>性能</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A component that is expensive to render</span></span><br><span class="line"><span class="keyword">const</span> ExpensiveComponent = (&#123; propA, propB &#125;) =&gt; &#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Optimized version of same component, using shallow comparison of props</span></span><br><span class="line"><span class="comment">// Same effect as React's PureRenderMixin</span></span><br><span class="line"><span class="keyword">const</span> OptimizedComponent = pure(ExpensiveComponent)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Even more optimized: only updates if specific prop keys have changed</span></span><br><span class="line"><span class="keyword">const</span> HyperOptimizedComponent = onlyUpdateForKeys([<span class="string">'propA'</span>, <span class="string">'propB'</span>])(ExpensiveComponent)</span><br></pre></td></tr></table></figure>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> EnhancedComponent = hoc(BaseComponent)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> composedHoc = compose(hoc1, hoc2, hoc3)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Same as</span></span><br><span class="line"><span class="keyword">const</span> composedHoc = BaseComponent =&gt; hoc1(hoc2(hoc3(BaseComponent)))</span><br><span class="line"></span><br><span class="line"><span class="comment">// Same as</span></span><br><span class="line">@withState(<span class="comment">/*...args*/</span>)</span><br><span class="line">@mapProps(<span class="comment">/*...args*/</span>)</span><br><span class="line">@pure</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Component</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>## </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><h2 id="u6570_u636E_u6D41"><a href="#u6570_u636E_u6D4]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ECSS Reading Notes]]></title>
+    <link href="http://shane.hsi.rocks/2016/04/18/ECSS-Reading-Notes/"/>
+    <id>http://shane.hsi.rocks/2016/04/18/ECSS-Reading-Notes/</id>
+    <published>2016-04-18T05:30:12.000Z</published>
+    <updated>2016-04-18T06:39:07.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>会有一些可选的关于 tools 的 guidelines。</p>
+<h1 id="u7B2C_u4E00_u7AE0"><a href="#u7B2C_u4E00_u7AE0" class="headerlink" title="第一章"></a>第一章</h1><p>定义下问题。</p>
+<p>定义下基本需求：</p>
+<ul>
+<li>大型 css base，可维护</li>
+<li>可安全删除某些 portion</li>
+<li>能快速跟上新的设计</li>
+<li>改变不影响其他</li>
+<li>工具少，工作流简单</li>
+<li>aria 来做 state change communication</li>
+</ul>
+<p>今晚阅读完毕。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>会有一些可选的关于 tools 的 guidelines。</p>
+<h1 id="u7B2C_u4E0]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Test mock terminology]]></title>
@@ -674,49 +721,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>链接：<a href="https://github.com/sindresorhus/ava/issues/560" target="_blank" rel="external">afterEach and beforeEach not running? #560</a>]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[第一次尝试设计一个 Web App]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/25/My-First-Try-to-Design-a-Web-App/"/>
-    <id>http://shane.hsi.rocks/2016/03/25/My-First-Try-to-Design-a-Web-App/</id>
-    <published>2016-03-25T09:16:41.000Z</published>
-    <updated>2016-03-25T09:21:59.000Z</updated>
-    <content type="html"><![CDATA[<p>不是视觉设计，主要是工作方法论。这里留个标记，便于后期回顾。</p>
-<p>这是 todo list。</p>
-<img src="/2016/03/25/My-First-Try-to-Design-a-Web-App/of.png" alt="of.png" title="">
-<p>这是我思考的过程之一。</p>
-<img src="/2016/03/25/My-First-Try-to-Design-a-Web-App/section.png" alt="section.png" title="">
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>不是视觉设计，主要是工作方法论。这里留个标记，便于后期回顾。</p>
-<p>这是 todo list。</p>
-<img src="/2016/03/25/My-First-Try-to-Design-a-Web-App/of.png" alt="of.png" title]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Webpack Less Loader]]></title>
-    <link href="http://shane.hsi.rocks/2016/03/24/Webpack-Less-Loader/"/>
-    <id>http://shane.hsi.rocks/2016/03/24/Webpack-Less-Loader/</id>
-    <published>2016-03-24T07:14:15.000Z</published>
-    <updated>2016-03-24T07:17:30.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="https://github.com/webpack/less-loader" target="_blank" rel="external">webpack/less-loader</a></p>
-<p>这里面的小细节还蛮多的。</p>
-<p>开发时：</p>
-<p>主要注意下 style loader 的作用。在 production 是不需要的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">        loader: <span class="string">"style!css!less"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>关键 less 还有 options，具体参考 <a href="http://lesscss.org/usage/#command-line-usage-options" target="_blank" rel="external">LESS documentation</a>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">        loader: <span class="string">"style!css!less?strictMath&amp;noIeCompat"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>生产环境：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// must be 'source-map' or 'inline-source-map'</span></span><br><span class="line">    devtool: <span class="string">'source-map'</span>,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">                loader: ExtractTextPlugin.extract(</span><br><span class="line">                    <span class="comment">// activate source maps via loader query</span></span><br><span class="line">                    <span class="string">'css?sourceMap!'</span> +</span><br><span class="line">                    <span class="string">'less?sourceMap'</span></span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="comment">// extract inline css into separate 'styles.css'</span></span><br><span class="line">        <span class="keyword">new</span> ExtractTextPlugin(<span class="string">'styles.css'</span>)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p><a href="https://github.com/webpack/less-loader" target="_blank" rel="external">webpack/less-loader</a></p>
-<p>这里面的小细节还蛮多的。</p>
-<p>开发时：</]]>
     </summary>
     
   </entry>
