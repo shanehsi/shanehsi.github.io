@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/04/28/UNIDIRECTIONAL-USER-INTERFACE-ARCHITECTURES/</loc>
+    <lastmod>2016-04-28T06:55:13.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/04/27/redux-data-flow/</loc>
     <lastmod>2016-04-28T03:59:31.000Z</lastmod>
   </url>
