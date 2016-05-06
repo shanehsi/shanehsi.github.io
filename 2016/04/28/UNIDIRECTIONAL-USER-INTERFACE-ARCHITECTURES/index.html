@@ -1,4 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 单向 UI 架构 · Shane Hsi Rocks</title><meta name="description" content="
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 单向 UI 架构 · Shane Hsi Rocks</title><meta name="description" content="这里有一篇翻译
+
 User events
 User interface rendering 在屏幕上的图形输出，通常表示为HTML或一些可比高级别声明性代码如JSX。
 UI 它接受用户事件作为输入，并输出渲染，一个持续的过程，而不是一次性的变换。
@@ -7,8 +8,8 @@ UI 它接受用户事件作为输入，并输出渲染，一个持续的过程�
 A unidirectional architecture is said to be fractal if subcomponents are structured in the same way as the whole is.
 
 单向被认为是 fractal（分形），如果子组件的组织方式是统一的。
-In fractal architectures, the whole can be naively packaged as a component to be used in some larger application.
-In non-fractal architectures, the non-repeatable parts are sai"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">单向 UI 架构</h1><div class="post-meta"><div class="post-time">Apr 28, 2016</div></div><div class="post-content"><ul>
+In fractal architectures, the whole can be naively p"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">单向 UI 架构</h1><div class="post-meta"><div class="post-time">Apr 28, 2016</div></div><div class="post-content"><p>这里有一篇<a href="http://adoyle.me/blog/unidirectional-user-interface-architectures.html" target="_blank" rel="external">翻译</a></p>
+<ul>
 <li><strong>User events</strong></li>
 <li><strong>User interface rendering</strong> 在屏幕上的图形输出，通常表示为HTML或一些可比高级别声明性代码如JSX。</li>
 <li><strong>UI</strong> 它接受用户事件作为输入，并输出渲染，一个持续的过程，而不是一次性的变换。</li>
@@ -61,4 +62,4 @@ In non-fractal architectures, the non-repeatable parts are sai"><meta name="view
 <p>这个我觉得是重点，public/private 的本身含义很简单，关键就是 private 之后会带来的倾向性。Bar 只相应唯一一个 event 的 payload。Bar 的最终吐出的 state，外界对它的影响要最低。state，主要在 Bar，而不是把 Bar 当做一个改变 state 的操作。</p>
 </blockquote>
 <hr>
-</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2016/04/27/redux-data-flow/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/04/28/elm-architecture/" class="prev">上一篇</a><a href="/2016/04/27/redux-data-flow/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
