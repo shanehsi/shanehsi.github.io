@@ -3,6 +3,8 @@ date: 2016-04-28 14:12:43
 tags:
 ---
 
+这里有一篇[翻译](http://adoyle.me/blog/unidirectional-user-interface-architectures.html)
+
 - **User events**
 - **User interface rendering** 在屏幕上的图形输出，通常表示为HTML或一些可比高级别声明性代码如JSX。
 - **UI** 它接受用户事件作为输入，并输出渲染，一个持续的过程，而不是一次性的变换。
