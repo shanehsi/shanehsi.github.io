@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/05/06/Umbrella-Externalize-the-State-Tree-or-alternatives/</loc>
+    <lastmod>2016-05-07T00:59:56.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/04/28/redux-loop/</loc>
     <lastmod>2016-04-28T08:33:48.000Z</lastmod>
   </url>

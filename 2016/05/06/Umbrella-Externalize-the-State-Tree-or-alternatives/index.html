@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Umbrella: Externalize the State Tree (or alternatives)  · Shane Hsi Rocks</title><meta name="description" content="
+React provides the notion of implicitly allowing a child component to store state (using the setState functionality). However, it is not just used for business logic state. It is also used to remember DOM state, or tiny ephemeral state such as scroll position, text selection etc. It is also used for temporary state such as memoization.
+
+子组件可以 store 状态
+作用：
+
+业务逻辑状态
+DOM 状态
+小的瞬间状态（比如滚动位置，文字选择）
+临时存储，比如记忆
+
+
+This is kind of a magic black box in React and the implementation details are largely hi"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Umbrella: Externalize the State Tree (or alternatives) </h1><div class="post-meta"><div class="post-time">May 6, 2016</div></div><div class="post-content"><blockquote>
+<p>React provides the notion of implicitly allowing a child component to store state (using the setState functionality). However, it is not just used for business logic state. It is also used to remember DOM state, or tiny ephemeral state such as scroll position, text selection etc. It is also used for temporary state such as memoization.</p>
+</blockquote>
+<p>子组件可以 store 状态</p>
+<p>作用：</p>
+<ul>
+<li>业务逻辑状态</li>
+<li>DOM 状态</li>
+<li>小的瞬间状态（比如滚动位置，文字选择）</li>
+<li>临时存储，比如记忆</li>
+</ul>
+<blockquote>
+<p>This is kind of a magic black box in React and the implementation details are largely hidden. People tend to reinvent the wheel because of it, and invent their own state management systems. E.g. using Flux.</p>
+</blockquote>
+<p>黑盒子，细节被隐藏，人们倾向于重新造轮子（Flux）</p>
+<blockquote>
+<p>There is still plenty of use cases for Flux, but not all state belongs in Flux stores.</p>
+</blockquote>
+<p>当然不应该所有 state 交给 flux</p>
+<blockquote>
+<p>Manually managing the adding/removing of state nodes for all of this becomes a huge burden. So, regardless you’re not going to keep doing this manually, you’ll end up with your own system that does something similar. We need a convenient and standard way to handle this across components. This is not something that should be 100% in user space because then components won’t be able to integrate well with each other. Even if you think you’re not using it, because you’re not calling setState, you still are relying on the capability being there.</p>
+<p>It undermines the ecosystem and eventually everyone will reconverge on a single external state library anyway. We should just make sure that gets baked into React.</p>
+<p>We designed the state tree so that the state tree data structure would be opaque so that we can optimize the internals in clever ways. It blocks many anti-patterns where external users breaks through the encapsulation boundaries to touch someone else’s state. That’s exactly the problem React’s programming model tries to address.</p>
+</blockquote>
+<p>state 要不透明,对内部进行优化,不能碰到其他的 state.</p>
+<blockquote>
+<p>However, unfortunately this state tree is opaque to end users. This means that there are a bunch of legitimate use cases are not available to external libraries. E.g. undo/redo, reclaiming memory, restoring state between sessions, debugging tools, hot reloading, moving state from server to the client and more.</p>
+</blockquote>
+<p>因为是不透明的, 就有不能做 undo/redo reclaiming memory,  restoring state between sessions, debugging tools, hot reloading, moving state from server to the client and more.</p>
+<blockquote>
+<p>We could provide a standard externalized state-tree. E.g. using an immutable-js data structure. However, that might make clever optimizations and future features more difficult to adopt. It also isn’t capable of fully encapsulating the true state of the tree which may include DOM state, it may be ok to treat this state differently as a heuristic but the API need to account for it. It also doesn’t allow us to enforce a certain level of encapsulation between components.</p>
+<p>Another approach is to try to add support for more use cases to React, one-by-one until the external state tree doesn’t become useful anymore. I’ve created separate issues for the ones we we’re already planning on supporting:</p>
+</blockquote>
+</div></article></div></section><footer><div class="paginator"><a class="prev"> </a><a href="/2016/04/28/redux-loop/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
