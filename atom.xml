@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-05-21T10:44:31.000Z</updated>
+  <updated>2016-06-08T03:10:35.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,169 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Building command line tools with Node.js]]></title>
+    <link href="http://shane.hsi.rocks/2016/06/08/Building-command-line-tools-with-Node-js/"/>
+    <id>http://shane.hsi.rocks/2016/06/08/Building-command-line-tools-with-Node-js/</id>
+    <published>2016-06-08T02:43:56.000Z</published>
+    <updated>2016-06-08T03:10:35.000Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li>packaging new shell commands with npm</li>
+<li>parsing command line options</li>
+<li>reading text and passwords from stdin</li>
+<li>dodging callbacks with ES6 generators</li>
+<li>error output and codes</li>
+<li>coloring terminal output</li>
+<li>rendering an ASCII progress bar</li>
+</ul>
+<h2 id="Packaging_shell_commands"><a href="#Packaging_shell_commands" class="headerlink" title="Packaging shell commands"></a>Packaging shell commands</h2><p>初始化一个 node 项目：</p>
+<p><code>npm init</code></p>
+<p>index.js：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+ #!/usr/bin/env node</span></span><br><span class="line"><span class="addition">+ console.log('Hello, world!');</span></span><br></pre></td></tr></table></figure>
+<p>package.json</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  "author": "Tim Pettersen",</span><br><span class="line">  "license": "Apache-2.0",</span><br><span class="line"><span class="addition">+ "bin": &#123;</span></span><br><span class="line"><span class="addition">+   "snippet": "./index.js"</span></span><br><span class="line"><span class="addition">+ &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>安装项目到全局，可以测试：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g&#10;$ snippet&#10;Hello, world!</span><br></pre></td></tr></table></figure>
+<p>查看命令的路径：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ which snippet&#10;/usr/local/bin/snippet&#10;$ readlink /usr/local/bin/snippet&#10;../lib/node_modules/bitbucket-snippet/index.js</span><br></pre></td></tr></table></figure>
+<p>方便开发：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm link&#10;/usr/local/bin/snippet -&#62; /usr/local/lib/node_modules/bitbucket-snippet/index.js&#10;/usr/local/lib/node_modules/bitbucket-snippet -&#62; /Users/kannonboy/src/bitbucket-snippet</span><br></pre></td></tr></table></figure>
+<p>最后 publish</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<h2 id="Parsing_command_line_options"><a href="#Parsing_command_line_options" class="headerlink" title="Parsing command line options"></a>Parsing command line options</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save commander</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env node</span><br><span class="line"><span class="deletion">- console.log('Hello, world!');</span></span><br><span class="line"><span class="addition">+ var program = require('commander');</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+ program</span></span><br><span class="line"><span class="addition">+  .arguments('&lt;file&gt;')</span></span><br><span class="line"><span class="addition">+  .option('-u, --username &lt;username&gt;', 'The user to authenticate as')</span></span><br><span class="line"><span class="addition">+  .option('-p, --password &lt;password&gt;', 'The user\'s password')</span></span><br><span class="line"><span class="addition">+  .action(function(file) &#123;</span></span><br><span class="line"><span class="addition">+    console.log('user: %s pass: %s file: %s',</span></span><br><span class="line"><span class="addition">+        program.username, program.password, file);</span></span><br><span class="line"><span class="addition">+  &#125;)</span></span><br><span class="line"><span class="addition">+  .parse(process.argv);</span></span><br></pre></td></tr></table></figure>
+<p>quick test：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ snippet -u kannonboy -p correcthorsebatterystaple my_awesome_file&#10;user: kannonboy pass: correcthorsebatterystaple file: my_awesome_file</span><br></pre></td></tr></table></figure>
+<p>自动生成一些 help 信息：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ snippet --help&#10;&#10;  Usage: snippet [options] &#60;file&#62;&#10;&#10;  Options:&#10;&#10;    -h, --help                 output usage information&#10;    -u, --username &#60;username&#62;  The user to authenticate as&#10;    -p, --password &#60;password&#62;  The user\&#39;s password</span><br></pre></td></tr></table></figure>
+<h2 id="Prompting_for_user_input"><a href="#Prompting_for_user_input" class="headerlink" title="Prompting for user input"></a>Prompting for user input</h2><p>安装：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save co co-prompt</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+ var co = require('co');</span></span><br><span class="line"><span class="addition">+ var prompt = require('co-prompt');</span></span><br><span class="line">  var program = require('commander');</span><br><span class="line">...</span><br><span class="line">  .option('-u, --username &lt;username&gt;', 'The user to authenticate as')</span><br><span class="line">  .option('-p, --password &lt;password&gt;', 'The user\'s password')</span><br><span class="line">  .action(function(file) &#123;</span><br><span class="line"><span class="addition">+    co(function *() &#123;</span></span><br><span class="line"><span class="addition">+      var username = yield prompt('username: ');</span></span><br><span class="line"><span class="addition">+      var password = yield prompt.password('password: ');</span></span><br><span class="line">       console.log('user: %s pass: %s file: %s',</span><br><span class="line"><span class="deletion">-          program.username, program.password, file);</span></span><br><span class="line"><span class="addition">+          username, password, file);</span></span><br><span class="line"><span class="addition">+    &#125;);</span></span><br><span class="line">  &#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>quick test：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ snippet my_awesome_file&#10;username: kannonboy&#10;password: *************************&#10;user: kannonboy pass: correcthorsebatterystaple file: my_awesome_file</span><br></pre></td></tr></table></figure>
+<h2 id="POSTing_the_snippet"><a href="#POSTing_the_snippet" class="headerlink" title="POSTing the snippet"></a>POSTing the snippet</h2><h2 id="Handling_error_cases"><a href="#Handling_error_cases" class="headerlink" title="Handling error cases"></a>Handling error cases</h2><p>So we’re handling the happy case OK, but what if the upload fails or the user enters the wrong credentials? The UNIX-y way to handle it would be to write an message to standard error and exit with a non-zero code, so let’s do that.</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  request</span><br><span class="line">    .post('https://api.bitbucket.org/2.0/snippets/')</span><br><span class="line">    .auth(username, password)</span><br><span class="line">    .attach('file', filename, file)</span><br><span class="line">    .set('Accept', 'application/json')</span><br><span class="line">    .end(function (err, res) &#123;</span><br><span class="line"><span class="addition">+     if (!err &amp;&amp; res.ok) &#123;</span></span><br><span class="line">        var link = res.body.links.html.href;</span><br><span class="line">        console.log('Snippet created: %s', link);</span><br><span class="line"><span class="addition">+       process.exit(0);</span></span><br><span class="line"><span class="addition">+     &#125;</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+     var errorMessage;</span></span><br><span class="line"><span class="addition">+     if (res &amp;&amp; res.status === 401) &#123;</span></span><br><span class="line"><span class="addition">+       errorMessage = "Authentication failed! Bad username/password?";</span></span><br><span class="line"><span class="addition">+     &#125; else if (err) &#123;</span></span><br><span class="line"><span class="addition">+       errorMessage = err;</span></span><br><span class="line"><span class="addition">+     &#125; else &#123;</span></span><br><span class="line"><span class="addition">+       errorMessage = res.text;</span></span><br><span class="line"><span class="addition">+     &#125;</span></span><br><span class="line"><span class="addition">+     console.error(errorMessage);</span></span><br><span class="line"><span class="addition">+     process.exit(1);</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Adding_a_progress_bar"><a href="#Adding_a_progress_bar" class="headerlink" title="Adding a progress bar"></a>Adding a progress bar</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save progress</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+ var fs = require('fs');</span></span><br><span class="line"><span class="addition">+ var ProgressBar = require('progress');</span></span><br><span class="line">  var chalk = require('chalk');</span><br><span class="line">  var request = require('superagent');</span><br><span class="line">...</span><br><span class="line">  var username = yield prompt('username: ');</span><br><span class="line">  var password = yield prompt.password('password: ');</span><br><span class="line"></span><br><span class="line"><span class="addition">+ var fileSize = fs.statSync(file).size;</span></span><br><span class="line"><span class="addition">+ var fileStream = fs.createReadStream(file);</span></span><br><span class="line"><span class="addition">+ var barOpts = &#123;</span></span><br><span class="line"><span class="addition">+   width: 20,</span></span><br><span class="line"><span class="addition">+   total: fileSize,</span></span><br><span class="line"><span class="addition">+   clear: true</span></span><br><span class="line"><span class="addition">+ &#125;;</span></span><br><span class="line"><span class="addition">+ var bar = new ProgressBar(' uploading [:bar] :percent :etas', barOpts);</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+ fileStream.on('data', function (chunk) &#123;</span></span><br><span class="line"><span class="addition">+   bar.tick(chunk.length);</span></span><br><span class="line"><span class="addition">+ &#125;);</span></span><br><span class="line"></span><br><span class="line">  request</span><br><span class="line">    .post('https://api.bitbucket.org/2.0/snippets/')</span><br><span class="line">    .auth(username, password)</span><br><span class="line"><span class="deletion">-   .attach('file', file)</span></span><br><span class="line"><span class="addition">+   .attach('file', fileStream)</span></span><br><span class="line">    .set('Accept', 'application/json')</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We’ve barely scraped the surface of what’s possible with command line tooling in node. As per Atwood’s Law, there are npm packages for elegantly handling standard input, managing parallel tasks, watching files, globbing, compressing, ssh, git, and almost everything else you did with Bash. Plus, there are nice APIs for forking child processes if you need to fall back on another shell script or command that you can’t find a decent JavaScript implementation of.<br>The source code for the example we built above is liberally licensed and available on Bitbucket and, of course, published to npm. I’ve also implemented a couple of features that aren’t shown here, like OAuth, so you don’t have to keep typing in your username and password. You can start using it yourself with a simple:</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li>packaging new shell commands with npm</li>
+<li>parsing command line options</li>
+<li>reading text and passwords from stdin</li>
+<li]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Communications between Objects]]></title>
+    <link href="http://shane.hsi.rocks/2016/06/02/Communications-between-Objects/"/>
+    <id>http://shane.hsi.rocks/2016/06/02/Communications-between-Objects/</id>
+    <published>2016-06-02T09:41:43.000Z</published>
+    <updated>2016-06-02T09:58:04.000Z</updated>
+    <content type="html"><![CDATA[<p>原文：<a href="http://www.cnblogs.com/netfocus/archive/2012/02/12/2347895.html" target="_blank" rel="external">http://www.cnblogs.com/netfocus/archive/2012/02/12/2347895.html</a></p>
+<p>经典的DDD</p>
+<p>如果一个领域概念是一个跨多个聚合的动作，比如转帐，那么就应该用领域服务来实现这样的业务概念。</p>
+<p>领域服务的输入和输出参数都是聚合根，领域服务内部按照业务逻辑规定的执行顺序，按照面向过程的方式，逐个调用相关聚合根的相关方法完成整个业务操作。</p>
+<p>这种方式的优点是：1）清晰的表达和封装了业务逻辑；2）代码清晰，容易理解，代码可读性强；</p>
+<p>缺点：1）基本的OO思想告诉我们，对象与对象之间应该是通过发送消息和接收消息的方式来通信的。</p>
+<p>第一种：是被动的被一个第三方协调者服务对象来统一协调，这其实是一种面向过程的思维，而非基于消息通信的面向对象思维；</p>
+<p>2）这种通过领域服务的方式只强调了对象的个体行为（即对象只有改变自己状态的行为），而没有注重对象之间的交互行为，对象应该还有能力发送消息给其他对象或者响应其他对象发送的消息；</p>
+<p>那么为了能让对象之间有交互行为，能相互发送消息和接受消息，该如何做呢？一般来说有两种方法：1）方法调用，A对象调用B对象的方法，这种方法最常用最直接，但是缺点是会导致A依赖于B。这个问题我们往往会通过面向接口编程在一定程度上消除这种依赖关系；2）事件消息模式，生产者-消费者模式，即采用触发事件响应事件的模式；通过这种方式，A对象就不是直接调用B对象的方法了，而是触发一个事件，然后B对象去响应这个事件，或者如果采用消息总线的方式的话，就是A对象通知消息总线发布某个事件，然后消息总线发布这个事件，然后B对象响应这个事件。通过这样的通信方式，巧妙的将A，B两个对象的关系进行了解耦，本来A直接依赖B（A-&gt;B）的情况变成了A与B相互独立，变成了这种方式：A-&gt;消息&lt;-B。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原文：<a href="http://www.cnblogs.com/netfocus/archive/2012/02/12/2347895.html" target="_blank" rel="external">http://www.cnblogs.com/netfoc]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Locally test your npm modules without publishing them to npmjs.org
+]]></title>
+    <link href="http://shane.hsi.rocks/2016/05/31/Locally-test-your-npm-modules-without-publishing-them-to-npmjs-org/"/>
+    <id>http://shane.hsi.rocks/2016/05/31/Locally-test-your-npm-modules-without-publishing-them-to-npmjs-org/</id>
+    <published>2016-05-31T10:22:53.000Z</published>
+    <updated>2016-05-31T10:23:46.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://podefr.tumblr.com/post/30488475488/locally-test-your-npm-modules-without-publishing" target="_blank" rel="external">link</a></p>
+<p><code>npm pack</code></p>
+<p><code>npm install ../path/to/your/npm/packagename-version.tgz</code></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://podefr.tumblr.com/post/30488475488/locally-test-your-npm-modules-without-publishing" target="_blank" rel="external">link<]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Neos CMS Goes for a Full UI Rewrite with React and Redux]]></title>
+    <link href="http://shane.hsi.rocks/2016/05/27/Neos-CMS-Goes-for-a-Full-UI-Rewrite-with-React-and-Redux/"/>
+    <id>http://shane.hsi.rocks/2016/05/27/Neos-CMS-Goes-for-a-Full-UI-Rewrite-with-React-and-Redux/</id>
+    <published>2016-05-27T08:42:39.000Z</published>
+    <updated>2016-05-27T09:41:24.000Z</updated>
+    <content type="html"><![CDATA[<p>原文：<a href="http://dimaip.github.io/2016/03/13/neos-react-redux-rewrite/" target="_blank" rel="external">http://dimaip.github.io/2016/03/13/neos-react-redux-rewrite/</a></p>
+
+<p>The AddNodeModal dialog that we are going to implement</p>
+<p>通过这个功能，我们来看下它们是怎么组织代码。</p>
+<p>Our task would be to create a dialog for creating nodes</p>
+<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p>The main reason for the switch to this new stack was the desire to give more predictability and integrity to the UI. You see, our case is slightly complicated by the fact that we have the same data distributed across multiple places: the navigation tree, inline editing etc. Before we did not have a unified data model, and all of this modules functioned independently, carefully glued together by some state syncing code. Yes, that was kind of a nightmare. That is why here from the start we for having all data clearly normalised and stored in the state. But that includes not only the content data, but also the state of the UI itself: all trees, panels, user preferences and so on now have a dedicated place in the application state.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原文：<a href="http://dimaip.github.io/2016/03/13/neos-react-redux-rewrite/" target="_blank" rel="external">http://dimaip.github.io/2016/03/]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Study MobX]]></title>
+    <link href="http://shane.hsi.rocks/2016/05/26/Study-MobX/"/>
+    <id>http://shane.hsi.rocks/2016/05/26/Study-MobX/</id>
+    <published>2016-05-26T07:15:32.000Z</published>
+    <updated>2016-05-27T08:18:45.000Z</updated>
+    <content type="html"><![CDATA[<p>MobX 是一个新的框架，主打 mutable。哈哈。我是来调研 API 设计的。具体实现暂时不看。</p>
+<blockquote>
+<p>注：Redux 提供的功能是在是太简陋了。</p>
+</blockquote>
+<p>Everything that can be derived from the application state, should be derived. Automatically.</p>
+<p>就是不要通过 props 传递，自动的</p>
+<img src="/2016/05/26/Study-MobX/flow.png" alt="flow.png" title="">
+<p>React renders the application state by providing mechanisms to translate it into a tree of renderable components.</p>
+<p>MobX provides the mechanism to store and update the application state that React then uses.</p>
+<p>上面一句话详细说是：</p>
+<p>MobX provides mechanisms to optimally synchronize application state with your React components by using a reactive virtual dependency state graph that is only updated when strictly needed and is never stale.</p>
+<p>使用一个 reactive 的虚拟 state graph 的机制来优化地同步应用状态和 React 组件。 只在严格需要的时候更新，并且不会 stale。</p>
+<h2 id="Core_concepts"><a href="#Core_concepts" class="headerlink" title="Core concepts"></a>Core concepts</h2><h3 id="Observable_state"><a href="#Observable_state" class="headerlink" title="Observable state"></a>Observable state</h3><p>MobX adds observable capabilities to existing data structures like objects, arrays and class instances.</p>
+<p>MobX 给存在的 data structures（比如 objects，arrays，和 class instances） 增加了 observable 的功能，</p>
+<p><strong>API：</strong></p>
+<p>This can simply be done by annotating your class properties with the <a href="http://mobxjs.github.io/mobx/refguide/observable-decorator.html" target="_blank" rel="external">@observable</a> decorator (ES.Next), or by invoking the <a href="http://mobxjs.github.io/mobx/refguide/observable.html" target="_blank" rel="external"><code>observable</code></a> or <a href="http://mobxjs.github.io/mobx/refguide/extend-observable.html" target="_blank" rel="external"><code>extendObservable</code></a> functions (ES5). See <a href="https://github.com/mobxjs/mobx/wiki/Language-Support" target="_blank" rel="external">Language support</a> for language-specific examples.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> </span>&#123;</span><br><span class="line">    id = <span class="built_in">Math</span>.random();</span><br><span class="line">    @observable title = <span class="string">""</span>;</span><br><span class="line">    @observable finished = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Using <code>@observable</code> is like turning a value into a spreadsheet cell. But unlike spreadsheets, these values can be not just primitive values, but references, objects and arrays as well. You can even <a href="http://mobxjs.github.io/mobx/refguide/extending.html" target="_blank" rel="external">define your own</a> observable data sources.</p>
+<p>speadsheets 就是 reactive 编程了。</p>
+<p>我想到了一点，这个的确挺不清晰的啊。都是有东西来通知。自动通知。</p>
+<h3 id="Computed_values"><a href="#Computed_values" class="headerlink" title="Computed values"></a>Computed values</h3><p>With MobX you can define values that will be derived automatically when relevant data is modified. By using the <a href="http://mobxjs.github.io/mobx/refguide/computed-decorator.html" target="_blank" rel="external"><code>@computed</code></a> decorator or by using parameterless functions as property values in <code>extendObservable</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> </span>&#123;</span><br><span class="line">    @observable todos = [];</span><br><span class="line">    @computed get unfinishedTodoCount() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(todo =&gt; !todo.finished).length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Reactions"><a href="#Reactions" class="headerlink" title="Reactions"></a>Reactions</h3><p>Reactions are similar to a computed value, but instead of producing a new value, a reaction produces a side effect for things like printing to the console, making network requests, incrementally updating the React component tree to patch the DOM, etc.<br>In short, reactions bridge <a href="https://en.wikipedia.org/wiki/Reactive_programming" target="_blank" rel="external">reactive</a> and <a href="https://en.wikipedia.org/wiki/Imperative_programming" target="_blank" rel="external">imperative</a> programming.</p>
+<p>和 computed value 类似，但是它不是为了生成一个新的值，而是产生一个 side effect，比如：打印到 console，请求网络，逐步更新 React Component tree 来 patch DOM。</p>
+<p>简而言之，reactions 是来桥接 reactive 和 imperative。</p>
+<p>If you are using React, you can turn your (stateless function) components into reactive components by simply adding the <a href="http://mobxjs.github.io/mobx/refguide/observer-component.html" target="_blank" rel="external"><code>@observer</code></a> decorator from the <code>mobx-react</code> package onto them.</p>
+<p><code>observer</code> turns React (function) components into derivations of the data they render.</p>
+<p><code>observer</code> 将 React 组件变成他们需要 render 的 data 的起源。</p>
+<p>When using MobX there are no smart or dumb components.</p>
+<p>All components render smartly but are defined in a dumb manner.</p>
+<p>所有的组件都是 smartly 的 render 的，但是写法是 dumb 的。（因为都是通过 observable）。</p>
+<p>MobX will simply make sure the components are always re-rendered whenever needed, but also no more than that. </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>MobX 是一个新的框架，主打 mutable。哈哈。我是来调研 API 设计的。具体实现暂时不看。</p>
+<blockquote>
+<p>注：Redux 提供的功能是在是太简陋了。</p>
+</blockquote>
+<p>Everything that can be ]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Building Fast & Resilient Web Applications]]></title>
@@ -579,188 +742,6 @@
 <li><p>Node + TypeScript</p>
 </li>
 <li><p>Browser + webpack + TypeScript(to ES6) ]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Wallaby.js TypeScript Node Browser]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/16/Wallaby-js-TypeScript-Node-Browser/"/>
-    <id>http://shane.hsi.rocks/2016/04/16/Wallaby-js-TypeScript-Node-Browser/</id>
-    <published>2016-04-16T08:20:07.000Z</published>
-    <updated>2016-04-16T08:34:27.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="u7ED3_u5408_webpack__u7684"><a href="#u7ED3_u5408_webpack__u7684" class="headerlink" title="结合 webpack 的"></a>结合 webpack 的</h2><p>用到了 wallaby-webpack postprocessor 和 TypeScript。</p>
-<p>package.json</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"chai"</span>: <span class="string">"^2.1.2"</span>,</span><br><span class="line">    <span class="string">"wallaby-webpack"</span>: <span class="string">"*"</span>,</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^1.7.3"</span>,</span><br><span class="line">    <span class="string">"ts-loader"</span>: <span class="string">"^0.5.5"</span>,</span><br><span class="line">    <span class="string">"typescript"</span>: <span class="string">"*"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>tsconfig.json</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="string">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"es5"</span>,</span><br><span class="line">    <span class="string">"noEmit"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"exclude"</span>: [</span><br><span class="line">    <span class="string">"node_modules"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"files"</span>: [</span><br><span class="line">    <span class="string">"typings/tsd.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/assertion-error/assertion-error.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/chai/chai.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/jasmine/jasmine.d.ts"</span>,</span><br><span class="line">    <span class="string">"typings/node/node.d.ts"</span>,</span><br><span class="line">    <span class="string">"test/personSpec.ts"</span>,</span><br><span class="line">    <span class="string">"src/Person.ts"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>wallaby.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wallabyWebpack = <span class="built_in">require</span>(<span class="string">'wallaby-webpack'</span>);</span><br><span class="line"><span class="keyword">var</span> webpackPostprocessor = wallabyWebpack(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="comment">// load 为 false，是因为用到了 webpack。</span></span><br><span class="line">      &#123; pattern: <span class="string">'src/**/*.ts'</span>, load: <span class="literal">false</span> &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      &#123; pattern: <span class="string">'test/**/*Spec.ts'</span>, load: <span class="literal">false</span> &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 结合 webpack</span></span><br><span class="line">    postprocessor: webpackPostprocessor,</span><br><span class="line"></span><br><span class="line">    bootstrap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// required to trigger test loading</span></span><br><span class="line">      <span class="built_in">window</span>.__moduleBundler.loadTests();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="u7EAF_TypeScript"><a href="#u7EAF_TypeScript" class="headerlink" title="纯 TypeScript"></a>纯 TypeScript</h2><p>安装下 jasmine 的 typings</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">w</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="string">'src/*Browser.ts'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/*BrowserSpec.ts'</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>然后是这么引用 Jasmine 的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///&lt;reference path="../typings/jasmine/jasmine.d.ts"/&gt;</span></span><br><span class="line"><span class="comment">///&lt;reference path="../src/sayingsBrowser.ts"/&gt;</span></span><br><span class="line"></span><br><span class="line">describe(<span class="string">'Sayings Greeter'</span>, () =&gt; &#123;</span><br><span class="line">    it(<span class="string">'should greet'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="keyword">var</span> greeter = <span class="keyword">new</span> Sayings.Greeter(<span class="string">'John'</span>);</span><br><span class="line">        expect(greeter.greet()).toBe(<span class="string">'Hello, John'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>纯的 TypeScript。基本没啥这么写的。要么就用 webpack 来写。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">w</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="string">'src/*Node.ts'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/*NodeSpec.ts'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    env: &#123;</span><br><span class="line">      type: <span class="string">'node'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// you may remove the setting if you have a tsconfig.json file where the same is set</span></span><br><span class="line">    compilers: &#123;</span><br><span class="line">      <span class="string">'**/*.ts'</span>: w.compilers.typeScript(&#123;<span class="built_in">module</span>: <span class="string">'commonjs'</span>&#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// By default TypeScript compiler renames .ts files to .js files.</span></span><br><span class="line">    <span class="comment">// If you'd like to not do it and for example use your own renaming strategy,</span></span><br><span class="line">    <span class="comment">// you may pass 'noRename' option to TS compiler</span></span><br><span class="line">    <span class="comment">//  '**/*.ts': w.compilers.typeScript(&#123; noRename: true &#125;)</span></span><br><span class="line">    <span class="comment">// and may use preprocessors to rename files the way you like:</span></span><br><span class="line">    <span class="comment">//preprocessors: &#123;</span></span><br><span class="line">    <span class="comment">//  '**/*.ts': file =&gt; file.rename(file.path + '.js').content</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="u7ED3_u5408_webpack__u7684"><a href="#u7ED3_u5408_webpack__u7684" class="headerlink" title="结合 webpack 的"></a>结合 webpack 的</h2><p>用到]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[JavaScript existential operator alternative syntax]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/16/JavaScript-existential-operator-alternative-syntax/"/>
-    <id>http://shane.hsi.rocks/2016/04/16/JavaScript-existential-operator-alternative-syntax/</id>
-    <published>2016-04-16T08:05:06.000Z</published>
-    <updated>2016-04-16T08:06:57.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="http://stackoverflow.com/questions/15260732/does-typescript-support-the-operator-and-whats-it-called" target="_blank" rel="external">链接</a></p>
-<p>妥协的方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> thing = foo &amp;&amp; foo.bar || <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">var</span> thing = foo &amp;&amp; foo.bar &amp;&amp; foo.bar.check &amp;&amp; foo.bar.check.x || <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><a href="http://stackoverflow.com/questions/15260732/does-typescript-support-the-operator-and-whats-it-called" target="_blank" rel="exter]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Wallaby.js Configuration file]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/16/Wallaby-js-Configuration-file/"/>
-    <id>http://shane.hsi.rocks/2016/04/16/Wallaby-js-Configuration-file/</id>
-    <published>2016-04-16T05:00:01.000Z</published>
-    <updated>2016-04-16T08:15:14.000Z</updated>
-    <content type="html"><![CDATA[<p>by default, wallaby.js is using PhantomJs to run tests.</p>
-<p>默认是在 PhantomJs 跑测试（就是 browsers 啦）。</p>
-<p>通过 <code>env</code> 来跑在 node 或者 <a href="https://wallabyjs.com/docs/integration/electron.html" target="_blank" rel="external">latest Chromium/V8 via Electron</a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">env: &#123;</span><br><span class="line">  type: <span class="string">'node'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> env: &#123;</span><br><span class="line">  kind: <span class="string">'electron'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wallaby</span><br><span class="line">    .localProjectDir <span class="comment">// string 返回 project 当前的目录 </span></span><br><span class="line">    .projectCacheDir <span class="comment">// string project 的 cache 目录 也就是， wallaby 会把文件从 `files` `tests` 复制到 cache 目录，跑的是 cache 里的</span></span><br><span class="line">    .compilers <span class="comment">// 访问 TypeScript Babel compilers https://wallabyjs.com/docs/config/compilers.html</span></span><br><span class="line">    .defaults</span><br></pre></td></tr></table></figure>
-<h2 id="u5FEB_u6377_u94FE_u63A5"><a href="#u5FEB_u6377_u94FE_u63A5" class="headerlink" title="快捷链接"></a>快捷链接</h2><ul>
-<li><p>配置 compilers <a href="https://wallabyjs.com/docs/integration/typescript.html" target="_blank" rel="external">TypeScript</a> 和 <a href="https://wallabyjs.com/docs/integration/es-next.html" target="_blank" rel="external">ES6/ES7</a></p>
-</li>
-<li><p>配置 test framework 跑 test 之前设置下环境 <a href="https://wallabyjs.com/docs/config/bootstrap.html" target="_blank" rel="external">setup/bootstrap</a></p>
-</li>
-<li><p>配置 <a href="https://wallabyjs.com/docs/config/runner.html" target="_blank" rel="external">env</a>，node.js 其他 version 的 phantomjs，electron。</p>
-</li>
-<li><p><a href="https://wallabyjs.com/docs/config/preprocessors.html" target="_blank" rel="external">preprocessor</a>，比如处理某些 template 为 javascript 来 load tests</p>
-</li>
-</ul>
-<h2 id="test_framework"><a href="#test_framework" class="headerlink" title="test framework"></a>test framework</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">wallaby</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="string">'src/**/*.js'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/**/*Spec.js'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    testFramework: <span class="string">'mocha'</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="delays"><a href="#delays" class="headerlink" title="delays"></a>delays</h2><p>使用默认的</p>
-<h2 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h2><p>输出详细信息，一般不用，报 bug 的时候可以用。</p>
-<h1 id="Files_and_tests"><a href="#Files_and_tests" class="headerlink" title="Files and tests"></a>Files and tests</h1><h2 id="Files"><a href="#Files" class="headerlink" title="Files"></a>Files</h2><p>注意：</p>
-<ul>
-<li>一定要写全<ul>
-<li>比如如果你在 js 里 load 了 json，要写上</li>
-<li>如果你 require 了其他的 js，要写上</li>
-<li>例外<ul>
-<li>node_modules 目录（因为 wallaby 不会 cache 它们，就用 local 的）</li>
-<li>如果用了 webpack 等 bundler（除非用的是 global）</li>
-<li>用了 中间件 <a href="https://wallabyjs.com/docs/config/middleware.html" target="_blank" rel="external">Middleware</a>???</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>注意根据依赖设置前后顺序</li>
-<li>可以是 js，也可以是 css， image json 等任何类型</li>
-</ul>
-<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>略过</p>
-<h2 id="File_object"><a href="#File_object" class="headerlink" title="File object"></a>File object</h2><p>pattern</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">files: [</span><br><span class="line">      <span class="string">'src/**/*.js'</span>,</span><br><span class="line">      <span class="comment">// is the same as</span></span><br><span class="line">      &#123; pattern: <span class="string">'src/**/*.js'</span>, instrument: <span class="literal">true</span>, load: <span class="literal">true</span>, ignore: <span class="literal">false</span> &#125;</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
-<p>其中 <code>ignore</code> 的快捷写法是 <code>!</code> 。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"files"</span>: [</span><br><span class="line">    <span class="string">"src/**/*.js"</span>,</span><br><span class="line">    <span class="string">"!src/**/*Spec.js"</span></span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  <span class="string">"tests"</span>: [</span><br><span class="line">    <span class="string">"src/**/*Spec.js"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>load</code> 只是否被 sandbox HTML 加载（通过 <code>&lt;script&gt;</code> ）。如果用了 Webpack 就不需要了。</p>
-<h2 id="Overriding_defaults"><a href="#Overriding_defaults" class="headerlink" title="Overriding defaults"></a>Overriding defaults</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">wallaby</span>) </span>&#123;</span><br><span class="line">  wallaby.defaults.files.instrument = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="string">'libs/lib1.js'</span>,</span><br><span class="line">      <span class="string">'libs/lib2.js'</span>,</span><br><span class="line">      <span class="string">'libs/lib3.js'</span>,</span><br><span class="line">      <span class="string">'libs/lib4.js'</span>,</span><br><span class="line">      &#123; pattern: <span class="string">'src/**/*.js'</span>, instrument: <span class="literal">true</span> &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/**/*Spec.js'</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="Runner"><a href="#Runner" class="headerlink" title="Runner"></a>Runner</h1><p>PhantomJs, Chromium/V8 via Electron and node.js</p>
-<p>默认的是 By default, PhantomJs (1.9.8)</p>
-<p>具体的是细节，默认的和 node 就可以 </p>
-<p><a href="https://wallabyjs.com/docs/config/runner.html" target="_blank" rel="external">更多</a></p>
-<h1 id="Compilers"><a href="#Compilers" class="headerlink" title="Compilers"></a>Compilers</h1><p>这个和 preprocessors 会混淆。</p>
-<p>preprocessors 也能 transform，然后给到 test runner，但是如果你要有 code coverage，首先 wallaby 需要在任意的 preprocessors 前，intstrument 它们。</p>
-<p>也就是说 wallaby 需要了解这些 dialect。</p>
-<p>Wallaby.js 本身就支持 ES6，JSX。其他的需要配置。</p>
-<p>内置了三款：</p>
-<blockquote>
-<p>Wallaby.js has three built-in compilers: TypeScript, CoffeeScript and Babel.</p>
-</blockquote>
-<p>如果用了 Babel compiler ，就不要用 Babel preprocessor。</p>
-<p>如果只用了 ES6，没用到 ES7，可以 keep using Babel preprocessor without Babel compiler。</p>
-<p>但是如果用到了 TypeScript，则必须用 compiler。preprocessors for TypeScript and CoffeeScript are not required</p>
-<p>连配置 compiler 的语法和 preprocessors 都差不多。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">compilers: &#123;</span><br><span class="line">  <span class="string">'**/*.js'</span>: wallaby.compilers.babel(&#123;</span><br><span class="line">    <span class="comment">// babel options</span></span><br><span class="line">    <span class="comment">// like `stage: n` for Babel 5.x or `presets: [...]` for Babel 6</span></span><br><span class="line">    <span class="comment">// (no need to duplicate .babelrc, if you have it, it'll be automatically loaded)</span></span><br><span class="line">  &#125;),</span><br><span class="line"></span><br><span class="line">  <span class="string">'**/*.ts'</span>: wallaby.compilers.typeScript(&#123;</span><br><span class="line">    <span class="comment">// TypeScript compiler specific options</span></span><br><span class="line">    <span class="comment">// https://github.com/Microsoft/TypeScript/wiki/Compiler-Options</span></span><br><span class="line">    <span class="comment">// (no need to duplicate tsconfig.json, if you have it, it'll be automatically used)</span></span><br><span class="line">  &#125;),</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Preprocessors"><a href="#Preprocessors" class="headerlink" title="Preprocessors"></a>Preprocessors</h2><p>我的需求已经不需要配置 Preprocessors 了。</p>
-<p><a href="https://wallabyjs.com/docs/config/preprocessors.html" target="_blank" rel="external">链接</a></p>
-<ul>
-<li>compilers</li>
-<li>instrumentation</li>
-<li>preprocessors</li>
-<li>postprocessor</li>
-<li>test run</li>
-</ul>
-<p>It is not recommended to keep any state between function calls because preprocessors and compilers may run in different node processes.</p>
-<p>Postprocessor is a function that runs for every batch of file changes after all compilers and preprocessors. It has access not to just one file, but to <strong>all</strong> files (compiled and preprocessed, as well as <strong>original ones</strong>). It is also guaranteed to always run in the <strong>same node process</strong>, so it can <strong>keep some required state</strong>.</p>
-<p>Considering all of the above, postprocessor is an ideal place for something like a module bundler, or anything else that needs to  <strong>keep some state between</strong> test runs and have access to all files at the same time.</p>
-<p>a function that takes a single argument and is supposed to return a <strong>promise</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> &#123;</span><br><span class="line">     files: [</span><br><span class="line">       <span class="string">'src/**/*.js'</span></span><br><span class="line">     ],</span><br><span class="line"></span><br><span class="line">     tests: [</span><br><span class="line">       <span class="string">'test/**/*Spec.js'</span></span><br><span class="line">     ],</span><br><span class="line"></span><br><span class="line">     <span class="comment">// @param wallaby wallaby.js context</span></span><br><span class="line">     postprocessor: <span class="function"><span class="keyword">function</span> (<span class="params">wallaby</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(</span><br><span class="line">         <span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="comment">// postprocessor work here</span></span><br><span class="line">              <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">              <span class="comment">// resolve when the work is done</span></span><br><span class="line">              <span class="comment">// or reject on errors</span></span><br><span class="line">              resolve();</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">              reject(err);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
-<p>具体的可以看下 webpack 的示例</p>
-<p><a href="https://github.com/jeffling/wallaby-webpack/blob/master/index.js" target="_blank" rel="external">wallaby-webpack/index.js</a></p>
-<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>setup，alias 是 bootstrap。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      <span class="string">'src/**/*.js'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/**/*Spec.js'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    setup: <span class="function"><span class="keyword">function</span> (<span class="params">wallaby</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// wallaby.testFramework is jasmine/QUnit/mocha object</span></span><br><span class="line">      wallaby.testFramework.ui(<span class="string">'tdd'</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// you can access 'window' object in a browser environment,</span></span><br><span class="line">      <span class="comment">// 'global' object or require(...) something in node environment 比如 window 和 global</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>by default, wallaby.js is using PhantomJs to run tests.</p>
-<p>默认是在 PhantomJs 跑测试（就是 browsers 啦）。</p>
-<p>通过 <code>env</code> 来跑在 node 或者 ]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Monorepo]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/16/Monorepo/"/>
-    <id>http://shane.hsi.rocks/2016/04/16/Monorepo/</id>
-    <published>2016-04-16T04:44:25.000Z</published>
-    <updated>2016-04-16T04:44:41.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="https://github.com/babel/babel/blob/master/doc/design/monorepo.md" target="_blank" rel="external">Why is Babel a monorepo?</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><a href="https://github.com/babel/babel/blob/master/doc/design/monorepo.md" target="_blank" rel="external">Why is Babel a monorepo?</a></]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Wallaby ES7]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/16/Wallaby-ES7/"/>
-    <id>http://shane.hsi.rocks/2016/04/16/Wallaby-ES7/</id>
-    <published>2016-04-16T04:28:53.000Z</published>
-    <updated>2016-04-16T08:17:08.000Z</updated>
-    <content type="html"><![CDATA[<p>先看看 package.json</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-core"</span>: <span class="string">"^6.4.5"</span>,</span><br><span class="line">    <span class="string">"babel-polyfill"</span>: <span class="string">"^6.3.14"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"^6.3.13"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"^6.3.13"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 babel-polyfill 上次用到过，对于支持 async/await 必须：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"core-js"</span>: <span class="string">"^2.1.0"</span>,</span><br><span class="line">  <span class="string">"babel-regenerator-runtime"</span>: <span class="string">"^6.3.13"</span>,</span><br><span class="line">  <span class="string">"babel-runtime"</span>: <span class="string">"^5.0.0"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/zloirock/core-js" target="_blank" rel="external">core-js</a> 是一个 polyfills 集合。</p>
-<p>具体参见：<a href="https://babeljs.io/docs/usage/polyfill/" target="_blank" rel="external">Polyfill</a></p>
-<p>babel-polyfill 和 regenerator-runtime 差别不大。具体差别参考上面的链接和源码。</p>
-<p>在看下 <code>.babelrc</code> 配置：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"presets"</span>: [<span class="string">"es2015"</span>, <span class="string">"stage-0"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再看下 wallaby.js 配置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">wallaby</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    files: [</span><br><span class="line">      &#123;pattern: <span class="string">'node_modules/babel-polyfill/dist/polyfill.js'</span>, instrument: <span class="literal">false</span>&#125;,</span><br><span class="line">      <span class="string">'src/**/*.js'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    tests: [</span><br><span class="line">      <span class="string">'test/**/*Spec.js'</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    compilers: &#123;</span><br><span class="line">      <span class="string">'**/*.js'</span>: wallaby.compilers.babel()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>其中加入这句话，其中，<code>instrument</code> 为 <code>false</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;pattern: <span class="string">'node_modules/babel-polyfill/dist/polyfill.js'</span>, instrument: <span class="literal">false</span>&#125;,</span><br></pre></td></tr></table></figure>
-<p>链接 <a href="https://wallabyjs.com/docs/config/files.html" target="_blank" rel="external">Configuration file: Files and tests</a></p>
-<p>关于 <code>instrument</code>：</p>
-<blockquote>
-<p>The instrument boolean property (<strong>true by default</strong>) determines whether the file is instrumented. Setting the property to false disables the file <strong>code coverage reporting</strong> and prevents the file changes from <strong>triggering automatic test execution</strong>. The setting should normally be set to false for libraries, utils and other rarely changing files. Using the setting makes wallaby.js run your code <strong>faster</strong>, as it doesn’t have to perform unnecessary work.</p>
-</blockquote>
-<p>还有一个是 <code>compilers</code>。链接 <a href="https://wallabyjs.com/docs/config/compilers.html" target="_blank" rel="external">Compilers</a></p>
-<p>写到这，我觉得要把 Wallaby/Configuration file 从头到尾看一遍。</p>
-<p>更新：已经看完了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>先看看 package.json</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2<]]>
     </summary>
     
   </entry>

@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Study MobX · Shane Hsi Rocks</title><meta name="description" content="MobX 是一个新的框架，主打 mutable。哈哈。我是来调研 API 设计的。具体实现暂时不看。
+
+注：Redux 提供的功能是在是太简陋了。
+
+Everything that can be derived from the application state, should be derived. Automatically.
+就是不要通过 props 传递，自动的
+
+React renders the application state by providing mechanisms to translate it into a tree of renderable components.
+MobX provides the mechanism to store and update the application state that React then uses.
+上面一句话详细说是：
+MobX provides mechanisms to optimally synchronize "><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/shane13hsi" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Study MobX</h1><div class="post-meta"><div class="post-time">May 26, 2016</div></div><div class="post-content"><p>MobX 是一个新的框架，主打 mutable。哈哈。我是来调研 API 设计的。具体实现暂时不看。</p>
+<blockquote>
+<p>注：Redux 提供的功能是在是太简陋了。</p>
+</blockquote>
+<p>Everything that can be derived from the application state, should be derived. Automatically.</p>
+<p>就是不要通过 props 传递，自动的</p>
+<img src="/2016/05/26/Study-MobX/flow.png" alt="flow.png" title="">
+<p>React renders the application state by providing mechanisms to translate it into a tree of renderable components.</p>
+<p>MobX provides the mechanism to store and update the application state that React then uses.</p>
+<p>上面一句话详细说是：</p>
+<p>MobX provides mechanisms to optimally synchronize application state with your React components by using a reactive virtual dependency state graph that is only updated when strictly needed and is never stale.</p>
+<p>使用一个 reactive 的虚拟 state graph 的机制来优化地同步应用状态和 React 组件。 只在严格需要的时候更新，并且不会 stale。</p>
+<h2 id="Core_concepts"><a href="#Core_concepts" class="headerlink" title="Core concepts"></a>Core concepts</h2><h3 id="Observable_state"><a href="#Observable_state" class="headerlink" title="Observable state"></a>Observable state</h3><p>MobX adds observable capabilities to existing data structures like objects, arrays and class instances.</p>
+<p>MobX 给存在的 data structures（比如 objects，arrays，和 class instances） 增加了 observable 的功能，</p>
+<p><strong>API：</strong></p>
+<p>This can simply be done by annotating your class properties with the <a href="http://mobxjs.github.io/mobx/refguide/observable-decorator.html" target="_blank" rel="external">@observable</a> decorator (ES.Next), or by invoking the <a href="http://mobxjs.github.io/mobx/refguide/observable.html" target="_blank" rel="external"><code>observable</code></a> or <a href="http://mobxjs.github.io/mobx/refguide/extend-observable.html" target="_blank" rel="external"><code>extendObservable</code></a> functions (ES5). See <a href="https://github.com/mobxjs/mobx/wiki/Language-Support" target="_blank" rel="external">Language support</a> for language-specific examples.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> </span>&#123;</span><br><span class="line">    id = <span class="built_in">Math</span>.random();</span><br><span class="line">    @observable title = <span class="string">""</span>;</span><br><span class="line">    @observable finished = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Using <code>@observable</code> is like turning a value into a spreadsheet cell. But unlike spreadsheets, these values can be not just primitive values, but references, objects and arrays as well. You can even <a href="http://mobxjs.github.io/mobx/refguide/extending.html" target="_blank" rel="external">define your own</a> observable data sources.</p>
+<p>speadsheets 就是 reactive 编程了。</p>
+<p>我想到了一点，这个的确挺不清晰的啊。都是有东西来通知。自动通知。</p>
+<h3 id="Computed_values"><a href="#Computed_values" class="headerlink" title="Computed values"></a>Computed values</h3><p>With MobX you can define values that will be derived automatically when relevant data is modified. By using the <a href="http://mobxjs.github.io/mobx/refguide/computed-decorator.html" target="_blank" rel="external"><code>@computed</code></a> decorator or by using parameterless functions as property values in <code>extendObservable</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> </span>&#123;</span><br><span class="line">    @observable todos = [];</span><br><span class="line">    @computed get unfinishedTodoCount() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(todo =&gt; !todo.finished).length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Reactions"><a href="#Reactions" class="headerlink" title="Reactions"></a>Reactions</h3><p>Reactions are similar to a computed value, but instead of producing a new value, a reaction produces a side effect for things like printing to the console, making network requests, incrementally updating the React component tree to patch the DOM, etc.<br>In short, reactions bridge <a href="https://en.wikipedia.org/wiki/Reactive_programming" target="_blank" rel="external">reactive</a> and <a href="https://en.wikipedia.org/wiki/Imperative_programming" target="_blank" rel="external">imperative</a> programming.</p>
+<p>和 computed value 类似，但是它不是为了生成一个新的值，而是产生一个 side effect，比如：打印到 console，请求网络，逐步更新 React Component tree 来 patch DOM。</p>
+<p>简而言之，reactions 是来桥接 reactive 和 imperative。</p>
+<p>If you are using React, you can turn your (stateless function) components into reactive components by simply adding the <a href="http://mobxjs.github.io/mobx/refguide/observer-component.html" target="_blank" rel="external"><code>@observer</code></a> decorator from the <code>mobx-react</code> package onto them.</p>
+<p><code>observer</code> turns React (function) components into derivations of the data they render.</p>
+<p><code>observer</code> 将 React 组件变成他们需要 render 的 data 的起源。</p>
+<p>When using MobX there are no smart or dumb components.</p>
+<p>All components render smartly but are defined in a dumb manner.</p>
+<p>所有的组件都是 smartly 的 render 的，但是写法是 dumb 的。（因为都是通过 observable）。</p>
+<p>MobX will simply make sure the components are always re-rendered whenever needed, but also no more than that. </p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/05/27/Neos-CMS-Goes-for-a-Full-UI-Rewrite-with-React-and-Redux/" class="prev">上一篇</a><a href="/2016/05/21/Building-Fast-Resilient-Web-Applications/" class="next">下一篇</a></div></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
