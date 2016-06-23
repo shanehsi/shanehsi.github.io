@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-06-08T03:10:35.000Z</updated>
+  <updated>2016-06-23T02:40:30.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Use Todo List]]></title>
+    <link href="http://shane.hsi.rocks/2016/06/23/Use-Todo-List/"/>
+    <id>http://shane.hsi.rocks/2016/06/23/Use-Todo-List/</id>
+    <published>2016-06-23T02:21:08.000Z</published>
+    <updated>2016-06-23T02:40:30.000Z</updated>
+    <content type="html"><![CDATA[<p>原文链接：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MDMyMzg2MA==&amp;mid=2655466552&amp;idx=5&amp;sn=601203ba15947ea14ca7bf679bb1153a&amp;scene=1&amp;srcid=06228eTxaFvXauxHYmIlPkDV&amp;key=77421cf58af4a6539bc968521bb2cdb0d09041b734fe3b6be05717e0d2d88b498be9503b8d5feadd54ca8be416f23a96&amp;ascene=0&amp;uin=NTkwMTI4NTM1&amp;devicetype=iMac+MacBookPro10%2C2+OSX+OSX+10.11.1+build(15B42" target="_blank" rel="external">为什么精英都是清单控？</a>&amp;version=11020201&amp;pass_ticket=6JB9kh5FXOjizHJtVeyF1w%2Bu8%2Bt6NsyF8BkMPO2%2FAKJwPre%2FhN1XVd1aLZy4mPO3)</p>
+<p>奥普拉给作者的影响：</p>
+<ul>
+<li>信之，便能成之</li>
+<li>凡事只要相信，就能在你身上降临！</li>
+<li>我从奥普拉身上学会了付出、倾听与全力以赴</li>
+</ul>
+<p>为什么写清单：</p>
+<blockquote>
+<p>把事情写下来本身就是一件充满力量的事情。加利福尼亚多米尼克大学教授盖尔•马修斯（Gail Matthews）博士研究发现， 把事情写下来，最后能做到的概率，会提高33%。</p>
+</blockquote>
+<h2 id="1__u5217_u6E05_u5355_u53EF_u4EE5_u51CF_u8F7B_u7126_u8651"><a href="#1__u5217_u6E05_u5355_u53EF_u4EE5_u51CF_u8F7B_u7126_u8651" class="headerlink" title="1 列清单可以减轻焦虑"></a>1 列清单可以减轻焦虑</h2><p>你是不是常对自己说：“事情这么多，我实在忙不过来！”</p>
+<p>把事情写下来 - 暂时把连带的事情从易失存储器中删除 - 大脑的运算压力就会减轻</p>
+<p>即便是成年人，平均也只能维持注意力十五到二十分钟</p>
+<p>最好的办法就是一想到重要的事情，就记下来放在 <strong>显眼</strong> 的地方</p>
+<p>用磁铁压在冰箱门上，用便利贴粘在办公桌前，寄电子邮件给自己，甚至输入自己的手机里都行。</p>
+<h2 id="2__u5217_u6E05_u5355_u53EF_u4EE5_u63D0_u5347_u8111_u529B"><a href="#2__u5217_u6E05_u5355_u53EF_u4EE5_u63D0_u5347_u8111_u529B" class="headerlink" title="2 列清单可以提升脑力"></a>2 列清单可以提升脑力</h2><p>列清单可以让你运动到平常少用的大脑“肌肉”。</p>
+<p>按照她的说法：“记忆的工具，包括清单，会强迫我们凝聚更多精神在我们必须记住的信息上，记忆工具会提供一个组织架构，会赋予信息坐标乃至于意义。”</p>
+<h2 id="3__u5217_u6E05_u5355_u53EF_u8BA9_u4EBA_u53D8_u4E13_u5FC3"><a href="#3__u5217_u6E05_u5355_u53EF_u8BA9_u4EBA_u53D8_u4E13_u5FC3" class="headerlink" title="3 列清单可让人变专心"></a>3 列清单可让人变专心</h2><p>把清单当成导航地图使用，你便能专心致志地朝着目标迈进。而专心有助于提高你做任何一件事情的效率。一整天下来你会发现自己愈专心，做事情就愈有效率，一旦该做的事情可以提早做完，你就能腾出更多的时间去做你想做的事情。</p>
+<blockquote>
+<p>让我们来分解下这段话：</p>
+<pre><code>1. 导航地图
+2. 朝着目标
+3. 专心有助于提升效率
+4. 结果是提早昨晚一件事，能腾出时间去做想做的事情
+</code></pre></blockquote>
+<p>如果有清单在手，你就不用怕工作被打断，因为就算遇到急事需要插进来先处理，做完后也容易回归刚才的中断处。</p>
+<p>保留中断，或者放到 event loop 中。</p>
+<h2 id="4__u5217_u6E05_u5355_u53EF_u5F3A_u5316_u81EA_u5C0A_u5FC3"><a href="#4__u5217_u6E05_u5355_u53EF_u5F3A_u5316_u81EA_u5C0A_u5FC3" class="headerlink" title="4 列清单可强化自尊心"></a>4 列清单可强化自尊心</h2><p>对我来说，把事情从清单上画掉是一大乐趣，而且也是一件非常有成就感的事。</p>
+<p>光是知道自己可以把工作搞定，就会有股力量推着你继续前进。</p>
+<p>格林博士认为，清单可以让人感觉对生活更有掌控力，而一旦我们 <strong>对生活更能积极参与</strong>，无力感就会化为无形。完成的事情愈多，我们就愈能 <strong>发挥潜力</strong>，愈相信自己。</p>
+<h2 id="5__u5217_u6E05_u5355_u53EF_u5398_u6E05_u4F60_u7684_u601D_u7EEA"><a href="#5__u5217_u6E05_u5355_u53EF_u5398_u6E05_u4F60_u7684_u601D_u7EEA" class="headerlink" title="5 列清单可厘清你的思绪"></a>5 列清单可厘清你的思绪</h2><p>各种想法列在清单上，我就可以一步一步去构思如何把步骤跟结果连起来。</p>
+<h2 id="6__u5217_u6E05_u5355_u6559_u4F1A_u4F60_u9884_u5219_u7ACB"><a href="#6__u5217_u6E05_u5355_u6559_u4F1A_u4F60_u9884_u5219_u7ACB" class="headerlink" title="6 列清单教会你预则立"></a>6 列清单教会你预则立</h2><p>美国女童军的官方座右铭“凡事做好准备”（Be prepared.）</p>
+<p>我们凡事都应该做好准备。不论是要租房子、找房子，还是要换工作，我们都应该用清单来随时掌握事情的轻重缓急。 </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原文链接：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MDMyMzg2MA==&amp;mid=2655466552&amp;idx=5&amp;sn=601203ba15947ea14ca7bf679bb1153a&amp;]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Thoughts on My Skill on Front-end Development]]></title>
+    <link href="http://shane.hsi.rocks/2016/06/20/Thoughts-on-My-Skill-on-Front-end-Development/"/>
+    <id>http://shane.hsi.rocks/2016/06/20/Thoughts-on-My-Skill-on-Front-end-Development/</id>
+    <published>2016-06-20T08:39:10.000Z</published>
+    <updated>2016-06-22T10:23:09.000Z</updated>
+    <content type="html"><![CDATA[<p>纯粹没有任何 data flow，可以写出很好的前端吗？</p>
+<p>毕竟前端还是以 UI 实现为主。组件化做好了之后，其实就完成了很多功能。</p>
+<p>像 Form 这种，纠缠了很多逻辑又很通用的组件，完全也可以抛开数据吗？用 local state 来维护。</p>
+<p>最好写一个试试看效果。</p>
+<p>hdk 可以直接 load 一个组件。启动一个页面。<br>现在有点不爽写法啊。config 的配置方式。但是怎么办呢？能力有限，软件设计还是欠缺的。<br>不过还好 cli 的入口还是可以的。</p>
+<p>如果用了 graphql，可以独立用代码开发模块，然后放到页面的某块里。算是可视化编辑的一种吧。</p>
+<p>Java 服务端渲染引擎。可以用模板来做。</p>
+<p>虽然 ReactJS 也可以做服务端渲染。</p>
+<p>其实我下一步要做的就是，找到如何对 config.json 在做一层封装。</p>
+<p>我还是用 javascript 开发（后台）比较好。这样比较方便。</p>
+<p>现在的策略是，憋个大招？每天4个小时，能不能做成功呢？</p>
+<p>或者平时做 incremental 的优化。</p>
+<p>EMCSS。</p>
+<p>目前的母版得使用母版引擎。</p>
+<p>使用 observable 来代替 setState。</p>
+<h1 id="u9644"><a href="#u9644" class="headerlink" title="附"></a>附</h1><h2 id="u5982_u4F55_u5C01_u88C5_webpack"><a href="#u5982_u4F55_u5C01_u88C5_webpack" class="headerlink" title="如何封装 webpack"></a>如何封装 webpack</h2><p>还是那句话，不断的拆分。拆干净了，自然就漂亮了。</p>
+<p>因为是 config，暴露的接口很少，而且很干净，比如 </p>
+<p>commandline</p>
+<p>如果是带 prompt 的，看起来也可以做。</p>
+<p>还有一种就是读配置文件。这三种东西可以做到统一模块化。</p>
+<p>## </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>纯粹没有任何 data flow，可以写出很好的前端吗？</p>
+<p>毕竟前端还是以 UI 实现为主。组件化做好了之后，其实就完成了很多功能。</p>
+<p>像 Form 这种，纠缠了很多逻辑又很通用的组件，完全也可以抛开数据吗？用 local state 来维护。</p]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Building command line tools with Node.js]]></title>
@@ -670,78 +753,6 @@
     <summary type="html">
     <![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>会有一些可选的关于 tools 的 guidelines。</p>
 <h1 id="u7B2C_u4E0]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Test mock terminology]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/16/Test-mock-terminology/"/>
-    <id>http://shane.hsi.rocks/2016/04/16/Test-mock-terminology/</id>
-    <published>2016-04-16T08:45:55.000Z</published>
-    <updated>2016-04-16T09:00:29.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="http://sinonjs.org/#examples" target="_blank" rel="external">sinon examples</a> 非常的清晰。</p>
-<p>找到一篇中文：<a href="http://www.tuicool.com/articles/iAz6fi" target="_blank" rel="external">置换测试: Mock, Stub 和其他</a></p>
-<ul>
-<li><p>double - 理解为置换，它是所有模拟测试对象的 <strong>统称</strong>，我们也可以称它为替身。</p>
-</li>
-<li><p>stub - 测试桩，它能实现当特定的方法被调用时，返回一个指定的模拟值（每次一致的模拟数据）。</p>
-</li>
-</ul>
-<p>以 sinon.js 为例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stub = sinon.stub().returns(<span class="number">42</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>spy - 侦查，它负责汇报情况，持续追踪什么方法 <strong>被调用了</strong> ，以及调用过程中 <strong>传递了哪些参数</strong> 。比如一个特定的方法是否被调用或者是否使用正确的参数调用。当你需要测试两个对象间的 某些<strong>协议</strong> 或者关系时会非常有用。</li>
-</ul>
-<blockquote>
-<p>关键是方法间的 <strong>协议</strong>。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">it(<span class="string">"calls the original function"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> spy = sinon.spy();</span><br><span class="line">    <span class="keyword">var</span> proxy = once(spy);</span><br><span class="line"></span><br><span class="line">    proxy();</span><br><span class="line"></span><br><span class="line">    assert(spy.called);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>mock - 与 spy 类似，有些许不同。 spy 追踪所有的方法调用，并在事后让你写断言，而 mock 通常需要你 <strong>事先设定期望</strong>。你告诉它你期望发生什么，然后执行测试代码并验证最后的结果与事先定义的期望是否一致。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">it(<span class="string">"returns the return value from the original function"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myAPI = &#123; method: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; &#125;;</span><br><span class="line">    <span class="keyword">var</span> mock = sinon.mock(myAPI);</span><br><span class="line">    mock.expects(<span class="string">"method"</span>).once().returns(<span class="number">42</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> proxy = once(myAPI.method);</span><br><span class="line"></span><br><span class="line">    assert.equals(proxy(), <span class="number">42</span>);</span><br><span class="line">    mock.verify();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>fake - <strong>具备完整</strong> 功能实现和行为的对象，行为上来说它和这个类型的真实对象上一样，但不同于它所模拟的类，它使测试变得更加容易。一个典型的例子是使用内存中的数据库来生成一个数据持久化对象，而不是去访问一个真正的生产环境的数据库。</li>
-</ul>
-<p>对细节有更多，参考 <a href="http://martinfowler.com/articles/mocksArentStubs.html" target="_blank" rel="external">Mocks Aren’t Stubs</a></p>
-<h2 id="u6A21_u62DF_u4E3B_u4E49_u8005__28Mockists_29_vs-__u7EDF_u8BA1_u4E3B_u4E49_u8005__28Statists_29"><a href="#u6A21_u62DF_u4E3B_u4E49_u8005__28Mockists_29_vs-__u7EDF_u8BA1_u4E3B_u4E49_u8005__28Statists_29" class="headerlink" title="模拟主义者 (Mockists) vs. 统计主义者 (Statists)"></a>模拟主义者 (Mockists) vs. 统计主义者 (Statists)</h2><p>总结下，模拟的是行为（内部的），统计的是最终状态。</p>
-<p>许多关于模拟对象的讨论主要是衍生自 Fowler 的文章的，它们讨论了两种不同类型的程序员，模拟主义者和统计主义者，所写的测试。</p>
-<p>模拟主意的方式是测试对象之间的交互。通过使用模拟对象，你可以更容易地验证被测对象是否遵循了它与其他类已建立的协议，使得在正确的时间发生正确的外部调用。对于那些使用行为驱动 (behavior-driven) 的开发者来说，这种测试可以驱动出更好的生产代码，因为你需要明确模拟出特定的方法，这可以帮你设计出在两个对象之间使用的更优雅的API，这种想法与模拟驱动紧密联系在一起。因此模拟主义的测试更偏向于单元级别的测试，而不是完全的端到端 (end-to-end) 测试。</p>
-<p>统计主义的方式是不使用模拟对象。这种思路是测试时只测试状态而不是行为，因此这种类型的测试更加健壮。使用模拟测试时，如果你更新了实际类的行为，模拟类也需要同步更新；如果你忘了这么做，你可能会遇到测试可以通过但是代码却不能正确工作的情况。通过强调在测试环境中只使用那些真正的代码，统计主意的测试可以帮助你 <strong>减少测试代码和实现代码的耦合度，并降低出错率</strong>。这种类型的测试，您可能已经猜到，适合于更全面的端到端的测试。</p>
-<p>当然，并不是说有两个对立的程序员学派；你不可能看到模拟主义和统计主义的当街对决。这种分歧是有用的，但是，得认识到 mock 在有些时候是你的工具箱里最好的工具，但是有时候又不是。不同类型的测试适用于不同的任务，并且最高效的测试套件往往是不同测试风格的集合体。仔细考虑你到底想要用单个测试来验证些什么，这能帮助你找到最合适的测试方式，而且能帮你决定对于当前工作来说，使用模拟测试对象是否是正确的工具。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><a href="http://sinonjs.org/#examples" target="_blank" rel="external">sinon examples</a> 非常的清晰。</p>
-<p>找到一篇中文：<a href="http://www.tuicool]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Wallaby Summary]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/16/Wallaby-Summary/"/>
-    <id>http://shane.hsi.rocks/2016/04/16/Wallaby-Summary/</id>
-    <published>2016-04-16T08:38:36.000Z</published>
-    <updated>2016-04-16T08:45:25.000Z</updated>
-    <content type="html"><![CDATA[<p>测试基础：</p>
-<p>Mocha + expect(assertion) + sinon</p>
-<ul>
-<li><p>Node + TypeScript</p>
-</li>
-<li><p>Browser + webpack + TypeScript(to ES6) + Babel(ES7，主要是 async/await)</p>
-</li>
-<li><p>React tsx</p>
-</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>测试基础：</p>
-<p>Mocha + expect(assertion) + sinon</p>
-<ul>
-<li><p>Node + TypeScript</p>
-</li>
-<li><p>Browser + webpack + TypeScript(to ES6) ]]>
     </summary>
     
   </entry>

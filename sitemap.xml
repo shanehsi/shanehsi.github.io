@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shane.hsi.rocks/2016/06/23/Use-Todo-List/</loc>
+    <lastmod>2016-06-23T02:40:30.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://shane.hsi.rocks/2016/06/20/Thoughts-on-My-Skill-on-Front-end-Development/</loc>
+    <lastmod>2016-06-22T10:23:09.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://shane.hsi.rocks/2016/06/08/Building-command-line-tools-with-Node-js/</loc>
     <lastmod>2016-06-08T03:10:35.000Z</lastmod>
   </url>
