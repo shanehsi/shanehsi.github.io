@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://shane.hsi.rocks/"/>
-  <updated>2016-06-23T02:40:30.000Z</updated>
+  <updated>2016-07-10T02:50:46.000Z</updated>
   <id>http://shane.hsi.rocks/</id>
   
   <author>
@@ -13,6 +13,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Make a Simple and Descriptive, a Empathic World!]]></title>
+    <link href="http://shane.hsi.rocks/2016/07/05/Make-a-Simple-and-Descriptive-a-Empathic-World/"/>
+    <id>http://shane.hsi.rocks/2016/07/05/Make-a-Simple-and-Descriptive-a-Empathic-World/</id>
+    <published>2016-07-05T07:04:13.000Z</published>
+    <updated>2016-07-10T02:50:46.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>最近心情也很低落。写程序写着写着还是发现很多不清楚的（比如：如何减少 if，现在组件很多的写法都是根据 props 做简单的 if 判断，是显示 disable 还是 readonly 还是什么）。基本的代码组织也是很乱。刚才抽空看了尤雨溪的 vuejs，API 设计实在是漂亮。没有看代码组织，以及代码细节，相比也不差。这篇文章的标题是：创造一个简洁描述性高的世界，一个同理心的世界。希望写出的代码能够让人快速理解，认同并爱上。</p>
+</blockquote>
+<p>看下 WPF 开发中，为什么使用 MVVM：</p>
+<ul>
+<li>UI 和数据可以分开开发</li>
+<li>当UI全部改变时，代码可以不改变</li>
+</ul>
+<p>UI 与程序通过 Bindings 和 Commands 进行交互。</p>
+<p>Bindings 和 Commands 在 ViewModel 中进行设计。</p>
+<h2 id="The_Model"><a href="#The_Model" class="headerlink" title="The Model"></a>The Model</h2><p>Web Services</p>
+<p>Rest Services</p>
+<p>Generic Collections</p>
+<p>反正是数据。</p>
+<p>这一层我的想法是：</p>
+<ul>
+<li>GraphQL 主要不是方便前端的，而是方便后端的。</li>
+<li>GraphQL 也方便了前端，但是没必要把 model 直接绑定到 view 上。</li>
+</ul>
+<p>但是我如果要做：服务化组件呢？</p>
+<h2 id="The_View_Model"><a href="#The_View_Model" class="headerlink" title="The View Model"></a>The View Model</h2><p>属性：作用，属性变化，更新 UI</p>
+<p>集合</p>
+<p>Commands：可以触发的事件。</p>
+<h2 id="The_View"><a href="#The_View" class="headerlink" title="The View"></a>The View</h2><p>这一层可以不写代码，可以可视化编辑。</p>
+<p>主要要完成：</p>
+<ul>
+<li>将 View Model 的属性绑定到 component 上。</li>
+<li>View Model 的集合绑定到 ListBox，DataGrid 上。</li>
+<li>Commands<ul>
+<li>指出需要实现的 ICommand</li>
+</ul>
+</li>
+</ul>
+<h1 id="u611F_u60F3"><a href="#u611F_u60F3" class="headerlink" title="感想"></a>感想</h1><p>一定要分层。否则永远实现不了可视化编辑（本来就很难，可能不切实际）。</p>
+<h1 id="u518D_u6B21_u7206_u70B8_u5F0F_u7406_u89E3_u4E0B_MVVM"><a href="#u518D_u6B21_u7206_u70B8_u5F0F_u7406_u89E3_u4E0B_MVVM" class="headerlink" title="再次爆炸式理解下 MVVM"></a>再次爆炸式理解下 MVVM</h1><h2 id="UI_u5C42_u7684_u8BBE_u8BA1_u6A21_u5F0F_u2014_u2014_u4ECEScript_u3001Code_Behind_u5230MVC_u3001MVP_u3001MVVM"><a href="#UI_u5C42_u7684_u8BBE_u8BA1_u6A21_u5F0F_u2014_u2014_u4ECEScript_u3001Code_Behind_u5230MVC_u3001MVP_u3001MVVM" class="headerlink" title="UI层的设计模式——从Script、Code Behind到MVC、MVP、MVVM"></a>UI层的设计模式——从Script、Code Behind到MVC、MVP、MVVM</h2><h3 id="Code_Behind"><a href="#Code_Behind" class="headerlink" title="Code Behind"></a>Code Behind</h3><p>很好地处理UI和逻辑各自分开的关系，你可以让UI和逻辑各自做好各自的事情</p>
+<p>真正在UI和逻辑分化后带来的实质问题是：</p>
+<p><strong>是按逻辑和UI划分地管理，还是按单界面的事务进行划分地管理</strong></p>
+<p>对了，如果 </p>
+<p>React 的 Command，虽然是 direct 的，但是它声明一个 interface，不就是回调了吗？它有 payload（mutation），如何处理就不是它的职责了。</p>
+<p>双向绑定数据上好做，但是 Command（@action） 呢？</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>最近心情也很低落。写程序写着写着还是发现很多不清楚的（比如：如何减少 if，现在组件很多的写法都是根据 props 做简单的 if 判断，是显示 disable 还是 readonly 还是什么）。基本的代码组织也是很乱。刚才抽空看了尤雨溪的 vu]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Use Todo List]]></title>
@@ -727,32 +781,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><h2 id="u6570_u636E_u6D41"><a href="#u6570_u636E_u6D4]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[ECSS Reading Notes]]></title>
-    <link href="http://shane.hsi.rocks/2016/04/18/ECSS-Reading-Notes/"/>
-    <id>http://shane.hsi.rocks/2016/04/18/ECSS-Reading-Notes/</id>
-    <published>2016-04-18T05:30:12.000Z</published>
-    <updated>2016-04-18T06:39:07.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>会有一些可选的关于 tools 的 guidelines。</p>
-<h1 id="u7B2C_u4E00_u7AE0"><a href="#u7B2C_u4E00_u7AE0" class="headerlink" title="第一章"></a>第一章</h1><p>定义下问题。</p>
-<p>定义下基本需求：</p>
-<ul>
-<li>大型 css base，可维护</li>
-<li>可安全删除某些 portion</li>
-<li>能快速跟上新的设计</li>
-<li>改变不影响其他</li>
-<li>工具少，工作流简单</li>
-<li>aria 来做 state change communication</li>
-</ul>
-<p>今晚阅读完毕。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h1><p>会有一些可选的关于 tools 的 guidelines。</p>
-<h1 id="u7B2C_u4E0]]>
     </summary>
     
   </entry>
